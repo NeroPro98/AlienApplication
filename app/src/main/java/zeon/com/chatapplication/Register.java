@@ -44,6 +44,35 @@ public class Register extends AppCompatActivity {
         Alien.animate().alpha(1).setDuration(3000);
         Dog.animate().translationXBy(-1000).setDuration(0);
         Dog_Animate();
+
+        Password_Text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String test1 =Password_Text.getText().toString();
+                String test2 = "Enter Your Password......";
+                if(test1.equals(test2)) {
+                    Password_Text.setText("");
+                }
+            }
+        });
+
+
+        Email_Text.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+
+                String test1 =Email_Text.getText().toString();
+                String test2 = "Enter Your Email......";
+                if(test1.equals(test2)) {
+                    Email_Text.setText("");
+                }
+
+            }
+        });
+
+
+
     }
 
     public void Dog_Animate(){
