@@ -1,6 +1,14 @@
 package zeon.com.chatapplication;
+import android.app.Activity;
+import android.content.Intent;
+import android.text.Layout;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.*;
 import java.net.*;
@@ -17,12 +25,48 @@ public class Client {
     private ObjectOutputStream Output;
     private ObjectInputStream Input;
     private String Message = "";
-    private String ServerIP;
     private Socket Connection;
+    private String ServerIP;
+    private String ServerPort;
+    private Activity ChatActivity;
+    private EditText Port;
+    private EditText IP;
+    private Button SaveButton;
+    private EditText message;
+    private ImageButton SendButton;
+    private String IPString;
+    private String PortString;
 
 
-    public Client(String host){
-        ServerIP = host;
+
+    public Client(){
+
+        Intent anthor = new Intent();
+       //  ChatActivity = (Activity) ChatActivity.findViewById(R.layout.activity_chat__page);
+         //Port = (EditText)ChatActivity.findViewById(R.id.PORT);
+         //IP = (EditText)ChatActivity.findViewById(R.id.IP);
+        // SaveButton = (Button)ChatActivity.findViewById(R.id.save);
+         message = (EditText)ChatActivity.findViewById(R.id.Message_Type);
+         SendButton = (ImageButton)ChatActivity.findViewById(R.id.sendButton);
+         IPString = anthor.getStringExtra("IP");
+         PortString = anthor.getStringExtra("PORT");
+
+         SendButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 Log.d("Aliens Chat","ababababa");
+                 Message = message.getText().toString();
+                 SendMessage(Message);
+             }
+         });
+
+         SaveButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View v) {
+                 ServerIP = IP.getText().toString();
+                 ServerPort = Port.getText().toString();
+             }
+         });
         // here connect between the text and and place of write
         // set enable of text
         //set the listner to the text and but the SendMessage() function then reset the message
@@ -33,19 +77,31 @@ public class Client {
 
     //Connect to the Server
     public void StartRunning(){
-        try{
-            ConnectToServer(); // to connect to specific Server So you need IP Address of server
-            SetupStreams();
-            WhileChatting();
+        Log.d("Aliens Chat","StartRunning() was called");
+        Thread ClientThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
 
-        }catch (EOFException eofE){  //This when the user end the connection
-            ShowMessage("\n Client Terminated the Connection \n");
+                try{
+                    ConnectToServer(); // to connect to specific Server So you need IP Address of server
+                    SetupStreams();
+                    WhileChatting();
 
-        }catch (IOException ioE){ // this when there is an error while the user not end the connection
-            ioE.printStackTrace();
-        }finally {
-            CloseCrap();
-        }
+                }catch (EOFException eofE){  //This when the user end the connection
+                   // ShowMessage("\n Client Terminated the Connection \n");
+                    Toast.makeText(ChatActivity.getApplicationContext(),"Client Terminated the Connection",Toast.LENGTH_SHORT).show();
+
+                }catch (IOException ioE){ // this when there is an error while the user not end the connection
+                    ioE.printStackTrace();
+                }finally {
+                    CloseCrap();
+                }
+
+            }
+        });
+
+        ClientThread.start();
+
 
     }
 
@@ -53,21 +109,64 @@ public class Client {
     //Connect to server
     private void ConnectToServer() throws IOException{
 
-        ShowMessage("Attempting Connection...\n");
-        Connection = new Socket(InetAddress.getByName(ServerIP),6789);  // here we setup the connection to specific server of IP address to specific port on this server
-        ShowMessage("Connected to :"+Connection.getInetAddress().getHostAddress());
-
+        Log.d("Aliens Chat","Attempting Connection...\n");
+        Toast.makeText(ChatActivity.getApplicationContext(),"Attempting Connection...",Toast.LENGTH_SHORT).show();
+        Connection = new Socket(InetAddress.getByName(ServerIP),Integer.parseInt(ServerPort));  // here we setup the connection to specific server of IP address to specific port on this server Port:
+        Log.d("Aliens Chat","Connected to :"+Connection.getInetAddress().getHostAddress());
+        Toast.makeText(ChatActivity.getApplicationContext(),"Connected to :"+Connection.getInetAddress().getHostAddress(),Toast.LENGTH_SHORT).show();
 
     }
+
+
+    //Setup Stream Streams to send and receive message
+    private void SetupStreams()throws IOException
+    {
+        Log.d("Aliens Chat","SetupStreams() was called");
+        Output = new ObjectOutputStream(Connection.getOutputStream());
+        Output.flush();
+        Input = new ObjectInputStream(Connection.getInputStream());
+        Log.d("Aliens Chat","\n The Streams are Ready\n");
+        Toast.makeText(ChatActivity.getApplicationContext(),"The Streams are Ready...",Toast.LENGTH_SHORT).show();
+
+    }
+
+
+    //While Chatting With Server
+    private void WhileChatting()throws IOException{
+        Log.d("Aliens Chat","WhileChatting() was called");
+        Message = "You are Connected ....";
+        SendMessage(Message);
+        AbleToType(true);
+        do{
+            try {
+                Message = (String)Input.readObject(); //here after we setup our stream and our connection we receive every thing that come from server
+               //Update the List View here
+                Log.d("Aliens Chat","Message :"+Message+"\n");
+               // ShowMessage("\n"+Message); // Update the ChatList
+
+            }catch (ClassNotFoundException e){
+                //ShowMessage("\n I don't Know that Object you send");
+                Toast.makeText(ChatActivity.getApplicationContext(),"I don't Know that Object you send",Toast.LENGTH_SHORT).show();
+
+            }
+
+
+        }while (!Message.equals("SERVER - END")); // Type End To End connection
+    }
+
+
 
     //Send Message to server
     private void SendMessage(String Message){
         try {
 
+            Log.d("Aliens Chat","SendMessage() was called");
             Output.writeObject("Client -"+Message);
             Output.flush();
-            ShowMessage("\n Client -"+Message);
+           // ShowMessage("\n Client -"+Message);// Update The Chat List
+
         }catch (IOException IOE){
+            Toast.makeText(ChatActivity.getApplicationContext(),"You can't send your Message",Toast.LENGTH_SHORT).show();
             //but a Toast here
         }
 
@@ -80,40 +179,19 @@ public class Client {
     }
 
 
-    private void AbleToType(final boolean type){ // if it true the user can type and if it false the user can't type if there is no one connect with him
+    private void AbleToType(final boolean type)
+    { // if it true the user can type and if it false the user can't type if there is no one connect with him
         //type on the chat list if  type = true
         //make the Edit text UserText.setEditable(type);
 
     }
 
 
-    //Setup Stream Streams to send and receive message
-    private void SetupStreams()throws IOException{
-        Output = new ObjectOutputStream(Connection.getOutputStream());
-        Output.flush();
-        Input = new ObjectInputStream(Connection.getInputStream());
-        ShowMessage("\n The Streams is Ready\n");
 
-    }
-
-    //While Chatting With Server
-    private void WhileChatting()throws IOException{
-        AbleToType(true);
-        do{
-            try {
-                Message = (String)Input.readObject(); //here after we setup our stream and our connection we receive every thing that come from server
-                ShowMessage("\n"+Message);
-
-            }catch (ClassNotFoundException e){
-                ShowMessage("\n I don't Know that Object you send");
-            }
-
-
-        }while (!Message.equals("SERVER - END"));
-    }
 
     //Close The Streams and Socket
     private void CloseCrap(){
+        Log.d("Aliens Chat","CloseCrap() was called");
         ShowMessage("\n Closing Every thing");
         AbleToType(false);
         try {
@@ -126,4 +204,7 @@ public class Client {
         }
 
     }
+
+
+
 }

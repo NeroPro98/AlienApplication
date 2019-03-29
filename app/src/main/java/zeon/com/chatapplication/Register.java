@@ -165,6 +165,11 @@ public class Register extends AppCompatActivity {
 
     }
 
+    public void To_Setting(View v){
+        Intent intent = new Intent(getApplicationContext(),SocketInfo.class);
+        startActivity(intent);
+
+    }
 
 
 

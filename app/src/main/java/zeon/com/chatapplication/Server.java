@@ -1,5 +1,6 @@
 package zeon.com.chatapplication;
 import android.app.Activity;
+import android.icu.util.Output;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,12 +20,14 @@ public class Server extends Chat_Page{
 
 
 
+    Activity PriorityActivity;
     private ObjectOutputStream output;
     private ObjectInputStream input;
     private ServerSocket server;
     private Socket connection;
 
-    private EditText UserText;
+
+    private EditText message;
     private ImageButton SendButton;
 
     public Server() {
@@ -45,9 +48,6 @@ public class Server extends Chat_Page{
 
     }
 
-
-
-
     //Set Up and run the server
 
     public void StartRunning(){
@@ -59,7 +59,6 @@ public class Server extends Chat_Page{
                         WaitForConnection();  //wait someone to connect with me
                         SetUpStream();// after one connect with me I Will setup my Stream InputStream and OutPutStream and setup connection
                         WhileChatting(); // the programme that will send and receive message
-
 
                 }catch (EOFException eof){
                     eof.printStackTrace();
@@ -76,9 +75,12 @@ public class Server extends Chat_Page{
 
     //wait for connection then display connection information
     private void WaitForConnection()throws IOException{
-        ShowMessage("Waiting for someone to connect...\n");
+        //ShowMessage("Waiting for someone to connect...\n");
+        Log.d("Aliens Chat","Waiting for someone to connect...");
+        Toast.makeText(PriorityActivity.getApplicationContext(),"Waiting for someone to connect...",Toast.LENGTH_SHORT);
          connection = server.accept(); // to accept any one want to chat with you
-         ShowMessage("You Connection with...."+connection.getInetAddress().getHostAddress()); // the address of the server
+        // ShowMessage("You Connection with...."+connection.getInetAddress().getHostAddress()); // the address of the server
+        Toast.makeText(PriorityActivity.getApplicationContext(),"You Connection with...."+connection.getInetAddress().getHostAddress(),Toast.LENGTH_SHORT);
     }
 
     //make the stream to send and receive the message
@@ -87,7 +89,8 @@ public class Server extends Chat_Page{
         output = new ObjectOutputStream(connection.getOutputStream());
         output.flush();
         input = new ObjectInputStream(connection.getInputStream());
-        ShowMessage("\n The Streams Setup \n");
+       // ShowMessage("\n The Streams Setup \n");
+        Toast.makeText(PriorityActivity.getApplicationContext(),"The Streams Setup",Toast.LENGTH_SHORT);
 
     }
 
@@ -100,10 +103,12 @@ public class Server extends Chat_Page{
         do{ //have a conversation
             try {
                 message = (String)input.readObject();
-                ShowMessage("\n"+message);
+                Log.d("Aliens Chat","Message :"+message+"\n");
+                //ShowMessage("\n"+message);
 
             }catch (ClassNotFoundException e){  // if the user send to you something that you don't deal with it or your programme don't deal with it so it throw this Exception
-                ShowMessage("\n Some thing Strange");
+                //ShowMessage("\n Some thing Strange");
+                Toast.makeText(PriorityActivity.getApplicationContext(),"I don't Know that Object you send",Toast.LENGTH_SHORT).show();
             }
 
 
@@ -111,22 +116,11 @@ public class Server extends Chat_Page{
 
     }
 
-    //Close Streams and Socket after you done The Chatting
-    private void CloseCrap(){
-        ShowMessage("\n Closing Connection...\n");
-        // here shut the able to write message
-        try{
-             output.close();
-             input.close();
-             connection.close();
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
     //Send Message to client
     private void SendMessage(String message){
         try{
+            Log.d("Aliens Chat","SendMessage() was called");
             output.writeObject("SERVER - "+message); //send message throw the output stream
             output.flush();
             ShowMessage("\n SERVER -"+message);
@@ -147,6 +141,19 @@ public class Server extends Chat_Page{
         //type on the chat list if  type = true
         //make the Edit text UserText.setEditable(type);
 
+    }
+
+    //Close Streams and Socket after you done The Chatting
+    private void CloseCrap(){
+        ShowMessage("\n Closing Connection...\n");
+        // here shut the able to write message
+        try{
+            output.close();
+            input.close();
+            connection.close();
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 
 
