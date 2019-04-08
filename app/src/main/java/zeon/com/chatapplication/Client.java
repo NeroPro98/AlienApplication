@@ -1,6 +1,9 @@
 package zeon.com.chatapplication;
 import android.app.Activity;
 import android.content.Intent;
+import android.icu.util.Output;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Layout;
 import android.util.Log;
 import android.view.View;
@@ -12,61 +15,34 @@ import android.widget.Toast;
 
 import java.io.*;
 import java.net.*;
-//import java.awt.*;
-//import java.awt.event.*;
-//import javax.swing.*;
 
 
 
-public class Client {
+public class Client implements Serializable {
 
-    private EditText text; // the user text
-    private ListView ChatList; //the window of the chat
+   // private EditText text; // the user text
+    //private ListView ChatList; //the window of the chat
     private ObjectOutputStream Output;
     private ObjectInputStream Input;
-    private String Message = "";
+    private String Message ;
     private Socket Connection;
-    private String ServerIP;
-    private String ServerPort;
     private Activity ChatActivity;
-    private EditText Port;
-    private EditText IP;
-    private Button SaveButton;
-    private EditText message;
-    private ImageButton SendButton;
+    //private EditText Port;
+    //private EditText IP;
+    //private Button SaveButton;
+    //private EditText message;
+    //private ImageButton SendButton;
     private String IPString;
     private String PortString;
 
 
 
+
     public Client(){
 
-        Intent anthor = new Intent();
-       //  ChatActivity = (Activity) ChatActivity.findViewById(R.layout.activity_chat__page);
-         //Port = (EditText)ChatActivity.findViewById(R.id.PORT);
-         //IP = (EditText)ChatActivity.findViewById(R.id.IP);
-        // SaveButton = (Button)ChatActivity.findViewById(R.id.save);
-         message = (EditText)ChatActivity.findViewById(R.id.Message_Type);
-         SendButton = (ImageButton)ChatActivity.findViewById(R.id.sendButton);
-         IPString = anthor.getStringExtra("IP");
-         PortString = anthor.getStringExtra("PORT");
-
-         SendButton.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 Log.d("Aliens Chat","ababababa");
-                 Message = message.getText().toString();
-                 SendMessage(Message);
-             }
-         });
-
-         SaveButton.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 ServerIP = IP.getText().toString();
-                 ServerPort = Port.getText().toString();
-             }
-         });
+        IPString = "0.0.0.0";
+        PortString = "0000";
+        Message = "";
         // here connect between the text and and place of write
         // set enable of text
         //set the listner to the text and but the SendMessage() function then reset the message
@@ -111,7 +87,7 @@ public class Client {
 
         Log.d("Aliens Chat","Attempting Connection...\n");
         Toast.makeText(ChatActivity.getApplicationContext(),"Attempting Connection...",Toast.LENGTH_SHORT).show();
-        Connection = new Socket(InetAddress.getByName(ServerIP),Integer.parseInt(ServerPort));  // here we setup the connection to specific server of IP address to specific port on this server Port:
+        Connection = new Socket(InetAddress.getByName(IPString),Integer.parseInt(PortString));  // here we setup the connection to specific server of IP address to specific port on this server Port:
         Log.d("Aliens Chat","Connected to :"+Connection.getInetAddress().getHostAddress());
         Toast.makeText(ChatActivity.getApplicationContext(),"Connected to :"+Connection.getInetAddress().getHostAddress(),Toast.LENGTH_SHORT).show();
 
@@ -207,4 +183,29 @@ public class Client {
 
 
 
+   public void Set_IP(String IP){
+       IPString = IP;
+       Log.d("AlienChat","IP:"+IPString);
+   }
+
+    public void Set_Port(String Port){
+        PortString = Port;
+        Log.d("AlienChat","PORT:"+PortString);
+    }
+
+    public String getIPString() {
+        return IPString;
+    }
+
+    public String getPortString() {
+        return PortString;
+    }
+
+    public String getMessage() {
+        return Message;
+    }
+    public void setMessage(String message){
+       Message = message;
+       Log.d("AlienChat","message:"+Message);
+    }
 }

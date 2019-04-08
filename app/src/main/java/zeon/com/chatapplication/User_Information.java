@@ -18,12 +18,12 @@ public class User_Information implements Serializable{
     public User_Information(){
 
         User_Id = 000000;
-        User_Email = null;
-        User_Password = null;
+        User_Email = "";
+        User_Password = "";
         User_Image = null;
-        FirstName = null;
-        MiddleName = null;
-        FinalName = null;
+        FirstName = "";
+        MiddleName = "";
+        FinalName = "";
     }
 
     public User_Information(long user_Id, String user_Email, String user_Password, /*Bitmap user_Image,*/String first,String middle,String final_name) {

@@ -5,44 +5,37 @@
     android:id="@+id/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/space3"
+    android:background="@drawable/background"
     android:onClick="To_Register"
-    tools:context=".Background">
+    tools:context=".Background"
+    >
 
-    <TextView
-        android:id="@+id/Zeon_chat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Aliens Chat"
-        android:fontFamily="casual"
-        android:textColor="@color/light_green"
-        android:textSize="45dp"
-        android:textStyle="bold"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent" />
 
     <ImageView
-        android:alpha="0"
-        android:id="@+id/light"
-        android:layout_width="150dp"
-        android:layout_height="200dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
+        android:id="@+id/icon3"
+        android:layout_width="242dp"
+        android:layout_height="264dp"
+        android:layout_marginTop="168dp"
+        android:src="@drawable/alienwithbackground3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageView
+        android:id="@+id/Zeon_chat"
+        android:layout_width="253dp"
+        android:layout_height="203dp"
         android:scaleX="1.7"
         android:scaleY="1.7"
-        app:layout_constraintBottom_toTopOf="@+id/textView1"
+        android:src="@drawable/chattype"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.594"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/astroman"
-        app:layout_constraintTop_toBottomOf="@+id/Zeon_chat"
-        app:layout_constraintVertical_bias="0.509"
-        app:srcCompat="@drawable/alien_background" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <ImageView
         android:id="@+id/astroman"
@@ -50,25 +43,40 @@
         android:layout_height="wrap_content"
         android:scaleX="1.6"
         android:scaleY="1.6"
+        android:alpha="0"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/astroman" />
 
-    <TextView
-        android:id="@+id/textView"
+
+    <ImageView
+        android:scaleX="0.8"
+        android:scaleY="0.8"
+        android:id="@+id/alien3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="Hi there
-Tap any where"
-        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/alien3" />
+
+    <TextView
+        android:id="@+id/tap_any_where"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="100dp"
+        android:alpha="0"
+        android:text="@string/tap_any_where"
         android:textAlignment="center"
         android:textColor="@color/light_green"
         android:textSize="20sp"
+        android:textStyle="italic"
         app:layout_constraintBottom_toTopOf="@+id/textView1"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -78,7 +86,7 @@ Tap any where"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="40dp"
-        android:text="This Application Provided By Zeon Team"
+        android:text="@string/this_application_provided_by_zeon_team"
         android:textColor="@color/yellow"
         android:textSize="13dp"
         android:textStyle="bold"
@@ -94,7 +102,7 @@ Tap any where"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Copyright By Zeon Team"
+        android:text="@string/copyright_by_zeon_team"
         android:textColor="@color/yellow"
         android:textSize="10dp"
         android:textStyle="bold"
@@ -120,5 +128,31 @@ Tap any where"
         android:orientation="vertical"
         app:layout_constraintGuide_begin="352dp" />
 
+
+    <com.ebanx.swipebtn.SwipeButton
+
+        android:id="@+id/Swip_btn"
+        android:layout_width="335dp"
+        android:layout_height="59dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="56dp"
+        app:button_background="@drawable/background2"
+        app:button_bottom_padding="20dp"
+        app:button_image_disabled="@drawable/rowing"
+        app:button_image_enabled="@drawable/background3color"
+        app:button_left_padding="20dp"
+        app:button_right_padding="20dp"
+        app:button_top_padding="20dp"
+        app:inner_text="@string/swipe"
+        app:inner_text_bottom_padding="10dp"
+        app:inner_text_color="@android:color/white"
+        app:inner_text_size="16sp"
+        app:inner_text_top_padding="12dp"
+        app:layout_constraintBottom_toBottomOf="@+id/textView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+
+        app:layout_constraintTop_toBottomOf="@+id/alien3"
+        app:layout_constraintVertical_bias="0.028" />
 
 </android.support.constraint.ConstraintLayout>

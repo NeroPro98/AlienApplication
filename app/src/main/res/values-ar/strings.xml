@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tap_any_where">اضغط على الشاشة</string>
+    <string name="this_application_provided_by_zeon_team">تم تطوير التطبيق من قبل فريق زيون</string>
+    <string name="copyright_by_zeon_team">مدعوم من قبل فريق زيون</string>
+    <string name="swipe">اسحب</string>
+
+    <string name="chat_and_security">التحدث و السرية</string>
+    <string name="make_a_security_text_with_your_friends">قم بمحادثة آمنة مع أصدقائك</string>
+    <string name="continue1">استمر</string>
+
+    <string name="make_new_groups"> انشاء مجموعات جديدة</string>
+    <string name="make_new_groups_with_friends_and_enjoy_chatting">قم بإنشاء مجموعات جديدة مع أصدقائك و استمتع</string>
+    <string name="continue2">استمر</string>
+
+    <string name="add_new_aliens">قم بإضافة كائنات فضائية جديدة</string>
+    <string name="make_enjoy_with_your_friends">استمتع مع أصدقائك الفضائين</string>
+    <string name="continue3">استمر</string>
+
+    <string name="discover_new_things">استكشف أشياء جديدة</string>
+    <string name="enjoy_discovering_with_your_friends">استمتع بالاستكشاف مع أصدقائك</string>
+    <string name="finish">النهاية</string>
+
+</resources>

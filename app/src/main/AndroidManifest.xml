@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="zeon.com.chatapplication">
 
     <application
@@ -10,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Background">
-            <intent-filter>
+            <intent-filter tools:ignore="ExtraText">
                 <action android:name="android.intent.action.MAIN" />
                 android:configChanges="orientation|screenSize"
                 -
@@ -22,11 +23,12 @@
         <activity android:name=".Chat_Page" />
         <activity android:name=".Register_Page" />
         <activity android:name=".Chat_Msg_Row" />
-        <activity
-            android:name=".User_Service"
-            android:label="@string/title_activity_user__service"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SocketInfo"></activity>
+        <activity android:name=".SocketInfo" />
+        <activity android:name=".Setting" />
+        <activity android:name=".back1" />
+        <activity android:name=".back2" />
+        <activity android:name=".back3" />
+        <activity android:name=".back4"></activity>
     </application>
 
 </manifest>

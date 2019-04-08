@@ -11,25 +11,41 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.ebanx.swipebtn.OnStateChangeListener;
+import com.ebanx.swipebtn.SwipeButton;
 
 public class Background extends AppCompatActivity {
 
-    TextView Alien_Text;
+    ImageView Alien_Text;
     ImageView AstroMan;
+    TextView tap;
+    SwipeButton swipe;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_background);
 
-        Alien_Text = (TextView)findViewById(R.id.Zeon_chat);
-        AstroMan = (ImageView)findViewById(R.id.astroman);
-
+        Alien_Text = (ImageView)findViewById(R.id.Zeon_chat);
+        AstroMan = (ImageView)findViewById(R.id.alien3);
+       // AstroMan = (ImageView)findViewById(R.id.astroman);
+        tap = (TextView)findViewById(R.id.tap_any_where);
+        swipe = (SwipeButton)findViewById(R.id.Swip_btn);
         //Translated AstroMan
         AstroMan.setTranslationX(-1000f);
         AstroMan.setTranslationY(+1000f);
+        tap.animate().alpha(1).setDuration(5000);
 
-
+        swipe.setOnStateChangeListener(new OnStateChangeListener() {
+            @Override
+            public void onStateChange(boolean active) {
+                Toast.makeText(getApplicationContext(),"Let's Start",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(getApplicationContext(),back1.class);
+                startActivity(intent);
+            }
+        });
 
 
     }
@@ -54,7 +70,8 @@ public class Background extends AppCompatActivity {
             public void onFinish() {
 
                 Log.d("ChatApp","To_Register was called");
-                Intent intent = new Intent(getApplicationContext(),Register.class);
+               // Intent intent = new Intent(getApplicationContext(),Register.class);
+                Intent intent = new Intent(getApplicationContext(),back1.class);
                 startActivity(intent);
 
             }

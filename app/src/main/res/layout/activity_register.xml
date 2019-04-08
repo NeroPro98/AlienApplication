@@ -7,138 +7,100 @@
     tools:context=".Register"
     android:background="@drawable/space2">
 
-    <ImageView
-        android:id="@+id/alien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:scaleX="0.9"
-        android:scaleY="0.9"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/Email_Faild"
-        app:srcCompat="@drawable/alien_background"
-        android:alpha="1"/>
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:fontFamily="cursive"
-        android:text="Are You Alien...!"
-        android:textColor="@color/dark_green"
-        android:textSize="40sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/guideline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <ImageView
-        android:id="@+id/dog"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/astrodog"
-        android:alpha="0"
-         />
-
-
-    <AutoCompleteTextView
-
+    <EditText
+        android:inputType="textPersonName"
         android:id="@+id/Email_Faild"
-        android:layout_width="0dp"
-        android:layout_height="45dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:text="Enter Your Email......"
-        android:textColor="@color/yellow"
-        android:textStyle="bold"
+        android:hint="Email...."
+        android:paddingLeft="50dp"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.707" />
+        android:background="@drawable/username"
+        android:ems="10"
+        />
 
     <EditText
+        android:inputType="textPersonName"
         android:id="@+id/Password_Faild"
-        android:layout_width="0dp"
+        android:layout_width="288dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="2dp"
-        android:text="Enter Your Password......"
-        android:textColor="@color/yellow"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Email_Faild"
-        app:layout_constraintVertical_bias="0.076" />
-
-
-    <Button
-        android:id="@+id/Sign_Button"
-        style="@style/Widget.AppCompat.ButtonBar.AlertDialog"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/dark_green"
-        android:onClick="To_Chat_Page"
-        android:text="Sign in"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Password_Faild" />
-
-    <Button
-        android:id="@+id/Register_Button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimary"
-        android:text="Register in"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        style="@style/Widget.AppCompat.ButtonBar.AlertDialog"
-        app:layout_constraintTop_toBottomOf="@id/Sign_Button"
-        android:layout_marginTop="4dp"
-        android:onClick="To_Register_Page"/>
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_begin="94dp" />
-
-    <Button
-        android:id="@+id/Setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="248dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
-        android:text="Setting"
-        android:textColor="@color/yellow"
+        android:background="@drawable/password"
+        android:ems="10"
+        android:hint="Password...."
+        android:paddingLeft="50dp"
+        android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.614"
-        android:onClick="To_Setting"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.991" />
+
+    <Button
+        android:id="@+id/facebook"
+        android:layout_width="320dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/fb_btn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.593"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 
-        />
+    <in.shadowfax.proswipebutton.ProSwipeButton
+        android:id="@+id/btn_cart_signin"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:arrow_color="#33ffff"
+        app:bg_color="@color/light_green"
+        app:btn_radius="2"
+        app:btn_text="Sign Up"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Password_Faild"
+        app:text_color="@color/white"
+        app:text_size="16sp" />
+
+    <in.shadowfax.proswipebutton.ProSwipeButton
+        android:id="@+id/btn_cart_signup"
+        android:layout_width="340dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="88dp"
+        app:arrow_color="#33ffff"
+        app:bg_color="@color/colorPrimary"
+        app:btn_radius="2"
+        app:btn_text="Register"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/Password_Faild"
+        app:text_color="@color/white"
+        app:text_size="16sp" />
+
+
+
 
 
 </android.support.constraint.ConstraintLayout>

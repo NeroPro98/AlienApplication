@@ -1,10 +1,41 @@
 <resources>
     <string name="app_name">ChatApplication</string>
     <string name="title_activity_user__service">User_Service</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="open">Open</string>
+    <string name="close">Close</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_user__data__drawer">User_Data_Drawer</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="action_example">Example action</string>
+    <string name="title_activity_drawer__slider">Drawer_Slider</string>
+    <string name="title_activity_navigation_bar">NavigationBar</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="tap_any_where">Tap any where</string>
+    <string name="this_application_provided_by_zeon_team">This Application Provided By Zeon Team</string>
+    <string name="copyright_by_zeon_team">Copyright By Zeon Team</string>
+    <string name="swipe">Swipe</string>
+    <string name="chat_and_security">Chat and Security</string>
+    <string name="make_a_security_text_with_your_friends">Make a security text with your friends</string>
+    <string name="continue1">Continue</string>
+
+    <string name="make_new_groups">New groups</string>
+    <string name="make_new_groups_with_friends_and_enjoy_chatting">Make new groups with friends and enjoy chatting</string>
+    <string name="continue2">Continue</string>
+
+    <string name="add_new_aliens">Add new Aliens</string>
+    <string name="make_enjoy_with_your_friends">Make enjoy with your aliens friend</string>
+    <string name="continue3">Continue</string>
+
+    <string name="discover_new_things">Discover new things</string>
+    <string name="enjoy_discovering_with_your_friends">Enjoy Discovering with your friends</string>
+    <string name="finish">Finish</string>
+
 </resources>

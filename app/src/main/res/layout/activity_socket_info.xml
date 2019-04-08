@@ -22,7 +22,7 @@
         android:id="@+id/IP"
         android:layout_width="293dp"
         android:layout_height="wrap_content"
-        android:text="Enter The IP...."
+        android:hint="Enter The IP...."
         app:layout_constraintLeft_toRightOf="@id/IP_TEXT"
         android:textSize="20dp"
         app:layout_constraintRight_toRightOf="parent"/>
@@ -48,7 +48,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
-        android:text="Enter The PORT...."
+        android:hint="Enter The PORT...."
         android:textSize="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -56,36 +56,24 @@
         app:layout_constraintStart_toEndOf="@+id/PORT_TEXT"
         app:layout_constraintTop_toBottomOf="@+id/IP" />
 
-    <Button
+    <in.shadowfax.proswipebutton.ProSwipeButton
         android:id="@+id/save"
-        android:layout_width="match_parent"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="324dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="424dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        android:text="Save"
-        android:textColor="@color/yellow"
-        android:textSize="18dp"
-        android:textStyle="bold"
+        app:arrow_color="#33ffff"
+        app:bg_color="@color/colorPrimary"
+        app:btn_radius="2"
+        app:btn_text="Register in"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        android:onClick="To_Chat"/>
+        app:text_color="@color/white"
+        app:text_size="16sp" />
 
-    <EditText
-        android:id="@+id/msg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:text="Type Message...."
-        app:layout_constraintBottom_toTopOf="@+id/save"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:textAlignment="center"
-        android:textSize="20dp"/>
 
 
 </android.support.constraint.ConstraintLayout>

@@ -10,4 +10,9 @@
     <color name="light_purple">#E8E1E7</color>
     <color name="light_green">#50d050</color>
     <color name="dark_green">#008000</color>
+    <color name="brown_light">#795548</color>
+    <color name="dark_graw">#6c6c6c</color>
+    <color name="brown_dark">#5D4037</color>
+    <color name="TransparentColor">#CCCCCC</color>
+
 </resources>

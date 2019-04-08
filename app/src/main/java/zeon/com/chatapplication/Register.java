@@ -16,13 +16,14 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import in.shadowfax.proswipebutton.ProSwipeButton;
 
 public class Register extends AppCompatActivity {
 
     private EditText Password_Text;
-    private AutoCompleteTextView Email_Text;
-    private Button Sign_Button;
-    private Button Register_Button;
+    private EditText Email_Text;
+    private ProSwipeButton Sign_Button;
+    private ProSwipeButton Register_Button;
     ImageView Dog;
     ImageView Alien;
 
@@ -33,17 +34,17 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-
+        //setContentView(R.layout.activity_main);
         Password_Text = (EditText)findViewById(R.id.Password_Faild);
-        Email_Text = (AutoCompleteTextView)findViewById(R.id.Email_Faild);
-        Sign_Button = (Button)findViewById(R.id.Sign_Button);
-        Register_Button = (Button)findViewById(R.id.Register_Button);
-        Dog = (ImageView)findViewById(R.id.dog);
-        Alien = (ImageView)findViewById(R.id.alien);
+        Email_Text = (EditText)findViewById(R.id.Email_Faild);
+        Sign_Button = (ProSwipeButton) findViewById(R.id.btn_cart_signin);
+        Register_Button = (ProSwipeButton) findViewById(R.id.btn_cart_signup);
+      //  Dog = (ImageView)findViewById(R.id.dog);
+       // Alien = (ImageView)findViewById(R.id.alien);
 
-        Alien.animate().alpha(1).setDuration(3000);
+      /*  Alien.animate().alpha(1).setDuration(3000);
         Dog.animate().translationXBy(-1000).setDuration(0);
-        Dog_Animate();
+        Dog_Animate();*/
 
         Password_Text.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,6 +70,50 @@ public class Register extends AppCompatActivity {
                 }
 
             }
+        });
+
+
+
+        Register_Button.setOnSwipeListener(new ProSwipeButton.OnSwipeListener() {
+            @Override
+            public void onSwipeConfirm() {
+
+                Intent intent = new Intent(getApplicationContext(), Register_Page.class);
+                startActivity(intent);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Sign_Button.showResultIcon(false);
+
+                    }
+
+                }, 1000);
+            }
+
+        });
+
+
+
+        Sign_Button.setOnSwipeListener(new ProSwipeButton.OnSwipeListener() {
+            @Override
+            public void onSwipeConfirm() {
+
+                Intent intent = new Intent(getApplicationContext(), Chat_Page.class);
+                startActivity(intent);
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+                        Sign_Button.showResultIcon(false);
+
+                    }
+
+                }, 1000);
+            }
+
         });
 
 
@@ -170,11 +215,6 @@ public class Register extends AppCompatActivity {
         startActivity(intent);
 
     }
-
-
-
-
-
 
 
 

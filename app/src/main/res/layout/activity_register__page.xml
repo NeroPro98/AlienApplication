@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Register_Page"
-    android:background="@drawable/astro6">
+    android:background="@drawable/background5">
 
 
      <AutoCompleteTextView
@@ -18,7 +18,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
          android:layout_marginTop="10dp"
-        android:text="Enter Your Email....."
+        android:hint="Enter Your Email....."
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -35,7 +35,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
-        android:text="Enter Your Passowrd....."
+        android:hint="Enter Your Passowrd....."
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -52,7 +52,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="10dp"
-        android:text="Confirm Your Passowrd....."
+        android:hint="Confirm Your Passowrd....."
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -60,95 +60,90 @@
         app:layout_constraintTop_toBottomOf="@id/AddNewPass_Faild" />
 
 
-    <Button
-        android:id="@+id/To_Register_Page"
-
-        style="@style/Widget.AppCompat.ButtonBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@color/green"
-        android:onClick="Return_To_Rigester"
-        android:text="Sign in"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/AddNewPassConfirm_Faild"
-        app:layout_constraintVertical_bias="0.143" />
-
-
-<EditText
-    android:id="@+id/set_name"
-    android:textColor="@color/green"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:text="First name"
-    app:layout_constraintBottom_toTopOf="@+id/set_finalname"
-    app:layout_constraintRight_toRightOf="parent"
-    app:layout_constraintLeft_toLeftOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    android:textAlignment="center"
-    android:layout_marginTop="10dp"
-    />
-
-
     <EditText
-        android:id="@+id/set_finalname"
-        android:textColor="@color/green"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Last name"
-        app:layout_constraintBottom_toTopOf="@+id/set_Middlename"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/set_name"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        />
-
-    <EditText
-        android:id="@+id/set_Middlename"
-        android:textColor="@color/green"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Middle name"
-        app:layout_constraintBottom_toTopOf="@+id/AddNewEmail_Faild"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/set_finalname"
-        android:textAlignment="center"
-        android:layout_marginTop="10dp"
-        />
-
-    <ImageView
-        android:id="@+id/Alien2"
-        android:layout_width="wrap_content"
-        android:layout_height="184dp"
-        android:layout_marginBottom="8dp"
+        android:id="@+id/set_name"
+        android:layout_width="389dp"
+        android:layout_height="53dp"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="16dp"
+        android:hint="First name"
+        android:textAlignment="center"
+        android:textColor="@color/green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/To_Register_Page"
-        app:layout_constraintVertical_bias="1.0"
-        android:alpha="0"
-        app:srcCompat="@drawable/alien2" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <EditText
+        android:id="@+id/set_finalname"
+        android:layout_width="398dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Last name"
+        android:textAlignment="center"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/set_Middlename"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_name" />
+
+    <EditText
+        android:id="@+id/set_Middlename"
+        android:layout_width="401dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Middle name"
+        android:textAlignment="center"
+        android:textColor="@color/green"
+        app:layout_constraintBottom_toTopOf="@+id/AddNewEmail_Faild"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/set_finalname" />
+
+
 
     <ImageView
-        android:id="@+id/ballown"
-        app:srcCompat="@drawable/astroman2"
-        android:layout_width="wrap_content"
+        android:id="@+id/astroimage"
+        android:layout_width="178dp"
+        android:layout_height="118dp"
+        android:layout_marginTop="60dp"
+        android:scaleX="2"
+        android:scaleY="2"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/To_Register_Page"
+        app:srcCompat="@drawable/astroman_photo" />
+
+
+<Button
+
+        android:id="@+id/To_Register_Page"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp"
+        android:onClick="Return_To_Rigester"
+        android:text="Register"
+        android:background="@drawable/background6"
         app:layout_constraintBottom_toBottomOf="parent"
-        android:scaleY="0.9"
-        android:scaleX="0.9"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.492"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/AddNewPassConfirm_Faild"
+        app:layout_constraintVertical_bias="0.0"
+        android:textColor="@color/white"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:layout_width="162dp"
+        android:layout_height="194dp"
+        android:layout_marginBottom="44dp"
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:src="@drawable/venus"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

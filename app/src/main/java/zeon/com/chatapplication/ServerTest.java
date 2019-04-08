@@ -1,4 +1,4 @@
-/*package zeon.com.chatapplication;
+package zeon.com.chatapplication;
 
 
 
@@ -9,4 +9,4 @@ public class ServerTest {
         ChatServer.StartRunning();
 
     }
-}*/
+}
