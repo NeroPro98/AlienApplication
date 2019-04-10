@@ -5,12 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Register"
-    android:background="@drawable/space2">
+    android:background="@drawable/background5">
 
     <EditText
         android:inputType="textPersonName"
         android:id="@+id/Email_Faild"
-        android:layout_width="288dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:layout_marginLeft="8dp"
@@ -30,7 +30,7 @@
     <EditText
         android:inputType="textPersonName"
         android:id="@+id/Password_Faild"
-        android:layout_width="288dp"
+        android:layout_width="330dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="248dp"
         android:layout_marginLeft="8dp"
@@ -63,41 +63,39 @@
         app:layout_constraintVertical_bias="1.0" />
 
 
-    <in.shadowfax.proswipebutton.ProSwipeButton
+    <Button
         android:id="@+id/btn_cart_signin"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        app:arrow_color="#33ffff"
-        app:bg_color="@color/light_green"
-        app:btn_radius="2"
-        app:btn_text="Sign Up"
+        android:background="@drawable/button_back3"
+        android:btn_radius="2"
+        android:text="Sign Up"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Password_Faild"
-        app:text_color="@color/white"
-        app:text_size="16sp" />
+        android:color="@color/white"
+        android:size="16sp" />
 
-    <in.shadowfax.proswipebutton.ProSwipeButton
+    <Button
         android:id="@+id/btn_cart_signup"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="88dp"
-        app:arrow_color="#33ffff"
-        app:bg_color="@color/colorPrimary"
-        app:btn_radius="2"
-        app:btn_text="Register"
+        android:background="@drawable/button_back4"
+        android:btn_radius="2"
+        android:text="Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Password_Faild"
-        app:text_color="@color/white"
-        app:text_size="16sp" />
+        android:color="@color/white"
+        android:size="16sp" />
 
 
 

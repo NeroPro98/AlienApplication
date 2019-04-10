@@ -1,7 +1,7 @@
 package zeon.com.chatapplication;
 
 
-
+/*
 public class ClientTest {
     public static void main(String[] args){
         Client Nero;
@@ -11,3 +11,4 @@ public class ClientTest {
 
 
 }
+*/
