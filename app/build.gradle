@@ -35,4 +35,7 @@ dependencies {
     //To swip button with good animation
     implementation 'in.shadowfax:proswipebutton:1.1'
 
+    //To support the circle image
+    implementation 'de.hdodenhof:circleimageview:2.0.0'
+
 }

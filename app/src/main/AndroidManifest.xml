@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="zeon.com.chatapplication">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGEE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,7 +14,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Background">
+        <activity
+            android:name=".Background"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter tools:ignore="ExtraText">
                 <action android:name="android.intent.action.MAIN" />
                 android:configChanges="orientation|screenSize"
@@ -19,17 +25,45 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Register" />
-        <activity android:name=".Chat_Page" />
-        <activity android:name=".Register_Page" />
-        <activity android:name=".Chat_Msg_Row" />
-        <activity android:name=".SocketInfo" />
-        <activity android:name=".Setting" />
-        <activity android:name=".back1" />
-        <activity android:name=".back2" />
-        <activity android:name=".back3" />
-        <activity android:name=".back4" />
-        <activity android:name=".Main_Chats_Page"></activity>
+        <activity
+            android:name=".Register"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Chat_Page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Register_Page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Chat_Msg_Row"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".SocketInfo"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".User_Edit_Info"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Setting"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".back1"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".back2"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".back3"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".back4"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Main_Chats_Page" />
+        <activity
+            android:name=".welcom_page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Games_main" />
+        <activity android:name=".Search_network"></activity>
     </application>
 
 </manifest>

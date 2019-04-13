@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/action/ic_rowing_black_24dp.xml" />
+                                      <entry key="url" value="jar:file:/C:/Program%20Files/Android/Android%20Studio/plugins/android/lib/android.jar!/images/material_design_icons/communication/ic_chat_black_24dp.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,8 +33,8 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="color" value="0b8487" />
-                            <entry key="outputName" value="rowing" />
+                            <entry key="color" value="728687" />
+                            <entry key="outputName" value="chat_icon" />
                             <entry key="overrideSize" value="true" />
                             <entry key="sourceFile" value="C:\Users\ASUS" />
                           </map>

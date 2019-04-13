@@ -5,6 +5,7 @@
     <string name="this_application_provided_by_zeon_team">تم تطوير التطبيق من قبل فريق زيون</string>
     <string name="copyright_by_zeon_team">مدعوم من قبل فريق زيون</string>
     <string name="swipe">اسحب</string>
+    <string name="please_tap">الرجاء الضغط</string>
 
     <string name="chat_and_security">التحدث و السرية</string>
     <string name="make_a_security_text_with_your_friends">قم بمحادثة آمنة مع أصدقائك</string>
@@ -22,4 +23,19 @@
     <string name="enjoy_discovering_with_your_friends">استمتع بالاستكشاف مع أصدقائك</string>
     <string name="finish">النهاية</string>
 
+    <string name="make_your_journey_with_friends">قم برحلتك مع أصدقائك</string>
+    <string name="swap_up">اسحب للأعلى</string>
+
+    <string name="email">...البريد</string>
+    <string name="password">....كلمة السر</string>
+    <string name="sign_up">تسجيل دخول</string>
+    <string name="register">إنشاء حساب</string>
+
+    <string name="enter_your_email">.....البريد</string>
+    <string name="enter_your_passowrd">كلمة السر.....</string>
+    <string name="confirm_your_passowrd">.....تأكيد كلمة السر</string>
+    <string name="first_name">الأسم الأول</string>
+    <string name="last_name">الإسم الأخير</string>
+    <string name="middle_name">الأسم الأوسط</string>
+    <string name="register_in">تسجيل الدخول</string>
 </resources>

@@ -22,8 +22,8 @@ public class Register extends AppCompatActivity {
 
     private EditText Password_Text;
     private EditText Email_Text;
-    private ProSwipeButton Sign_Button;
-    private ProSwipeButton Register_Button;
+    private Button Sign_Button;
+    private Button Register_Button;
     ImageView Dog;
     ImageView Alien;
 
@@ -37,8 +37,8 @@ public class Register extends AppCompatActivity {
         //setContentView(R.layout.activity_main);
         Password_Text = (EditText)findViewById(R.id.Password_Faild);
         Email_Text = (EditText)findViewById(R.id.Email_Faild);
-        Sign_Button = (ProSwipeButton) findViewById(R.id.btn_cart_signin);
-        Register_Button = (ProSwipeButton) findViewById(R.id.btn_cart_signup);
+        Sign_Button = (Button) findViewById(R.id.btn_cart_signin);
+        Register_Button = (Button) findViewById(R.id.btn_cart_signup);
       //  Dog = (ImageView)findViewById(R.id.dog);
        // Alien = (ImageView)findViewById(R.id.alien);
 
@@ -70,50 +70,6 @@ public class Register extends AppCompatActivity {
                 }
 
             }
-        });
-
-
-
-        Register_Button.setOnSwipeListener(new ProSwipeButton.OnSwipeListener() {
-            @Override
-            public void onSwipeConfirm() {
-
-                Intent intent = new Intent(getApplicationContext(), Register_Page.class);
-                startActivity(intent);
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        Sign_Button.showResultIcon(false);
-
-                    }
-
-                }, 1000);
-            }
-
-        });
-
-
-
-        Sign_Button.setOnSwipeListener(new ProSwipeButton.OnSwipeListener() {
-            @Override
-            public void onSwipeConfirm() {
-
-                Intent intent = new Intent(getApplicationContext(), Chat_Page.class);
-                startActivity(intent);
-
-                new Handler().postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-
-                        Sign_Button.showResultIcon(false);
-
-                    }
-
-                }, 1000);
-            }
-
         });
 
 
@@ -168,7 +124,7 @@ public class Register extends AppCompatActivity {
         boolean bool2 = Cheack_Email();
 
         if(bool1 && bool2) {
-            Intent intent = new Intent(getApplicationContext(), Chat_Page.class);
+            Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
             startActivity(intent);
         }else {
             Toast.makeText(getApplicationContext(), "Unveiled... Please Enter your password Again", Toast.LENGTH_SHORT).show();

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">
+    tools:showIn="navigation_view"
+    android:background="@color/white"
+    >
 
     <group android:checkableBehavior="single">
         <item
@@ -13,9 +15,9 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Gallery" />
         <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_Game"
+            android:icon="@drawable/game"
+            android:title="Games" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
@@ -29,6 +31,16 @@
             android:id="@+id/Personal"
             android:icon="@drawable/person"
             android:title="Personal" />
+
+        <item
+            android:id="@+id/Search"
+            android:icon="@drawable/search"
+            android:title="Search in Google" />
+
+        <item
+            android:id="@+id/Chat"
+            android:icon="@drawable/chat_icon"
+            android:title="Chat" />
 
     </group>
 

@@ -4,7 +4,10 @@ import android.animation.ObjectAnimator;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.CountDownTimer;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -21,7 +24,10 @@ public class Background extends AppCompatActivity {
     ImageView Alien_Text;
     ImageView AstroMan;
     TextView tap;
-    SwipeButton swipe;
+    TextView text1;
+    TextView text2;
+   // SwipeButton swipe;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,66 +35,52 @@ public class Background extends AppCompatActivity {
         setContentView(R.layout.activity_background);
 
         Alien_Text = (ImageView)findViewById(R.id.Zeon_chat);
-        AstroMan = (ImageView)findViewById(R.id.alien3);
-       // AstroMan = (ImageView)findViewById(R.id.astroman);
+        //AstroMan = (ImageView)findViewById(R.id.alien3);
         tap = (TextView)findViewById(R.id.tap_any_where);
-        swipe = (SwipeButton)findViewById(R.id.Swip_btn);
-        //Translated AstroMan
-        AstroMan.setTranslationX(-1000f);
-        AstroMan.setTranslationY(+1000f);
-        tap.animate().alpha(1).setDuration(5000);
+        text1 = (TextView)findViewById(R.id.textView1);
+        text2 = (TextView)findViewById(R.id.textView2);
 
-        swipe.setOnStateChangeListener(new OnStateChangeListener() {
-            @Override
-            public void onStateChange(boolean active) {
-                Toast.makeText(getApplicationContext(),"Let's Start",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(getApplicationContext(),back1.class);
-                startActivity(intent);
-            }
-        });
+        Text_Animation();
+
+
+
+        Play_Opener();
 
 
     }
 
-    public void To_Register(View v){
-
-
+    public void Play_Opener(){
         new CountDownTimer(3000,1000){
 
             @Override
             public void onTick(long millisUntilFinished) {
-
-                Log.d("ChatApp","Time is:"+millisUntilFinished);
-                 AstroMan.animate()
-                       .translationXBy(+1500)
-                   .translationYBy(-1500)
-                   .setDuration(millisUntilFinished);
-
             }
-
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onFinish() {
 
-                Log.d("ChatApp","To_Register was called");
-               // Intent intent = new Intent(getApplicationContext(),Register.class);
+                MediaPlayer player = MediaPlayer.create(getApplicationContext(),R.raw.opener);
+                player.start();
+            }
+        }.start();
+    }
+
+    public void To_Register(View v){
+
+         Log.d("ChatApp","To_Register was called");
+
                 Intent intent = new Intent(getApplicationContext(),back1.class);
                 startActivity(intent);
 
-            }
-        }.start();
-
-
-        //      Log.d("ChatApp","To_Register was called");
-       //     Intent intent = new Intent(getApplicationContext(),Register.class);
-        //    startActivity(intent);
-    //    AstroMan.animate().translationYBy(1000).setDuration(3000);
-    }
+       }
 
     public void Text_Animation(){
 
      //   ObjectAnimator anime = new ObjectAnimator.ofInt()
-
-
+        tap.animate().alpha(1).setDuration(3000);
+        text1.animate().alpha(1).setDuration(3000);
+        text2.animate().alpha(1).setDuration(3000);
+        Alien_Text.animate().alpha(1).setDuration(3000);
 
     }
 

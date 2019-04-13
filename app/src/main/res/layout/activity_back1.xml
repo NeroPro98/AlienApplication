@@ -73,21 +73,26 @@
         android:id="@+id/linearlayout1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginEnd="184dp"
         android:layout_marginRight="184dp"
         android:layout_marginTop="60dp"
         android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/go" />
+        app:layout_constraintTop_toBottomOf="@id/go"
+        app:layout_constraintVertical_bias="0.288" />
 
 
     <Button
         android:id="@+id/prev0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
         android:layout_marginTop="604dp"
+        android:background="@android:color/transparent"
         android:text="Prev"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@android:color/transparent" />
+        app:layout_constraintTop_toTopOf="parent" />
 </android.support.constraint.ConstraintLayout>

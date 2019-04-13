@@ -37,5 +37,19 @@
     <string name="discover_new_things">Discover new things</string>
     <string name="enjoy_discovering_with_your_friends">Enjoy Discovering with your friends</string>
     <string name="finish">Finish</string>
+    <string name="please_tap">Please Tap</string>
+    <string name="make_your_journey_with_friends">Make Your Journey With Friends</string>
+    <string name="swap_up">Swap Up</string>
+    <string name="email">Email....</string>
+    <string name="password">Password....</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="register">Register</string>
+    <string name="enter_your_email">Enter Your Email.....</string>
+    <string name="enter_your_passowrd">Enter Your Passowrd.....</string>
+    <string name="confirm_your_passowrd">Confirm Your Passowrd.....</string>
+    <string name="first_name">First name</string>
+    <string name="last_name">Last name</string>
+    <string name="middle_name">Middle name</string>
+    <string name="register_in">Register in</string>
 
 </resources>
