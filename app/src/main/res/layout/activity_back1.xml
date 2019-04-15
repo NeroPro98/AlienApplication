@@ -11,7 +11,11 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/viwer1"
         android:layout_width="match_parent"
-        android:layout_height="592dp" />
+        android:layout_height="592dp"
+        android:layout_marginBottom="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearlayout1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/icon3"
@@ -59,6 +63,7 @@
         android:id="@+id/go"
         android:layout_width="250dp"
         android:layout_height="45dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="112dp"
         android:background="@drawable/background2"
         android:text="@string/continue1"
@@ -67,7 +72,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text2"
+        app:layout_constraintVertical_bias="1.0" />
 
     <LinearLayout
         android:id="@+id/linearlayout1"
