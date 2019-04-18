@@ -53,6 +53,7 @@
         android:id="@+id/go3"
         android:layout_width="250dp"
         android:layout_height="45dp"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="112dp"
         android:background="@drawable/background2"
         android:text="@string/continue3"
@@ -61,7 +62,9 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back2text2"
+        app:layout_constraintVertical_bias="1.0" />
 
 
     <LinearLayout
