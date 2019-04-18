@@ -62,8 +62,10 @@
         <activity
             android:name=".welcom_page"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Games_main" />
-        <activity android:name=".Search_network"></activity>
+        <activity android:name=".Games_main"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Search_network"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
