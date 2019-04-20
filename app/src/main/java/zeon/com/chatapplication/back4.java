@@ -1,6 +1,7 @@
 package zeon.com.chatapplication;
 
 import android.content.Intent;
+import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -32,7 +33,6 @@ public class back4 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_back4);
-
 
             smalltobig = AnimationUtils.loadAnimation(this,R.anim.smalltobig);
             nothing = AnimationUtils.loadAnimation(this,R.anim.nothing);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Main_Chats_Page"
+    tools:context=".Activity.Main_Chats_Page"
     android:id="@+id/drawer_layout"
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
@@ -19,9 +19,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <include layout="@layout/navigation_action"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/toolbar"
@@ -41,7 +39,7 @@
         </LinearLayout>
 
     </android.support.design.widget.AppBarLayout>
-
+/
     <include layout="@layout/content_main" />
 
     <android.support.design.widget.NavigationView
@@ -51,7 +49,7 @@
         android:layout_gravity="start"
         android:layout_margin="@dimen/fab_margin"
         app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer"
+        app:menu="@menu/main_drawer"
         app:srcCompat="@android:drawable/ic_dialog_email" />
 
 </android.support.v4.widget.DrawerLayout>

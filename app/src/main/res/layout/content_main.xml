@@ -1,13 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context=".Main_Chats_Page"
-    tools:showIn="@layout/app_bar_main">
+    tools:context=".Activity.Main_Chats_Page"
+   >
+
+
+    <LinearLayout
+        android:id="@+id/lien1"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:orientation="vertical">
 
 
 
-</android.support.constraint.ConstraintLayout>
+
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tabalLayout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimaryDark"
+            app:tabSelectedTextColor="#FFFFFF"
+            app:tabTextColor="#bebebe"
+            app:tabIndicatorHeight="3dp"
+            app:tabIndicatorColor="#FFFFFF"
+
+            />
+
+        <!--
+         app:tabSelectedTextColor="#FFFFFF"
+         app:tabTextColor="#bebebe"
+         this for the line highlight under the choice
+     -->
+
+        <!--
+        this for colorize  the choice
+            app:tabSelectedTextColor="#FFFFFF"
+            app:tabTextColor="#bebebe"
+        -->
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginLeft="29dp"
+            android:layout_marginStart="29dp"
+            android:layout_marginTop="20dp"
+            android:text="TextView"
+            android:textColor="#FFFFFF"
+            android:textSize="18sp" />
+
+
+    </LinearLayout>
+
+
+    <android.support.v4.view.ViewPager
+    android:id="@+id/viewPager"
+    android:layout_below="@id/nav_action"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"/>
+
+
+
+</RelativeLayout>

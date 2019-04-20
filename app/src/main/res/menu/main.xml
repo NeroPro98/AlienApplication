@@ -2,8 +2,22 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/search"
+        android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
-        app:showAsAction="never" />
+        android:title="Search"
+        app:showAsAction="never|always" />
+    <item
+        android:id="@+id/message"
+        android:icon="@android:drawable/stat_notify_chat"
+        android:title="Message"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/setting"
+        android:icon="@drawable/setting"
+        android:title="Setting" />
+    <item
+        android:id="@+id/new_group"
+        android:icon="@drawable/group"
+        android:title="New group" />
 </menu>

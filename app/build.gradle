@@ -37,5 +37,8 @@ dependencies {
 
     //To support the circle image
     implementation 'de.hdodenhof:circleimageview:2.0.0'
-
+    //For navigation bar
+    //implementation 'com.android.support:design:27.1.1'
+    //For Adapter
+    implementation 'com.squareup.picasso:picasso:2.3.2'
 }

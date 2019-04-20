@@ -5,8 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Search_network"
-    android:background="@drawable/astro5"
+    android:background="@drawable/background1"
     >
+
+
+    <ImageView
+        android:id="@+id/backsearch"
+        android:layout_width="460dp"
+        android:layout_height="280dp"
+        android:layout_marginBottom="344dp"
+        android:scaleY="1.5"
+        android:src="@drawable/backsearch2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
     <ImageView
         android:id="@+id/astrodog"
@@ -36,7 +50,7 @@
         app:layout_constraintHorizontal_bias="0.487"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.546" />
+        app:layout_constraintVertical_bias="0.592" />
 
     <ImageButton
         android:id="@+id/searchnet"
@@ -51,10 +65,10 @@
         android:background="@drawable/search_btn"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.929"
+        app:layout_constraintHorizontal_bias="0.96"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.529" />
+        app:layout_constraintVertical_bias="0.574" />
 
 
 
