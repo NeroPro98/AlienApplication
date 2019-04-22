@@ -39,6 +39,8 @@ dependencies {
     implementation 'de.hdodenhof:circleimageview:2.0.0'
     //For navigation bar
     //implementation 'com.android.support:design:27.1.1'
-    //For Adapter
-    implementation 'com.squareup.picasso:picasso:2.3.2'
+    //For the main chats to set photo to circle as URL
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    //For Pick color
+    implementation 'com.github.yukuku:ambilwarna:2.0.1'
 }

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Style_Change"
+    android:id="@+id/mylayout"
+    >
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="308dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/astro_style"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="0dp"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="225dp"
+        android:text="Change Your Style"
+        android:textSize="40sp"
+        android:fontFamily="cursive"
+        android:textColor="@color/cyan"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/theme"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="85dp"
+        android:background="@drawable/background2"
+        android:text="Change Theme"
+        android:textColor="@color/cyan" />
+
+    <ImageView
+        android:layout_width="90dp"
+        android:layout_height="96dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="138dp"
+        android:scaleX="1.3"
+        android:scaleY="1.3"
+        android:src="@drawable/earth"
+        android:layout_alignParentLeft="true" />
+
+    <ImageView
+        android:layout_width="87dp"
+        android:layout_height="88dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="145dp"
+        android:src="@drawable/venus"
+        android:layout_alignParentRight="true" />
+
+</RelativeLayout>

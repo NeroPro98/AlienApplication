@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <ListView
-        android:id="@+id/ListViewMessage"
+        android:id="@+id/ListViewMessage1"
         android:layout_width="395dp"
         android:layout_height="587dp"
         tools:layout_editor_absoluteX="8dp"

@@ -1,5 +1,10 @@
 package zeon.com.chatapplication.Model;
 
+import android.media.Image;
+import android.widget.ImageView;
+
+import zeon.com.chatapplication.R;
+
 public class MessagePerson {
 
     private int id;
@@ -7,6 +12,29 @@ public class MessagePerson {
     private String message;
     private String date;
     private String image;
+    private ImageView personImage;
+
+
+    public MessagePerson(int ID, String s1, String s2, String s3, String s4){
+
+        id = ID;
+        name = s1;
+        message = s2;
+        date = s3;
+       // personImage.setImageResource(R.drawable.man);
+        image = s4;
+
+    }
+
+    public MessagePerson(){
+
+        id = 0;
+        name = "Unnamed";
+        message = "";
+        date = "";
+        image="";
+
+    }
 
 
 
@@ -50,24 +78,6 @@ public class MessagePerson {
         this.image = s4;
     }
 
-    public MessagePerson(int ID, String s1, String s2, String s3, String s4){
 
-        id = ID;
-        name = s1;
-        message = s2;
-        date = s3;
-        image = s4;
-
-    }
-
-    public MessagePerson(){
-
-        id = 0;
-        name = "Unnamed";
-        message = "";
-        date = "";
-        image="";
-
-    }
 }
 

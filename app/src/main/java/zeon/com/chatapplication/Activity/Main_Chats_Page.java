@@ -33,6 +33,7 @@ import zeon.com.chatapplication.R;
 import zeon.com.chatapplication.Register_Page;
 import zeon.com.chatapplication.Search_network;
 import zeon.com.chatapplication.Setting;
+import zeon.com.chatapplication.Style_Change;
 import zeon.com.chatapplication.User_Edit_Info;
 
 public class Main_Chats_Page extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener
@@ -73,7 +74,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         mTablLayout = (TabLayout)findViewById(R.id.tabalLayout);
         mTablLayout.addTab(mTablLayout.newTab().setText("Message"));
         mTablLayout.addTab(mTablLayout.newTab().setText("Connects"));
-        mTablLayout.addTab(mTablLayout.newTab().setText("Status"));
+        mTablLayout.addTab(mTablLayout.newTab().setText("New Group"));
 
         mTablLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -118,6 +119,8 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
             case R.id.search:
                 break;
             case R.id.message:
+                break;
+            case R.id.style:
                 break;
         }
 
@@ -171,6 +174,10 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
         }else if (id == R.id.Search){
             Intent intent =new Intent(getApplicationContext(),Search_network.class);
+            startActivity(intent);
+
+        }else if(id==R.id.style){
+            Intent intent =new Intent(getApplicationContext(),Style_Change.class);
             startActivity(intent);
         }
 

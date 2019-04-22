@@ -42,6 +42,11 @@
             android:icon="@drawable/chat_icon"
             android:title="Chat" />
 
+        <item
+            android:id="@+id/style"
+            android:title="Appearance"
+            android:icon="@drawable/style"/>
+
     </group>
 
     <item android:title="Communicate">

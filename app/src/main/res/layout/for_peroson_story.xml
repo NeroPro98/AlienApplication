@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <ImageView
+        android:id="@+id/storyimage"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:foreground="@drawable/circle_shape"
+        android:layout_alignParentLeft="true" />
+
+    <TextView
+        android:id="@+id/addstory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="112dp"
+        android:layout_marginTop="10dp"
+        android:text="TextView"
+        android:textSize="24dp"/>
+
+    <TextView
+        android:id="@+id/timesotry"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/addstory"
+        android:layout_below="@+id/addstory"
+        android:text="TextView"
+        android:textSize="18sp"
+        android:layout_alignLeft="@+id/addstory" />
+</RelativeLayout>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
 
-    android:innerRadiusRatio="3"
+    android:innerRadiusRatio="2"
     android:shape="ring"
     android:thicknessRatio="1"
     android:useLevel="false"
@@ -10,7 +10,7 @@
     <gradient
         android:type="radial"
         android:gradientRadius="8dp"
-        android:endColor="@android:color/white"
+        android:endColor="@color/white"
 />
 
 

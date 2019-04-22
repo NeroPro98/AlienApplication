@@ -1,6 +1,7 @@
 package zeon.com.chatapplication.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +16,14 @@ import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
+import zeon.com.chatapplication.Activity.ChatActivity;
 import zeon.com.chatapplication.Model.MessagePerson;
 import zeon.com.chatapplication.Model.MessagePerson;
 import zeon.com.chatapplication.R;
 
 public class ForBaseAdapter extends BaseAdapter{
 
-    private ArrayList<MessagePerson> list;
+    private ArrayList<MessagePerson> lists;
     private LayoutInflater mInflater;
     private Context mContext;
 
@@ -29,19 +31,19 @@ public class ForBaseAdapter extends BaseAdapter{
     public ForBaseAdapter(Context context,ArrayList<MessagePerson> listmsg){
 
         this.mContext = context;
-        this.list = listmsg;
+        this.lists = listmsg;
         this.mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
 
     @Override
     public int getCount() {
-        return list.size();
+        return lists.size();
     }
 
     @Override
     public MessagePerson getItem(int position) {
-        return list.get(position);
+        return lists.get(position);
     }
 
     @Override
@@ -50,22 +52,28 @@ public class ForBaseAdapter extends BaseAdapter{
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        View view = mInflater.inflate(R.layout.person_menu,null);
+    public View getView(final int position, final View convertView, ViewGroup parent) {
+        
+        final View view = mInflater.inflate(R.layout.person_menu,null);
         ImageView Image = (ImageView)view.findViewById(R.id.personimage);
         TextView Name = (TextView)view.findViewById(R.id.personename);
-        TextView Message = (TextView)view.findViewById(R.id.personimage);
+        TextView Message = (TextView)view.findViewById(R.id.personemessage);
         TextView Date = (TextView)view.findViewById(R.id.date);
 
-        Picasso.with(mContext).load(list.get(position).getS4()).into(Image);
-        Name.setText(list.get(position).getS1());
-        Name.setText(list.get(position).getS2());
-        Name.setText(list.get(position).getS3());
+        Picasso.with(mContext).load(lists.get(position).getS4()).into(Image);
+        Name.setText(lists.get(position).getS1());
+        Message.setText(lists.get(position).getS2());
+        Date.setText(lists.get(position).getS3());
 
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                Intent intent = new Intent(view.getContext(), ChatActivity.class);
+                intent.putExtra("name",lists.get(position).getS1());
+                intent.putExtra("userid",lists.get(position).getId());
+
+                mContext.startActivity(intent);
             }
         });
 
