@@ -1,8 +1,10 @@
 package zeon.com.chatapplication.Activity;
 
 import android.graphics.Color;
+import android.graphics.drawable.GradientDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -15,6 +17,10 @@ public class ChatActivity extends AppCompatActivity {
     private void ChatInit(int j){
 
         for(int i = 0;i<j ; i++) {
+            LinearLayout linearLayout = new LinearLayout(this);
+            linearLayout.setOrientation(LinearLayout.VERTICAL);
+            linearLayout.setGravity(Gravity.RIGHT);
+            linearLayout.setBackgroundResource(R.color.Reciver_color);
             TextView text = new TextView(this);
             text.setText("Hi How are you ?");
             text.setTextColor(Color.parseColor("#000000"));

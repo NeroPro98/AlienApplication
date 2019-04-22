@@ -15,5 +15,7 @@
     <color name="brown_dark">#5D4037</color>
     <color name="TransparentColor">#CCCCCC</color>
     <color name="cyan">#0b9593</color>
+    <color name="Sender_color">#FFFFFF</color>
+    <color name="Reciver_color">#d1f2bb</color>
 
 </resources>
