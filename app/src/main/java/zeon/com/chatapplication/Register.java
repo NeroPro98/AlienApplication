@@ -3,6 +3,7 @@ package zeon.com.chatapplication;
 import android.content.Intent;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import zeon.com.chatapplication.Activity.Main_Chats_Page;
+import zeon.com.chatapplication.Model.UserProfile;
 
 public class Register extends AppCompatActivity {
 
@@ -23,7 +25,9 @@ public class Register extends AppCompatActivity {
     private Button Register_Button;
     ImageView Dog;
     ImageView Alien;
+    String path = Environment.getExternalStorageDirectory().getPath()+"/Android/"+getPackageName();
 
+    UserProfile userProfile = new UserProfile();
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -31,6 +35,13 @@ public class Register extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        //Intent intent = getIntent();
+        userProfile = (UserProfile) getIntent().getSerializableExtra("user info");
+
+        Log.i("TEst", userProfile.getUserName());
+
+
         //setContentView(R.layout.activity_main);
         Password_Text = (EditText)findViewById(R.id.Password_Faild);
         Email_Text = (EditText)findViewById(R.id.Email_Faild);

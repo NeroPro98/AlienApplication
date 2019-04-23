@@ -3,6 +3,7 @@ package zeon.com.chatapplication;
 import android.content.Intent;
 import android.os.Build;
 import android.os.CountDownTimer;
+import android.os.Environment;
 import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -15,9 +16,11 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Serializable;
@@ -25,18 +28,21 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import in.shadowfax.proswipebutton.ProSwipeButton;
+import zeon.com.chatapplication.Model.UserProfile;
 
 public class Register_Page extends AppCompatActivity {
 
-    EditText First_Name;
-    EditText Middle_Name;
-    EditText Final_Name;
-    EditText Reg_email;
-    EditText Reg_Pass;
-    EditText Reg_ConPass;
-    User_Information User;
+    EditText firstName;
+    EditText middleName;
+    EditText finalName;
+    EditText regEmail;
+    EditText regPass;
+    EditText conPass;
+    User_Information user;
     ArrayList<User_Information> User_List;
     private Button Register;
+    private String path;
+    private UserProfile newUser = new UserProfile();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -44,15 +50,15 @@ public class Register_Page extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register__page);
 
-
-        First_Name = (EditText)findViewById(R.id.set_name);
-        Middle_Name = (EditText)findViewById(R.id.set_Middlename);
-        Final_Name = (EditText)findViewById(R.id.set_Middlename);
-        Reg_email = (EditText)findViewById(R.id.AddNewEmail_Faild);
-        Reg_Pass = (EditText)findViewById(R.id.AddNewPass_Faild);
-        Reg_ConPass = (EditText)findViewById(R.id.AddNewPassConfirm_Faild);
+        firstName = (EditText)findViewById(R.id.set_name);
+        middleName = (EditText)findViewById(R.id.set_Middlename);
+        finalName = (EditText)findViewById(R.id.set_Middlename);
+        regEmail = (EditText)findViewById(R.id.AddNewEmail_Faild);
+        regPass = (EditText)findViewById(R.id.AddNewPass_Faild);
+        conPass = (EditText)findViewById(R.id.AddNewPassConfirm_Faild);
         User_List = new ArrayList<User_Information>();
         Register= (Button) findViewById(R.id.To_Register_Page);
+
 
 
 
@@ -74,8 +80,13 @@ public class Register_Page extends AppCompatActivity {
         }.start();
     }*/
 
+    public void toSignInPage(View v){
+        Intent intent = new Intent(getApplicationContext(), Register.class);
+        intent.putExtra("user info", (Serializable) newUser);
+        startActivity(intent);
+    }
     public boolean Check_Email(){
-        String email = Reg_email.getText().toString();
+        String email = regEmail.getText().toString();
 
         if(!email.contains("@")|| !email.contains(".com") || email.length()<6) {
 
@@ -88,8 +99,8 @@ public class Register_Page extends AppCompatActivity {
 
     public boolean Check_Pass(){
 
-        String Pass = Reg_Pass.getText().toString();
-        String Conf_Pass = Reg_ConPass.getText().toString();
+        String Pass = regPass.getText().toString();
+        String Conf_Pass = conPass.getText().toString();
 
         if(!Pass.equals(Conf_Pass) || Pass.length()<6){
             Toast.makeText(getApplicationContext(), "There is no match in Password", Toast.LENGTH_SHORT).show();
@@ -100,9 +111,9 @@ public class Register_Page extends AppCompatActivity {
     }
 
     public boolean Check_Name(){
-        String first = First_Name.getText().toString();
-        String middle = Middle_Name.getText().toString();
-        String last = Final_Name.getText().toString();
+        String first = firstName.getText().toString();
+        String middle = middleName.getText().toString();
+        String last = middleName.getText().toString();
 
         if(first == "" || middle == "" || last== ""){
 
@@ -116,35 +127,48 @@ public class Register_Page extends AppCompatActivity {
 
     }
 
-    public void Return_To_Rigester(View v){
-
+    public void Return_To_Rigester(View v) throws IOException {
         boolean bool_email = Check_Email();
         boolean bool_pass = Check_Pass();
         boolean bool_name = Check_Name();
         if(bool_email && bool_pass && bool_name) {
             Save_In_List();
             Toast.makeText(getApplicationContext(), "Success Register", Toast.LENGTH_SHORT).show();
+            toSignInPage(v);
         }
 
     }
 
-    public void Save_In_List(){
+    public void Save_In_List() throws IOException {
 
-        Random random = new Random();
-        int id = random.nextInt(100);
-        String Firstname = First_Name.getText().toString();
-        String Middlename = Middle_Name.getText().toString();
-        String Finalname = Final_Name.getText().toString();
-        String email = Reg_email.getText().toString();
-        String Password = Reg_Pass.getText().toString();
-        User = new User_Information(id,email,Password,Firstname,Middlename,Finalname);
-        User_List.add(User);
-        Save_In_File(User);
+        //Random random = new Random();
+       // int id = random.nextInt(100);
+        String Firstname = firstName.getText().toString();
+        String Middlename = middleName.getText().toString();
+        String Finalname = finalName.getText().toString();
+        String email = regEmail.getText().toString();
+        String Password = regPass.getText().toString();
+
+        newUser.setUserName(firstName.getText().toString() + " " + middleName.getText().toString() + " " + finalName.getText().toString());
+        newUser.setEmail(regEmail.getText().toString());
+        newUser.setPassword(regPass.getText().toString());
+
+
+
+      //  user = new User_Information(id,email,Password,Firstname,Middlename,Finalname);
+       // User_List.add(user);
+        createPrivateFolder();
+        FileOutputStream fin = new FileOutputStream(path);
+        ObjectOutputStream ois = new ObjectOutputStream(fin);
+        ois.writeObject(newUser);
+        ois.flush();
+        ois.close();
+
+        //Save_In_File(user);
     }
 
     public void Save_In_File(User_Information User){
         try {
-
             File MyFile = new File("G://UserData.txt");
            // FileOutputStream File = openFileOutput("G:\\UserData.txt",MODE_PRIVATE);
             FileOutputStream file = new FileOutputStream(MyFile);
@@ -161,6 +185,13 @@ public class Register_Page extends AppCompatActivity {
         }
 
 
+    }
+
+    private void createPrivateFolder(){
+        path = Environment.getExternalStorageDirectory().getPath()+"/Android/data/"+getPackageName();
+        File file = new File(path);
+        if(!file.exists())
+            file.mkdirs();
     }
 
 
