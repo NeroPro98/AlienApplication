@@ -1,0 +1,5 @@
+package zeon.com.chatapplication.Model;
+
+public enum requestType {
+    ADD_USER,DELETE_USER,UPDATE_USER,SEND_MESSAGE,CHECK_HANGED_MESSAGES,CREATE_GROUP,DELETE_GROUP,UPDATE_GROUP
+}

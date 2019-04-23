@@ -20,8 +20,6 @@
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter tools:ignore="ExtraText">
                 <action android:name="android.intent.action.MAIN" />
-                android:configChanges="orientation|screenSize"
-                (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation;
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
