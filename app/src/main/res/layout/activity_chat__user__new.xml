@@ -46,6 +46,7 @@
             android:layout_alignParentLeft="true">
 
             <EditText
+                android:id="@+id/typetext"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:hint="Type Message......"
@@ -54,14 +55,16 @@
                 android:layout_marginBottom="9dp"
                 android:inputType="textPersonName"
                 android:textColorHighlight="#FFFFFF"
-                android:ems="10"/>
+                android:ems="8"/>
 
             <ImageView
                 android:layout_width="18dp"
-                android:layout_height="18dp"
+                android:layout_height="16dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/ic_menu_gallery" />
+                android:src="@drawable/pickphoto"
+                android:id="@+id/pick_image_gallary"
+                android:onClick="Pick_Image_Gallary"/>
 
 
         </LinearLayout>

@@ -50,7 +50,7 @@ public class Background extends AppCompatActivity {
     }
 
     public void Play_Opener(){
-        new CountDownTimer(3000,1000){
+        new CountDownTimer(2000,1000){
 
             @Override
             public void onTick(long millisUntilFinished) {
@@ -59,8 +59,7 @@ public class Background extends AppCompatActivity {
             @Override
             public void onFinish() {
 
-                MediaPlayer player = MediaPlayer.create(getApplicationContext(),R.raw.opener);
-                player.start();
+
             }
         }.start();
     }
