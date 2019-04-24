@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tap_any_where">どこでもタップ</string>
+    <string name="this_application_provided_by_zeon_team">このアプリケーションはzeonチームによって提供されました</string>
+    <string name="copyright_by_zeon_team">ゼオンチームによる著作権</string>
+    <string name="swipe">スワイプ</string>
+    <string name="please_tap">タップしてください</string>
+
+    <string name="chat_and_security">チャットとセキュリティ</string>
+    <string name="make_a_security_text_with_your_friends">友達と一緒にセキュリティテキストを作る</string>
+    <string name="continue1">持続する</string>
+
+    <string name="make_new_groups">新しいグループを作る</string>
+    <string name="make_new_groups_with_friends_and_enjoy_chatting">友達と新しいグループを作り、チャットを楽しむ</string>
+    <string name="continue2">持続する</string>
+
+    <string name="add_new_aliens">新しいエイリアンを追加</string>
+    <string name="make_enjoy_with_your_friends">友達と一緒に楽しむ</string>
+    <string name="continue3">持続する</string>
+
+    <string name="discover_new_things">新しいことを発見する</string>
+    <string name="enjoy_discovering_with_your_friends">友達と一緒に発見を楽しんでください</string>
+    <string name="finish">終える</string>
+
+    <string name="make_your_journey_with_friends">友達と一緒に旅をする</string>
+    <string name="swap_up"> 交換する</string>
+
+    <string name="email">Eメール....</string>
+    <string name="password">パスワード....</string>
+    <string name="sign_up">サインアップ</string>
+    <string name="register">登録</string>
+
+    <string name="enter_your_email">メールアドレスを入力.....</string>
+    <string name="enter_your_passowrd">パスワードを入力してください....</string>
+    <string name="confirm_your_passowrd">あなたのパスワードを確認.....</string>
+    <string name="first_name">ファーストネーム</string>
+    <string name="last_name">苗字</string>
+    <string name="middle_name">ミドルネーム</string>
+    <string name="register_in">登録する</string>
+
+
+    <string name="import_key">インポート</string>
+    <string name="gallery">ギャラリー</string>
+    <string name="games">ゲーム</string>
+    <string name="tools">道具</string>
+    <string name="weather">天気</string>
+    <string name="chat">チャット</string>
+    <string name="appearance">外観</string>
+    <string name="communicate">通信する</string>
+    <string name="share">シェア</string>
+    <string name="send">送る</string>
+    <string name="call">コール</string>
+
+
+
+    <string name="personal">個人的な</string>
+    <string name="search_in_web">ウェブで検索</string>
+    <string name="message">メッセージ</string>
+    <string name="setting2">設定</string>
+    <string name="new_group">新グループ</string>
+    <string name="group_info">グループ情報</string>
+    <string name="search2">サーチ</string>
+    <string name="wallpaper">壁紙</string>
+    <string name="other">その他の</string>
+    <string name="setting">設定</string>
+
+
+
+
+
+</resources>

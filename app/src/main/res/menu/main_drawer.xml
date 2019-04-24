@@ -9,61 +9,61 @@
         <item
             android:id="@+id/nav_camera"
             android:icon="@drawable/ic_menu_camera"
-            android:title="Import" />
+            android:title="@string/import_key" />
         <item
             android:id="@+id/nav_gallery"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="Gallery" />
+            android:title="@string/gallery" />
         <item
             android:id="@+id/nav_Game"
             android:icon="@drawable/game"
-            android:title="Games" />
+            android:title="@string/games" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Tools" />
+            android:title="@string/tools" />
 
         <item
             android:id="@+id/Profile_Icon"
-            android:icon="@drawable/person_add"
-            android:title="Add" />
+            android:icon="@drawable/weather"
+            android:title="@string/weather" />
         <item
             android:id="@+id/Personal"
             android:icon="@drawable/person"
-            android:title="Personal" />
+            android:title="@string/personal" />
 
         <item
             android:id="@+id/Search"
             android:icon="@drawable/search"
-            android:title="Search in Web" />
+            android:title="@string/search_in_web" />
 
         <item
             android:id="@+id/Chat"
             android:icon="@drawable/chat_icon"
-            android:title="Chat" />
+            android:title="@string/chat" />
 
         <item
             android:id="@+id/style"
-            android:title="Appearance"
+            android:title="@string/appearance"
             android:icon="@drawable/style"/>
 
     </group>
 
-    <item android:title="Communicate">
+    <item android:title="@string/communicate">
         <menu>
             <item
                 android:id="@+id/nav_share"
                 android:icon="@drawable/ic_menu_share"
-                android:title="Share" />
+                android:title="@string/share" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
-                android:title="Send" />
+                android:title="@string/send" />
 
             <item
                 android:id="@+id/call"
                 android:icon="@drawable/call"
-                android:title="Call" />
+                android:title="@string/call" />
 
         </menu>
     </item>

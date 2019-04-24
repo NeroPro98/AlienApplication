@@ -1,8 +1,6 @@
 package zeon.com.chatapplication;
 
 import android.content.Intent;
-import android.support.constraint.ConstraintLayout;
-import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -14,41 +12,42 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class back1 extends AppCompatActivity {
+public class Back2_new extends AppCompatActivity {
+
 
     private Animation smalltobig;
     private Animation nothing;
     private Animation button;
-    private ImageView Icon3;
+    private ImageView Icon2;
     private TextView text1;
     private TextView text2;
     private Button btn;
     private Button PrevButton;
+    private ImageView alien;
 
 
     private TextView[] Dot;
-
-
-    //   private ViewPager SliderPager;
     private LinearLayout LinLay;
-    // private SliderAdapter slideradapter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_back1);
+        setContentView(R.layout.activity_back2_new);
 
         smalltobig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
         nothing = AnimationUtils.loadAnimation(this, R.anim.nothing);
         button = AnimationUtils.loadAnimation(this, R.anim.button);
-        Icon3 = (ImageView) findViewById(R.id.icon3);
-        text1 = (TextView) findViewById(R.id.text1);
-        text2 = (TextView) findViewById(R.id.text2);
-        btn = (Button) findViewById(R.id.go);
-        PrevButton = (Button)findViewById(R.id.prev0);
-        PrevButton.setEnabled(false);
-        Icon3.startAnimation(smalltobig);
+        Icon2 = (ImageView) findViewById(R.id.icon2);
+        text1 = (TextView) findViewById(R.id.back1text1);
+        text2 = (TextView) findViewById(R.id.back1text2);
+        btn = (Button) findViewById(R.id.go2);
+        LinLay = (LinearLayout)findViewById(R.id.linearlayout2);
+        PrevButton = (Button)findViewById(R.id.prev1);
+        alien = (ImageView)findViewById(R.id.alien_ride);
+        alien.animate().translationX(35).setDuration(3000);
+
+        Icon2.startAnimation(smalltobig);
         text2.startAnimation(nothing);
         text1.startAnimation(nothing);
         btn.startAnimation(button);
@@ -56,21 +55,12 @@ public class back1 extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), Back2_new.class);
+                Intent intent = new Intent(getApplicationContext(), back3.class);
                 startActivity(intent);
             }
         });
-
-
-        //for Slider Adapter
-        //SliderPager = (ViewPager)findViewById(R.id.viwer1);
-        LinLay = (LinearLayout) findViewById(R.id.linearlayout1);
-        //slideradapter = new SliderAdapter(this);
-        //SliderPager.setAdapter(slideradapter);
-
         AddDot();
     }
-
     public void AddDot() {
         Dot = new TextView[4];
 
@@ -81,8 +71,15 @@ public class back1 extends AppCompatActivity {
             Dot[i].setTextColor(getResources().getColor(R.color.TransparentColor));
             LinLay.addView(Dot[i]);
         }
-            Dot[0].setTextColor(getResources().getColor(R.color.white));
 
+        Dot[1].setTextColor(getResources().getColor(R.color.white));
+
+    }
+
+
+    public void To_back1(View view) {
+        Intent intent = new Intent(getApplicationContext(),back1.class);
+        startActivity(intent);
     }
 
 }

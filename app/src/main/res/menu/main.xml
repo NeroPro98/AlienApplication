@@ -2,22 +2,23 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/search"
+        android:id="@+id/searchforthing"
         android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="100"
         android:title="Search"
-        app:showAsAction="never|always" />
+        app:showAsAction="never|always"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
     <item
         android:id="@+id/message"
         android:icon="@android:drawable/stat_notify_chat"
-        android:title="Message"
+        android:title="@string/message"
         app:showAsAction="always" />
     <item
         android:id="@+id/setting"
         android:icon="@drawable/setting"
-        android:title="Setting" />
+        android:title="@string/setting2" />
     <item
         android:id="@+id/new_group"
         android:icon="@drawable/group"
-        android:title="New group" />
+        android:title="@string/new_group" />
 </menu>

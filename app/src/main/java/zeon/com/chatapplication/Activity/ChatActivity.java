@@ -2,29 +2,43 @@ package zeon.com.chatapplication.Activity;
 
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
+import android.os.Build;
 import android.os.Message;
+import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.*;
 import android.view.Gravity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.support.v7.widget.SearchView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 
 import zeon.com.chatapplication.Model.Chat_Model;
 import zeon.com.chatapplication.R;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
     LinearLayout mLayout;
     ImageView sendbtn;
     EditText type;
+    ArrayList<String> StringChat = new ArrayList<>();
+
+
+
     ArrayList<Chat_Model> ChatListServer = new ArrayList<>();
 
     private void MessageFromServer(ArrayList<Chat_Model> msg){
@@ -120,7 +134,7 @@ public class ChatActivity extends AppCompatActivity {
         this.setTitle(Name);
 
         sendbtn = (ImageView)findViewById(R.id.sendbutton_new);
-        type = (EditText)findViewById(R.id.typetext);
+        type = (EditText) findViewById(R.id.typetext);
 
         sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,6 +142,7 @@ public class ChatActivity extends AppCompatActivity {
 
                 //the send photo not work
                 MessageFromClient(type.getText().toString(),"https://www.google.com/search?q=photos+for+man&rlz=1C1GCEA_enSY826SY826&tbm=isch&source=iu&ictx=1&fir=b8wFZeKFTP7F0M%253A%252CsiXBgr-E-CQ1BM%252C_&vet=1&usg=AI4_-kQrc1zmGS-7WEAbjsdg51faq7IjJQ&sa=X&ved=2ahUKEwiH5rCaiefhAhVlBGMBHTfdADYQ9QEwCXoECAcQFg&biw=1366&bih=695#");
+                StringChat.add(type.getText().toString());
                 type.setText("");
             }
         });
@@ -139,6 +154,55 @@ public class ChatActivity extends AppCompatActivity {
 
         getMenuInflater().inflate(R.menu.chat_menu,menu);
 
-        return super.onCreateOptionsMenu(menu);
+        MenuItem menuItem = menu.findItem(R.id.searchforthing2);
+        SearchView searchView = (SearchView)menuItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+
+        return true;
+    }
+
+
+
+    public EditText getType() {
+        return type;
+    }
+
+    public void setType(EditText type) {
+        this.type = type;
+    }
+
+
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
+    public boolean onQueryTextChange(String newText) {
+
+        String UserInput = newText.toLowerCase();
+        List<String> newList = new ArrayList<>();
+        //String name = "";
+        String listString = StringChat.toString()  ;
+
+        /*for(String s : StringChat){
+           name += s + "\t";
+        }*/
+        for(int i=0; i <StringChat.size();i++){
+
+            String msg = StringChat.get(i);
+
+            if(msg.toLowerCase().contains(UserInput)){
+                newList.add(msg);
+            }
+
+
+        }
+
+
+
+        return true;
     }
 }

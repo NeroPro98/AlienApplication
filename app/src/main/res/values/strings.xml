@@ -40,8 +40,8 @@
     <string name="please_tap">Please Tap</string>
     <string name="make_your_journey_with_friends">Make Your Journey With Friends</string>
     <string name="swap_up">Swap Up</string>
-    <string name="email">Email....</string>
-    <string name="password">Password....</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
     <string name="sign_up">Sign Up</string>
     <string name="register">Register</string>
     <string name="enter_your_email">Enter Your Email.....</string>
@@ -51,5 +51,26 @@
     <string name="last_name">Last name</string>
     <string name="middle_name">Middle name</string>
     <string name="register_in">Register in</string>
+    <string name="import_key">Import</string>
+    <string name="gallery">Gallery</string>
+    <string name="games">Games</string>
+    <string name="tools">Tools</string>
+    <string name="weather">Weather</string>
+    <string name="chat">Chat</string>
+    <string name="appearance">Appearance</string>
+    <string name="communicate">Communicate</string>
+    <string name="share">Share</string>
+    <string name="send">Send</string>
+    <string name="call">Call</string>
+    <string name="personal">Personal</string>
+    <string name="search_in_web">Search in Web</string>
+    <string name="message">Message</string>
+    <string name="setting2">Setting</string>
+    <string name="new_group">New group</string>
+    <string name="group_info">Group Info</string>
+    <string name="search2">Search</string>
+    <string name="wallpaper">Wallpaper</string>
+    <string name="other">Other</string>
+    <string name="setting">Setting</string>
 
 </resources>

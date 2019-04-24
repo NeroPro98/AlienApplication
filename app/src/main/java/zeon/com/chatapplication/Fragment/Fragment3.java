@@ -1,5 +1,6 @@
 package zeon.com.chatapplication.Fragment;
 
+import android.app.ActionBar;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -20,6 +21,7 @@ public class Fragment3 extends Fragment {
 
     ArrayList<MessagePerson> message = new ArrayList<>();
     private ListView listview ;
+    ActionBar action;
 
     public void init(){
 
@@ -45,7 +47,8 @@ public class Fragment3 extends Fragment {
         ForBaseAdapter adapter = new ForBaseAdapter(getContext(),message);
         Log.d("AlienChat","Context"+getContext());
         Log.d("AlienChat","message"+message);
-        listview.setAdapter(adapter); //****************error****************
+        listview.setAdapter(adapter);
+
 
 
 

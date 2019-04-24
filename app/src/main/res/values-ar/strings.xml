@@ -26,8 +26,8 @@
     <string name="make_your_journey_with_friends">قم برحلتك مع أصدقائك</string>
     <string name="swap_up">اسحب للأعلى</string>
 
-    <string name="email">...البريد</string>
-    <string name="password">....كلمة السر</string>
+    <string name="email">البريد</string>
+    <string name="password">كلمة السر</string>
     <string name="sign_up">تسجيل دخول</string>
     <string name="register">إنشاء حساب</string>
 
@@ -38,4 +38,30 @@
     <string name="last_name">الإسم الأخير</string>
     <string name="middle_name">الأسم الأوسط</string>
     <string name="register_in">تسجيل الدخول</string>
+
+
+    <string name="import_key">تضمين</string>
+    <string name="gallery">الإستديو</string>
+    <string name="games">الألعاب</string>
+    <string name="tools">الإعدادات</string>
+    <string name="weather">الطقس</string>
+    <string name="chat">المحادثات</string>
+    <string name="appearance">المظهر</string>
+    <string name="communicate">رسالة</string>
+    <string name="share">المشاركة</string>
+    <string name="send">الإرسال</string>
+    <string name="call">مكالمة</string>
+
+    <string name="personal">المعلومات الشخصية</string>
+    <string name="search_in_web">البحث بالإنترنت</string>
+    <string name="message">الرسائل</string>
+    <string name="setting2">الإعدادات</string>
+    <string name="new_group">مجموعات جديدة</string>
+    <string name="group_info">معلومات عن المجموعة</string>
+    <string name="search2">البحث</string>
+    <string name="wallpaper">صور</string>
+    <string name="other">أخرى</string>
+    <string name="setting">إعدادات</string>
+
+
 </resources>

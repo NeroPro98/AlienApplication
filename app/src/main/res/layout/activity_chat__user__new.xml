@@ -11,17 +11,19 @@
         android:layout_width="match_parent"
         android:layout_height="529dp"
         android:layout_above="@id/relative2"
-        android:layout_marginBottom="13dp" />
-    
-    
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/linearlayoutforchat">
+        android:layout_marginBottom="13dp">
 
 
-    </LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/linearlayoutforchat">
+
+        </LinearLayout>
+
+    </ScrollView>
+
 
 
     <RelativeLayout
@@ -47,10 +49,12 @@
 
             <EditText
                 android:id="@+id/typetext"
+                android:background="@color/white"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:hint="Type Message......"
                 android:layout_marginLeft="30dp"
+                android:layout_marginTop="7sp"
                 android:textSize="15sp"
                 android:layout_marginBottom="9dp"
                 android:inputType="textPersonName"

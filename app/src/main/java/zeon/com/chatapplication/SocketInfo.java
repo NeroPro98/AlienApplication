@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import in.shadowfax.proswipebutton.ProSwipeButton;
+import zeon.com.chatapplication.Activity.Main_Chats_Page;
 
 public class SocketInfo extends AppCompatActivity {
 
@@ -46,7 +47,7 @@ public class SocketInfo extends AppCompatActivity {
 
         String ipTxt = ip.getText().toString();
         String portTxt = port.getText().toString();
-        Intent intent = new Intent(getApplicationContext(),Chat_Page.class);
+        Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
        // intent.putExtra("IP",ipTxt);
         //intent.putExtra("PORT",portTxt);
         Client client = new Client();

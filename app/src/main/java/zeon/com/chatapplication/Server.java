@@ -16,7 +16,7 @@ import java.net.*;
 //import javax.swing.*;
 
 
-public class Server extends Chat_Page{
+/*public class Server extends Chat_Page{
 
 
 
@@ -156,8 +156,4 @@ public class Server extends Chat_Page{
         }
     }
 
-
-
-
-
-}
+}*/

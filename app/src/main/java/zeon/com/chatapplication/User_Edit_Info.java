@@ -1,12 +1,17 @@
 package zeon.com.chatapplication;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.BottomSheetBehavior;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,11 +26,16 @@ public class User_Edit_Info extends AppCompatActivity {
     private TextView name;
     private TextView email;
     private Button edit_button;
+    private Button camera_button;
 
     //for pick photo
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int PERMISSION_CODE = 1001;
+    private static final int REQUEST_IMAGE_CAPTURE = 101;
+    private static final int REQUEST_CAMERA = 1;
+    private static final int SELECT_FILE = 1;
 
+    private BottomSheetBehavior selectphoto;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +45,7 @@ public class User_Edit_Info extends AppCompatActivity {
         name = (TextView)findViewById(R.id.name_user);
         email = (TextView)findViewById(R.id.user_id_edit);
         edit_button = (Button)findViewById(R.id.Edit_Button);
+        camera_button = (Button)findViewById(R.id.Edit_Button_camera);
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,6 +71,12 @@ public class User_Edit_Info extends AppCompatActivity {
             }
         });
 
+       /* camera_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    //   Capture_Photo_Camera();
+            }
+        });*/
 
     }
     private void pickImageFromGalleryOfUser(){
@@ -82,7 +99,7 @@ public class User_Edit_Info extends AppCompatActivity {
                     pickImageFromGalleryOfUser();
                 }else{
                     //Permission was denied
-                    Toast.makeText(this,"Pwermission was denied....",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this,"Permission was denied....",Toast.LENGTH_SHORT).show();
 
                 }
             }
@@ -92,10 +109,38 @@ public class User_Edit_Info extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode==RESULT_OK && requestCode == IMAGE_PICK_CODE){
-            //set image to the image view
-            image.setImageURI(data.getData());
+
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode== Activity.RESULT_OK ) {
+
+            if (requestCode == IMAGE_PICK_CODE) {
+                //set image to the image view
+                image.setImageURI(data.getData());
+            } else if (resultCode == REQUEST_CAMERA){
+                Bundle bundle = data.getExtras();
+                final Bitmap cameraimage = (Bitmap) bundle.get("data");
+                image.setImageBitmap(cameraimage);
+            }
+
         }
-       // super.onActivityResult(requestCode, resultCode, data);
+          //  Bitmap cameraimage = (Bitmap) data.getExtras().get("data");
+         //   image.setImageBitmap(cameraimage);
+
+
     }
+
+    public void Capture_Photo_Camera(){
+
+        Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(intent2, REQUEST_CAMERA);
+      //  Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //intent2.setType("image/*");
+        //if(intent2.resolveActivity(getPackageManager())!=null){
+       //     startActivityForResult(intent2,REQUEST_IMAGE_CAPTURE);
+        //}
+
+    }
+
+
 }

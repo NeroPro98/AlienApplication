@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class UserProfile implements Serializable {
+
     private String userName;
     private String password;
     private String email;

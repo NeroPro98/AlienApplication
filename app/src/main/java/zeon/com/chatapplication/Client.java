@@ -16,6 +16,8 @@ import android.widget.Toast;
 import java.io.*;
 import java.net.*;
 
+import zeon.com.chatapplication.Activity.ChatActivity;
+
 
 
 public class Client implements Serializable {
@@ -34,6 +36,7 @@ public class Client implements Serializable {
     //private ImageButton SendButton;
     private String IPString;
     private String PortString;
+    ChatActivity Person_Message;
 
 
 
@@ -43,6 +46,7 @@ public class Client implements Serializable {
         IPString = "0.0.0.0";
         PortString = "0000";
         Message = "";
+        Person_Message = new ChatActivity();
         // here connect between the text and and place of write
         // set enable of text
         //set the listner to the text and but the SendMessage() function then reset the message
@@ -110,7 +114,8 @@ public class Client implements Serializable {
     //While Chatting With Server
     private void WhileChatting()throws IOException{
         Log.d("Aliens Chat","WhileChatting() was called");
-        Message = "You are Connected ....";
+        String msg = Person_Message.getType().getText().toString();
+        Message = msg;
         SendMessage(Message);
         AbleToType(true);
         do{

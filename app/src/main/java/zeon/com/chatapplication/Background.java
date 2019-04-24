@@ -26,6 +26,7 @@ public class Background extends AppCompatActivity {
     TextView tap;
     TextView text1;
     TextView text2;
+    ImageView logo;
    // SwipeButton swipe;
 
 
@@ -39,6 +40,7 @@ public class Background extends AppCompatActivity {
         tap = (TextView)findViewById(R.id.tap_any_where);
         text1 = (TextView)findViewById(R.id.textView1);
         text2 = (TextView)findViewById(R.id.textView2);
+        logo = (ImageView)findViewById(R.id.icon3);
 
         Text_Animation();
 
@@ -68,7 +70,7 @@ public class Background extends AppCompatActivity {
 
          Log.d("ChatApp","To_Register was called");
 
-                Intent intent = new Intent(getApplicationContext(),Register.class);
+                Intent intent = new Intent(getApplicationContext(),back1.class);
                 startActivity(intent);
 
        }
@@ -80,6 +82,7 @@ public class Background extends AppCompatActivity {
         text1.animate().alpha(1).setDuration(3000);
         text2.animate().alpha(1).setDuration(3000);
         Alien_Text.animate().alpha(1).setDuration(3000);
+        logo.animate().alpha(1).setDuration(3000);
 
     }
 
