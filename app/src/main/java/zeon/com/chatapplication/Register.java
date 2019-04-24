@@ -14,6 +14,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
 import zeon.com.chatapplication.Activity.Main_Chats_Page;
 import zeon.com.chatapplication.Model.UserProfile;
 
@@ -25,7 +29,7 @@ public class Register extends AppCompatActivity {
     private Button Register_Button;
     ImageView Dog;
     ImageView Alien;
-    String path = Environment.getExternalStorageDirectory().getPath()+"/Android/"+getPackageName();
+   // String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
 
     UserProfile userProfile = new UserProfile();
 
@@ -36,17 +40,19 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //Intent intent = getIntent();
-        userProfile = (UserProfile) getIntent().getSerializableExtra("user info");
 
-        Log.i("TEst", userProfile.getUserName());
-
-
-        //setContentView(R.layout.activity_main);
         Password_Text = (EditText)findViewById(R.id.Password_Faild);
         Email_Text = (EditText)findViewById(R.id.Email_Faild);
         Sign_Button = (Button) findViewById(R.id.btn_cart_signin);
         Register_Button = (Button) findViewById(R.id.btn_cart_signup);
+
+
+        checkTheInternalFile();
+        if(!userProfile.equals(null))
+        {
+            Email_Text.setText(userProfile.getEmail());
+            Password_Text.setText(userProfile.getPassword());
+        }
       //  Dog = (ImageView)findViewById(R.id.dog);
        // Alien = (ImageView)findViewById(R.id.alien);
 
@@ -159,6 +165,28 @@ public class Register extends AppCompatActivity {
            return true;
 
         }
+
+    }
+    public void checkTheInternalFile()
+    {
+        String fileName = "myfile";
+        FileInputStream fileInputStream;
+        //File file = new File();
+
+        try
+        {
+            fileInputStream = openFileInput(fileName);
+            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+            userProfile = (UserProfile) objectInputStream.readObject();
+            objectInputStream.close();
+            fileInputStream.close();
+            System.out.println(userProfile.getUserName()+"  "+userProfile.getPassword()+"  "+userProfile.getEmail());
+
+        }catch(Exception e)
+        {
+            e.printStackTrace();
+        }
+
 
     }
 
