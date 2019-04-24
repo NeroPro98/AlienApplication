@@ -1,6 +1,11 @@
 package zeon.com.chatapplication.Model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.InetAddress;
+import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -13,9 +18,17 @@ public class UserProfile implements Serializable {
     private ArrayList<String> blockList;
     private Date joinDate;
     private ArrayList<Message> currMessages;
+    private ObjectOutputStream Output;
+    private ObjectInputStream Input;
+    private Socket Connection;
+
+    private String IPString;
+    private String PortString;
 
     public UserProfile()
     {
+        IPString = "0.0.0.0";
+        PortString = "0000";
         userName ="";
         password ="";
         email = "";
@@ -26,7 +39,32 @@ public class UserProfile implements Serializable {
         currMessages = new ArrayList<>();
     }
 
+    public void ConnectToServer() throws IOException {
+        System.out.println("Connecting to Server");
+        Connection = new Socket(InetAddress.getByName(IPString),6789);  // here we setup the connection to specific server of IP address to specific port on this server Port:
+    }
+    public void CloseCrap(){
+        try {
+            Output.close();
+            Input.close();
+            Connection.close();
 
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    public void SetupStreams()throws IOException
+    {
+        Output = new ObjectOutputStream(Connection.getOutputStream());
+        Output.flush();
+        Input = new ObjectInputStream(Connection.getInputStream());
+        Output.writeObject(null);
+        System.out.println("The Stream Is Ready");
+    }
+    public request sendRequest(request request)
+    {
+
+    }
     public boolean addFriend(UserProfile friend){
         boolean searchInFriendList = searchInFriendList(friend.getUserName());
         if(!searchInFriendList)

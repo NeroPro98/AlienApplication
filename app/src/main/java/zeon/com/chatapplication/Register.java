@@ -33,22 +33,22 @@ public class Register extends AppCompatActivity {
 
     UserProfile userProfile = new UserProfile();
 
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-
         Password_Text = (EditText)findViewById(R.id.Password_Faild);
         Email_Text = (EditText)findViewById(R.id.Email_Faild);
         Sign_Button = (Button) findViewById(R.id.btn_cart_signin);
         Register_Button = (Button) findViewById(R.id.btn_cart_signup);
 
+        MyApplication data = (MyApplication) getApplicationContext();
+        userProfile = data.getUser();
+        System.out.println(data.signedIn);
 
-        checkTheInternalFile();
-        if(!userProfile.equals(null))
+        if(data.signedIn)
         {
             Email_Text.setText(userProfile.getEmail());
             Password_Text.setText(userProfile.getPassword());
@@ -165,28 +165,6 @@ public class Register extends AppCompatActivity {
            return true;
 
         }
-
-    }
-    public void checkTheInternalFile()
-    {
-        String fileName = "myfile";
-        FileInputStream fileInputStream;
-        //File file = new File();
-
-        try
-        {
-            fileInputStream = openFileInput(fileName);
-            ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-            userProfile = (UserProfile) objectInputStream.readObject();
-            objectInputStream.close();
-            fileInputStream.close();
-            System.out.println(userProfile.getUserName()+"  "+userProfile.getPassword()+"  "+userProfile.getEmail());
-
-        }catch(Exception e)
-        {
-            e.printStackTrace();
-        }
-
 
     }
 
