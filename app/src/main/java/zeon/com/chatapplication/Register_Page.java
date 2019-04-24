@@ -1,5 +1,6 @@
 package zeon.com.chatapplication;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Build;
 import android.os.CountDownTimer;
@@ -41,7 +42,8 @@ public class Register_Page extends AppCompatActivity {
     User_Information user;
     ArrayList<User_Information> User_List;
     private Button Register;
-    private String path;
+    private String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
+
     private UserProfile newUser = new UserProfile();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -82,7 +84,7 @@ public class Register_Page extends AppCompatActivity {
 
     public void toSignInPage(View v){
         Intent intent = new Intent(getApplicationContext(), Register.class);
-        intent.putExtra("user info", (Serializable) newUser);
+     //   intent.putExtra("user info", (Serializable) newUser);
         startActivity(intent);
     }
     public boolean Check_Email(){
@@ -143,6 +145,7 @@ public class Register_Page extends AppCompatActivity {
 
         //Random random = new Random();
        // int id = random.nextInt(100);
+        Log.i("Called", "Save_In_List: ");
         String Firstname = firstName.getText().toString();
         String Middlename = middleName.getText().toString();
         String Finalname = finalName.getText().toString();
@@ -153,17 +156,9 @@ public class Register_Page extends AppCompatActivity {
         newUser.setEmail(regEmail.getText().toString());
         newUser.setPassword(regPass.getText().toString());
 
+        System.out.println(newUser.getEmail()+""+newUser.getPassword()+newUser.getUserName()+""+ "Save_In_List: ");
 
-
-      //  user = new User_Information(id,email,Password,Firstname,Middlename,Finalname);
-       // User_List.add(user);
         createPrivateFolder();
-        FileOutputStream fin = new FileOutputStream(path);
-        ObjectOutputStream ois = new ObjectOutputStream(fin);
-        ois.writeObject(newUser);
-        ois.flush();
-        ois.close();
-
         //Save_In_File(user);
     }
 
@@ -187,11 +182,39 @@ public class Register_Page extends AppCompatActivity {
 
     }
 
-    private void createPrivateFolder(){
-        path = Environment.getExternalStorageDirectory().getPath()+"/Android/data/"+getPackageName();
-        File file = new File(path);
-        if(!file.exists())
-            file.mkdirs();
+    private void createPrivateFolder()
+    {
+        String filename = "myfile";
+        FileOutputStream outputStream;
+        File file = new File(getFilesDir(), filename);
+        Log.i(file.getAbsolutePath()+"", "createPrivateFolder: ");
+        try {
+            outputStream = openFileOutput(filename, Context.MODE_PRIVATE);
+            ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
+            objectoutputStream.writeObject(newUser);
+            objectoutputStream.flush();
+            objectoutputStream.close();
+            outputStream.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    private boolean createPrivateFolder1(){
+        //path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
+        String folder_main = "the new shit";
+        File f = new File(Environment.getExternalStorageDirectory(), folder_main);
+        System.out.println(f.getPath());
+        if (!f.exists()) {
+            if (!f.mkdirs())
+            {
+                System.out.println("This is the shit");
+                return false;
+            }
+            else
+                return true;
+        }
+        else
+            return true;
     }
 
 

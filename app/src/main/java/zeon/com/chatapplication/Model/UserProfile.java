@@ -1,9 +1,10 @@
 package zeon.com.chatapplication.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class UserProfile {
+public class UserProfile implements Serializable {
     private String userName;
     private String password;
     private String email;
