@@ -5,11 +5,22 @@ import android.content.res.Configuration;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.net.Socket;
 
 import zeon.com.chatapplication.Model.UserProfile;
 
 public class MyApplication extends Application {
     UserProfile user;
+    Socket connection;
+
+    public Socket getConnection() {
+        return connection;
+    }
+
+    public void setConnection(Socket connection) {
+        this.connection = connection;
+    }
+
     boolean signedIn;
 
     public UserProfile getUser() {

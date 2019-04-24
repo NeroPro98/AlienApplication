@@ -1,6 +1,8 @@
 package zeon.com.chatapplication.Model;
 
-public class request {
+import java.io.Serializable;
+
+public class request implements Serializable {
     private Object object;
     private requestType type;
 
