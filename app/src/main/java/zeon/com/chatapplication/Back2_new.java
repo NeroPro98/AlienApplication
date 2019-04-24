@@ -45,7 +45,7 @@ public class Back2_new extends AppCompatActivity {
         LinLay = (LinearLayout)findViewById(R.id.linearlayout2);
         PrevButton = (Button)findViewById(R.id.prev1);
         alien = (ImageView)findViewById(R.id.alien_ride);
-        alien.animate().translationX(35).setDuration(3000);
+        alien.animate().translationX(34).setDuration(3000);
 
         Icon2.startAnimation(smalltobig);
         text2.startAnimation(nothing);
