@@ -30,6 +30,8 @@ import java.util.Random;
 
 import in.shadowfax.proswipebutton.ProSwipeButton;
 import zeon.com.chatapplication.Model.UserProfile;
+import zeon.com.chatapplication.Model.request;
+import zeon.com.chatapplication.Model.requestType;
 
 public class Register_Page extends AppCompatActivity {
 
@@ -129,7 +131,7 @@ public class Register_Page extends AppCompatActivity {
 
     }
 
-    public void Return_To_Rigester(View v) throws IOException {
+    public void Return_To_Rigester(View v) throws IOException, InterruptedException, ClassNotFoundException {
         boolean bool_email = Check_Email();
         boolean bool_pass = Check_Pass();
         boolean bool_name = Check_Name();
@@ -141,7 +143,7 @@ public class Register_Page extends AppCompatActivity {
 
     }
 
-    public void Save_In_List() throws IOException {
+    public void Save_In_List() throws IOException, ClassNotFoundException, InterruptedException {
 
         //Random random = new Random();
        // int id = random.nextInt(100);
@@ -158,8 +160,33 @@ public class Register_Page extends AppCompatActivity {
 
         System.out.println(newUser.getEmail()+""+newUser.getPassword()+newUser.getUserName()+""+ "Save_In_List: ");
 
-        createPrivateFolder();
+        final boolean[] res = {true};
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    res[0] = checkIfAvailable();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+        if(res[0]){
+            createPrivateFolder();
+        }
         //Save_In_File(user);
+    }
+    public boolean checkIfAvailable() throws InterruptedException, IOException, ClassNotFoundException {
+        request request = new request();
+        request.setObject(newUser);
+        request.setType(requestType.ADD_USER);
+        boolean res = newUser.sendRequest(request);
+        return res;
     }
 
     public void Save_In_File(User_Information User){
@@ -172,7 +199,6 @@ public class Register_Page extends AppCompatActivity {
             UserObject.writeObject(User);
             UserObject.flush();
             UserObject.close();
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

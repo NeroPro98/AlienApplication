@@ -18,8 +18,8 @@ public class UserProfile implements Serializable {
     private ArrayList<String> blockList;
     private Date joinDate;
     private ArrayList<Message> currMessages;
-    private ObjectOutputStream Output;
-    private ObjectInputStream Input;
+    public ObjectOutputStream output;
+    public ObjectInputStream input;
     private Socket Connection;
 
     private String IPString;
@@ -39,14 +39,14 @@ public class UserProfile implements Serializable {
         currMessages = new ArrayList<>();
     }
 
-    public void ConnectToServer() throws IOException {
+    public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");
         Connection = new Socket(InetAddress.getByName(IPString),6789);  // here we setup the connection to specific server of IP address to specific port on this server Port:
     }
     public void CloseCrap(){
         try {
-            Output.close();
-            Input.close();
+            output.close();
+            input.close();
             Connection.close();
 
         }catch (IOException e){
@@ -55,15 +55,39 @@ public class UserProfile implements Serializable {
     }
     public void SetupStreams()throws IOException
     {
-        Output = new ObjectOutputStream(Connection.getOutputStream());
-        Output.flush();
-        Input = new ObjectInputStream(Connection.getInputStream());
-        Output.writeObject(null);
+        output = new ObjectOutputStream(Connection.getOutputStream());
+        output.flush();
+        input = new ObjectInputStream(Connection.getInputStream());
+        output.writeObject(null);
         System.out.println("The Stream Is Ready");
     }
-    public request sendRequest(request request)
+    public boolean sendRequest(request request) throws IOException, InterruptedException, ClassNotFoundException {
+        connectToServer();
+        SetupStreams();
+        output.writeObject(request);
+        output.flush();
+        Thread.sleep(2000);
+        request request1 = (zeon.com.chatapplication.Model.request) input.readObject();
+        return handleReceivedRequest(request1);
+    }
+    public boolean handleReceivedRequest(request request)
     {
+        switch (request.getType())
+        {
+            case ADD_USER:
+            {
+                boolean res = (boolean) request.getObject();
+                return res;
+            }
+            case CHECK_HANGED_MESSAGES:
+            {
+                if(request.getObject() instanceof Boolean)
+                {
 
+                }
+            }
+        }
+        return true;
     }
     public boolean addFriend(UserProfile friend){
         boolean searchInFriendList = searchInFriendList(friend.getUserName());
