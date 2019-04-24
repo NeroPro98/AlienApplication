@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="zeon.com.chatapplication">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGEE" />
     <uses-permission android:name="android.permission.CAMERA" />
@@ -11,27 +12,32 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/alien_logo"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/alien_logo_round"
+        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Back2_new"></activity>
         <activity
             android:name=".Background"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter tools:ignore="ExtraText">
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".Register"
             android:theme="@style/AppTheme.NoActionBar"
-            android:windowSoftInputMode="stateHidden" />
+            android:windowSoftInputMode="stateHidden"/>
+        <activity
+            android:name=".Chat_Page"
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateHidden"/>
         <activity
             android:name=".Register_Page"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Chat_Msg_Row"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".SocketInfo"
@@ -66,9 +72,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Style_Change" />
         <activity android:name=".Activity.ChatActivity" />
-        <activity
-            android:name=".Chat_User_New"
-            android:windowSoftInputMode="stateHidden" />
+        <activity android:name=".Chat_User_New"
+            android:windowSoftInputMode="stateHidden"
+            />
     </application>
 
 </manifest>

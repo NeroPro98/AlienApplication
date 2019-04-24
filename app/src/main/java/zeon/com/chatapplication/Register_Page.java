@@ -30,6 +30,8 @@ import java.util.Random;
 
 import in.shadowfax.proswipebutton.ProSwipeButton;
 import zeon.com.chatapplication.Model.UserProfile;
+import zeon.com.chatapplication.Model.request;
+import zeon.com.chatapplication.Model.requestType;
 
 public class Register_Page extends AppCompatActivity {
 
@@ -42,7 +44,7 @@ public class Register_Page extends AppCompatActivity {
     User_Information user;
     ArrayList<User_Information> User_List;
     private Button Register;
-    private String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
+   // private String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
 
     private UserProfile newUser = new UserProfile();
 
@@ -60,10 +62,6 @@ public class Register_Page extends AppCompatActivity {
         conPass = (EditText)findViewById(R.id.AddNewPassConfirm_Faild);
         User_List = new ArrayList<User_Information>();
         Register= (Button) findViewById(R.id.To_Register_Page);
-
-
-
-
 
     }
 
@@ -84,7 +82,6 @@ public class Register_Page extends AppCompatActivity {
 
     public void toSignInPage(View v){
         Intent intent = new Intent(getApplicationContext(), Register.class);
-     //   intent.putExtra("user info", (Serializable) newUser);
         startActivity(intent);
     }
     public boolean Check_Email(){
@@ -129,19 +126,21 @@ public class Register_Page extends AppCompatActivity {
 
     }
 
-    public void Return_To_Rigester(View v) throws IOException {
+    public void Return_To_Rigester(View v) throws IOException, InterruptedException, ClassNotFoundException {
         boolean bool_email = Check_Email();
         boolean bool_pass = Check_Pass();
         boolean bool_name = Check_Name();
         if(bool_email && bool_pass && bool_name) {
-            Save_In_List();
-            Toast.makeText(getApplicationContext(), "Success Register", Toast.LENGTH_SHORT).show();
-            toSignInPage(v);
+            boolean res = Save_In_List();
+            if(res) {
+                Toast.makeText(getApplicationContext(), "Success Register", Toast.LENGTH_SHORT).show();
+                toSignInPage(v);
+            }
         }
 
     }
 
-    public void Save_In_List() throws IOException {
+    public boolean Save_In_List() throws IOException, ClassNotFoundException, InterruptedException {
 
         //Random random = new Random();
        // int id = random.nextInt(100);
@@ -158,34 +157,63 @@ public class Register_Page extends AppCompatActivity {
 
         System.out.println(newUser.getEmail()+""+newUser.getPassword()+newUser.getUserName()+""+ "Save_In_List: ");
 
-        createPrivateFolder();
-        //Save_In_File(user);
+        final boolean[] res = {true};
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    res[0] = checkIfAvailable();
+                    if (res[0]) {
+                        createPrivateFolder();
+                    }
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+            });
+        thread.start();
+        return res[0];
+    }
+    public ArrayList<Object> serilaizeToStrings()
+    {
+        ArrayList<Object> arrayList = new ArrayList<>();
+
+        arrayList.add(0);
+        arrayList.add(newUser.getUserName());
+        arrayList.add(newUser.getEmail());
+        arrayList.add(newUser.getPassword());
+        arrayList.add(newUser.getBirthDate());
+        arrayList.add(newUser.getJoinDate());
+        return arrayList;
+    }
+    public boolean checkIfAvailable() throws InterruptedException, IOException, ClassNotFoundException {
+        boolean res = sendRequest(serilaizeToStrings());
+        return res;
     }
 
-    public void Save_In_File(User_Information User){
-        try {
-            File MyFile = new File("G://UserData.txt");
-           // FileOutputStream File = openFileOutput("G:\\UserData.txt",MODE_PRIVATE);
-            FileOutputStream file = new FileOutputStream(MyFile);
-            //OutputStreamWriter FileWriter = new OutputStreamWriter(File);
-            ObjectOutputStream UserObject = new ObjectOutputStream(file);
-            UserObject.writeObject(User);
-            UserObject.flush();
-            UserObject.close();
-
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-
+    public boolean sendRequest(ArrayList<Object> arrayList) throws IOException, InterruptedException, ClassNotFoundException {
+        newUser.connectToServer();
+        newUser.SetupStreams();
+        newUser.output.writeObject(arrayList);
+        newUser.output.flush();
+        newUser.input.readObject();
+        ArrayList<Object> list = (ArrayList<Object>) newUser.input.readObject();
+        boolean res = newUser.handleReceivedRequest(list);
+        if(res)
+            newUser.setUserId((String) arrayList.get(2));
+        return res;
     }
 
     private void createPrivateFolder()
     {
         String filename = "myfile";
         FileOutputStream outputStream;
+        MyApplication data = (MyApplication) getApplicationContext();
         File file = new File(getFilesDir(), filename);
         Log.i(file.getAbsolutePath()+"", "createPrivateFolder: ");
         try {
@@ -195,26 +223,10 @@ public class Register_Page extends AppCompatActivity {
             objectoutputStream.flush();
             objectoutputStream.close();
             outputStream.close();
+            data.setUser(newUser);
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-    private boolean createPrivateFolder1(){
-        //path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
-        String folder_main = "the new shit";
-        File f = new File(Environment.getExternalStorageDirectory(), folder_main);
-        System.out.println(f.getPath());
-        if (!f.exists()) {
-            if (!f.mkdirs())
-            {
-                System.out.println("This is the shit");
-                return false;
-            }
-            else
-                return true;
-        }
-        else
-            return true;
     }
 
 
