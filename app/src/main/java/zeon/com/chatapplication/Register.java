@@ -16,7 +16,9 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.util.ArrayList;
 
 import zeon.com.chatapplication.Activity.Main_Chats_Page;
 import zeon.com.chatapplication.Model.UserProfile;
@@ -32,6 +34,7 @@ public class Register extends AppCompatActivity {
    // String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
 
     UserProfile userProfile = new UserProfile();
+    ArrayList<Object> arrayList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -53,7 +56,13 @@ public class Register extends AppCompatActivity {
             Email_Text.setText(userProfile.getEmail());
             Password_Text.setText(userProfile.getPassword());
         }
-      //  Dog = (ImageView)findViewById(R.id.dog);
+
+
+        arrayList.add(1);
+        arrayList.add(Password_Text.getText());
+        arrayList.add(Email_Text.getText());
+
+        //  Dog = (ImageView)findViewById(R.id.dog);
        // Alien = (ImageView)findViewById(R.id.alien);
 
       /*  Alien.animate().alpha(1).setDuration(3000);
@@ -129,15 +138,34 @@ public class Register extends AppCompatActivity {
 
     }
 
+    public boolean signIn(ArrayList<Object> list)
+    {
+
+
+        return true;
+    }
+    public boolean sendRequest(ArrayList<Object> arrayList) throws IOException, InterruptedException, ClassNotFoundException {
+        userProfile.connectToServer();
+        userProfile.SetupStreams();
+        userProfile.output.writeObject(arrayList);
+        userProfile.output.flush();
+        userProfile.input.readObject();
+        ArrayList<Object> list = (ArrayList<Object>) userProfile.input.readObject();
+        boolean res = userProfile.handleReceivedRequest(list);
+        if(res)
+            userProfile.setUserId((String) arrayList.get(2));
+        return res;
+    }
+
 
     public void To_Chat_Page(View v){
-
 
         Log.d("ChatApp","To_Register_Page was called");
         boolean bool1 = Cheack_Password();
         boolean bool2 = Cheack_Email();
 
         if(bool1 && bool2) {
+            boolean res = signIn(arrayList);
             Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
             startActivity(intent);
         }else {

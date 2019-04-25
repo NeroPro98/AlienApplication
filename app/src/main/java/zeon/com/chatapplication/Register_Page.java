@@ -6,6 +6,8 @@ import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -126,16 +128,43 @@ public class Register_Page extends AppCompatActivity {
 
     }
 
-    public void Return_To_Rigester(View v) throws IOException, InterruptedException, ClassNotFoundException {
+    public void Return_To_Rigester(final View v) throws IOException, InterruptedException, ClassNotFoundException {
         boolean bool_email = Check_Email();
         boolean bool_pass = Check_Pass();
         boolean bool_name = Check_Name();
         if(bool_email && bool_pass && bool_name) {
-            boolean res = Save_In_List();
-            if(res) {
-                Toast.makeText(getApplicationContext(), "Success Register", Toast.LENGTH_SHORT).show();
-                toSignInPage(v);
-            }
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    boolean res = false;
+                    try {
+                        res = Save_In_List();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if (res) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), "Success Register", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                        toSignInPage(v);
+                    } else
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(getApplicationContext(), "The Email Is ALready taken", Toast.LENGTH_SHORT).show();
+
+                            }
+                        });
+                }
+            });
+         thread.start();
         }
 
     }
@@ -159,9 +188,9 @@ public class Register_Page extends AppCompatActivity {
 
         final boolean[] res = {true};
 
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
+   //     Thread thread = new Thread(new Runnable() {
+    //        @Override
+      //      public synchronized void run() {
                 try {
                     res[0] = checkIfAvailable();
                     if (res[0]) {
@@ -174,9 +203,9 @@ public class Register_Page extends AppCompatActivity {
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-            }
-            });
-        thread.start();
+          //  }
+        //    });
+        //thread.start();
         return res[0];
     }
     public ArrayList<Object> serilaizeToStrings()
