@@ -78,7 +78,7 @@ public class back3 extends AppCompatActivity {
     }
 
     public void To_back2(View view) {
-        Intent intent = new Intent(getApplicationContext(),Back2_new.class);
+        Intent intent = new Intent(getApplicationContext(),back2.class);
         startActivity(intent);
     }
 }

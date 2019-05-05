@@ -22,6 +22,7 @@ public class back2 extends AppCompatActivity {
     private TextView text2;
     private Button btn;
     private Button PrevButton;
+    private ImageView image;
 
 
     private TextView[] Dot;
@@ -31,7 +32,7 @@ public class back2 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_back2);
+        setContentView(R.layout.activity_back2_new);
 
         smalltobig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
         nothing = AnimationUtils.loadAnimation(this, R.anim.nothing);
@@ -42,6 +43,8 @@ public class back2 extends AppCompatActivity {
         btn = (Button) findViewById(R.id.go2);
         LinLay = (LinearLayout)findViewById(R.id.linearlayout2);
         PrevButton = (Button)findViewById(R.id.prev1);
+        image = (ImageView)findViewById(R.id.alien_ride);
+        image.animate().translationX(50).setDuration(2000);
 
         Icon2.startAnimation(smalltobig);
         text2.startAnimation(nothing);

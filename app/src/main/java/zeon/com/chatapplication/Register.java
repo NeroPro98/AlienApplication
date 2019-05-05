@@ -16,8 +16,11 @@ import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
 
 import zeon.com.chatapplication.Activity.Main_Chats_Page;
@@ -31,7 +34,17 @@ public class Register extends AppCompatActivity {
     private Button Register_Button;
     ImageView Dog;
     ImageView Alien;
-   // String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
+
+    public  ObjectOutputStream output;
+    public  ObjectInputStream input;
+    private Socket Connection;
+    private String IPString;
+    private String PortString;
+
+
+
+
+    // String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
 
     UserProfile userProfile = new UserProfile();
     ArrayList<Object> arrayList = new ArrayList<>();
@@ -47,7 +60,8 @@ public class Register extends AppCompatActivity {
         Sign_Button = (Button) findViewById(R.id.btn_cart_signin);
         Register_Button = (Button) findViewById(R.id.btn_cart_signup);
 
-        MyApplication data = (MyApplication) getApplicationContext();
+        ////////////////here there is error
+       /* MyApplication data = (MyApplication)getApplicationContext();
         userProfile = data.getUser();
         System.out.println(data.signedIn);
 
@@ -55,7 +69,7 @@ public class Register extends AppCompatActivity {
         {
             Email_Text.setText(userProfile.getEmail());
             Password_Text.setText(userProfile.getPassword());
-        }
+        }*/
 
 
         arrayList.add(1);
@@ -150,7 +164,7 @@ public class Register extends AppCompatActivity {
         userProfile.output.writeObject(arrayList);
         userProfile.output.flush();
         userProfile.input.readObject();
-        ArrayList<Object> list = (ArrayList<Object>) userProfile.input.readObject();
+        ArrayList<Object>list= (ArrayList<Object>)userProfile.input.readObject();
         boolean res = userProfile.handleReceivedRequest(list);
         if(res)
             userProfile.setUserId((String) arrayList.get(2));
@@ -158,13 +172,14 @@ public class Register extends AppCompatActivity {
     }
 
 
-    public void To_Chat_Page(View v){
+    public void To_Chat_Page(View v) throws IOException, ClassNotFoundException {
 
         Log.d("ChatApp","To_Register_Page was called");
         boolean bool1 = Cheack_Password();
         boolean bool2 = Cheack_Email();
+        boolean bool3 = Check_Email_Exist();
 
-        if(bool1 && bool2) {
+        if(bool1 && bool2 && bool3) {
             boolean res = signIn(arrayList);
             Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
             startActivity(intent);
@@ -213,6 +228,65 @@ public class Register extends AppCompatActivity {
         startActivity(intent);
 
     }
+
+    public boolean Check_Email_Exist() throws IOException, ClassNotFoundException {
+        connectToServer();
+        SetupStreams();
+        input.readObject();
+        ArrayList<Object> list = (ArrayList<Object>)input.readObject();
+        boolean res = handleReceivedRequestForReadFile(list);
+
+        if(!res){
+
+            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_LONG).show();
+            CloseCrap();
+            return false;
+        }else {
+            CloseCrap();
+            return true;
+        }
+    }
+
+    public boolean handleReceivedRequestForReadFile(ArrayList<Object> list)
+    {
+        int type = (int) list.get(1);
+        switch (type)
+        {
+            case 1://Read User Email File
+            {
+                return (boolean) list.get(1);
+            }
+        }
+        return (boolean) list.get(1);
+    }
+
+    public void connectToServer() throws IOException {
+        System.out.println("Connecting to Server");
+        Connection = new Socket(IPString,6789);  // here we setup the connection to specific server of IP address to specific port on this server Port:
+        System.out.println("Connected");
+    }
+
+    public void SetupStreams()throws IOException
+    {
+        output = new ObjectOutputStream(Connection.getOutputStream());
+        output.flush();
+        input = new ObjectInputStream(Connection.getInputStream());
+        output.writeObject(null);
+        System.out.println("The Stream Is Ready");
+
+    }
+
+    public void CloseCrap(){
+        try {
+            output.close();
+            input.close();
+            Connection.close();
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 
 
 

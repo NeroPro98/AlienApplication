@@ -79,6 +79,7 @@ public class UserProfile implements Serializable {
         input = new ObjectInputStream(Connection.getInputStream());
         output.writeObject(null);
         System.out.println("The Stream Is Ready");
+
     }
     /*public boolean sendRequest(ArrayList<Object> arrayList) throws IOException, InterruptedException, ClassNotFoundException {
         connectToServer();

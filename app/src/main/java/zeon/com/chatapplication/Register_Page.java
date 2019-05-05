@@ -137,8 +137,10 @@ public class Register_Page extends AppCompatActivity {
                 @Override
                 public void run() {
                     boolean res = false;
+
                     try {
                         res = Save_In_List();
+
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (ClassNotFoundException e) {
@@ -146,11 +148,15 @@ public class Register_Page extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
+                    Log.d("res","res answer"+res);
                     if (res) {
-                        runOnUiThread(new Runnable() {
+
+                        runOnUiThread(new Runnable() {  //Thread that handler with UI
                             @Override
                             public void run() {
                                 Toast.makeText(getApplicationContext(), "Success Register", Toast.LENGTH_SHORT).show();
+                               // Intent intent = new Intent(getApplicationContext(), Register.class);
+                               // startActivity(intent);
                             }
                         });
                         toSignInPage(v);
@@ -230,17 +236,17 @@ public class Register_Page extends AppCompatActivity {
         newUser.SetupStreams();
         newUser.output.writeObject(arrayList);
         newUser.output.flush();
-        newUser.input.readObject();
-        ArrayList<Object> list = (ArrayList<Object>) newUser.input.readObject();
+        newUser.input.readObject();   ////////
+        ArrayList<Object> list = (ArrayList<Object>) newUser.input.readObject();//////////
         boolean res = newUser.handleReceivedRequest(list);
         if(res)
-            newUser.setUserId((String) arrayList.get(2));
+            newUser.setUserId((String)arrayList.get(2));
         return res;
     }
 
     private void createPrivateFolder()
     {
-        String filename = "myfile";
+        String filename = "myfileChat";
         FileOutputStream outputStream;
         MyApplication data = (MyApplication) getApplicationContext();
         File file = new File(getFilesDir(), filename);
