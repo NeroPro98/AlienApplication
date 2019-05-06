@@ -177,9 +177,9 @@ public class Register extends AppCompatActivity {
         Log.d("ChatApp","To_Register_Page was called");
         boolean bool1 = Cheack_Password();
         boolean bool2 = Cheack_Email();
-        boolean bool3 = Check_Email_Exist();
+       // boolean bool3 = Check_Email_Exist();
 
-        if(bool1 && bool2 && bool3) {
+        if(bool1 && bool2 ) {
             boolean res = signIn(arrayList);
             Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
             startActivity(intent);
@@ -235,13 +235,14 @@ public class Register extends AppCompatActivity {
         input.readObject();
         ArrayList<Object> list = (ArrayList<Object>)input.readObject();
         boolean res = handleReceivedRequestForReadFile(list);
-
         if(!res){
 
-            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
             CloseCrap();
             return false;
+
         }else {
+            Toast.makeText(getApplicationContext(),"Welcome...",Toast.LENGTH_SHORT).show();
             CloseCrap();
             return true;
         }
@@ -249,7 +250,7 @@ public class Register extends AppCompatActivity {
 
     public boolean handleReceivedRequestForReadFile(ArrayList<Object> list)
     {
-        int type = (int) list.get(1);
+        int type = (int) list.get(0);
         switch (type)
         {
             case 1://Read User Email File
@@ -262,7 +263,7 @@ public class Register extends AppCompatActivity {
 
     public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");
-        Connection = new Socket(IPString,6789);  // here we setup the connection to specific server of IP address to specific port on this server Port:
+        Connection = new Socket("10.0.2.2",6789);  // here we setup the connection to specific server of IP address to specific port on this server Port:
         System.out.println("Connected");
     }
 
@@ -285,6 +286,23 @@ public class Register extends AppCompatActivity {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+
+    public ArrayList<Object> serilaizeToStrings(){
+
+        ArrayList<Object>list = new ArrayList<>();
+
+        list.add(1);
+        list.add(Email_Text.getText().toString());
+        list.add(Password_Text.getText().toString());
+
+
+        return list;
+    }
+
+    public boolean checkIfAvailable() throws InterruptedException, IOException, ClassNotFoundException {
+        boolean res = sendRequest(serilaizeToStrings());
+        return res;
     }
 
 

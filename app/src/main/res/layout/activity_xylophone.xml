@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:orientation="vertical"
+    tools:context=".Games.Activity.Xylophone"
+    android:background="@drawable/background"
+    >
+
+    <Button
+
+        android:id="@+id/c_key"
+        android:background="@color/proswipebtn_red"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="playc"
+        />
+
+
+    <Button
+
+        android:id="@+id/d_key"
+        android:background="@android:color/holo_orange_dark"
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="orange"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+
+        android:id="@+id/e_key"
+        android:background="@color/yellow"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="yellow"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+
+        android:id="@+id/f_key"
+        android:background="@color/green"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="green"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+
+        android:id="@+id/g_key"
+        android:background="@color/cyan"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="cyan"
+        android:layout_marginTop="10dp"/>
+
+
+    <Button
+
+        android:id="@+id/a_key"
+        android:background="@android:color/holo_blue_dark"
+        android:layout_marginLeft="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="blue"
+        android:layout_marginTop="10dp"/>
+
+    <Button
+
+        android:id="@+id/b_key"
+        android:background="@android:color/holo_purple"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="purpel"
+        android:layout_marginTop="10dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Let's Play Some Music"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:layout_marginTop="100dp"/>
+
+</LinearLayout>

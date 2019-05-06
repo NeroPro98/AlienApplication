@@ -248,7 +248,7 @@ public class Register_Page extends AppCompatActivity {
     {
         String filename = "myfileChat";
         FileOutputStream outputStream;
-        MyApplication data = (MyApplication) getApplicationContext();
+        MyApplication data = (MyApplication)getApplicationContext();
         File file = new File(getFilesDir(), filename);
         Log.i(file.getAbsolutePath()+"", "createPrivateFolder: ");
         try {

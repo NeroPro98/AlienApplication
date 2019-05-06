@@ -9,7 +9,8 @@ import java.net.Socket;
 
 import zeon.com.chatapplication.Model.UserProfile;
 
-public class MyApplication extends Application {
+
+public class MyApplication extends android.app.Application {
     UserProfile user;
     Socket connection;
 

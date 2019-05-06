@@ -4,9 +4,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
@@ -25,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import zeon.com.chatapplication.Adapter.Fragment_Adapter;
-import zeon.com.chatapplication.Games_main;
+import zeon.com.chatapplication.Games.Activity.Games_main;
 import zeon.com.chatapplication.R;
 import zeon.com.chatapplication.Register_Page;
 import zeon.com.chatapplication.Search_network;

@@ -98,8 +98,9 @@ public class UserProfile implements Serializable {
         {
             case 0://Add User
             {
-                return (boolean) list.get(1);
+                return (boolean)list.get(1); //////
             }
+
         }
         return (boolean) list.get(1);
     }
