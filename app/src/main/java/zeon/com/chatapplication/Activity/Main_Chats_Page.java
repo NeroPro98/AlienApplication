@@ -30,6 +30,8 @@ import zeon.com.chatapplication.Search_network;
 import zeon.com.chatapplication.Setting;
 import zeon.com.chatapplication.Style_Change;
 import zeon.com.chatapplication.User_Edit_Info;
+import zeon.com.chatapplication.Weather.ChangeCityController;
+import zeon.com.chatapplication.Weather.WeatherController;
 
 public class Main_Chats_Page extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,SearchView.OnQueryTextListener
 {
@@ -162,9 +164,9 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
             Intent intent =new Intent(getApplicationContext(),User_Edit_Info.class);
             startActivity(intent);
 
-        }else if(id == R.id.Chat){
-         //   Intent intent =new Intent(getApplicationContext(),Chat_Page.class);
-          //  startActivity(intent);
+        }else if(id == R.id.weather){
+            Intent intent =new Intent(getApplicationContext(), zeon.com.chatapplication.Weather.WeatherController.class);
+            startActivity(intent);
 
         }else if (id == R.id.Search){
             Intent intent =new Intent(getApplicationContext(),Search_network.class);

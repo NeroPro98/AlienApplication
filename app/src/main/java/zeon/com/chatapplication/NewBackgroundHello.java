@@ -1,7 +1,6 @@
 package zeon.com.chatapplication;
 
 import android.content.Intent;
-import android.os.Message;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Html;
@@ -13,8 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class back4 extends AppCompatActivity {
-
+public class NewBackgroundHello extends AppCompatActivity {
 
     private Animation smalltobig;
     private Animation nothing;
@@ -32,18 +30,19 @@ public class back4 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_back4);
+        setContentView(R.layout.activity_new_background_hello);
+
 
             smalltobig = AnimationUtils.loadAnimation(this,R.anim.smalltobig);
             nothing = AnimationUtils.loadAnimation(this,R.anim.nothing);
             button = AnimationUtils.loadAnimation(this,R.anim.button);
-            Icon1 = (ImageView)findViewById(R.id.icon4);
-            text1 = (TextView)findViewById(R.id.back3text1);
-            text2 = (TextView)findViewById(R.id.back3text2);
-            btn = (Button)findViewById(R.id.go4);
-           PrevButton = (Button)findViewById(R.id.prev3);
+            Icon1 = (ImageView)findViewById(R.id.aliengame);
+            text1 = (TextView)findViewById(R.id.back5text1);
+            text2 = (TextView)findViewById(R.id.back5text2);
+            btn = (Button)findViewById(R.id.go5);
+            PrevButton = (Button)findViewById(R.id.prev4);
 
-            LinLay = (LinearLayout)findViewById(R.id.linearlayout4);
+            LinLay = (LinearLayout)findViewById(R.id.linearlayout5);
 
 
             Icon1.startAnimation(smalltobig);
@@ -54,34 +53,31 @@ public class back4 extends AppCompatActivity {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(),NewBackgroundHello.class);
+                    Intent intent = new Intent(getApplicationContext(),Register.class);
                     startActivity(intent);
                 }
             });
 
             AddDot();
-    }
-
-    public void AddDot() {
-        Dot = new TextView[5];
-
-        for (int i = 0; i < Dot.length; i++) {
-            Dot[i] = new TextView(this);
-            Dot[i].setText(Html.fromHtml("&#8226;"));
-            Dot[i].setTextSize((35));
-            Dot[i].setTextColor(getResources().getColor(R.color.TransparentColor));
-            LinLay.addView(Dot[i]);
         }
 
-        Dot[3].setTextColor(getResources().getColor(R.color.white));
+        public void AddDot() {
+            Dot = new TextView[5];
 
+            for (int i = 0; i < Dot.length; i++) {
+                Dot[i] = new TextView(this);
+                Dot[i].setText(Html.fromHtml("&#8226;"));
+                Dot[i].setTextSize((35));
+                Dot[i].setTextColor(getResources().getColor(R.color.TransparentColor));
+                LinLay.addView(Dot[i]);
+            }
+
+            Dot[4].setTextColor(getResources().getColor(R.color.white));
+
+        }
+
+        public void To_back4(View view) {
+            Intent intent = new Intent(getApplicationContext(),back4.class);
+            startActivity(intent);
+        }
     }
-
-    public void To_back3(View view) {
-        Intent intent = new Intent(getApplicationContext(),back3.class);
-        startActivity(intent);
-    }
-}
-
-
-

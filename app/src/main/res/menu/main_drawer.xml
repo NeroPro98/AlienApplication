@@ -24,7 +24,7 @@
             android:title="@string/tools" />
 
         <item
-            android:id="@+id/Profile_Icon"
+            android:id="@+id/weather"
             android:icon="@drawable/weather"
             android:title="@string/weather" />
         <item

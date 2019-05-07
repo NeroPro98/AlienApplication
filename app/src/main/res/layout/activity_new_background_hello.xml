@@ -4,94 +4,94 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".back3"
-    android:background="@drawable/newback3"
-    android:id="@+id/back3">
+    android:background="@drawable/background3color"
+    tools:context=".NewBackgroundHello">
+
 
     <ImageView
-        android:id="@+id/icon1"
-        android:layout_width="357dp"
-        android:layout_height="332dp"
-        android:layout_marginTop="56dp"
-        android:src="@drawable/alienselfe"
+        android:id="@+id/aliengame"
+        android:layout_width="365dp"
+        android:layout_height="379dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:src="@drawable/hello_back"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
 
     <TextView
-        android:id="@+id/back2text1"
+        android:id="@+id/back5text1"
         android:layout_width="wrap_content"
         android:layout_height="44dp"
-        android:layout_marginTop="48dp"
-        android:text="@string/add_new_aliens"
-
+        android:layout_marginTop="20dp"
+        android:text="@string/play_games"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/icon1" />
+        app:layout_constraintTop_toBottomOf="@+id/aliengame" />
 
     <TextView
-        android:id="@+id/back2text2"
+        android:id="@+id/back5text2"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:lineSpacingExtra="6dp"
-        android:text="@string/make_enjoy_with_your_friends"
+        android:text="@string/enjoy_playing_games"
         android:textAlignment="center"
         android:textSize="18dp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/back2text1" />
+        app:layout_constraintTop_toBottomOf="@id/back5text1" />
 
 
     <Button
-        android:id="@+id/go3"
+        android:id="@+id/go5"
         android:layout_width="250dp"
         android:layout_height="45dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="112dp"
         android:background="@drawable/background2"
-        android:text="@string/continue3"
+        android:text="@string/continue4"
         android:textColor="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/back2text2"
+        app:layout_constraintTop_toBottomOf="@+id/back1text2"
         app:layout_constraintVertical_bias="1.0" />
 
-
     <LinearLayout
-        android:id="@+id/linearlayout3"
+        android:id="@+id/linearlayout5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:layout_marginEnd="184dp"
-        android:layout_marginRight="184dp"
+        android:layout_marginEnd="180dp"
+        android:layout_marginRight="180dp"
         android:layout_marginTop="60dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/go3"
-        app:layout_constraintVertical_bias="0.2" />
+        app:layout_constraintTop_toBottomOf="@id/go5"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/prev2"
+        android:id="@+id/prev4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="604dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginLeft="4dp"
         android:background="@android:color/transparent"
-        android:onClick="To_back2"
+        android:onClick="To_back4"
         android:text="Prev"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
+
+
 
 </android.support.constraint.ConstraintLayout>
