@@ -63,7 +63,7 @@ public class back3 extends AppCompatActivity {
 
 
     public void AddDot() {
-        Dot = new TextView[4];
+        Dot = new TextView[5];
 
         for (int i = 0; i < Dot.length; i++) {
             Dot[i] = new TextView(this);

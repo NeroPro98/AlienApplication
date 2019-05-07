@@ -18,6 +18,14 @@ public class MyApplication extends android.app.Application {
         return connection;
     }
 
+    public boolean isSignedIn() {
+        return signedIn;
+    }
+
+    public void setSignedIn(boolean signedIn) {
+        this.signedIn = signedIn;
+    }
+
     public void setConnection(Socket connection) {
         this.connection = connection;
     }

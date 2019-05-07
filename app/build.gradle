@@ -43,4 +43,6 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.5.2'
     //For Pick color
     implementation 'com.github.yukuku:ambilwarna:2.0.1'
+    //For bring data from the net and use the API like weather
+    implementation 'com.loopj.android:android-async-http:1.4.9'
 }

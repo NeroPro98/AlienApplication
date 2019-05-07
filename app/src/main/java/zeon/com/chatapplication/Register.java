@@ -37,9 +37,10 @@ public class Register extends AppCompatActivity {
 
     public  ObjectOutputStream output;
     public  ObjectInputStream input;
-    private Socket Connection;
-    private String IPString;
+    private  Socket Connection;
+    private String IPString="10.0.2.2";
     private String PortString;
+    private UserProfile ObjConnection = new UserProfile();
 
 
 
@@ -163,10 +164,10 @@ public class Register extends AppCompatActivity {
         userProfile.output.writeObject(arrayList);
         userProfile.output.flush();
         userProfile.input.readObject();
-        ArrayList<Object>list= (ArrayList<Object>)userProfile.input.readObject();
+        ArrayList<Object>list= (ArrayList<Object>)input.readObject();
         boolean res = userProfile.handleReceivedRequest(list);
         if(res)
-            userProfile.setUserId((String) arrayList.get(2));
+            userProfile.setUserId((String) list.get(2));
         return res;
     }
 
@@ -176,9 +177,9 @@ public class Register extends AppCompatActivity {
         Log.d("ChatApp","To_Register_Page was called");
         boolean bool1 = Cheack_Password();
         boolean bool2 = Cheack_Email();
-       // boolean bool3 = Check_Email_Exist();
+        boolean bool3 = Check_Email_Exist();
 
-        if(bool1 && bool2 ) {
+        if(bool1 && bool2 && bool3) {
             boolean res = signIn(arrayList);
             Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
             startActivity(intent);
@@ -229,20 +230,24 @@ public class Register extends AppCompatActivity {
     }
 
     public boolean Check_Email_Exist() throws IOException, ClassNotFoundException {
-        connectToServer();
-        SetupStreams();
-        input.readObject();
-        ArrayList<Object> list = (ArrayList<Object>)input.readObject();
-        boolean res = handleReceivedRequestForReadFile(list);
+        ObjConnection.connectToServer();
+        ObjConnection.SetupStreams();
+        ObjConnection.input.readObject();
+
+        ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
+        boolean res = ObjConnection.handleReceivedRequest(list);
         if(!res){
 
             Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
-            CloseCrap();
+            ObjConnection.CloseCrap();
             return false;
 
         }else {
             Toast.makeText(getApplicationContext(),"Welcome...",Toast.LENGTH_SHORT).show();
-            CloseCrap();
+            MyApplication data = (MyApplication) getApplicationContext();
+            data.isSignedIn();
+           // data.setUser(() list.get(2));
+            ObjConnection.CloseCrap();
             return true;
         }
     }
@@ -262,7 +267,9 @@ public class Register extends AppCompatActivity {
 
     public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");
-        Connection = new Socket("10.0.2.2",6789);  // here we setup the connection to specific server of IP address to specific port on this server Port:
+
+        Connection = new Socket(IPString,6790);  // here we setup the connection to specific server of IP address to specific port on this server Port:
+      //  System.out.println("I am here");
         System.out.println("Connected");
     }
 
