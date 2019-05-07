@@ -109,8 +109,8 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                 break;
             case R.id.new_group:
                 break;
-            case R.id.searchforthing:
-                break;
+          //  case R.id.searchforthing:
+            //    break;
             case R.id.message:
                 break;
             case R.id.style:
@@ -127,12 +127,12 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+     /*   getMenuInflater().inflate(R.menu.main, menu);
 
         MenuItem menuItem = menu.findItem(R.id.searchforthing);
         SearchView searchView = (SearchView)menuItem.getActionView();
         searchView.setOnQueryTextListener(this);
-        return true;
+        */return true;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

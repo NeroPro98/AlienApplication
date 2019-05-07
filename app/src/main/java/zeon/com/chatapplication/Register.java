@@ -155,7 +155,6 @@ public class Register extends AppCompatActivity {
     public boolean signIn(ArrayList<Object> list)
     {
 
-
         return true;
     }
     public boolean sendRequest(ArrayList<Object> arrayList) throws IOException, InterruptedException, ClassNotFoundException {
