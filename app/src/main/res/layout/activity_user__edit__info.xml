@@ -96,7 +96,22 @@
         android:onClick="Capture_Photo_Camera"
         />
 
-
+    <Button
+        android:id="@+id/SaveImage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="40dp"
+        android:background="@drawable/background2"
+        android:text="Save"
+        app:layout_constraintBottom_toTopOf="@+id/Edit_Button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        android:onClick="Save_Image"/>
 
 
 </android.support.constraint.ConstraintLayout>

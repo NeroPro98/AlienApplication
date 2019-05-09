@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import zeon.com.chatapplication.Activity.Main_Chats_Page;
 
 public class User_Edit_Info extends AppCompatActivity {
 
@@ -27,6 +28,8 @@ public class User_Edit_Info extends AppCompatActivity {
     private TextView email;
     private Button edit_button;
     private Button camera_button;
+    private Button SaveImagebutton;
+
 
     //for pick photo
     private static final int IMAGE_PICK_CODE = 1000;
@@ -46,10 +49,12 @@ public class User_Edit_Info extends AppCompatActivity {
         email = (TextView)findViewById(R.id.user_id_edit);
         edit_button = (Button)findViewById(R.id.Edit_Button);
         camera_button = (Button)findViewById(R.id.Edit_Button_camera);
+        SaveImagebutton = (Button)findViewById(R.id.SaveImage);
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 //here we check the permission
                 if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
                     if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
@@ -116,7 +121,12 @@ public class User_Edit_Info extends AppCompatActivity {
 
             if (requestCode == IMAGE_PICK_CODE) {
                 //set image to the image view
+                MyApplication dataapp = (MyApplication) getApplicationContext();
                 image.setImageURI(data.getData());
+
+
+               // dataapp.setImage();
+
             } else if (resultCode == REQUEST_CAMERA){
                 Bundle bundle = data.getExtras();
                 final Bitmap cameraimage = (Bitmap) bundle.get("data");
@@ -143,4 +153,9 @@ public class User_Edit_Info extends AppCompatActivity {
     }
 
 
+  /*  public void Save_Image(View view) {
+        Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
+        intent.putExtra("UserImage",R.id.user_circle_Edit);
+        startActivity(intent);
+    }*/
 }

@@ -12,10 +12,9 @@
         android:id="@+id/icon1"
         android:layout_width="357dp"
         android:layout_height="332dp"
-        android:layout_marginTop="56dp"
+        android:layout_marginTop="32dp"
         android:src="@drawable/alienselfe"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

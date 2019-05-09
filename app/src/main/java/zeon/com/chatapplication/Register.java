@@ -178,9 +178,9 @@ public class Register extends AppCompatActivity {
         Log.d("ChatApp","To_Register_Page was called");
         boolean bool1 = Cheack_Password();
         boolean bool2 = Cheack_Email();
-        boolean bool3 = Check_Email_Exist();
+        //boolean bool3 = Check_Email_Exist();
 
-        if(bool1 && bool2 && bool3) {
+        if(bool1 && bool2 ) {
             boolean res = signIn(arrayList);
             Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
             startActivity(intent);

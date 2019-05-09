@@ -2,20 +2,40 @@ package zeon.com.chatapplication;
 
 import android.app.Application;
 import android.content.res.Configuration;
+import android.graphics.Bitmap;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import zeon.com.chatapplication.Model.UserProfile;
 
 
 public class MyApplication extends android.app.Application {
     UserProfile user;
     Socket connection;
+    int Color;
+    Bitmap image;
+
+    public Bitmap getImage() {
+        return image;
+    }
+
+    public void setImage(Bitmap image) {
+        this.image = image;
+    }
 
     public Socket getConnection() {
         return connection;
+    }
+
+    public int getColor() {
+        return Color;
+    }
+
+    public void setColor(int color) {
+        Color = color;
     }
 
     public boolean isSignedIn() {
@@ -72,5 +92,8 @@ public class MyApplication extends android.app.Application {
             e.printStackTrace();
         }
     }
+
+
+
 
 }

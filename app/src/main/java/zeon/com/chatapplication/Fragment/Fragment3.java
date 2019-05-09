@@ -1,10 +1,12 @@
 package zeon.com.chatapplication.Fragment;
 
 import android.app.ActionBar;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import java.util.ArrayList;
 
 import zeon.com.chatapplication.Adapter.ForBaseAdapter;
 import zeon.com.chatapplication.Model.MessagePerson;
+import zeon.com.chatapplication.MyApplication;
 import zeon.com.chatapplication.R;
 
 public class Fragment3 extends Fragment {
@@ -22,8 +25,11 @@ public class Fragment3 extends Fragment {
     ArrayList<MessagePerson> message = new ArrayList<>();
     private ListView listview ;
     ActionBar action;
+    private BottomNavigationView mView;
+
 
     public void init(){
+
 
         message.add(new MessagePerson(1,"Mohamad Nesart","Hello There","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
         message.add(new MessagePerson(2,"Mohamad Moazen","Good Morning","june","https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
@@ -41,14 +47,12 @@ public class Fragment3 extends Fragment {
 
         View view = inflater.inflate(R.layout.layout_fragment3, container, false);
 
-
         listview = (ListView)view.findViewById(R.id.ListViewMessage3);
         init();
         ForBaseAdapter adapter = new ForBaseAdapter(getContext(),message);
         Log.d("AlienChat","Context"+getContext());
         Log.d("AlienChat","message"+message);
         listview.setAdapter(adapter);
-
 
 
 

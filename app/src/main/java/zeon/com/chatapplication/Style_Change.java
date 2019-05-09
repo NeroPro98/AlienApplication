@@ -1,6 +1,7 @@
 package zeon.com.chatapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.drawable.ColorDrawable;
 import android.support.v4.content.ContextCompat;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 import yuku.ambilwarna.AmbilWarnaDialog;
+import zeon.com.chatapplication.Activity.Main_Chats_Page;
+
 import android.support.v7.widget.Toolbar;
 
 public class Style_Change extends AppCompatActivity {
@@ -21,6 +24,8 @@ public class Style_Change extends AppCompatActivity {
     int defaultcolor;
     //private Toolbar toolbar;
     ActionBar mActionBar;
+    private Button save;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +36,7 @@ public class Style_Change extends AppCompatActivity {
         mylayout = (RelativeLayout)findViewById(R.id.mylayout);
         themebtn = (Button)findViewById(R.id.theme);
         defaultcolor = ContextCompat.getColor(this, R.color.colorPrimary);
-
+        save = (Button)findViewById(R.id.savecolor);
         themebtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,4 +70,11 @@ public class Style_Change extends AppCompatActivity {
 
     }
 
+
+    public void SaveColor(View view) {
+        MyApplication data = (MyApplication) getApplicationContext();
+        data.setColor(defaultcolor);
+        Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
+        startActivity(intent);
+    }
 }

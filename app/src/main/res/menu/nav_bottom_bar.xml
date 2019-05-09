@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/Person_nav2"
+        android:icon="@drawable/person_icon"
+        android:title="Person" />
+
+    <item
+        android:id="@+id/Search_nav2"
+        android:icon="@drawable/search_nav"
+        android:title="Search google" />
+
+    <item
+        android:id="@+id/Game_nav2"
+        android:icon="@drawable/icon_game"
+        android:title="Game" />
+
+</menu>

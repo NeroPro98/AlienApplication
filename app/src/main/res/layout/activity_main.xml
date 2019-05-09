@@ -11,27 +11,47 @@
     tools:context=".Activity.Main_Chats_Page"
     >
 
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/main_drawer" />
-
     <include
         layout="@layout/content_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
 
+
     <FrameLayout
         android:id="@+id/fragmint_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+
+    </FrameLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
 
 
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottomview1"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            app:itemBackground="@color/colorPrimaryDark"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:menu="@menu/nav_bottom_bar"
+            tools:layout_editor_absoluteX="0dp">
+
+        </android.support.design.widget.BottomNavigationView>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.design.widget.NavigationView
+        android:id="@+id/nav_viewnew"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true"
+        app:headerLayout="@layout/nav_header_main"
+        app:menu="@menu/main_drawer" />
 
 
 </android.support.v4.widget.DrawerLayout>

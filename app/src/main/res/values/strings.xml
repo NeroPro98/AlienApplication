@@ -95,6 +95,14 @@
     <string name="enjoy_playing_games">Enjoy Playing Games</string>
     <string name="play_games">Play Games</string>
     <string name="continue4">continue</string>
+    <string name="title_activity_new_navigation__drawer">New_navigation_Drawer</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
 
 
 </resources>

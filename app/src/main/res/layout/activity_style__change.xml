@@ -62,4 +62,16 @@
         android:src="@drawable/venus"
         android:layout_alignParentRight="true" />
 
+    <Button
+        android:id="@+id/savecolor"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/background2"
+        android:layout_marginTop="350dp"
+
+        android:layout_marginLeft="160dp"
+        android:text="Save"
+        android:onClick="SaveColor" />
+
+
 </RelativeLayout>
