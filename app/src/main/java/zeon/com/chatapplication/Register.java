@@ -192,6 +192,7 @@ public class Register extends AppCompatActivity {
     public void To_Register_Page(View v){
 
         Intent intent = new Intent(getApplicationContext(), Register_Page.class);
+
         startActivity(intent);
     }
 
