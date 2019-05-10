@@ -47,7 +47,7 @@ public class Register extends AppCompatActivity {
 
     // String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
 
-    UserProfile userProfile = new UserProfile();
+    private UserProfile userProfile = new UserProfile();
     ArrayList<Object> arrayList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -156,6 +156,7 @@ public class Register extends AppCompatActivity {
     public boolean signIn(ArrayList<Object> list)
     {
 
+        Toast.makeText(this, "Signed INNNNNN", Toast.LENGTH_SHORT).show();
         return true;
     }
     public boolean sendRequest(ArrayList<Object> arrayList) throws IOException, InterruptedException, ClassNotFoundException {
@@ -175,18 +176,37 @@ public class Register extends AppCompatActivity {
     public void To_Chat_Page(View v) throws IOException, ClassNotFoundException {
 
         Log.d("ChatApp","To_Register_Page was called");
-        boolean bool1 = Cheack_Password();
-        boolean bool2 = Cheack_Email();
-        boolean bool3 = Check_Email_Exist();
+        final boolean bool1 = Cheack_Password();
+        final boolean bool2 = Cheack_Email();
 
-        if(bool1 && bool2 && bool3) {
-            boolean res = signIn(arrayList);
-            Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
-            startActivity(intent);
-        }else {
+        if(bool1 && bool2) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    boolean bool3 = true;
+                    try {
+                        bool3 = Check_Email_Exist();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    if(bool3) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                signIn(arrayList);
+
+                            }
+                        });
+                        Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
+                        startActivity(intent);}
+                    }});
+            thread.start();
+        }
+        else{
             Toast.makeText(getApplicationContext(), "Unveiled... Please Enter your password Again", Toast.LENGTH_SHORT).show();
         }
-
     }
 
     public void To_Register_Page(View v){
@@ -233,7 +253,7 @@ public class Register extends AppCompatActivity {
     public boolean Check_Email_Exist() throws IOException, ClassNotFoundException {
         ObjConnection.connectToServer();
         ObjConnection.SetupStreams();
-        ObjConnection.input.readObject();
+        System.out.println(ObjConnection.input.readObject().toString());
 
         ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
         boolean res = ObjConnection.handleReceivedRequest(list);
