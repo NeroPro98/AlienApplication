@@ -98,8 +98,8 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         mTablLayout = (TabLayout)findViewById(R.id.tabalLayout);
         mTablLayout.addTab(mTablLayout.newTab().setText("Message"));
+        mTablLayout.addTab(mTablLayout.newTab().setText("Status"));
         mTablLayout.addTab(mTablLayout.newTab().setText("Connects"));
-        mTablLayout.addTab(mTablLayout.newTab().setText("New Group"));
 
         mTablLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -111,6 +111,8 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTablLayout));
         mTablLayout.addOnTabSelectedListener(new  TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+
+        //mView.setItemIconTintList();
 
         mView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
