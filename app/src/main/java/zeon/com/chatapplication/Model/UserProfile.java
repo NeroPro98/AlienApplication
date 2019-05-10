@@ -60,7 +60,7 @@ public class UserProfile implements Serializable {
     public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");
         System.out.println("The Ip is "+IPString);
-        Connection = new Socket("10.0.2.2",6790);  // here we setup the connection to specific server of IP address to specific port on this server Port:
+        Connection = new Socket(IPString,6789);  // here we setup the connection to specific server of IP address to specific port on this server Port:
         System.out.println("Connected");
     }
     public void CloseCrap(){
