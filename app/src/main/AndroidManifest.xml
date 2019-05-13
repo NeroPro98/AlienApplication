@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="zeon.com.chatapplication">
 
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -20,12 +21,25 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
+            android:name=".Weather.WeatherController"
+            android:screenOrientation="portrait">
+
+        </activity>
+
+        <activity android:name=".Weather.ChangeCityController">
+        </activity>
+
+        <activity
             android:name=".NewBackgroundHello"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".Games.Activity.Xylophone" />
-        <activity android:name=".Games.Activity.Quizzler_Game" />
-        <activity android:name=".Games.Activity.Magic_Ball_Game" />
-        <activity android:name=".Games.Activity.Dice_Game" />
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Games.Activity.Xylophone"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Games.Activity.Quizzler_Game"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Games.Activity.Magic_Ball_Game"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Games.Activity.Dice_Game"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".Background"
             android:theme="@style/AppTheme.NoActionBar">

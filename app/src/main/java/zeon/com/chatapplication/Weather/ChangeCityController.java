@@ -17,7 +17,7 @@ public class ChangeCityController extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.change_city_layout);
+        setContentView(R.layout.changecity);
 
         final EditText editTextField = findViewById(R.id.queryET);
         ImageButton backButton = findViewById(R.id.backButton);

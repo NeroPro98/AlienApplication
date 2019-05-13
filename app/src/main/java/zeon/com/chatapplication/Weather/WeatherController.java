@@ -13,6 +13,7 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -59,6 +60,8 @@ public class WeatherController extends AppCompatActivity {
     ImageView mWeatherImage;
     TextView mTemperatureLabel;
 
+
+    Button btn ;
     // Declaring a LocationManager and a LocationListener here:
     LocationManager mLocationManager;
     LocationListener mLocationListener;
@@ -67,7 +70,7 @@ public class WeatherController extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.weather_controller_layout);
+        setContentView(R.layout.weathercontroller);
 
         // Linking the elements in the layout to Java code.
         // API 26 and above does not require casting anymore.
@@ -77,19 +80,30 @@ public class WeatherController extends AppCompatActivity {
         mCityLabel = findViewById(R.id.locationTV);
         mWeatherImage = findViewById(R.id.weatherSymbolIV);
         mTemperatureLabel = findViewById(R.id.tempTV);
+        btn = findViewById(R.id.tochange);
         ImageButton changeCityButton = findViewById(R.id.changeCityButton);
 
         // Add an OnClickListener to the changeCityButton here:
         changeCityButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent myIntent = new Intent(WeatherController.this, ChangeCityController.class);
+                Intent myIntent = new Intent(getApplicationContext(), ChangeCityController.class);
 
                 // Using startActivityForResult since we just get back the city name.
                 // Providing an arbitrary request code to check against later.
+
                 startActivityForResult(myIntent, NEW_CITY_CODE);
             }
         });
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ChangeCityController.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
 
@@ -273,6 +287,7 @@ public class WeatherController extends AppCompatActivity {
 
         if (mLocationManager != null) mLocationManager.removeUpdates(mLocationListener);
     }
+
 
 }
 

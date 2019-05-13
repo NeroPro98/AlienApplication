@@ -93,11 +93,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
         android:text="Let's Play Some Music"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="40sp"
-        android:textStyle="bold"
-        android:layout_marginTop="100dp"/>
+        android:textStyle="bold" />
 
 </LinearLayout>

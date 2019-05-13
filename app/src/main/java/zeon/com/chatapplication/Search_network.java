@@ -35,6 +35,7 @@ public class Search_network extends AppCompatActivity {
         astrodog.animate().translationXBy(1000).setDuration(3000);
 
         search.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
                 new CountDownTimer(1000,1000){

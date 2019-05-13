@@ -24,13 +24,16 @@ import android.widget.ImageView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.SearchView;
 //import zeon.com.chatapplication.Adapter.Fragment_Adapter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import zeon.com.chatapplication.Adapter.Fragment_Adapter;
+import zeon.com.chatapplication.Fragment.Fragment1;
 import zeon.com.chatapplication.Fragment.Fragment3;
 import zeon.com.chatapplication.Games.Activity.Games_main;
+import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.MyApplication;
 import zeon.com.chatapplication.R;
 import zeon.com.chatapplication.Register_Page;
@@ -40,6 +43,7 @@ import zeon.com.chatapplication.Style_Change;
 import zeon.com.chatapplication.User_Edit_Info;
 import zeon.com.chatapplication.Weather.ChangeCityController;
 import zeon.com.chatapplication.Weather.WeatherController;
+import zeon.com.chatapplication.Weather.WeatherDataModel;
 
 public class Main_Chats_Page extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,SearchView.OnQueryTextListener
 {
@@ -53,7 +57,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     private ViewPager mViewPager;
     private TabLayout mTablLayout;
     private BottomNavigationView mView;
-
+    private UserProfile ObjConnection = new UserProfile();
 
     ActionBar mActionBar;
 
@@ -139,6 +143,11 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                         startActivity(intent3);
                         return true;
 
+                    case R.id.weather:
+                        Intent intent4 = new Intent(getApplicationContext(),ChangeCityController.class);
+                        startActivity(intent4);
+                        return true;
+
                     default:
                          return false;
                 }
@@ -174,8 +183,31 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                 break;
             case R.id.new_group:
                 break;
-          //  case R.id.searchforthing:
-            //    break;
+            case R.id.Refresh:
+
+                System.out.println("ooooooooooooo");
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        System.out.println("ooooooooooooo2");
+                        boolean bool = false;
+                        try {
+                            System.out.println("ooooooooooooo3");
+                            bool = checkTheList();
+                            System.out.println("popopop");
+                            System.out.println("The bool of fragment1 is:"+bool);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+
+                break;
             case R.id.message:
                 break;
             case R.id.style:
@@ -192,12 +224,12 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-     /*   getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
 
         MenuItem menuItem = menu.findItem(R.id.searchforthing);
         SearchView searchView = (SearchView)menuItem.getActionView();
         searchView.setOnQueryTextListener(this);
-        */return true;
+        return true;
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -236,6 +268,9 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         }else if(id==R.id.style){
             Intent intent =new Intent(getApplicationContext(),Style_Change.class);
             startActivity(intent);
+        }else if(id==R.id.weather){
+            Intent intent4 = new Intent(getApplicationContext(), WeatherController.class);
+            startActivity(intent4);
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
@@ -257,4 +292,61 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         List<String> newList = new ArrayList<>();
         return false;
     }
+
+
+
+
+
+
+    public boolean Friends_List(ArrayList<Object> arrayList) throws IOException, ClassNotFoundException {
+
+        ObjConnection.connectToServer();
+        ObjConnection.SetupStreams();
+        System.out.println("uouououo");
+        System.out.println("The ArrayList of Fragmint1 is :"+arrayList);
+        ObjConnection.output.writeObject(arrayList);
+        ObjConnection.output.flush();
+        ObjConnection.input.readObject();
+        // System.out.println("readObject:"+ObjConnection.input.readObject().toString());
+        ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
+        boolean res = ObjConnection.handleReceivedRequest(list);
+        Log.d("res","res:"+res);
+        if(!res){
+
+            //            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
+            ObjConnection.CloseCrap();
+            return false;
+
+        }else {
+//            Toast.makeText(getApplicationContext(),"Welcome...",Toast.LENGTH_SHORT).show();
+
+            // data.setUser(() list.get(2));
+            ObjConnection.CloseCrap();
+            return true;
+        }
+
+    }
+
+    public ArrayList<Object> serilaizeToStrings(){
+
+        System.out.println("kkkkkkkk");
+        ArrayList<Object>list = new ArrayList<>();
+        list.add(4);
+        System.out.println("kkkkkkkk2");
+        return list;
+    }
+
+    public boolean checkTheList() throws InterruptedException, IOException, ClassNotFoundException {
+        boolean res = Friends_List(serilaizeToStrings());
+        System.out.println("aoaoaoao");
+        System.out.println("resofcheckTheList:"+res);
+        return res;
+    }
+ //   public void SendRequestForList(){
+
+
+
+   // }
+
+
 }

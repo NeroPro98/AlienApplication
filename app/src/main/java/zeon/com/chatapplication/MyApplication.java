@@ -70,7 +70,7 @@ public class MyApplication extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        checkTheInternalFile();
+        checkTheInternalFile();  //here the file we read this before the GUI work
     }
     public void checkTheInternalFile()
     {

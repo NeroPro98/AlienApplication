@@ -79,8 +79,6 @@ public class UserProfile implements Serializable {
         output.flush();
         input = new ObjectInputStream(Connection.getInputStream());
         output.writeObject(null);
-        System.out.println("The Stream Is Ready");
-
     }
     /*public boolean sendRequest(ArrayList<Object> arrayList) throws IOException, InterruptedException, ClassNotFoundException {
         connectToServer();
@@ -94,10 +92,27 @@ public class UserProfile implements Serializable {
     }*/
     public boolean handleReceivedRequest(ArrayList<Object> list)
     {
+
         int type = (int) list.get(0);
         switch (type)
         {
             case 0://Add User
+            {
+                return (boolean)list.get(1);
+            }
+            case 1: //Sign in
+            {
+                return (boolean)list.get(1);
+            }
+            case 2:// edit user info
+            {
+                return (boolean)list.get(1);
+            }
+            case 3:
+            {
+                return (boolean)list.get(1);
+            }
+            case 4://bring friends list
             {
                 return (boolean)list.get(1);
             }

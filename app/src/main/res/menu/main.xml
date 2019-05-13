@@ -21,4 +21,9 @@
         android:id="@+id/new_group"
         android:icon="@drawable/group"
         android:title="@string/new_group" />
+
+    <item
+        android:id="@+id/Refresh"
+        android:icon="@drawable/refresh"
+        android:title="Refresh" />
 </menu>

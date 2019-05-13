@@ -32,14 +32,11 @@ public class Register extends AppCompatActivity {
     private EditText Email_Text;
     private Button Sign_Button;
     private Button Register_Button;
+    public  ObjectInputStream input2;
     ImageView Dog;
     ImageView Alien;
 
-    public  ObjectOutputStream output;
-    public  ObjectInputStream input;
-    private  Socket Connection;
-    private String IPString="10.0.2.2";
-    private String PortString;
+
     private UserProfile ObjConnection = new UserProfile();
 
 
@@ -47,7 +44,7 @@ public class Register extends AppCompatActivity {
 
     // String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
 
-    UserProfile userProfile = new UserProfile();
+    private UserProfile userProfile = new UserProfile();
     ArrayList<Object> arrayList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -73,9 +70,9 @@ public class Register extends AppCompatActivity {
         }*/
 
 
-        arrayList.add(1);
-        arrayList.add(Password_Text.getText());
-        arrayList.add(Email_Text.getText());
+       // arrayList.add(1);
+      //  arrayList.add(Password_Text.getText());
+       // arrayList.add(Email_Text.getText());
 
         //  Dog = (ImageView)findViewById(R.id.dog);
        // Alien = (ImageView)findViewById(R.id.alien);
@@ -156,43 +153,67 @@ public class Register extends AppCompatActivity {
     public boolean signIn(ArrayList<Object> list)
     {
 
-
+        Toast.makeText(this, "Sign in...Welcome", Toast.LENGTH_SHORT).show();
         return true;
     }
-    public boolean sendRequest(ArrayList<Object> arrayList) throws IOException, InterruptedException, ClassNotFoundException {
-        userProfile.connectToServer();
-        userProfile.SetupStreams();
-        userProfile.output.writeObject(arrayList);
-        userProfile.output.flush();
-        userProfile.input.readObject();
-        ArrayList<Object>list= (ArrayList<Object>)input.readObject();
-        boolean res = userProfile.handleReceivedRequest(list);
-        if(res)
-            userProfile.setUserId((String) list.get(2));
-        return res;
+
+    public boolean RejectsignIn(ArrayList<Object> list)
+    {
+
+        Toast.makeText(getApplicationContext(), "Unveiled... Please Enter Again", Toast.LENGTH_SHORT).show();
+        return true;
     }
+
 
 
     public void To_Chat_Page(View v) throws IOException, ClassNotFoundException {
 
         Log.d("ChatApp","To_Register_Page was called");
-        boolean bool1 = Cheack_Password();
-        boolean bool2 = Cheack_Email();
-        boolean bool3 = Check_Email_Exist();
+        final boolean bool1 = Cheack_Password();
+        final boolean bool2 = Cheack_Email();
 
-        if(bool1 && bool2 && bool3) {
-            boolean res = signIn(arrayList);
-            Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
-            startActivity(intent);
-        }else {
-            Toast.makeText(getApplicationContext(), "Unveiled... Please Enter your password Again", Toast.LENGTH_SHORT).show();
+        if(bool1 && bool2) {
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    boolean bool3 = false;
+
+                    try {
+                        bool3 = checkIfAvailable();
+                        System.out.println("bool3:"+bool3);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    if(bool3) {
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                signIn(arrayList);
+
+                            }
+                        });
+                        Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
+                        startActivity(intent);}
+                    }});
+            thread.start();
         }
-
+        else{
+            runOnUiThread(new Runnable() {  //Don't work
+                @Override
+                public void run() {
+                    RejectsignIn(arrayList);
+                }
+            });
+        }
     }
-
     public void To_Register_Page(View v){
 
         Intent intent = new Intent(getApplicationContext(), Register_Page.class);
+
         startActivity(intent);
     }
 
@@ -230,70 +251,39 @@ public class Register extends AppCompatActivity {
 
     }
 
-    public boolean Check_Email_Exist() throws IOException, ClassNotFoundException {
+    public boolean Check_Email_Exist(ArrayList<Object> arrayList) throws IOException, ClassNotFoundException {
         ObjConnection.connectToServer();
         ObjConnection.SetupStreams();
+        System.out.println("The ArrayList is :"+arrayList);
+        ObjConnection.output.writeObject(arrayList);
+        ObjConnection.output.flush();
         ObjConnection.input.readObject();
+       // System.out.println("readObject:"+ObjConnection.input.readObject().toString());
 
         ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
+        System.out.println("listlist:"+list);
+
         boolean res = ObjConnection.handleReceivedRequest(list);
+        Log.d("resa:","resa:"+res);
         if(!res){
 
-            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
-            ObjConnection.CloseCrap();
+//            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
+          //  ObjConnection.CloseCrap();
             return false;
 
         }else {
-            Toast.makeText(getApplicationContext(),"Welcome...",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getApplicationContext(),"Welcome...",Toast.LENGTH_SHORT).show();
             MyApplication data = (MyApplication) getApplicationContext();
             data.isSignedIn();
            // data.setUser(() list.get(2));
-            ObjConnection.CloseCrap();
+          //  ObjConnection.CloseCrap();
             return true;
         }
     }
 
-    public boolean handleReceivedRequestForReadFile(ArrayList<Object> list)
-    {
-        int type = (int) list.get(0);
-        switch (type)
-        {
-            case 1://Read User Email File
-            {
-                return (boolean) list.get(1);
-            }
-        }
-        return (boolean) list.get(1);
-    }
 
-    public void connectToServer() throws IOException {
-        System.out.println("Connecting to Server");
 
-        Connection = new Socket(IPString,6790);  // here we setup the connection to specific server of IP address to specific port on this server Port:
-      //  System.out.println("I am here");
-        System.out.println("Connected");
-    }
 
-    public void SetupStreams()throws IOException
-    {
-        output = new ObjectOutputStream(Connection.getOutputStream());
-        output.flush();
-        input = new ObjectInputStream(Connection.getInputStream());
-        output.writeObject(null);
-        System.out.println("The Stream Is Ready");
-
-    }
-
-    public void CloseCrap(){
-        try {
-            output.close();
-            input.close();
-            Connection.close();
-
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
     public ArrayList<Object> serilaizeToStrings(){
 
@@ -308,7 +298,8 @@ public class Register extends AppCompatActivity {
     }
 
     public boolean checkIfAvailable() throws InterruptedException, IOException, ClassNotFoundException {
-        boolean res = sendRequest(serilaizeToStrings());
+        boolean res = Check_Email_Exist(serilaizeToStrings());
+        System.out.println("res"+res);
         return res;
     }
 

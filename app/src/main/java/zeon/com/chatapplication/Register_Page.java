@@ -48,6 +48,8 @@ public class Register_Page extends AppCompatActivity {
     private Button Register;
    // private String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
 
+
+
     private UserProfile newUser = new UserProfile();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -164,7 +166,7 @@ public class Register_Page extends AppCompatActivity {
                         runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                Toast.makeText(getApplicationContext(), "The Email Is ALready taken", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "The Email Is already taken", Toast.LENGTH_SHORT).show();
 
                             }
                         });
