@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="zeon.com.chatapplication">
 
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -11,6 +11,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGEE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:name=".MyApplication"
@@ -20,26 +21,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".Weather.WeatherController"
-            android:screenOrientation="portrait">
-
-        </activity>
-
-        <activity android:name=".Weather.ChangeCityController">
-        </activity>
-
+        <activity android:name=".Weather.ChangeCity"></activity>
+        <activity android:name=".Weather.WeatherController" />
         <activity
             android:name=".NewBackgroundHello"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Games.Activity.Xylophone"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Games.Activity.Quizzler_Game"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Games.Activity.Magic_Ball_Game"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".Games.Activity.Dice_Game"
-            android:theme="@style/AppTheme.NoActionBar"/>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Games.Activity.Xylophone"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Games.Activity.Quizzler_Game"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Games.Activity.Magic_Ball_Game"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".Games.Activity.Dice_Game"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Background"
             android:theme="@style/AppTheme.NoActionBar">

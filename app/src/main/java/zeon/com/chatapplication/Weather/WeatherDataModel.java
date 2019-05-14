@@ -5,39 +5,43 @@ import org.json.JSONObject;
 
 public class WeatherDataModel {
 
-    // Member variables that hold our relevant weather inforomation.
+    // TODO: Declare the member variables here
     private String mTemperature;
+    private int mCondition;
     private String mCity;
     private String mIconName;
-    private int mCondition;
 
 
-    // Create a WeatherDataModel from a JSON.
-    // We will call this instead of the standard constructor.
-    public static WeatherDataModel fromJson(JSONObject jsonObject) {
+    // TODO: Create a WeatherDataModel from a JSON:
+    public WeatherDataModel WeatherDataModel(JSONObject object)
+    {
+        WeatherDataModel weatherData = new WeatherDataModel();
 
-        // JSON parsing is risky business. Need to surround the parsing code with a try-catch block.
-        try {
-            WeatherDataModel weatherData = new WeatherDataModel();
+        try{
+            weatherData.mCity = object.getString("name");
+            weatherData.mCondition = object.getJSONArray("weather").getJSONObject(0).getInt("id");
+            double temp = object.getJSONObject("main").getDouble("temp");
+            int casttemp= (int)Math.rint(temp);
+            weatherData.mTemperature=Integer.toString(casttemp);
+            weatherData.mIconName = updateWeatherIcon(mCondition);
 
-            weatherData.mCity = jsonObject.getString("name");
-            weatherData.mCondition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
-            weatherData.mIconName = updateWeatherIcon(weatherData.mCondition);
+            return  weatherData;
 
-            double tempResult = jsonObject.getJSONObject("main").getDouble("temp") - 273.15;
-            int roundedValue = (int) Math.rint(tempResult);
-
-            weatherData.mTemperature = Integer.toString(roundedValue);
-
-            return weatherData;
-
-        } catch (JSONException e) {
+        }catch (JSONException e){
             e.printStackTrace();
-            return null;
+            return  null;
         }
     }
 
-    // Get the weather image name from OpenWeatherMap's condition (marked by a number code)
+    public static JSONObject getJSONObject(JSONObject object)
+    {
+        return object;
+    }
+
+
+
+
+    // TODO: Uncomment to this to get the weather image name from the condition:
     private static String updateWeatherIcon(int condition) {
 
         if (condition >= 0 && condition < 300) {
@@ -69,7 +73,8 @@ public class WeatherDataModel {
         return "dunno";
     }
 
-    // Getter methods for temperature, city, and icon name:
+    // TODO: Create getter methods for temperature, city, and icon name:
+
 
     public String getTemperature() {
         return mTemperature + "°";

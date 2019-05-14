@@ -19,8 +19,6 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.SearchView;
 //import zeon.com.chatapplication.Adapter.Fragment_Adapter;
@@ -30,8 +28,6 @@ import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import zeon.com.chatapplication.Adapter.Fragment_Adapter;
-import zeon.com.chatapplication.Fragment.Fragment1;
-import zeon.com.chatapplication.Fragment.Fragment3;
 import zeon.com.chatapplication.Games.Activity.Games_main;
 import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.MyApplication;
@@ -41,9 +37,7 @@ import zeon.com.chatapplication.Search_network;
 import zeon.com.chatapplication.Setting;
 import zeon.com.chatapplication.Style_Change;
 import zeon.com.chatapplication.User_Edit_Info;
-import zeon.com.chatapplication.Weather.ChangeCityController;
 import zeon.com.chatapplication.Weather.WeatherController;
-import zeon.com.chatapplication.Weather.WeatherDataModel;
 
 public class Main_Chats_Page extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,SearchView.OnQueryTextListener
 {
@@ -144,7 +138,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                         return true;
 
                     case R.id.weather:
-                        Intent intent4 = new Intent(getApplicationContext(),ChangeCityController.class);
+                        Intent intent4 = new Intent(getApplicationContext(),WeatherController.class);
                         startActivity(intent4);
                         return true;
 
