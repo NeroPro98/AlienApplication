@@ -14,21 +14,27 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 import zeon.com.chatapplication.Activity.Main_Chats_Page;
+import zeon.com.chatapplication.Model.UserProfile;
 
 public class User_Edit_Info extends AppCompatActivity {
 
     private CircleImageView image;
-    private TextView name;
-    private TextView email;
+    private EditText name;
+    private EditText Story;
     private Button edit_button;
     private Button camera_button;
     private Button SaveImagebutton;
+    private UserProfile ObjConnection = new UserProfile();
 
 
     //for pick photo
@@ -45,8 +51,8 @@ public class User_Edit_Info extends AppCompatActivity {
         setContentView(R.layout.activity_user__edit__info);
 
         image = (CircleImageView)findViewById(R.id.user_circle_Edit);
-        name = (TextView)findViewById(R.id.name_user);
-        email = (TextView)findViewById(R.id.user_id_edit);
+        name = (EditText) findViewById(R.id.name_user);
+        Story = (EditText) findViewById(R.id.user_id_edit);
         edit_button = (Button)findViewById(R.id.Edit_Button);
         camera_button = (Button)findViewById(R.id.Edit_Button_camera);
         SaveImagebutton = (Button)findViewById(R.id.SaveImage);
@@ -158,4 +164,89 @@ public class User_Edit_Info extends AppCompatActivity {
         intent.putExtra("UserImage",R.id.user_circle_Edit);
         startActivity(intent);
     }*/
-}
+
+    public ArrayList<Object> serilaizeToStrings(){
+
+        ArrayList<Object>list = new ArrayList<>();
+      //  MyApplication data = (MyApplication)getApplicationContext();
+      //  String Email_Curr_User = data.getUser_Email();
+        list.add(5);
+       // list.add(Email_Curr_User);
+     //   list.add(name.getText().toString());
+     //   list.add(Story.getText().toString());
+        return list;
+    }
+
+  public boolean Edit_User_Info(ArrayList<Object> arrayList) throws IOException, ClassNotFoundException {
+      ObjConnection.connectToServer();
+      ObjConnection.SetupStreams();
+      System.out.println("The ArrayList is :"+arrayList);
+      ObjConnection.output.writeObject(arrayList);
+      ObjConnection.output.flush();
+      ObjConnection.input.readObject();
+      ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
+      System.out.println("List Come To User Edit Info:"+list);
+      boolean res = ObjConnection.handleReceivedRequest(list);
+
+      Log.d("Edit_User_Info res:","resa:"+res);
+      if(!res){
+
+//            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
+            ObjConnection.CloseCrap();
+          return false;
+
+      }else {
+//            Toast.makeText(getApplicationContext(),"Welcome...",Toast.LENGTH_SHORT).show();
+      //    MyApplication data = (MyApplication) getApplicationContext();
+        //  data.isSignedIn();
+          // data.setUser(() list.get(2));
+            ObjConnection.CloseCrap();
+          return true;
+      }
+  }
+
+
+    public boolean Check_Edit() throws InterruptedException, IOException, ClassNotFoundException {
+        boolean res = Edit_User_Info(serilaizeToStrings());
+        System.out.println("Check_Edit res :"+res);
+        return res;
+    }
+
+    public void Save_Image(View view) {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                boolean bool3 = false;
+                try {
+                    bool3 = Check_Edit();
+                    System.out.println("bool3:"+bool3);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                if(bool3) {
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(getApplicationContext(),"Success Edit",Toast.LENGTH_SHORT).show();
+
+                        }
+                    });
+
+                    Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
+                    startActivity(intent);}
+            }});
+        thread.start();
+    }
+     /*   else{
+        runOnUiThread(new Runnable() {  //Don't work
+            @Override
+            public void run() {
+               Toast.makeText(getApplicationContext(),"Faild Edit",Toast.LENGTH_SHORT).show();
+            }
+        });*/
+    }
+

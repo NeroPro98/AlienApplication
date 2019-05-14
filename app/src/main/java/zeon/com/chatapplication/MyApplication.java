@@ -17,6 +17,18 @@ public class MyApplication extends android.app.Application {
     Socket connection;
     int Color;
     Bitmap image;
+    String User_Email;
+
+    public String getUser_Email() {
+        return User_Email;
+    }
+
+    public void setUser_Email(String user_Email) {
+        System.out.println("Email is get "+ User_Email);
+        User_Email = user_Email;
+    }
+
+
 
     public Bitmap getImage() {
         return image;

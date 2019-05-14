@@ -33,14 +33,12 @@ public class Register extends AppCompatActivity {
     private Button Sign_Button;
     private Button Register_Button;
     public  ObjectInputStream input2;
+    private String Come_Email;
     ImageView Dog;
     ImageView Alien;
 
 
     private UserProfile ObjConnection = new UserProfile();
-
-
-
 
     // String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
 
@@ -196,6 +194,9 @@ public class Register extends AppCompatActivity {
 
                             }
                         });
+                        MyApplication data = (MyApplication)getApplicationContext();
+                        data.setUser_Email(Come_Email);
+                        System.out.println("Come Email is:"+data.getUser_Email());
                         Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
                         startActivity(intent);}
                     }});
@@ -262,13 +263,15 @@ public class Register extends AppCompatActivity {
 
         ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
         System.out.println("listlist:"+list);
+        Come_Email = (String)list.get(3);
 
         boolean res = ObjConnection.handleReceivedRequest(list);
+
         Log.d("resa:","resa:"+res);
         if(!res){
 
 //            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
-          //  ObjConnection.CloseCrap();
+            ObjConnection.CloseCrap();
             return false;
 
         }else {
@@ -276,7 +279,7 @@ public class Register extends AppCompatActivity {
             MyApplication data = (MyApplication) getApplicationContext();
             data.isSignedIn();
            // data.setUser(() list.get(2));
-          //  ObjConnection.CloseCrap();
+            ObjConnection.CloseCrap();
             return true;
         }
     }
@@ -292,8 +295,6 @@ public class Register extends AppCompatActivity {
         list.add(1);
         list.add(Email_Text.getText().toString());
         list.add(Password_Text.getText().toString());
-
-
         return list;
     }
 

@@ -28,6 +28,7 @@ import java.util.List;
 
 
 import zeon.com.chatapplication.Model.Chat_Model;
+import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.R;
 
 public class ChatActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
@@ -36,6 +37,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
     ImageView sendbtn;
     EditText type;
     ArrayList<String> StringChat = new ArrayList<>();
+    //private UserProfile ObjConnection = new UserProfile();
 
 
 
