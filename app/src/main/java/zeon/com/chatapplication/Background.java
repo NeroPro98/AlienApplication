@@ -70,7 +70,7 @@ public class Background extends AppCompatActivity {
 
          Log.d("ChatApp","To_Register was called");
 
-                Intent intent = new Intent(getApplicationContext(),Register.class);
+                Intent intent = new Intent(getApplicationContext(),back1.class);
                 startActivity(intent);
 
        }

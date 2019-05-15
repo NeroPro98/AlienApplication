@@ -33,51 +33,59 @@ public class NewBackgroundHello extends AppCompatActivity {
         setContentView(R.layout.activity_new_background_hello);
 
 
-            smalltobig = AnimationUtils.loadAnimation(this,R.anim.smalltobig);
-            nothing = AnimationUtils.loadAnimation(this,R.anim.nothing);
-            button = AnimationUtils.loadAnimation(this,R.anim.button);
-            Icon1 = (ImageView)findViewById(R.id.aliengame);
-            text1 = (TextView)findViewById(R.id.back5text1);
-            text2 = (TextView)findViewById(R.id.back5text2);
-            btn = (Button)findViewById(R.id.go5);
-            PrevButton = (Button)findViewById(R.id.prev4);
+        smalltobig = AnimationUtils.loadAnimation(this, R.anim.smalltobig);
+        nothing = AnimationUtils.loadAnimation(this, R.anim.nothing);
+        button = AnimationUtils.loadAnimation(this, R.anim.button);
+        Icon1 = (ImageView) findViewById(R.id.aliengame);
+        text1 = (TextView) findViewById(R.id.back5text1);
+        text2 = (TextView) findViewById(R.id.back5text2);
+        btn = (Button) findViewById(R.id.go5);
+        PrevButton = (Button) findViewById(R.id.prev4);
 
-            LinLay = (LinearLayout)findViewById(R.id.linearlayout5);
+        LinLay = (LinearLayout) findViewById(R.id.linearlayout5);
 
 
-            Icon1.startAnimation(smalltobig);
-            text2.startAnimation(nothing);
-            text1.startAnimation(nothing);
-            btn.startAnimation(button);
+        Icon1.startAnimation(smalltobig);
+        text2.startAnimation(nothing);
+        text1.startAnimation(nothing);
+        btn.startAnimation(button);
+        Text_Animation();
 
-            btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(getApplicationContext(),Register.class);
-                    startActivity(intent);
-                }
-            });
-
-            AddDot();
-        }
-
-        public void AddDot() {
-            Dot = new TextView[5];
-
-            for (int i = 0; i < Dot.length; i++) {
-                Dot[i] = new TextView(this);
-                Dot[i].setText(Html.fromHtml("&#8226;"));
-                Dot[i].setTextSize((35));
-                Dot[i].setTextColor(getResources().getColor(R.color.TransparentColor));
-                LinLay.addView(Dot[i]);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Register.class);
+                startActivity(intent);
             }
+        });
 
-            Dot[4].setTextColor(getResources().getColor(R.color.white));
-
-        }
-
-        public void To_back4(View view) {
-            Intent intent = new Intent(getApplicationContext(),back4.class);
-            startActivity(intent);
-        }
+        AddDot();
     }
+
+    public void AddDot() {
+        Dot = new TextView[5];
+
+        for (int i = 0; i < Dot.length; i++) {
+            Dot[i] = new TextView(this);
+            Dot[i].setText(Html.fromHtml("&#8226;"));
+            Dot[i].setTextSize((35));
+            Dot[i].setTextColor(getResources().getColor(R.color.TransparentColor));
+            LinLay.addView(Dot[i]);
+        }
+
+        Dot[4].setTextColor(getResources().getColor(R.color.white));
+
+    }
+
+    public void To_back4(View view) {
+        Intent intent = new Intent(getApplicationContext(), back4.class);
+        startActivity(intent);
+    }
+
+    public void Text_Animation() {
+
+        text1.animate().alpha(1).setDuration(3000);
+        text2.animate().alpha(1).setDuration(3000);
+
+    }
+}

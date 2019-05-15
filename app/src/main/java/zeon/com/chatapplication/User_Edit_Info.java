@@ -5,6 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
@@ -13,6 +14,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -48,7 +50,7 @@ public class User_Edit_Info extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user__edit__info);
+        setContentView(R.layout.activity_user_profile_new);
 
         image = (CircleImageView)findViewById(R.id.user_circle_Edit);
         name = (EditText) findViewById(R.id.name_user);
@@ -88,6 +90,13 @@ public class User_Edit_Info extends AppCompatActivity {
                     //   Capture_Photo_Camera();
             }
         });*/
+
+/*        requestWindowFeature(1);
+        if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.LOLLIPOP){
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
+            getWindow().setStatusBarColor(Color.TRANSPARENT);
+        }*/
+
 
     }
     private void pickImageFromGalleryOfUser(){
@@ -168,12 +177,12 @@ public class User_Edit_Info extends AppCompatActivity {
     public ArrayList<Object> serilaizeToStrings(){
 
         ArrayList<Object>list = new ArrayList<>();
-      //  MyApplication data = (MyApplication)getApplicationContext();
-      //  String Email_Curr_User = data.getUser_Email();
+        MyApplication data = (MyApplication)getApplicationContext();
+        String Email_Curr_User = data.getUser_Email();
         list.add(5);
-       // list.add(Email_Curr_User);
-     //   list.add(name.getText().toString());
-     //   list.add(Story.getText().toString());
+        list.add(Email_Curr_User);
+        list.add(name.getText().toString());
+        list.add(Story.getText().toString());
         return list;
     }
 

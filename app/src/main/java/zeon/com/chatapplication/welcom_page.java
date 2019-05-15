@@ -19,6 +19,9 @@ public class welcom_page extends AppCompatActivity implements GestureDetector.On
     TextView text2;
     ImageView image1;
     Animation togo,toin;
+    TextView text3;
+    TextView text4;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +35,14 @@ public class welcom_page extends AppCompatActivity implements GestureDetector.On
         image1 = (ImageView)findViewById(R.id.Zeon_chat2);
         togo = AnimationUtils.loadAnimation(this,R.anim.togo);
         toin = AnimationUtils.loadAnimation(this,R.anim.toin);
+        text3 = (TextView)findViewById(R.id.textView1);
+        text4 = (TextView)findViewById(R.id.textView2);
 
         text1.animate().alpha(1).setDuration(3000);
         text2.animate().alpha(1).setDuration(3000);
         image1.animate().alpha(1).setDuration(3000);
+        text3.animate().alpha(1).setDuration(3000);
+        text4.animate().alpha(1).setDuration(3000);
 
 
     }
