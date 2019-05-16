@@ -33,7 +33,7 @@ public class Fragment1 extends Fragment{
     private ListView listview ;
     ActionBar action;
     private BottomNavigationView mView;
-
+    private UserProfile ObjConnection = new UserProfile();
 
 
 
@@ -45,6 +45,48 @@ public class Fragment1 extends Fragment{
 
     }
 
+    public boolean Friends_List(ArrayList<Object> arrayList) throws IOException, ClassNotFoundException {
+
+        ObjConnection.connectToServer();
+        ObjConnection.SetupStreams();
+        System.out.println("uouououo");
+        System.out.println("The ArrayList of Fragmint1 is :"+arrayList);
+        ObjConnection.output.writeObject(arrayList);
+        ObjConnection.output.flush();
+        ObjConnection.input.readObject();
+        ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
+        boolean res = ObjConnection.handleReceivedRequest(list);
+        Log.d("res","res:"+res);
+        if(!res){
+
+            //            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
+            ObjConnection.CloseCrap();
+            return false;
+
+        }else {
+//            Toast.makeText(getApplicationContext(),"Welcome...",Toast.LENGTH_SHORT).show();
+
+            // data.setUser(() list.get(2));
+            ObjConnection.CloseCrap();
+            return true;
+        }
+
+    }
+
+    public ArrayList<Object> serilaizeToStrings(){
+
+        ArrayList<Object>list = new ArrayList<>();
+        list.add(4);
+        list.add("NoThing");
+        return list;
+    }
+
+    public boolean checkTheList() throws InterruptedException, IOException, ClassNotFoundException {
+        boolean res = Friends_List(serilaizeToStrings());
+        System.out.println("aoaoaoao");
+        System.out.println("resofcheckTheList:"+res);
+        return res;
+    }
 
 
     @Nullable
@@ -60,6 +102,30 @@ public class Fragment1 extends Fragment{
         Log.d("AlienChat","message"+Friend);
         listview.setAdapter(adapter);
         return view;
+
+    }
+
+    public void Check_All(){
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("ooooooooooooo2");
+                boolean bool = false;
+                try {
+                    System.out.println("ooooooooooooo3");
+                    bool = checkTheList();
+                    System.out.println("popopop");
+                    System.out.println("The bool of fragment1 is:"+bool);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
 
     }
 }

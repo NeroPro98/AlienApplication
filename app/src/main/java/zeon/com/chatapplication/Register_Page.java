@@ -60,7 +60,7 @@ public class Register_Page extends AppCompatActivity {
 
         firstName = (EditText)findViewById(R.id.set_name);
         middleName = (EditText)findViewById(R.id.set_Middlename);
-        finalName = (EditText)findViewById(R.id.set_Middlename);
+        finalName = (EditText)findViewById(R.id.set_finalname);
         regEmail = (EditText)findViewById(R.id.AddNewEmail_Faild);
         regPass = (EditText)findViewById(R.id.AddNewPass_Faild);
         conPass = (EditText)findViewById(R.id.AddNewPassConfirm_Faild);
