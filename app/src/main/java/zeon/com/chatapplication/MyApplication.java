@@ -1,14 +1,12 @@
 package zeon.com.chatapplication;
 
-import android.app.Application;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.net.Socket;
+import java.util.ArrayList;
 
-import de.hdodenhof.circleimageview.CircleImageView;
 import zeon.com.chatapplication.Model.UserProfile;
 
 
@@ -18,6 +16,28 @@ public class MyApplication extends android.app.Application {
     int Color;
     Bitmap image;
     String User_Email;
+    ArrayList<String> Emails = new ArrayList<String>();
+    String Specific_Email_Press;
+
+    public String getSpecific_Email_Press() {
+        return Specific_Email_Press;
+    }
+
+    public void setSpecific_Email_Press(String specific_Email_Press) {
+        Specific_Email_Press = specific_Email_Press;
+    }
+
+
+
+    public String getEmails(int i) {
+        return Emails.get(i);
+    }
+
+    public void setEmails(ArrayList<String> emails) {
+        Emails = emails;
+    }
+
+
 
     public String getUser_Email() {
         return User_Email;

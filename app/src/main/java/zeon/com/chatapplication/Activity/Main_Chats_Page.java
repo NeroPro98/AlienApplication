@@ -21,6 +21,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.SearchView;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 //import zeon.com.chatapplication.Adapter.Fragment_Adapter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -53,8 +55,9 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     private TabLayout mTablLayout;
     private BottomNavigationView mView;
     private UserProfile ObjConnection = new UserProfile();
+    private ActionBar mActionBar;
+    private ImageView SendAdd;
 
-    ActionBar mActionBar;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -68,6 +71,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         Toggle = new ActionBarDrawerToggle(this,drawer,R.string.open,R.string.close);
         user_image = (CircleImageView)findViewById(R.id.user_circle);
         mView = (BottomNavigationView)findViewById(R.id.bottomview1);
+        SendAdd = (ImageView)findViewById(R.id.add_friend);
 
         drawer.addDrawerListener(Toggle);
         Toggle.syncState();
@@ -149,6 +153,14 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
             }
         });
+
+     /*   SendAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment1 fragment1 = new Fragment1();
+                fragment1.Check_Answer_Freind();
+            }
+        });*/
 
     }
 
