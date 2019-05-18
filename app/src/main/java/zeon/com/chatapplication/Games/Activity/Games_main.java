@@ -42,4 +42,9 @@ public class Games_main extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Xylophone.class);
         startActivity(intent);
     }
+
+    public void To_Destiny_Game(View view) {
+        Intent intent = new Intent(getApplicationContext(), Main1_Destiny.class);
+        startActivity(intent);
+    }
 }

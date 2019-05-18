@@ -20,6 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Games.Activity.Main2_Destiny"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Games.Activity.Main1_Destiny"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".Weather.ChangeCity" />
         <activity android:name=".Weather.WeatherController" />
         <activity
@@ -39,7 +43,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Background"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Register"
             android:theme="@style/AppTheme.NoActionBar"

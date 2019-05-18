@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Games.Activity.Main2_Destiny"
+    android:background="@drawable/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/first"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/T1_Story"
+            android:textColor="@color/dark_green"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textAlignment="center"/>
+
+        <Button
+            android:id="@+id/btn1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="190dp"
+            android:text="@string/T1_Ans1"
+            android:textStyle="bold"
+            android:background="@drawable/background5"
+            />
+
+
+        <Button
+            android:id="@+id/btn2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:background="@drawable/background3color"
+            android:text="@string/T2_Ans1"
+            android:textStyle="bold"
+            />
+
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

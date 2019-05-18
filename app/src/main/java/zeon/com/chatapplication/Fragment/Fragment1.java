@@ -34,15 +34,22 @@ public class Fragment1 extends Fragment{
     ActionBar action;
     private BottomNavigationView mView;
     private UserProfile ObjConnection = new UserProfile();
-
+    ArrayList<Object> list = new ArrayList<Object>();
 
 
 
     public void init(){
-
-        Friend.add(new FriendComp(1,"Mohamad Nesart","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-        Friend.add(new FriendComp(1,"Mohamad Al Moazen","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-
+        int i;
+        int size =(int)list.get(2);
+        list.remove(0);
+        list.remove(0);
+        list.remove(0);
+        for(i =0 ; i<list.size();i = i+2) {
+           // Friend.add(new FriendComp(1, "Mohamad Nesart", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+            // Friend.add(new FriendComp(1,"Mohamad Al Moazen","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+             Friend.add(new FriendComp(1,(String)list.get(i),(String)list.get(i+1),"https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+            // i = i+2;
+        }
     }
 
     public boolean Friends_List(ArrayList<Object> arrayList) throws IOException, ClassNotFoundException {
@@ -54,7 +61,7 @@ public class Fragment1 extends Fragment{
         ObjConnection.output.writeObject(arrayList);
         ObjConnection.output.flush();
         ObjConnection.input.readObject();
-        ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
+        list = (ArrayList<Object>)ObjConnection.input.readObject();
         boolean res = ObjConnection.handleReceivedRequest(list);
         Log.d("res","res:"+res);
         if(!res){
@@ -77,7 +84,6 @@ public class Fragment1 extends Fragment{
 
         ArrayList<Object>list = new ArrayList<>();
         list.add(4);
-        list.add("NoThing");
         return list;
     }
 
@@ -86,23 +92,6 @@ public class Fragment1 extends Fragment{
         System.out.println("aoaoaoao");
         System.out.println("resofcheckTheList:"+res);
         return res;
-    }
-
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-
-        View view = inflater.inflate(R.layout.layout_fragment1,container,false);
-        listview = (ListView)view.findViewById(R.id.ListViewMessage1);
-
-        init();
-        FriendAdapter adapter = new FriendAdapter(getContext(),Friend);
-        Log.d("AlienChat","Context"+getContext());
-        Log.d("AlienChat","message"+Friend);
-        listview.setAdapter(adapter);
-        return view;
-
     }
 
     public void Check_All(){
@@ -114,6 +103,7 @@ public class Fragment1 extends Fragment{
                 try {
                     System.out.println("ooooooooooooo3");
                     bool = checkTheList();
+                    init();
                     System.out.println("popopop");
                     System.out.println("The bool of fragment1 is:"+bool);
                 } catch (InterruptedException e) {
@@ -123,9 +113,29 @@ public class Fragment1 extends Fragment{
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
+                if(bool){
+
+                }
             }
         });
         thread.start();
 
     }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.layout_fragment1,container,false);
+        listview = (ListView)view.findViewById(R.id.ListViewMessage1);
+        Check_All();
+        FriendAdapter adapter = new FriendAdapter(getContext(),Friend);
+        Log.d("AlienChat","Context"+getContext());
+        Log.d("AlienChat","message"+Friend);
+        listview.setAdapter(adapter);
+        return view;
+
+    }
+
+
 }
