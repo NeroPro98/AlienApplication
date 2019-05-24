@@ -228,6 +228,15 @@ public class UserProfile implements Serializable {
                 return (boolean) list.get(1);
             }
 
+            case 7: // Remove Friend
+            {
+                return (boolean)list.get(1);
+            }
+            case 8: //Block Friend
+            {
+                return (boolean)list.get(1);
+            }
+
         }
         return (boolean) list.get(1);
     }

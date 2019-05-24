@@ -65,7 +65,8 @@ public class ForBaseAdapter extends BaseAdapter{
         Message.setText(lists.get(position).getS2());
         Date.setText(lists.get(position).getS3());
 
-        view.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(
+                new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 

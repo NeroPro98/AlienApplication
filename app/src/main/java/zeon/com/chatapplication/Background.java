@@ -46,25 +46,12 @@ public class Background extends AppCompatActivity {
 
 
 
-        Play_Opener();
+     //   Play_Opener();
 
 
     }
 
-    public void Play_Opener(){
-        new CountDownTimer(2000,1000){
 
-            @Override
-            public void onTick(long millisUntilFinished) {
-            }
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onFinish() {
-
-
-            }
-        }.start();
-    }
 
     public void To_Register(View v){
 

@@ -1,6 +1,10 @@
 package zeon.com.chatapplication;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
+import android.os.Build;
+import android.os.CountDownTimer;
+import android.support.annotation.RequiresApi;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -21,6 +25,7 @@ public class welcom_page extends AppCompatActivity implements GestureDetector.On
     Animation togo,toin;
     TextView text3;
     TextView text4;
+    MediaPlayer mediaPlayer;
 
 
     @Override
@@ -37,6 +42,7 @@ public class welcom_page extends AppCompatActivity implements GestureDetector.On
         toin = AnimationUtils.loadAnimation(this,R.anim.toin);
         text3 = (TextView)findViewById(R.id.textView1);
         text4 = (TextView)findViewById(R.id.textView2);
+        mediaPlayer = (MediaPlayer) MediaPlayer.create(this,R.raw.opener);
 
         text1.animate().alpha(1).setDuration(3000);
         text2.animate().alpha(1).setDuration(3000);
@@ -102,4 +108,6 @@ public class welcom_page extends AppCompatActivity implements GestureDetector.On
     public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
         return false;
     }
+
+
 }

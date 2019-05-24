@@ -56,10 +56,13 @@ public class Fragment1 extends Fragment{
         }
         MyApplication data = (MyApplication) getActivity().getApplicationContext();
         data.setEmails(EmailList);
+        System.out.println("The Email List is :"+data.getUser_Email());
+        data.getUser_Email();
 
     }
 
     public boolean Friends_List(ArrayList<Object> arrayList) throws IOException, ClassNotFoundException {
+
 
         ObjConnection.connectToServer();
         ObjConnection.SetupStreams();
@@ -85,9 +88,10 @@ public class Fragment1 extends Fragment{
     }
 
     public ArrayList<Object> serilaizeToStrings(){
-
+        MyApplication data = (MyApplication)getContext().getApplicationContext();
         ArrayList<Object>list = new ArrayList<>();
         list.add(4);
+        list.add(data.getUser_Email());
         return list;
     }
 
@@ -173,26 +177,58 @@ public class Fragment1 extends Fragment{
         super.onAttach(context);
         this.context = context;
     }
-    public ArrayList<Object> serilaizeToStringsForAddFriend(String email){
+    public ArrayList<Object> serilaizeToStringsForAddFriend(String email,String email2){
 
 
         ArrayList<Object>list = new ArrayList<>();
         //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
       //  String email =sharedPreferences.getString("The_User_Email_Click","");
         list.add(6);
+        list.add(email2);
         list.add(email);
       //  MyApplication data = (MyApplication)getContext().getApplicationContext();
      //   list.add(data.getSpecific_Email_Press());
         return list;
     }
 
-    public boolean Send_Add_Request_ToServer(String email) throws InterruptedException, IOException, ClassNotFoundException {
-        boolean res = Add_Freind_SetUp(serilaizeToStringsForAddFriend(email));
+    public ArrayList<Object> serilaizeToStringsForBlockFriend(String email,String email2){
+
+        ArrayList<Object>list = new ArrayList<>();
+        list.add(8);
+        list.add(email2);
+        list.add(email);
+        return list;
+    }
+
+    public ArrayList<Object> serilaizeToStringsForDeleteFriend(String email,String email2){
+
+
+        ArrayList<java.lang.Object>list = new ArrayList<>();
+        list.add(7);
+        list.add(email2);
+        list.add(email);
+        return list;
+    }
+
+    public boolean Send_Add_Request_ToServer(String email,String email2) throws InterruptedException, IOException, ClassNotFoundException {
+        boolean res = Add_Freind_SetUp(serilaizeToStringsForAddFriend(email,email2));
 
         return res;
     }
 
-    public void Check_Answer_Freind(final String email){
+    public boolean Send_Block_Request_ToServer(String email,String email2) throws InterruptedException, IOException, ClassNotFoundException {
+        boolean res = Add_Freind_SetUp(serilaizeToStringsForBlockFriend(email,email2));
+
+        return res;
+    }
+
+    public boolean Send_Delete_Request_ToServer(String email,String email2) throws InterruptedException, IOException, ClassNotFoundException {
+        boolean res = Add_Freind_SetUp(serilaizeToStringsForDeleteFriend(email,email2));
+
+        return res;
+    }
+
+    public void Check_Answer_Freind(final String email, final String User_Email){
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -200,7 +236,7 @@ public class Fragment1 extends Fragment{
                 boolean bool = false;
                 try {
 
-                    bool = Send_Add_Request_ToServer(email);
+                    bool = Send_Add_Request_ToServer(email,User_Email);
 
                     System.out.println("The bool of fragment1 is:"+bool);
                 } catch (InterruptedException e) {
@@ -209,6 +245,43 @@ public class Fragment1 extends Fragment{
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
+                } if (bool) {
+
+                    System.out.println("Success added");
+
+                } else{
+                    System.out.println("Reject added");
+                }
+
+            }
+        });
+        thread.start();
+    }
+
+    public void Check_Answer_Delete(final String email, final String User_Email){
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                boolean bool = false;
+                try {
+
+                    bool = Send_Delete_Request_ToServer(email,User_Email);
+
+                    System.out.println("The bool of fragment1 is:"+bool);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } if (bool) {
+
+                    System.out.println("Success added");
+
+                } else{
+                    System.out.println("Reject added");
                 }
 
             }
@@ -217,5 +290,34 @@ public class Fragment1 extends Fragment{
     }
 
 
+    public void Check_Block_Friend(final String email, final String User_Email){
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
 
+                boolean bool = false;
+                try {
+
+                    bool = Send_Block_Request_ToServer(email,User_Email);
+
+                    System.out.println("The bool of fragment1 is:"+bool);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                } if (bool) {
+
+                    System.out.println("Success Block");
+
+                } else{
+                    System.out.println("Success UnBlock");
+                }
+
+            }
+        });
+        thread.start();
+    }
 }
+

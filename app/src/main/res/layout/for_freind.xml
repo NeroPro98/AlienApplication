@@ -26,7 +26,7 @@
         android:layout_marginLeft="112dp"
         android:layout_marginTop="10dp"
         android:text="TextView"
-        android:textSize="24dp"/>
+        android:textSize="20dp"/>
 
     <TextView
         android:id="@+id/Active"
@@ -41,11 +41,31 @@
 
     <ImageView
         android:id="@+id/add_friend"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:layout_alignLeft="@id/Name_Friend"
-        android:layout_marginLeft="240dp"
-        android:src="@drawable/add_friend"
-        android:layout_marginTop="15dp"
-        android:onClick="Add_Friend"/>
+        android:layout_marginLeft="250dp"
+        android:layout_marginTop="35dp"
+        android:onClick="Add_Friend"
+        android:src="@drawable/add_friend" />
+
+    <ImageView
+        android:id="@+id/delete_friend"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignLeft="@id/Name_Friend"
+        android:layout_marginLeft="253dp"
+        android:layout_marginTop="10dp"
+        android:onClick="Delete_Friend"
+        android:src="@drawable/delete" />
+
+    <ImageView
+        android:id="@+id/block_friend"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@id/Name_Friend"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="65dp"
+        android:onClick="Block_Friend"
+        android:src="@drawable/block" />
 </RelativeLayout>
