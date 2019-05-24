@@ -125,7 +125,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
 
                     case R.id.Search_nav2:
-                    //    mView.setItemBackgroundResource(R.color.brown_light);
+                        //    mView.setItemBackgroundResource(R.color.brown_light);
                         Intent intent2 = new Intent(getApplicationContext(),Search_network.class);
                         startActivity(intent2);
                         return true;
@@ -137,7 +137,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                         return true;
 
                     case R.id.Game_nav2:
-                     //   mView.setItemBackgroundResource(R.color.yellow);
+                        //   mView.setItemBackgroundResource(R.color.yellow);
                         Intent intent3 = new Intent(getApplicationContext(),Games_main.class);
                         startActivity(intent3);
                         return true;
@@ -148,7 +148,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                         return true;
 
                     default:
-                         return false;
+                        return false;
                 }
 
             }
@@ -287,11 +287,11 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
 
 
- //   public void SendRequestForList(){
+    //   public void SendRequestForList(){
 
 
 
-   // }
+    // }
 
 
 }

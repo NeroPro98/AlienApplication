@@ -49,10 +49,10 @@ public class Fragment1 extends Fragment{
         list.remove(0);
         list.remove(0);
         for(i =0 ; i<list.size();i = i+2) {
-           // Friend.add(new FriendComp(1, "Mohamad Nesart", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+            // Friend.add(new FriendComp(1, "Mohamad Nesart", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
             // Friend.add(new FriendComp(1,"Mohamad Al Moazen","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-             Friend.add(new FriendComp(1,(String)list.get(i),(String)list.get(i+1),"https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-             EmailList.add((String)list.get(i+1));
+            Friend.add(new FriendComp(1,(String)list.get(i),(String)list.get(i+1),"https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+            EmailList.add((String)list.get(i+1));
         }
         MyApplication data = (MyApplication) getActivity().getApplicationContext();
         data.setEmails(EmailList);
@@ -182,12 +182,12 @@ public class Fragment1 extends Fragment{
 
         ArrayList<Object>list = new ArrayList<>();
         //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
-      //  String email =sharedPreferences.getString("The_User_Email_Click","");
+        //  String email =sharedPreferences.getString("The_User_Email_Click","");
         list.add(6);
         list.add(email2);
         list.add(email);
-      //  MyApplication data = (MyApplication)getContext().getApplicationContext();
-     //   list.add(data.getSpecific_Email_Press());
+        //  MyApplication data = (MyApplication)getContext().getApplicationContext();
+        //   list.add(data.getSpecific_Email_Press());
         return list;
     }
 
