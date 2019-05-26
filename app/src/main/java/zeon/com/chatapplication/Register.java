@@ -28,6 +28,7 @@ import zeon.com.chatapplication.Model.UserProfile;
 
 public class Register extends AppCompatActivity {
 
+
     private EditText Password_Text;
     private EditText Email_Text;
     private Button Sign_Button;
@@ -37,8 +38,7 @@ public class Register extends AppCompatActivity {
     ImageView Dog;
     ImageView Alien;
 
-
-    MyApplication data = (MyApplication) getApplicationContext();
+    MyApplication data = (MyApplication) MyApplication.getmContext();
 
     private UserProfile ObjConnection = data.getUser();
 
@@ -170,22 +170,28 @@ public class Register extends AppCompatActivity {
         final boolean bool1 = Cheack_Password();
         final boolean bool2 = Cheack_Email();
 
+
         if(bool1 && bool2) {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     boolean bool3 = false;
-
                     try {
                         bool3 = checkIfAvailable();
                         System.out.println("bool3:"+bool3);
+                        System.out.println(ObjConnection.isSignedIn());
+                        if(ObjConnection.isSignedIn())
+                        {
+                            Toast.makeText(data, "Signed INNN", Toast.LENGTH_SHORT).show();
+                            signIn(arrayList);
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
-                    }
+                    }/*
                     if(bool3) {
                         runOnUiThread(new Runnable() {
                             @Override
@@ -197,9 +203,11 @@ public class Register extends AppCompatActivity {
                         data.setUser_Email(Come_Email);
                         System.out.println("Come Email is:"+data.getUser_Email());
                         Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
-                        startActivity(intent);}
+                        startActivity(intent);}*/
                     }});
             thread.start();
+
+
         }
         else{
             runOnUiThread(new Runnable() {  //Don't work
@@ -252,39 +260,37 @@ public class Register extends AppCompatActivity {
     }
 
     public boolean Check_Email_Exist(ArrayList<Object> arrayList) throws IOException, ClassNotFoundException {
-        // ObjConnection.connectToServer();
-        //ObjConnection.SetupStreams();
         ObjConnection.connect();
         ObjConnection.handleThread = ObjConnection.new HandleThread(ObjConnection.getConnection());
-
         System.out.println("The ArrayList is :" + arrayList);
         ObjConnection.output.writeObject(arrayList);
         ObjConnection.output.flush();
         // ObjConnection.input.readObject();
 
-         ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
-        System.out.println("listlist:"+list);
+     //    ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
+      //  System.out.println("listlist:"+list);
 
 
-        Come_Email = (String)list.get(3);
-
+        //Come_Email = (String)list.get(3);
+/*
          boolean res = ObjConnection.handleReceivedRequest(list);
 
         Log.d("resa:","resa:"+res);
         if(!res){
 
 //            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
-            ObjConnection.CloseCrap();
+           // ObjConnection.CloseCrap();
             return false;
 
         }else {
 //            Toast.makeText(getApplicationContext(),"Welcome...",Toast.LENGTH_SHORT).show();
             MyApplication data = (MyApplication) getApplicationContext();
-            data.isSignedIn();
+            data.user.isSignedIn();
            // data.setUser(() list.get(2));
            // ObjConnection.CloseCrap();
             return true;
-        }
+        }*/
+return false;
     }
 
 
@@ -303,7 +309,6 @@ public class Register extends AppCompatActivity {
 
     public boolean checkIfAvailable() throws InterruptedException, IOException, ClassNotFoundException {
         boolean res = Check_Email_Exist(serilaizeToStrings());
-        System.out.println("res"+res);
         return res;
     }
 

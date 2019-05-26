@@ -33,7 +33,7 @@ public class welcom_page extends AppCompatActivity implements GestureDetector.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcom_page);
 
-        startService(new Intent(this,service.class));
+      //  startService(new Intent(this,service.class));
 
         mGestureDetectorCompat = new GestureDetectorCompat(this,this);
         mGestureDetectorCompat.setOnDoubleTapListener(this);

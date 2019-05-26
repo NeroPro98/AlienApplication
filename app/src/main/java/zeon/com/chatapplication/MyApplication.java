@@ -1,5 +1,6 @@
 package zeon.com.chatapplication;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 
 import java.io.FileInputStream;
@@ -20,6 +21,11 @@ public class MyApplication extends android.app.Application {
     String Specific_Email_Press;
 
 
+    private static Context mContext;
+
+    public static Context getmContext() {
+        return mContext;
+    }
 
     public String getSpecific_Email_Press() {
         return Specific_Email_Press;
@@ -28,6 +34,7 @@ public class MyApplication extends android.app.Application {
     public void setSpecific_Email_Press(String specific_Email_Press) {
         Specific_Email_Press = specific_Email_Press;
     }
+
 
     public String getEmails(int i) {
         return Emails.get(i);
@@ -96,7 +103,9 @@ public class MyApplication extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        checkTheInternalFile();  //here the file we read this before the GUI work
+        mContext = getApplicationContext();
+     //   user = new UserProfile();
+   //     checkTheInternalFile();  //here the file we read this before the GUI work
     }
     public void checkTheInternalFile()
     {

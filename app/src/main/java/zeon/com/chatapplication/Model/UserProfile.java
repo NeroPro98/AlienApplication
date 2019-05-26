@@ -103,28 +103,14 @@ public class UserProfile implements Serializable {
         ArrayList<Object> List;
         public HandleThread(Socket clientSocket)
         {
-            try {
-                input = (ObjectInputStream) clientSocket.getInputStream();
-                output = (ObjectOutputStream) clientSocket.getOutputStream();
-                ArrayList<Object> list = new ArrayList<>();
-                list.add(email);
-                output.writeObject(list);
-                output.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
             start();
         }
-
-
         @Override
         public void run() {
             super.run();
-
             try {
                 List = (ArrayList<Object>) input.readObject();
-                handleReceivedRequest(List);
+                System.out.println(handleReceivedRequest(List));
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
