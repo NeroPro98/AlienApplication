@@ -51,7 +51,7 @@
             android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recent Update"
+            android:text="Friend menu"
             android:textSize="24sp"
             android:textColor="@color/cyan"
             android:layout_margin="10dp"/>

@@ -30,14 +30,20 @@ public class Fragment2 extends Fragment {
     ImageView imagestory;
     TextView textadd;
     TextView textdate;
-    ArrayList<story>listStory = new ArrayList<>();
+    ArrayList<story> listStory = new ArrayList<>();
     private UserProfile ObjConnection = new UserProfile();
     ArrayList<Object> list = new ArrayList<Object>();
+    Fragment1 fragment1 = new Fragment1();
+    Story_Adapter adapter;
 
-
-    private void InitStory(){
-        listStory.add(new story(1,"https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341","Mohamad Nserat","March"));
-        listStory.add(new story(1,"https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341","Adnan Ktan","June"));
+    private void InitStory() {
+        list.remove(0);
+        list.remove(0);
+        for (int i = 0; i < list.size(); i=i+2) {
+            listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", (String)list.get(i), (String)list.get(i+1)));
+           // listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", "Adnan Ktan", "June"));
+        }
+        adapter.notifyDataSetChanged();
     }
 
     @Nullable
@@ -46,21 +52,24 @@ public class Fragment2 extends Fragment {
 
         View view = inflater.inflate(R.layout.layout_fragment2, container, false);
 
-        grid = (GridView)view.findViewById(R.id.gridviewstatus);
-        textadd = (TextView)view.findViewById(R.id.textadd);
-        textdate = (TextView)view.findViewById(R.id.textdate);
-        imagestory = (ImageView)view.findViewById(R.id.imagestory);
-        Check_All_Story();
-       // Picasso.with(getContext()).load("G:\\github\\ChatApplication\\app\\src\\main\\res\\drawable\\astro3.jpg")
-             //   .into(imagestory); //don't work
+        grid = (GridView) view.findViewById(R.id.gridviewstatus);
+        textadd = (TextView) view.findViewById(R.id.textadd);
+        textdate = (TextView) view.findViewById(R.id.textdate);
+        imagestory = (ImageView) view.findViewById(R.id.imagestory);
+        //Check_All_Story();
+        // Picasso.with(getContext()).load("G:\\github\\ChatApplication\\app\\src\\main\\res\\drawable\\astro3.jpg")
+        //   .into(imagestory); //don't work
         imagestory.setImageResource(R.drawable.man);
         textadd.setText("Mohamad Al Moazen");
         textdate.setText("June");
+      //
+        Check_All_Friend();
 
-        InitStory();
-        Story_Adapter adapter = new Story_Adapter(getContext(),listStory);
+        // InitStory();
+        adapter = new Story_Adapter(getContext(), listStory);
 
         grid.setAdapter(adapter);
+       // fragment1.Check_All();
 
         return view;
     }
@@ -70,29 +79,29 @@ public class Fragment2 extends Fragment {
 
         ObjConnection.connectToServer();
         ObjConnection.SetupStreams();
-        System.out.println("The ArrayList of Fragmint2 is :"+arrayList);
+        System.out.println("The ArrayList of Fragmint2 is :" + arrayList);
         ObjConnection.output.writeObject(arrayList);
         ObjConnection.output.flush();
         ObjConnection.input.readObject();
-        list = (ArrayList<Object>)ObjConnection.input.readObject();
+        list = (ArrayList<Object>) ObjConnection.input.readObject();
         boolean res = ObjConnection.handleReceivedRequest(list);
-        Log.d("res","res:"+res);
-        if(!res){
+        Log.d("res", "res:" + res);
+        if (!res) {
 
 
             ObjConnection.CloseCrap();
             return false;
 
-        }else {
+        } else {
             ObjConnection.CloseCrap();
             return true;
         }
 
     }
 
-    public ArrayList<Object> serilaizeToStrings(){
-        MyApplication data = (MyApplication)getContext().getApplicationContext();
-        ArrayList<Object>list = new ArrayList<>();
+    public ArrayList<Object> serilaizeToStrings() {
+        MyApplication data = (MyApplication) getContext().getApplicationContext();
+        ArrayList<Object> list = new ArrayList<>();
         list.add(9);
         list.add(data.getUser_Email());
         return list;
@@ -101,11 +110,11 @@ public class Fragment2 extends Fragment {
     public boolean checkTheListStory() throws InterruptedException, IOException, ClassNotFoundException {
         boolean res = Friends_List_Story(serilaizeToStrings());
 
-        System.out.println("res of checkTheListStory:"+res);
+        System.out.println("res of checkTheListStory:" + res);
         return res;
     }
 
-    public void Check_All_Story(){
+    public void Check_All_Story() {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -115,7 +124,7 @@ public class Fragment2 extends Fragment {
 
                     bool = checkTheListStory();
 
-                    System.out.println("The bool of fragment1 is:"+bool);
+                    System.out.println("The bool of fragment1 is:" + bool);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -123,13 +132,56 @@ public class Fragment2 extends Fragment {
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                if(bool){
+                if (bool) {
                     InitStory();
                 }
             }
         });
         thread.start();
 
+    }
+
+    public void Check_All_Friend() {
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                boolean bool = false;
+                try {
+
+                    bool = checkTheListSpecificFriend();
+
+                    System.out.println("The bool of fragment2 is:" + bool);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+                if (bool) {
+                    InitStory();
+                }
+            }
+        });
+        thread.start();
+
+    }
+
+
+    public boolean checkTheListSpecificFriend() throws InterruptedException, IOException, ClassNotFoundException {
+        boolean res = Friends_List_Story(serilaizeToStringsForSpecificFriend());
+
+        System.out.println("res of checkTheListStory:" + res);
+        return res;
+    }
+
+    public ArrayList<Object> serilaizeToStringsForSpecificFriend() {
+        MyApplication data = (MyApplication) getContext().getApplicationContext();
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(11);
+        list.add(data.getUser_Email());
+        return list;
     }
 
 }
