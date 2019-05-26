@@ -19,6 +19,8 @@ public class MyApplication extends android.app.Application {
     ArrayList<String> Emails = new ArrayList<String>();
     String Specific_Email_Press;
 
+
+
     public String getSpecific_Email_Press() {
         return Specific_Email_Press;
     }
@@ -26,8 +28,6 @@ public class MyApplication extends android.app.Application {
     public void setSpecific_Email_Press(String specific_Email_Press) {
         Specific_Email_Press = specific_Email_Press;
     }
-
-
 
     public String getEmails(int i) {
         return Emails.get(i);
@@ -70,13 +70,7 @@ public class MyApplication extends android.app.Application {
         Color = color;
     }
 
-    public boolean isSignedIn() {
-        return signedIn;
-    }
 
-    public void setSignedIn(boolean signedIn) {
-        this.signedIn = signedIn;
-    }
 
     public void setConnection(Socket connection) {
         this.connection = connection;
@@ -119,6 +113,10 @@ public class MyApplication extends android.app.Application {
                 fileInputStream.close();
                 System.out.println(user.getUserName() + "  " + user.getPassword() + "  " + user.getEmail());
            }
+            else
+            {
+                user = new UserProfile();
+            }
         }catch(Exception e)
         {
             e.printStackTrace();

@@ -39,8 +39,6 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
     ArrayList<String> StringChat = new ArrayList<>();
     //private UserProfile ObjConnection = new UserProfile();
 
-
-
     ArrayList<Chat_Model> ChatListServer = new ArrayList<>();
 
     private void MessageFromServer(ArrayList<Chat_Model> msg){

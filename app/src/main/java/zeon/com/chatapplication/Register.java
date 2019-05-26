@@ -38,11 +38,12 @@ public class Register extends AppCompatActivity {
     ImageView Alien;
 
 
-    private UserProfile ObjConnection = new UserProfile();
+    MyApplication data = (MyApplication) getApplicationContext();
+
+    private UserProfile ObjConnection = data.getUser();
 
     // String path = Environment.getExternalStorageDirectory().getPath()+"/Android/zeon.com.chatapplication";
 
-    private UserProfile userProfile = new UserProfile();
     ArrayList<Object> arrayList = new ArrayList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -157,7 +158,6 @@ public class Register extends AppCompatActivity {
 
     public boolean RejectsignIn(ArrayList<Object> list)
     {
-
         Toast.makeText(getApplicationContext(), "Unveiled... Please Enter Again", Toast.LENGTH_SHORT).show();
         return true;
     }
@@ -191,7 +191,6 @@ public class Register extends AppCompatActivity {
                             @Override
                             public void run() {
                                 signIn(arrayList);
-
                             }
                         });
                         MyApplication data = (MyApplication)getApplicationContext();
@@ -253,19 +252,23 @@ public class Register extends AppCompatActivity {
     }
 
     public boolean Check_Email_Exist(ArrayList<Object> arrayList) throws IOException, ClassNotFoundException {
-        ObjConnection.connectToServer();
-        ObjConnection.SetupStreams();
-        System.out.println("The ArrayList is :"+arrayList);
+        // ObjConnection.connectToServer();
+        //ObjConnection.SetupStreams();
+        ObjConnection.connect();
+        ObjConnection.handleThread = ObjConnection.new HandleThread(ObjConnection.getConnection());
+
+        System.out.println("The ArrayList is :" + arrayList);
         ObjConnection.output.writeObject(arrayList);
         ObjConnection.output.flush();
-        ObjConnection.input.readObject();
-       // System.out.println("readObject:"+ObjConnection.input.readObject().toString());
+        // ObjConnection.input.readObject();
 
-        ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
+         ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
         System.out.println("listlist:"+list);
+
+
         Come_Email = (String)list.get(3);
 
-        boolean res = ObjConnection.handleReceivedRequest(list);
+         boolean res = ObjConnection.handleReceivedRequest(list);
 
         Log.d("resa:","resa:"+res);
         if(!res){
@@ -279,7 +282,7 @@ public class Register extends AppCompatActivity {
             MyApplication data = (MyApplication) getApplicationContext();
             data.isSignedIn();
            // data.setUser(() list.get(2));
-            ObjConnection.CloseCrap();
+           // ObjConnection.CloseCrap();
             return true;
         }
     }

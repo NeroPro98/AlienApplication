@@ -35,6 +35,9 @@ public class Background extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_background);
 
+
+
+
         Alien_Text = (ImageView)findViewById(R.id.Zeon_chat);
         //AstroMan = (ImageView)findViewById(R.id.alien3);
         tap = (TextView)findViewById(R.id.tap_any_where);

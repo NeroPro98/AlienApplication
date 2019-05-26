@@ -1,12 +1,22 @@
 package zeon.com.chatapplication.Model;
 
+import android.app.FragmentManager;
+import android.app.Service;
+import android.content.Intent;
+import android.os.IBinder;
+import android.support.annotation.Nullable;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
+
+import zeon.com.chatapplication.Chats;
+import zeon.com.chatapplication.MyApplication;
 
 public class UserProfile implements Serializable {
     private String userName;
@@ -16,7 +26,7 @@ public class UserProfile implements Serializable {
     private ArrayList<String> userFriends;
     private ArrayList<String> blockList;
     private Date joinDate;
-    private ArrayList<Message> currMessages;
+    private ArrayList<Chats> chatsList;
     private String userId;
     private String story;
     public transient ObjectOutputStream output;
@@ -25,6 +35,22 @@ public class UserProfile implements Serializable {
     private String IPString;
     private String PortString;
 
+    private boolean signedIn;
+
+    public boolean isSignedIn() {
+        return signedIn;
+    }
+
+    public void setSignedIn(boolean signedIn) {
+        this.signedIn = signedIn;
+    }
+
+    public HandleThread handleThread;
+
+    public Socket getConnection()
+    {
+        return Connection;
+    }
     public String getStory() {
         return story;
     }
@@ -66,12 +92,105 @@ public class UserProfile implements Serializable {
         userFriends = new ArrayList<>();
         blockList = new ArrayList<>();
         joinDate = new Date();
-        currMessages = new ArrayList<>();
+        chatsList = new ArrayList<>();
         story = "";
         IPString = "10.0.2.2";
         PortString = "0000";
+        handleThread = null;
     }
 
+    public class HandleThread extends Thread {
+        ArrayList<Object> List;
+        public HandleThread(Socket clientSocket)
+        {
+            try {
+                input = (ObjectInputStream) clientSocket.getInputStream();
+                output = (ObjectOutputStream) clientSocket.getOutputStream();
+                ArrayList<Object> list = new ArrayList<>();
+                list.add(email);
+                output.writeObject(list);
+                output.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+            start();
+        }
+
+
+        @Override
+        public void run() {
+            super.run();
+
+            try {
+                List = (ArrayList<Object>) input.readObject();
+                handleReceivedRequest(List);
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+        /*
+        @Nullable
+        @Override
+        public IBinder onBind(Intent intent) {
+            return null;
+        }
+
+
+        @Override
+        public void onCreate() {
+            super.onCreate();
+
+            try {
+                input = (ObjectInputStream) Connection.getInputStream();
+                output = (ObjectOutputStream) Connection.getOutputStream();
+                ArrayList<Object> list = new ArrayList<>();
+                list.add(email);
+                output.writeObject(list);
+                output.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+
+
+        @Override
+        public int onStartCommand(Intent intent, int flags, int startId) {
+                try {
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            return super.onStartCommand(intent, flags, startId);
+        }*/
+
+    }
+    public void connect()
+    {
+        try {
+            connectToServer();
+            SetupStreams();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Chats getChat(String friendEmail)
+    {
+        for(Chats c : chatsList)
+        {
+            if(c.getFriendEmail().equals(friendEmail))
+                return c;
+        }
+        return null;
+    }
 
     public boolean addFriend(UserProfile friend) {
         boolean searchInFriendList = searchInFriendList(friend.getUserName());
@@ -210,7 +329,6 @@ public class UserProfile implements Serializable {
             case 0://Add User
             {
                 return (boolean) list.get(1);
-
             }
             case 1: //Sign in
             {
@@ -235,6 +353,27 @@ public class UserProfile implements Serializable {
             case 8: //Block Friend
             {
                 return (boolean)list.get(1);
+            }
+            case 12:
+            {
+                Message message = new Message();
+                message.setObject((String)list.get(1));
+                message.setSenderEmail((String) list.get(2));
+
+                for(int i =0 ; i < chatsList.size(); i++)
+                {
+                    if(chatsList.get(i).getFriendEmail().equals(message.getSenderEmail()))
+                        chatsList.get(i).addMessage(message);
+                }
+                isSignedIn();
+                list.set(3,email);
+                list.set(4,true);
+                try {
+                    output.writeObject(list);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
 
         }

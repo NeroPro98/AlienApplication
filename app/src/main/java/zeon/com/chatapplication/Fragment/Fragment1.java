@@ -37,8 +37,8 @@ public class Fragment1 extends Fragment{
     ActionBar action;
     private BottomNavigationView mView;
     private UserProfile ObjConnection = new UserProfile();
-    ArrayList<Object> list = new ArrayList<Object>();
-    ArrayList<String> EmailList = new ArrayList<String>();
+    ArrayList<Object> list = new ArrayList<>();
+    ArrayList<String> EmailList = new ArrayList<>();
 
 
 

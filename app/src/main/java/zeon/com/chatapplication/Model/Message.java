@@ -3,44 +3,37 @@ package zeon.com.chatapplication.Model;
 import java.util.Date;
 
 public class Message {
-    private String messageID;
-
-    public String getMessageID() {
-        return messageID;
-    }
-
-    public void setMessageID(String messageID) {
-        this.messageID = messageID;
-    }
-
-    private String senderID;
-    private String recieverID;
+    private String senderEmail;
+    private String recieverEmail;
     private boolean groupMessage;
     private boolean recieved;
     private Object object;
     private messageType type;
     private Date sendDate;
-    private Date recieveDate;
+    private Date receiveDate;
+
 
 
     //The Setters And The Getters
-        public String getSenderID () {
-        return senderID;
+
+
+    public String getSenderEmail() {
+        return senderEmail;
     }
 
-        public void setSenderID (String senderID){
-        this.senderID = senderID;
+    public void setSenderEmail(String senderEmail) {
+        this.senderEmail = senderEmail;
     }
 
-        public String getRecieverID () {
-        return recieverID;
+    public String getRecieverEmail() {
+        return recieverEmail;
     }
 
-        public void setRecieverID (String recieverID){
-        this.recieverID = recieverID;
+    public void setRecieverEmail(String recieverEmail) {
+        this.recieverEmail = recieverEmail;
     }
 
-        public boolean isGroupMessage () {
+    public boolean isGroupMessage () {
         return groupMessage;
     }
 
@@ -80,12 +73,12 @@ public class Message {
         this.sendDate = sendDate;
     }
 
-        public Date getRecieveDate () {
-        return recieveDate;
+        public Date getReceiveDate() {
+        return receiveDate;
     }
 
-        public void setRecieveDate (Date recieveDate){
-        this.recieveDate = recieveDate;
+        public void setReceiveDate(Date receiveDate){
+        this.receiveDate = receiveDate;
     }
 
 }
