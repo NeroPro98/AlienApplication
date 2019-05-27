@@ -46,6 +46,7 @@ public class Fragment1 extends Fragment{
     public void init(){
         int i;
         int size =(int)list.get(2);
+        MyApplication data = (MyApplication) getActivity().getApplicationContext();
         list.remove(0);
         list.remove(0);
         list.remove(0);
@@ -55,11 +56,19 @@ public class Fragment1 extends Fragment{
             Friend.add(new FriendComp(1,(String)list.get(i),(String)list.get(i+1),"https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
             EmailList.add((String)list.get(i+1));
         }
-        MyApplication data = (MyApplication) getActivity().getApplicationContext();
+
+
         data.setEmails(EmailList);
         System.out.println("The Email List is :"+data.getUser_Email());
         data.getUser_Email();
-        adapter.notifyDataSetChanged();
+        try {
+            adapter.notifyDataSetInvalidated();
+        }catch (Exception e){
+            System.out.println("The Exciption"+e);
+            e.printStackTrace();
+        }
+
+
 
 
     }
@@ -144,6 +153,7 @@ public class Fragment1 extends Fragment{
         adapter = new FriendAdapter(getContext(),Friend);
         Log.d("AlienChat","Context"+getContext());
         Log.d("AlienChat","message"+Friend);
+
         listview.setAdapter(adapter);
 
 
@@ -197,24 +207,9 @@ public class Fragment1 extends Fragment{
         return list;
     }
 
-    public ArrayList<Object> serilaizeToStringsForBlockFriend(String email,String email2){
-
-        ArrayList<Object>list = new ArrayList<>();
-        list.add(8);
-        list.add(email2);
-        list.add(email);
-        return list;
-    }
-
-    public ArrayList<Object> serilaizeToStringsForDeleteFriend(String email,String email2){
 
 
-        ArrayList<java.lang.Object>list = new ArrayList<>();
-        list.add(7);
-        list.add(email2);
-        list.add(email);
-        return list;
-    }
+
 
     public boolean Send_Add_Request_ToServer(String email,String email2) throws InterruptedException, IOException, ClassNotFoundException {
         boolean res = Add_Freind_SetUp(serilaizeToStringsForAddFriend(email,email2));
@@ -222,17 +217,7 @@ public class Fragment1 extends Fragment{
         return res;
     }
 
-    public boolean Send_Block_Request_ToServer(String email,String email2) throws InterruptedException, IOException, ClassNotFoundException {
-        boolean res = Add_Freind_SetUp(serilaizeToStringsForBlockFriend(email,email2));
 
-        return res;
-    }
-
-    public boolean Send_Delete_Request_ToServer(String email,String email2) throws InterruptedException, IOException, ClassNotFoundException {
-        boolean res = Add_Freind_SetUp(serilaizeToStringsForDeleteFriend(email,email2));
-
-        return res;
-    }
 
     public void Check_Answer_Freind(final String email, final String User_Email){
         Thread thread = new Thread(new Runnable() {
@@ -264,66 +249,9 @@ public class Fragment1 extends Fragment{
         thread.start();
     }
 
-    public void Check_Answer_Delete(final String email, final String User_Email){
-
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                boolean bool = false;
-                try {
-
-                    bool = Send_Delete_Request_ToServer(email,User_Email);
-
-                    System.out.println("The bool of fragment1 is:"+bool);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } if (bool) {
-
-                    System.out.println("Success added");
-
-                } else{
-                    System.out.println("Reject added");
-                }
-
-            }
-        });
-        thread.start();
-    }
 
 
-    public void Check_Block_Friend(final String email, final String User_Email){
-        Thread thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
 
-                boolean bool = false;
-                try {
 
-                    bool = Send_Block_Request_ToServer(email,User_Email);
-
-                    System.out.println("The bool of fragment1 is:"+bool);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
-                    e.printStackTrace();
-                } if (bool) {
-
-                    System.out.println("Success Block");
-
-                } else{
-                    System.out.println("Success UnBlock");
-                }
-
-            }
-        });
-        thread.start();
-    }
 }
 

@@ -18,6 +18,34 @@ public class MyApplication extends android.app.Application {
     String User_Email;
     ArrayList<String> Emails = new ArrayList<String>();
     String Specific_Email_Press;
+    String User_Name;
+    ArrayList <String> FriendEmails = new ArrayList<>();
+    boolean signedIn;
+
+
+    public ArrayList<String> getFriendEmails() {
+        return FriendEmails;
+    }
+
+    public void setFriendEmails(ArrayList<String> friendEmails) {
+        FriendEmails = friendEmails;
+    }
+
+
+
+    public ArrayList<String> getEmails() {
+        return Emails;
+    }
+
+    public String getUser_Name() {
+        return User_Name;
+    }
+
+    public void setUser_Name(String user_Name) {
+        User_Name = user_Name;
+    }
+
+
 
     public String getSpecific_Email_Press() {
         return Specific_Email_Press;
@@ -45,6 +73,7 @@ public class MyApplication extends android.app.Application {
 
     public void setUser_Email(String user_Email) {
         System.out.println("Email is get "+ User_Email);
+        user.setEmail(user_Email);
         User_Email = user_Email;
     }
 
@@ -82,7 +111,7 @@ public class MyApplication extends android.app.Application {
         this.connection = connection;
     }
 
-    boolean signedIn;
+
 
     public UserProfile getUser() {
         return user;

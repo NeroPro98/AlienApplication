@@ -31,6 +31,7 @@ import java.util.List;
 import de.hdodenhof.circleimageview.CircleImageView;
 import zeon.com.chatapplication.Adapter.Fragment_Adapter;
 import zeon.com.chatapplication.Fragment.Fragment1;
+import zeon.com.chatapplication.Fragment.Fragment2;
 import zeon.com.chatapplication.Games.Activity.Games_main;
 import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.MyApplication;
@@ -192,8 +193,8 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                 break;
             case R.id.Refresh:
                 System.out.println("uuuuuuuuu");
-                Fragment1 fragment1=new Fragment1();
-                fragment1.Check_All();
+                Fragment2 fragment2=new Fragment2();
+                fragment2.Check_All_Friend();
                 System.out.println("ooooooooooooo");
                 break;
             case R.id.message:

@@ -59,8 +59,7 @@ public class FriendAdapter extends BaseAdapter {
         TextView Name = (TextView) view.findViewById(R.id.Name_Friend);
         TextView Active = (TextView) view.findViewById(R.id.Active);
         ImageView SendAdd = (ImageView)view.findViewById(R.id.add_friend);
-        ImageView SendDelete = (ImageView)view.findViewById(R.id.delete_friend);
-        ImageView SendBlock = (ImageView)view.findViewById(R.id.block_friend);
+
         Picasso.with(mContext).load(lists.get(position).getS4()).into(Image);
         Name.setText(lists.get(position).getS1());
         Active.setText(lists.get(position).getS3());
@@ -81,38 +80,7 @@ public class FriendAdapter extends BaseAdapter {
             }
         });
 
-        SendDelete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int number = position;
-                MyApplication data = (MyApplication) mContext.getApplicationContext();
-                String Specific_email = data.getEmails(number);
-                data.setSpecific_Email_Press(Specific_email);
-                String User_Curr_Email = data.getUser_Email();
-                SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick",Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("The_User_Email_Click",Specific_email);
-                Fragment1 fragment1 = new Fragment1();
-                fragment1.Check_Answer_Delete(Specific_email,User_Curr_Email);
 
-            }
-        });
-
-        SendBlock.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                int number = position;
-                MyApplication data = (MyApplication) mContext.getApplicationContext();
-                String Specific_email = data.getEmails(number);
-                data.setSpecific_Email_Press(Specific_email);
-                String User_Curr_Email = data.getUser_Email();
-                SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick",Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("The_User_Email_Click",Specific_email);
-                Fragment1 fragment1 = new Fragment1();
-                fragment1.Check_Block_Friend(Specific_email,User_Curr_Email);
-            }
-        });
 
 
         view.setOnClickListener(new View.OnClickListener() {

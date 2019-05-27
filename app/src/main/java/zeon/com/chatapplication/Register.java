@@ -34,6 +34,7 @@ public class Register extends AppCompatActivity {
     private Button Register_Button;
     public  ObjectInputStream input2;
     private String Come_Email;
+    private String User_Name;
     ImageView Dog;
     ImageView Alien;
 
@@ -196,6 +197,7 @@ public class Register extends AppCompatActivity {
                         });
                         MyApplication data = (MyApplication)getApplicationContext();
                         data.setUser_Email(Come_Email);
+                        data.setUser_Name(User_Name);
                         System.out.println("Come Email is:"+data.getUser_Email());
                         Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
                         startActivity(intent);}
@@ -263,7 +265,11 @@ public class Register extends AppCompatActivity {
 
         ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
         System.out.println("listlist:"+list);
-        Come_Email = (String)list.get(3);
+        if((boolean)list.get(1)==true) {
+            Come_Email = (String) list.get(2);
+            User_Name = (String) list.get(3);
+        }
+
 
         boolean res = ObjConnection.handleReceivedRequest(list);
 

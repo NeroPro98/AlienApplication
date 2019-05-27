@@ -26,6 +26,36 @@
         android:text="TextView"
         android:textSize="24dp"/>
 
+    <ImageView
+        android:id="@+id/delete_friend"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignLeft="@id/addstory"
+        android:layout_marginLeft="253dp"
+        android:layout_marginTop="10dp"
+        android:onClick="Delete_Friend"
+        android:src="@drawable/remove" />
+
+    <ImageView
+        android:id="@+id/unblock_friend"
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_alignLeft="@id/addstory"
+        android:layout_marginLeft="253dp"
+        android:layout_marginTop="30dp"
+        android:onClick="Delete_Friend"
+        android:src="@drawable/unblock" />
+
+    <ImageView
+        android:id="@+id/block_friend"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_alignLeft="@id/addstory"
+        android:layout_marginLeft="255dp"
+        android:layout_marginTop="60dp"
+        android:onClick="Block_Friend"
+        android:src="@drawable/block" />
+
     <TextView
         android:id="@+id/timesotry"
         android:layout_width="wrap_content"
