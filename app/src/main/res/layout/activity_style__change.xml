@@ -22,14 +22,17 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="225dp"
-        android:text="Change Your Style"
-        android:textSize="40sp"
+        android:layout_marginStart="70dp"
+        android:layout_marginLeft="70dp"
+        android:layout_marginBottom="235dp"
         android:fontFamily="cursive"
+        android:text="Change Your Style"
         android:textColor="@color/cyan"
-        android:textStyle="bold"/>
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <Button
         android:id="@+id/theme"
@@ -63,15 +66,25 @@
         android:layout_alignParentRight="true" />
 
     <Button
+
         android:id="@+id/savecolor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/background2"
-        android:layout_marginTop="350dp"
+        android:layout_alignParentStart="true"
 
-        android:layout_marginLeft="160dp"
-        android:text="Save"
-        android:onClick="SaveColor" />
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="158dp"
+        android:layout_marginLeft="158dp"
+        android:layout_marginTop="350dp"
+        android:layout_marginEnd="165dp"
+        android:layout_marginRight="165dp"
+        android:layout_marginBottom="308dp"
+        android:background="@drawable/background2"
+        android:onClick="SaveColor"
+        android:text="Save" />
 
 
 </RelativeLayout>

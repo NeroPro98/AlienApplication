@@ -35,6 +35,7 @@ public class Register extends AppCompatActivity {
     private Button Register_Button;
     public  ObjectInputStream input2;
     private String Come_Email;
+    private String User_Name;
     ImageView Dog;
     ImageView Alien;
 
@@ -201,6 +202,7 @@ public class Register extends AppCompatActivity {
                         });
                         MyApplication data = (MyApplication)getApplicationContext();
                         data.setUser_Email(Come_Email);
+                        data.setUser_Name(User_Name);
                         System.out.println("Come Email is:"+data.getUser_Email());
                         Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
                         startActivity(intent);}*/
@@ -279,18 +281,17 @@ public class Register extends AppCompatActivity {
         if(!res){
 
 //            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
-           // ObjConnection.CloseCrap();
+            ObjConnection.CloseCrap();
             return false;
 
         }else {
 //            Toast.makeText(getApplicationContext(),"Welcome...",Toast.LENGTH_SHORT).show();
             MyApplication data = (MyApplication) getApplicationContext();
-            data.user.isSignedIn();
+            data.isSignedIn();
            // data.setUser(() list.get(2));
-           // ObjConnection.CloseCrap();
+            ObjConnection.CloseCrap();
             return true;
-        }*/
-return false;
+        }
     }
 
 

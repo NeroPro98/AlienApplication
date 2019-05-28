@@ -15,10 +15,38 @@ public class MyApplication extends android.app.Application {
     UserProfile user;
     Socket connection;
     int Color;
+    boolean signedIn;
     Bitmap image;
+    String User_Name;
     String User_Email;
-    ArrayList<String> Emails = new ArrayList<String>();
     String Specific_Email_Press;
+    ArrayList <String> FriendEmails = new ArrayList<>();
+    ArrayList<String> Emails = new ArrayList<String>();
+
+
+    public ArrayList<String> getFriendEmails() {
+        return FriendEmails;
+    }
+
+    public void setFriendEmails(ArrayList<String> friendEmails) {
+        FriendEmails = friendEmails;
+    }
+
+
+
+    public ArrayList<String> getEmails() {
+        return Emails;
+    }
+
+    public String getUser_Name() {
+        return User_Name;
+    }
+
+    public void setUser_Name(String user_Name) {
+        User_Name = user_Name;
+    }
+
+
 
 
     private static Context mContext;
@@ -52,6 +80,7 @@ public class MyApplication extends android.app.Application {
 
     public void setUser_Email(String user_Email) {
         System.out.println("Email is get "+ User_Email);
+        user.setEmail(user_Email);
         User_Email = user_Email;
     }
 
@@ -83,7 +112,7 @@ public class MyApplication extends android.app.Application {
         this.connection = connection;
     }
 
-    boolean signedIn;
+
 
     public UserProfile getUser() {
         return user;
