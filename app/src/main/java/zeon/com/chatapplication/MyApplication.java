@@ -14,13 +14,13 @@ public class MyApplication extends android.app.Application {
     UserProfile user;
     Socket connection;
     int Color;
-    Bitmap image;
-    String User_Email;
-    ArrayList<String> Emails = new ArrayList<String>();
-    String Specific_Email_Press;
-    String User_Name;
-    ArrayList <String> FriendEmails = new ArrayList<>();
     boolean signedIn;
+    Bitmap image;
+    String User_Name;
+    String User_Email;
+    String Specific_Email_Press;
+    ArrayList <String> FriendEmails = new ArrayList<>();
+    ArrayList<String> Emails = new ArrayList<String>();
 
 
     public ArrayList<String> getFriendEmails() {

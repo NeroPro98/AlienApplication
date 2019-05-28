@@ -104,9 +104,15 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         mTablLayout.addTab(mTablLayout.newTab().setText("Message"));
         mTablLayout.addTab(mTablLayout.newTab().setText("Status"));
         mTablLayout.addTab(mTablLayout.newTab().setText("Connects"));
-
         mTablLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
+     //   mTablLayout.set
+       /* mTablLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() { ////////////////////////////Here Check the listener of the taps
+            @Override
+            public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
+
+            }
+        });*/
 
         Fragment_Adapter fs
                 = new Fragment_Adapter(getSupportFragmentManager(),mTablLayout.getTabCount());
@@ -114,8 +120,22 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         mViewPager.setAdapter(fs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTablLayout));
-        mTablLayout.addOnTabSelectedListener(new  TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            } ////////////////////////////////////////////////////
+            @Override
+            public void onPageSelected(int position) {
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+        mTablLayout.addOnTabSelectedListener(new  TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         //mView.setItemIconTintList();
 
         mView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {

@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -358,5 +359,12 @@ public class Fragment2 extends Fragment {
         list.add(email);
         return list;
     }
+
+    /* @Override
+   public void onResume() {
+        super.onResume();
+        Toast.makeText(getContext(), "M", Toast.LENGTH_SHORT).show();
+        Check_All_Friend();
+    }*/
 
 }

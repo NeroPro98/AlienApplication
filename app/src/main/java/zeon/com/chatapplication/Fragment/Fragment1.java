@@ -30,10 +30,10 @@ import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.MyApplication;
 import zeon.com.chatapplication.R;
 
-public class Fragment1 extends Fragment{
+public class Fragment1 extends Fragment {
 
     ArrayList<FriendComp> Friend = new ArrayList<>();
-    private ListView listview ;
+    private ListView listview;
     ActionBar action;
     private BottomNavigationView mView;
     private UserProfile ObjConnection = new UserProfile();
@@ -42,33 +42,30 @@ public class Fragment1 extends Fragment{
     FriendAdapter adapter;
 
 
-
-    public void init(){
+    public void init() {
         int i;
-        int size =(int)list.get(2);
+        int size = (int) list.get(2);
         MyApplication data = (MyApplication) getActivity().getApplicationContext();
         list.remove(0);
         list.remove(0);
         list.remove(0);
-        for(i =0 ; i<list.size();i = i+2) {
-          //   Friend.add(new FriendComp(1, "Mohamad Nesart", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+        for (i = 0; i < list.size(); i = i + 2) {
+            //   Friend.add(new FriendComp(1, "Mohamad Nesart", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
             // Friend.add(new FriendComp(1,"Mohamad Al Moazen","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-            Friend.add(new FriendComp(1,(String)list.get(i),(String)list.get(i+1),"https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-            EmailList.add((String)list.get(i+1));
+            Friend.add(new FriendComp(1, (String) list.get(i), (String) list.get(i + 1), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+            EmailList.add((String) list.get(i + 1));
         }
 
 
         data.setEmails(EmailList);
-        System.out.println("The Email List is :"+data.getUser_Email());
+        System.out.println("The Email List is :" + data.getUser_Email());
         data.getUser_Email();
         try {
             adapter.notifyDataSetInvalidated();
-        }catch (Exception e){
-            System.out.println("The Exciption"+e);
+        } catch (Exception e) {
+            System.out.println("The Exciption" + e);
             e.printStackTrace();
         }
-
-
 
 
     }
@@ -78,20 +75,20 @@ public class Fragment1 extends Fragment{
 
         ObjConnection.connectToServer();
         ObjConnection.SetupStreams();
-        System.out.println("The ArrayList of Fragmint1 is :"+arrayList);
+        System.out.println("The ArrayList of Fragmint1 is :" + arrayList);
         ObjConnection.output.writeObject(arrayList);
         ObjConnection.output.flush();
         ObjConnection.input.readObject();
-        list = (ArrayList<Object>)ObjConnection.input.readObject();
+        list = (ArrayList<Object>) ObjConnection.input.readObject();
         boolean res = ObjConnection.handleReceivedRequest(list);
-        Log.d("res","res:"+res);
-        if(!res){
+        Log.d("res", "res:" + res);
+        if (!res) {
 
 
             ObjConnection.CloseCrap();
             return false;
 
-        }else {
+        } else {
 //
             ObjConnection.CloseCrap();
             return true;
@@ -99,23 +96,23 @@ public class Fragment1 extends Fragment{
 
     }
 
-    public ArrayList<Object> serilaizeToStrings(){
-        MyApplication data = (MyApplication)getContext().getApplicationContext();
-        ArrayList<Object>list = new ArrayList<>();
+    public ArrayList<Object> serilaizeToStrings() {
+        MyApplication data = (MyApplication) getContext().getApplicationContext();
+        ArrayList<Object> list = new ArrayList<>();
         list.add(4);
         list.add(data.getUser_Email());
-       // list.add(email);
+        // list.add(email);
         return list;
     }
 
     public boolean checkTheList() throws InterruptedException, IOException, ClassNotFoundException {
         boolean res = Friends_List(serilaizeToStrings());
 
-        System.out.println("resofcheckTheList:"+res);
+        System.out.println("resofcheckTheList:" + res);
         return res;
     }
 
-    public void Check_All(){
+    public void Check_All() {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -125,7 +122,7 @@ public class Fragment1 extends Fragment{
 
                     bool = checkTheList();
 
-                    System.out.println("The bool of fragment1 is:"+bool);
+                    System.out.println("The bool of fragment1 is:" + bool);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
@@ -133,7 +130,7 @@ public class Fragment1 extends Fragment{
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                if(bool){
+                if (bool) {
                     init();
                 }
             }
@@ -147,15 +144,14 @@ public class Fragment1 extends Fragment{
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-        View view = inflater.inflate(R.layout.layout_fragment1,container,false);
-        listview = (ListView)view.findViewById(R.id.ListViewMessage1);
+        View view = inflater.inflate(R.layout.layout_fragment1, container, false);
+        listview = (ListView) view.findViewById(R.id.ListViewMessage1);
         Check_All();
-        adapter = new FriendAdapter(getContext(),Friend);
-        Log.d("AlienChat","Context"+getContext());
-        Log.d("AlienChat","message"+Friend);
+        adapter = new FriendAdapter(getContext(), Friend);
+        Log.d("AlienChat", "Context" + getContext());
+        Log.d("AlienChat", "message" + Friend);
 
         listview.setAdapter(adapter);
-
 
 
         return view;
@@ -167,19 +163,19 @@ public class Fragment1 extends Fragment{
 
         ObjConnection.connectToServer();
         ObjConnection.SetupStreams();
-        System.out.println("The ArrayList of Fragmint1 is :"+arrayList);
+        System.out.println("The ArrayList of Fragmint1 is :" + arrayList);
         ObjConnection.output.writeObject(arrayList);
         ObjConnection.output.flush();
         ObjConnection.input.readObject();
-        list = (ArrayList<Object>)ObjConnection.input.readObject();
+        list = (ArrayList<Object>) ObjConnection.input.readObject();
         boolean res = ObjConnection.handleReceivedRequest(list);
-        Log.d("res","res:"+res);
-        if(!res){
+        Log.d("res", "res:" + res);
+        if (!res) {
 
             ObjConnection.CloseCrap();
             return false;
 
-        }else {
+        } else {
             ObjConnection.CloseCrap();
             return true;
         }
@@ -193,10 +189,11 @@ public class Fragment1 extends Fragment{
         super.onAttach(context);
         this.context = context;
     }
-    public ArrayList<Object> serilaizeToStringsForAddFriend(String email,String email2){
+
+    public ArrayList<Object> serilaizeToStringsForAddFriend(String email, String email2) {
 
 
-        ArrayList<Object>list = new ArrayList<>();
+        ArrayList<Object> list = new ArrayList<>();
         //SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(context);
         //  String email =sharedPreferences.getString("The_User_Email_Click","");
         list.add(6);
@@ -208,18 +205,14 @@ public class Fragment1 extends Fragment{
     }
 
 
-
-
-
-    public boolean Send_Add_Request_ToServer(String email,String email2) throws InterruptedException, IOException, ClassNotFoundException {
-        boolean res = Add_Freind_SetUp(serilaizeToStringsForAddFriend(email,email2));
+    public boolean Send_Add_Request_ToServer(String email, String email2) throws InterruptedException, IOException, ClassNotFoundException {
+        boolean res = Add_Freind_SetUp(serilaizeToStringsForAddFriend(email, email2));
 
         return res;
     }
 
 
-
-    public void Check_Answer_Freind(final String email, final String User_Email){
+    public void Check_Answer_Freind(final String email, final String User_Email) {
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
@@ -227,20 +220,21 @@ public class Fragment1 extends Fragment{
                 boolean bool = false;
                 try {
 
-                    bool = Send_Add_Request_ToServer(email,User_Email);
+                    bool = Send_Add_Request_ToServer(email, User_Email);
 
-                    System.out.println("The bool of fragment1 is:"+bool);
+                    System.out.println("The bool of fragment1 is:" + bool);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                } if (bool) {
+                }
+                if (bool) {
 
                     System.out.println("Success added");
 
-                } else{
+                } else {
                     System.out.println("Reject added");
                 }
 
@@ -250,8 +244,9 @@ public class Fragment1 extends Fragment{
     }
 
 
-
-
-
+ /*   @Override
+    public void onResume() {
+        super.onResume();
+        Check_All();
+    }*/
 }
-
