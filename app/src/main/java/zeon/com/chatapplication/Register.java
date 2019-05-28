@@ -269,13 +269,12 @@ public class Register extends AppCompatActivity {
         ObjConnection.output.flush();
         // ObjConnection.input.readObject();
 
-     //    ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
-      //  System.out.println("listlist:"+list);
+        //    ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
+        //  System.out.println("listlist:"+list);
 
 
         //Come_Email = (String)list.get(3);
-/*
-         boolean res = ObjConnection.handleReceivedRequest(list);
+/*        boolean res = ObjConnection.handleReceivedRequest(list);
 
         Log.d("resa:","resa:"+res);
         if(!res){
@@ -296,7 +295,9 @@ public class Register extends AppCompatActivity {
 
 
 
-
+*/
+return true;
+    }
 
     public ArrayList<Object> serilaizeToStrings(){
 
