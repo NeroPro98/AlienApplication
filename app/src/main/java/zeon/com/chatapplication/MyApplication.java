@@ -24,6 +24,7 @@ public class MyApplication extends android.app.Application {
     ArrayList<String> Emails = new ArrayList<String>();
 
 
+
     public ArrayList<String> getFriendEmails() {
         return FriendEmails;
     }

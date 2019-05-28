@@ -37,12 +37,28 @@ public class UserProfile implements Serializable {
 
     private boolean signedIn;
 
+    private onValueChangeListener valueChangeListener;
+
+    public interface onValueChangeListener {
+        void onChange();
+    }
+    public void setValueChangeListener(onValueChangeListener valueChangeListener) {
+        this.valueChangeListener = valueChangeListener;
+    }
+
+
+    public onValueChangeListener getValueChangeListener() {
+        return valueChangeListener;
+    }
+
     public boolean isSignedIn() {
         return signedIn;
     }
 
     public void setSignedIn(boolean signedIn) {
         this.signedIn = signedIn;
+        if (valueChangeListener != null) valueChangeListener.onChange();
+
     }
 
     public HandleThread handleThread;
@@ -308,6 +324,23 @@ public class UserProfile implements Serializable {
         ArrayList<Object> list = (ArrayList<Object>) input.readObject();
         return handleReceivedRequest(list);
     }*/
+
+    public ArrayList<String> getUserFriends() {
+        return userFriends;
+    }
+
+    public void setUserFriends(ArrayList<String> userFriends) {
+        this.userFriends = userFriends;
+    }
+
+    public ArrayList<String> getBlockList() {
+        return blockList;
+    }
+
+    public void setBlockList(ArrayList<String> blockList) {
+        this.blockList = blockList;
+    }
+
     public boolean handleReceivedRequest(ArrayList<Object> list) {
 
         int type = (int) list.get(0);
@@ -318,6 +351,20 @@ public class UserProfile implements Serializable {
             }
             case 1: //Sign in
             {
+
+                boolean res = (boolean) list.get(1);
+                if(res)
+                {
+                    setEmail((String) list.get(2));
+                    setPassword((String) list.get(3));
+                    setUserName((String) list.get(4));
+                    setUserFriends((ArrayList<String>) list.get(5));
+                    setBlockList((ArrayList<String>) list.get(6));
+                    setSignedIn(true);
+
+                }
+                else
+                    setSignedIn(false);
                 return (boolean) list.get(1);
             }
             case 2:// edit user info

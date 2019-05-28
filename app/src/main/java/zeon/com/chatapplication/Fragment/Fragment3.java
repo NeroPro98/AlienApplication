@@ -52,8 +52,6 @@ public class Fragment3 extends Fragment {
         Log.d("AlienChat","message"+message);
         listview.setAdapter(adapter);
 
-
-
         return view;
 
 

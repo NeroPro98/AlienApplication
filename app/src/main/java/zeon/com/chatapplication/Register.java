@@ -150,19 +150,6 @@ public class Register extends AppCompatActivity {
 
     }
 
-    public boolean signIn(ArrayList<Object> list)
-    {
-
-        Toast.makeText(this, "Sign in...Welcome", Toast.LENGTH_SHORT).show();
-        return true;
-    }
-
-    public boolean RejectsignIn(ArrayList<Object> list)
-    {
-        Toast.makeText(getApplicationContext(), "Unveiled... Please Enter Again", Toast.LENGTH_SHORT).show();
-        return true;
-    }
-
 
 
     public void To_Chat_Page(View v) throws IOException, ClassNotFoundException {
@@ -179,43 +166,34 @@ public class Register extends AppCompatActivity {
                     boolean bool3 = false;
                     try {
                         bool3 = checkIfAvailable();
-                        System.out.println("bool3:"+bool3);
-                        System.out.println(ObjConnection.isSignedIn());
-                        if(ObjConnection.isSignedIn())
-                        {
-                            Toast.makeText(data, "Signed INNN", Toast.LENGTH_SHORT).show();
-                            signIn(arrayList);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }/*
-                    if(bool3) {
-                        runOnUiThread(new Runnable() {
+                        ObjConnection.setValueChangeListener(new UserProfile.onValueChangeListener() {
                             @Override
-                            public void run() {
-                                signIn(arrayList);
+                            public void onChange() {
+                                if (ObjConnection.isSignedIn()) {
+                                    Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
+                                    startActivity(intent);
+                                }
+                                else
+                                {
+                                    Toast.makeText(data, "Cannot Sign in", Toast.LENGTH_SHORT).show();
+                                }
                             }
                         });
-                        MyApplication data = (MyApplication)getApplicationContext();
-                        data.setUser_Email(Come_Email);
-                        data.setUser_Name(User_Name);
-                        System.out.println("Come Email is:"+data.getUser_Email());
-                        Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
-                        startActivity(intent);}*/
-                    }});
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    } catch (ClassNotFoundException e1) {
+                        e1.printStackTrace();
+                    }
+                }
+            });
             thread.start();
-
-
         }
         else{
             runOnUiThread(new Runnable() {  //Don't work
                 @Override
                 public void run() {
-                    RejectsignIn(arrayList);
                 }
             });
         }

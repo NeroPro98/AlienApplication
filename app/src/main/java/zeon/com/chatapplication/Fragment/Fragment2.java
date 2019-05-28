@@ -192,7 +192,7 @@ public class Fragment2 extends Fragment {
         MyApplication data = (MyApplication) getContext().getApplicationContext();
         ArrayList<Object> list = new ArrayList<>();
         list.add(11);
-        list.add(data.getUser_Email());
+        list.add(data.getUser().getEmail());
         return list;
     }
 
