@@ -146,7 +146,8 @@ public class Fragment1 extends Fragment {
 
         View view = inflater.inflate(R.layout.layout_fragment1, container, false);
         listview = (ListView) view.findViewById(R.id.ListViewMessage1);
-        Check_All();
+        //Check_All();
+
         adapter = new FriendAdapter(getContext(), Friend);
         Log.d("AlienChat", "Context" + getContext());
         Log.d("AlienChat", "message" + Friend);

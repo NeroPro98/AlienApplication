@@ -75,7 +75,7 @@ public class Fragment2 extends Fragment {
         textadd.setText(data.getUser_Name());
         textdate.setText("June");
       //
-        Check_All_Friend();
+       // Check_All_Friend();
 
         // InitStory();
         adapter = new Story_Adapter(getContext(), listStory);
