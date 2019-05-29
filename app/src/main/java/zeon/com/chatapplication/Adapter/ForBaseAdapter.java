@@ -2,6 +2,7 @@ package zeon.com.chatapplication.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,7 @@ import java.util.ArrayList;
 import zeon.com.chatapplication.Activity.ChatActivity;
 import zeon.com.chatapplication.Model.MessagePerson;
 import zeon.com.chatapplication.Model.MessagePerson;
+import zeon.com.chatapplication.MyApplication;
 import zeon.com.chatapplication.R;
 
 public class ForBaseAdapter extends BaseAdapter{
@@ -29,7 +31,6 @@ public class ForBaseAdapter extends BaseAdapter{
 
 
     public ForBaseAdapter(Context context,ArrayList<MessagePerson> listmsg){
-
         this.mContext = context;
         this.lists = listmsg;
         this.mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -72,7 +73,8 @@ public class ForBaseAdapter extends BaseAdapter{
 
                 Intent intent = new Intent(view.getContext(), ChatActivity.class);
                 intent.putExtra("name",lists.get(position).getS1());
-                intent.putExtra("userid",lists.get(position).getId());
+                intent.putExtra("userEmail",lists.get(position).getEmail());
+
 
                 mContext.startActivity(intent);
             }

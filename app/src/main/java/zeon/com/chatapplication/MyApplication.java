@@ -23,7 +23,16 @@ public class MyApplication extends android.app.Application {
     ArrayList <String> FriendEmails = new ArrayList<>();
     ArrayList<String> Emails = new ArrayList<String>();
 
+    String currTalkingFriend;
 
+
+    public String getCurrTalkingFriend() {
+        return currTalkingFriend;
+    }
+
+    public void setCurrTalkingFriend(String currTalkingFriend) {
+        this.currTalkingFriend = currTalkingFriend;
+    }
 
     public ArrayList<String> getFriendEmails() {
         return FriendEmails;

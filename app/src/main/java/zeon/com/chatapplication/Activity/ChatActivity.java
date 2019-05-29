@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
-import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -22,22 +21,29 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 
 import zeon.com.chatapplication.Model.Chat_Model;
+import zeon.com.chatapplication.Model.Message;
 import zeon.com.chatapplication.Model.UserProfile;
+import zeon.com.chatapplication.MyApplication;
 import zeon.com.chatapplication.R;
 
 public class ChatActivity extends AppCompatActivity implements SearchView.OnQueryTextListener{
 
+    String friendEmail = "";
     LinearLayout mLayout;
     ImageView sendbtn;
     EditText type;
     ArrayList<String> StringChat = new ArrayList<>();
+
+    MyApplication data = (MyApplication) getApplicationContext();
 
     //private UserProfile ObjConnection = new UserProfile();
 
@@ -110,10 +116,12 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     public void HandlerChatServer(){
-        ChatListServer.add(new Chat_Model(1,1,"Hi How are you ?",true));
-        ChatListServer.add(new Chat_Model(1,1,"I am good",true));
+        ArrayList<Message> list =data.getUser().getChat(friendEmail).getList();
+        for(int i = 0 ; i < list.size();i++)
+        {
+            ChatListServer.add(new Chat_Model(1,1, (String) list.get(i).getObject(),true));
+        }
         MessageFromServer(ChatListServer);
-
     }
 
 
@@ -132,6 +140,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
 
         String Name = getIntent().getStringExtra("name");
+        friendEmail = getIntent().getStringExtra("userEmail");
         int userid = getIntent().getIntExtra("userid",0);
         this.setTitle(Name);
 
@@ -144,10 +153,36 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
                 //the send photo not work
                 MessageFromClient(type.getText().toString(),"https://www.google.com/search?q=photos+for+man&rlz=1C1GCEA_enSY826SY826&tbm=isch&source=iu&ictx=1&fir=b8wFZeKFTP7F0M%253A%252CsiXBgr-E-CQ1BM%252C_&vet=1&usg=AI4_-kQrc1zmGS-7WEAbjsdg51faq7IjJQ&sa=X&ved=2ahUKEwiH5rCaiefhAhVlBGMBHTfdADYQ9QEwCXoECAcQFg&biw=1366&bih=695#");
                 StringChat.add(type.getText().toString());
+                sendToEmail(friendEmail,type.getText().toString());
                 type.setText("");
+
             }
         });
 
+    }
+
+    public void sendToEmail(String fEmail,String message)
+    {
+        final MyApplication tmpdata = data;
+        final ArrayList<Object> arrayList = new ArrayList<>();
+        arrayList.add(13);
+        arrayList.add(tmpdata.getUser().getEmail());
+        arrayList.add(fEmail);
+        arrayList.add(message);
+        arrayList.add(new Date());
+
+        Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    tmpdata.getUser().output.writeObject(arrayList);
+                    tmpdata.getUser().output.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
     }
 
     @Override

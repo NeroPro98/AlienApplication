@@ -12,11 +12,21 @@ public class MessagePerson {
     private String message;
     private String date;
     private String image;
+    private String email;
+
     private ImageView personImage;
 
+    public String getEmail() {
+        return email;
+    }
 
-    public MessagePerson(int ID, String s1, String s2, String s3, String s4){
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
+    public MessagePerson(String temail,int ID, String s1, String s2, String s3, String s4){
+
+        email = temail;
         id = ID;
         name = s1;
         message = s2;

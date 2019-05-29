@@ -38,6 +38,7 @@ public class UserProfile implements Serializable {
     private boolean signedIn;
 
     private onValueChangeListener valueChangeListener;
+    private onValueChangeListener newMessagesListener;
 
     public interface onValueChangeListener {
         void onChange();
@@ -289,6 +290,14 @@ public class UserProfile implements Serializable {
         this.joinDate = joinDate;
     }
 
+    public onValueChangeListener getNewMessagesListener() {
+        return newMessagesListener;
+    }
+
+    public void setNewMessagesListener(onValueChangeListener newMessagesListener) {
+        this.newMessagesListener = newMessagesListener;
+    }
+
     public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");
         System.out.println("The Ip is " + IPString);
@@ -415,6 +424,7 @@ public class UserProfile implements Serializable {
                     if(chatsList.get(i).getFriendEmail().equals(message.getSenderEmail()))
                         chatsList.get(i).addMessage(message);
                 }
+                if(newMessagesListener!=null) newMessagesListener.onChange();
             }
 
         }

@@ -9,6 +9,14 @@ public class Chats {
     private String myEmail;
     private String friendEmail;
 
+    public ArrayList<Message> getList() {
+        return list;
+    }
+
+    public void setList(ArrayList<Message> list) {
+        this.list = list;
+    }
+
     public String getMyEmail() {
         return myEmail;
     }
