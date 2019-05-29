@@ -3,7 +3,7 @@ import java.util.Date;
 import zeon.com.chatapplication.Model.messageType;
 
 public class Message {
-    private String messageID;
+   /* private String messageID;
 
     public String getMessageID() {
         return messageID;
@@ -12,7 +12,7 @@ public class Message {
     public void setMessageID(String messageID) {
         this.messageID = messageID;
     }
-
+*/
     private String senderID;
     private String recieverID;
     private boolean groupMessage;

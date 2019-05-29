@@ -1,5 +1,6 @@
 package zeon.com.chatapplication.Model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Message {
@@ -12,6 +13,19 @@ public class Message {
     private Date sendDate;
     private Date receiveDate;
 
+    public Message()
+    {
+
+    }
+
+    public Message(ArrayList<Object> list)
+    {
+        setSenderEmail((String) list.get(1));
+        setRecieverEmail((String)list.get(2));
+        setObject(list.get(3));
+        setSendDate((Date) list.get(4));
+        setReceiveDate(new Date());
+    }
 
 
     //The Setters And The Getters

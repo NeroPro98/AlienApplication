@@ -37,7 +37,6 @@ public class MessagePerson {
     }
 
 
-
     public int getId() {
         return id;
     }

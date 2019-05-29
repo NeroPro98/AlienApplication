@@ -170,6 +170,7 @@ public class Register extends AppCompatActivity {
                             @Override
                             public void onChange() {
                                 if (ObjConnection.isSignedIn()) {
+                                    MyApplication data = (MyApplication) getApplicationContext();
                                     Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
                                     startActivity(intent);
                                 }

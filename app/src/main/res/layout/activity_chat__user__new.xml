@@ -39,36 +39,39 @@
         <LinearLayout
             android:layout_width="350dp"
             android:layout_height="44dp"
-            android:layout_alignParentBottom="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginBottom="11dp"
             android:background="@drawable/search_bg"
             android:orientation="horizontal"
             android:scaleX="1.1"
-            android:scaleY="1.6"
-            android:layout_alignParentLeft="true">
+            android:scaleY="1.6">
 
             <EditText
                 android:id="@+id/typetext"
-                android:background="@color/white"
                 android:layout_width="250dp"
                 android:layout_height="wrap_content"
-                android:hint="Type Message......"
                 android:layout_marginLeft="30dp"
                 android:layout_marginTop="7sp"
-                android:textSize="15sp"
                 android:layout_marginBottom="9dp"
+                android:background="@color/white"
+                android:ems="8"
+                android:hint="Type Message......"
                 android:inputType="textPersonName"
                 android:textColorHighlight="#FFFFFF"
-                android:ems="8"/>
+                android:textSize="15sp" />
 
             <ImageView
+                android:id="@+id/pick_image_gallary"
                 android:layout_width="18dp"
                 android:layout_height="16dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="8dp"
-                android:src="@drawable/pickphoto"
-                android:id="@+id/pick_image_gallary"
-                android:onClick="Pick_Image_Gallary"/>
+                android:onClick="Pick_Image_Gallary"
+                android:src="@drawable/pickphoto" />
 
 
         </LinearLayout>
@@ -77,10 +80,13 @@
             android:id="@+id/sendbutton_new"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="362dp"
+            android:layout_marginLeft="362dp"
             android:src="@drawable/ic_menu_send"
-            android:layout_alignParentRight="true" />
+            android:contentDescription="TODO" />
 
 
     </RelativeLayout>

@@ -1,5 +1,6 @@
 package zeon.com.chatapplication.Activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.os.Build;
@@ -37,6 +38,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
     ImageView sendbtn;
     EditText type;
     ArrayList<String> StringChat = new ArrayList<>();
+
     //private UserProfile ObjConnection = new UserProfile();
 
     ArrayList<Chat_Model> ChatListServer = new ArrayList<>();
@@ -139,7 +141,6 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //the send photo not work
                 MessageFromClient(type.getText().toString(),"https://www.google.com/search?q=photos+for+man&rlz=1C1GCEA_enSY826SY826&tbm=isch&source=iu&ictx=1&fir=b8wFZeKFTP7F0M%253A%252CsiXBgr-E-CQ1BM%252C_&vet=1&usg=AI4_-kQrc1zmGS-7WEAbjsdg51faq7IjJQ&sa=X&ved=2ahUKEwiH5rCaiefhAhVlBGMBHTfdADYQ9QEwCXoECAcQFg&biw=1366&bih=695#");
                 StringChat.add(type.getText().toString());

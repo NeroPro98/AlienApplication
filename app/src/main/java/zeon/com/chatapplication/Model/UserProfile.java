@@ -361,7 +361,6 @@ public class UserProfile implements Serializable {
                     setUserFriends((ArrayList<String>) list.get(5));
                     setBlockList((ArrayList<String>) list.get(6));
                     setSignedIn(true);
-
                 }
                 else
                     setSignedIn(false);
@@ -407,6 +406,15 @@ public class UserProfile implements Serializable {
                     e.printStackTrace();
                 }
 
+            }
+            case 13:
+            {
+                Message message = new Message(list);
+                for(int i =0 ; i < chatsList.size(); i++)
+                {
+                    if(chatsList.get(i).getFriendEmail().equals(message.getSenderEmail()))
+                        chatsList.get(i).addMessage(message);
+                }
             }
 
         }
