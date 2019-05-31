@@ -12,7 +12,7 @@ import zeon.com.chatapplication.Model.UserProfile;
 
 
 public class MyApplication extends android.app.Application {
-    UserProfile user;
+    public UserProfile user;
     Socket connection;
     int Color;
     boolean signedIn;
@@ -142,9 +142,13 @@ public class MyApplication extends android.app.Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        mContext = getApplicationContext();
+        MyApplication.mContext = getApplicationContext();
      //   user = new UserProfile();
    //     checkTheInternalFile();  //here the file we read this before the GUI work
+    }
+
+    public static Context getAppContext(){
+        return MyApplication.mContext;
     }
     public void checkTheInternalFile()
     {

@@ -11,10 +11,12 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import zeon.com.chatapplication.Fragment.Fragment1;
 import zeon.com.chatapplication.Fragment.Fragment2;
+import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.Model.story;
 import zeon.com.chatapplication.MyApplication;
 import zeon.com.chatapplication.R;
@@ -23,7 +25,8 @@ public class Story_Adapter extends BaseAdapter {
     private ArrayList <story> mArrayList;
     private Context mContext;
     private LayoutInflater mInflater;
-
+    MyApplication data = (MyApplication) MyApplication.getAppContext();
+    private UserProfile ObjConnection = data.getUser();
     public Story_Adapter(Context context , ArrayList <story> list){
 
     this.mContext = context;
@@ -73,8 +76,33 @@ public class Story_Adapter extends BaseAdapter {
                 SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("The_User_Email_Click",Specific_email);
-                Fragment2 fragment2 = new Fragment2();
-                fragment2.Check_Answer_Delete(Specific_email,User_Curr_Email);
+                final ArrayList<Object> arrayList = new ArrayList<>();
+                arrayList.add(7);
+                arrayList.add(User_Curr_Email);
+                arrayList.add(Specific_email);
+                //Fragment2 fragment2 = new Fragment2();
+                //fragment2.Check_Answer_Delete(Specific_email,User_Curr_Email);
+
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            System.out.println("The arraylist :"+arrayList);
+                            ObjConnection.output.writeObject(arrayList);
+                            ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
+                            System.out.println("The inputList :"+inputlist);
+                            ObjConnection.handleReceivedRequest(inputlist);
+                            ObjConnection.output.flush();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
+
 
             }
         });
@@ -90,8 +118,32 @@ public class Story_Adapter extends BaseAdapter {
                 SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("The_User_Email_Click",Specific_email);
-                Fragment2 fragment2 = new Fragment2();
-                fragment2.Check_Block_Friend(Specific_email,User_Curr_Email);
+                //Fragment2 fragment2 = new Fragment2();
+                //fragment2.Check_Block_Friend(Specific_email,User_Curr_Email);
+                final ArrayList<Object> arrayList2 = new ArrayList<>();
+                arrayList2.add(8);
+                arrayList2.add(User_Curr_Email);
+                arrayList2.add(Specific_email);
+
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            System.out.println("The arraylist :"+arrayList2);
+                            ObjConnection.output.writeObject(arrayList2);
+                            ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
+                            System.out.println("The inputList :"+inputlist);
+                            ObjConnection.handleReceivedRequest(inputlist);
+                            ObjConnection.output.flush();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
             }
         });
 
@@ -106,9 +158,31 @@ public class Story_Adapter extends BaseAdapter {
                 SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("The_User_Email_Click",Specific_email);
-                Fragment2 fragment2 = new Fragment2();
-                fragment2.Check_Block_Friend(Specific_email,User_Curr_Email);
 
+                final ArrayList<Object> arrayList3 = new ArrayList<>();
+                arrayList3.add(10);
+                arrayList3.add(User_Curr_Email);
+                arrayList3.add(Specific_email);
+
+
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            System.out.println("The arraylist :"+arrayList3);
+                            ObjConnection.output.writeObject(arrayList3);
+                            ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
+                            System.out.println("The inputList :"+inputlist);
+                            ObjConnection.handleReceivedRequest(inputlist);
+                            ObjConnection.output.flush();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                thread.start();
             }
         });
 
@@ -120,6 +194,7 @@ public class Story_Adapter extends BaseAdapter {
 
             }
         });
+
 
 
         return view;

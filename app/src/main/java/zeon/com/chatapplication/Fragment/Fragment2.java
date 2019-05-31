@@ -39,9 +39,11 @@ public class Fragment2 extends Fragment {
     ArrayList<String> EmailListFriends = new ArrayList<String>();
 
     private void InitStory() {
-        list.remove(0);
-        list.remove(0);
-        MyApplication data = (MyApplication) getActivity().getApplicationContext();
+      //  list.remove(0);
+      //  list.remove(0);
+        MyApplication data = (MyApplication)MyApplication.getAppContext().getApplicationContext();
+        list =(ArrayList)data.user.getUser_Friend_Info();
+       // MyApplication data = (MyApplication) getActivity().getApplicationContext();
         for (int i = 0; i < list.size(); i=i+2) {
 
             listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", (String)list.get(i), (String)list.get(i+1)));
@@ -51,11 +53,13 @@ public class Fragment2 extends Fragment {
         }
         data.setFriendEmails(EmailListFriends);
         System.out.println("The EmailListFriends is:"+EmailListFriends);
-     //   if(list.size()==0)
-       //     System.out.println("No Friends");
-  //      }else
-         adapter.notifyDataSetInvalidated();
+        if(list.size()==0){
+            System.out.println("No Friends");
+        }else {
+            //   adapter.notifyDataSetInvalidated();
+        }
     }
+
 
     @Nullable
     @Override
@@ -77,7 +81,7 @@ public class Fragment2 extends Fragment {
       //
        // Check_All_Friend();
 
-        // InitStory();
+         InitStory();
         adapter = new Story_Adapter(getContext(), listStory);
 
         grid.setAdapter(adapter);

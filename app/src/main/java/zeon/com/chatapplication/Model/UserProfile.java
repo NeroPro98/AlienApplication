@@ -2,7 +2,9 @@ package zeon.com.chatapplication.Model;
 
 import android.app.FragmentManager;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
@@ -34,15 +36,40 @@ public class UserProfile implements Serializable {
     private transient Socket Connection;
     private String IPString;
     private String PortString;
-
     private boolean signedIn;
-
     private onValueChangeListener valueChangeListener;
     private onValueChangeListener newMessagesListener;
+    private ArrayList<String> User_Friend_Info = new ArrayList<>();
+    private ArrayList<String> User_List;
+
+
+    public ArrayList<String> getUser_List() {
+        return User_List;
+    }
+
+    public void setUser_List(ArrayList user_List) {
+        User_List = user_List;
+    }
+
+
+
+    public ArrayList<String> getUser_Friend_Info() {
+        return User_Friend_Info;
+    }
+
+    public void setUser_Friend_Info(String user_Friend_Info) {
+        User_Friend_Info.add(user_Friend_Info);
+    }
+
+
+
+ //   MyApplication data;
+    private static Context mContext;
 
     public interface onValueChangeListener {
         void onChange();
     }
+
     public void setValueChangeListener(onValueChangeListener valueChangeListener) {
         this.valueChangeListener = valueChangeListener;
     }
@@ -64,10 +91,10 @@ public class UserProfile implements Serializable {
 
     public HandleThread handleThread;
 
-    public Socket getConnection()
-    {
+    public Socket getConnection() {
         return Connection;
     }
+
     public String getStory() {
         return story;
     }
@@ -118,10 +145,11 @@ public class UserProfile implements Serializable {
 
     public class HandleThread extends Thread {
         ArrayList<Object> List;
-        public HandleThread(Socket clientSocket)
-        {
+
+        public HandleThread(Socket clientSocket) {
             start();
         }
+
         @Override
         public void run() {
             super.run();
@@ -134,6 +162,7 @@ public class UserProfile implements Serializable {
                 e.printStackTrace();
             }
         }
+
 
 
         /*
@@ -175,8 +204,8 @@ public class UserProfile implements Serializable {
         }*/
 
     }
-    public void connect()
-    {
+
+    public void connect() {
         try {
             connectToServer();
             SetupStreams();
@@ -185,11 +214,9 @@ public class UserProfile implements Serializable {
         }
     }
 
-    public Chats getChat(String friendEmail)
-    {
-        for(Chats c : chatsList)
-        {
-            if(c.getFriendEmail().equals(friendEmail))
+    public Chats getChat(String friendEmail) {
+        for (Chats c : chatsList) {
+            if (c.getFriendEmail().equals(friendEmail))
                 return c;
         }
         return null;
@@ -350,7 +377,11 @@ public class UserProfile implements Serializable {
         this.blockList = blockList;
     }
 
+
     public boolean handleReceivedRequest(ArrayList<Object> list) {
+
+
+        MyApplication app = (MyApplication)MyApplication.getAppContext().getApplicationContext();
 
         int type = (int) list.get(0);
         switch (type) {
@@ -362,18 +393,46 @@ public class UserProfile implements Serializable {
             {
 
                 boolean res = (boolean) list.get(1);
-                if(res)
-                {
-                    setEmail((String) list.get(2));
-                    setPassword((String) list.get(3));
-                    setUserName((String) list.get(4));
-                    setUserFriends((ArrayList<String>) list.get(5));
-                    setBlockList((ArrayList<String>) list.get(6));
-                    setSignedIn(true);
-                }
-                else
-                    setSignedIn(false);
-                return (boolean) list.get(1);
+                if (res) {
+
+                    app.setUser_Email((String) list.get(2));
+                    app.user.setEmail((String) list.get(2));
+                    app.user.setPassword((String) list.get(3));
+                    app.user.setUserName((String) list.get(4));
+                    app.user.setUserFriends((ArrayList<String>) list.get(5));
+                    app.user.setBlockList((ArrayList<String>) list.get(6));
+                    list.remove(0);
+                    list.remove(0);
+                    list.remove(0);
+                    list.remove(0);
+                    list.remove(0);
+                    list.remove(0);
+                    list.remove(0);
+                    int j = 0;
+                    for(int i =0 ; i<list.size();i++){
+                        if((list.get(i).equals("0"))) {
+                            break;
+                        }
+                        else {
+                            app.user.User_Friend_Info.add((String)list.get(i));
+                            j++;
+                        }
+                    }
+                    app.user.getUser_Friend_Info();
+                    for(int i =0 ; i<j+1;i++) {
+                        list.remove(0);
+                    }
+                    list.size();
+                        app.user.setUser_List(list);
+
+                    app.user.setSignedIn(true);
+                    app.user.getUserFriends();
+                    app.user.getBlockList();
+                    app.user.getUser_Friend_Info();
+                    app.user.getUser_List();
+                } else
+                    app.user.setSignedIn(false);
+                return res;
             }
             case 2:// edit user info
             {
@@ -386,29 +445,35 @@ public class UserProfile implements Serializable {
             {
                 return (boolean) list.get(1);
             }
+            case 5://bring friends list
+            {
+                return (boolean) list.get(1);
+            }
+            case 6://bring friends list
+            {
+                return (boolean) list.get(1);
+            }
 
             case 7: // Remove Friend
             {
-                return (boolean)list.get(1);
+                return (boolean) list.get(1);
             }
             case 8: //Block Friend
             {
-                return (boolean)list.get(1);
+                return (boolean) list.get(1);
             }
-            case 12:
-            {
+            case 12: {
                 Message message = new Message();
-                message.setObject((String)list.get(1));
+                message.setObject((String) list.get(1));
                 message.setSenderEmail((String) list.get(2));
 
-                for(int i =0 ; i < chatsList.size(); i++)
-                {
-                    if(chatsList.get(i).getFriendEmail().equals(message.getSenderEmail()))
+                for (int i = 0; i < chatsList.size(); i++) {
+                    if (chatsList.get(i).getFriendEmail().equals(message.getSenderEmail()))
                         chatsList.get(i).addMessage(message);
                 }
                 isSignedIn();
-                list.set(3,email);
-                list.set(4,true);
+                list.set(3, email);
+                list.set(4, true);
                 try {
                     output.writeObject(list);
                 } catch (IOException e) {
@@ -416,15 +481,13 @@ public class UserProfile implements Serializable {
                 }
 
             }
-            case 13:
-            {
+            case 13: {
                 Message message = new Message(list);
-                for(int i =0 ; i < chatsList.size(); i++)
-                {
-                    if(chatsList.get(i).getFriendEmail().equals(message.getSenderEmail()))
+                for (int i = 0; i < chatsList.size(); i++) {
+                    if (chatsList.get(i).getFriendEmail().equals(message.getSenderEmail()))
                         chatsList.get(i).addMessage(message);
                 }
-                if(newMessagesListener!=null) newMessagesListener.onChange();
+                if (newMessagesListener != null) newMessagesListener.onChange();
             }
 
         }

@@ -44,20 +44,23 @@ public class Fragment1 extends Fragment {
 
     public void init() {
         int i;
-        int size = (int) list.get(2);
-        MyApplication data = (MyApplication) getActivity().getApplicationContext();
-        list.remove(0);
-        list.remove(0);
-        list.remove(0);
-        for (i = 0; i < list.size(); i = i + 2) {
+     //   int size = (int) list.get(2);
+        //MyApplication data = (MyApplication) getActivity().getApplicationContext();
+        MyApplication data = (MyApplication)MyApplication.getAppContext().getApplicationContext();
+
+        list =(ArrayList)data.user.getUser_List();
+     //   list.remove(0);
+      //  list.remove(0);
+       // list.remove(0);
+        for (i = 0; i < list.size(); i = i + 3) {
             //   Friend.add(new FriendComp(1, "Mohamad Nesart", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
             // Friend.add(new FriendComp(1,"Mohamad Al Moazen","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-            Friend.add(new FriendComp(1, (String) list.get(i), (String) list.get(i + 1), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-            EmailList.add((String) list.get(i + 1));
+            Friend.add(new FriendComp(1,(String) list.get(i+1) ,(String) list.get(i) , "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+           // EmailList.add((String) list.get(i + 1));
         }
 
 
-        data.setEmails(EmailList);
+        data.setEmails(data.user.getUserFriends());
         System.out.println("The Email List is :" + data.getUser_Email());
         data.getUser_Email();
         try {
@@ -147,7 +150,7 @@ public class Fragment1 extends Fragment {
         View view = inflater.inflate(R.layout.layout_fragment1, container, false);
         listview = (ListView) view.findViewById(R.id.ListViewMessage1);
         //Check_All();
-
+        init();
         adapter = new FriendAdapter(getContext(), Friend);
         Log.d("AlienChat", "Context" + getContext());
         Log.d("AlienChat", "message" + Friend);
