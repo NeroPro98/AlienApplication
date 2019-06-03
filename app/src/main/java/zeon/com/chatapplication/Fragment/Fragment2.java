@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,13 +42,19 @@ public class Fragment2 extends Fragment {
     ArrayList<String> EmailListFriends = new ArrayList<String>();
     MyApplication data = (MyApplication)MyApplication.getAppContext().getApplicationContext();
     private int count = 0;
+    //For SwipeRefreshLayout
+    private SwipeRefreshLayout mRefreshLayout;
+    private ArrayList<Object> helper_List = new ArrayList<>();
+    private ArrayList<String> helper_List2 = new ArrayList<>();
+
 
     public void InitStory(ArrayList<Object> list2) {
 
+        list2 = helper_List;
         if(count ==0) {
             list =(ArrayList)data.user.getUser_Friend_Info();
             count++;
-        }else {
+        }else if(list2.size()>2){
             list = list2;
             list.remove(0);
             list.remove(0);
@@ -60,6 +67,7 @@ public class Fragment2 extends Fragment {
 
             listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", (String)list.get(i), (String)list.get(i+1)));
             EmailListFriends.add((String)list.get(i));
+
 
            // listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", "Adnan Ktan", "June"));
         }
@@ -83,7 +91,7 @@ public class Fragment2 extends Fragment {
         // Picasso.with(getContext()).load("G:\\github\\ChatApplication\\app\\src\\main\\res\\drawable\\astro3.jpg")
         //   .into(imagestory); //don't work
         imagestory.setImageResource(R.drawable.man);
-        MyApplication data = (MyApplication) getContext().getApplicationContext();
+        final MyApplication data = (MyApplication) getContext().getApplicationContext();
         textadd.setText(data.getUser_Name());
         textdate.setText("June");
         ArrayList <Object>list3 =(ArrayList)data.getUserFriend_List_Every_init();
@@ -92,6 +100,38 @@ public class Fragment2 extends Fragment {
 
         grid.setAdapter(adapter);
         adapter.notifyDataSetChanged();
+        mRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
+
+
+        if(count >0) {
+            mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    boolean bool = false;
+                    System.out.println("The User Friend is"+data.user.getUserFriends());
+                    System.out.println("I am Refresh Swap");
+                    helper_List = data.getHelper_List();
+                    helper_List2 = data.user.getUser_Friend_Info();
+                    if(helper_List.size()!=0) {
+                        helper_List.remove(0);
+                        helper_List.remove(0);
+                    }
+                    //for(int i =0;i<helper_List.size();i++) {
+                        if(helper_List.size() > helper_List2.size() && helper_List.size()>2) {
+                            InitStory(helper_List);
+                            data.user.setUser_Friend_Info(helper_List.toString());
+                            //  }
+                            adapter = new Story_Adapter(getContext(), listStory);
+                            grid.setAdapter(adapter);
+                            adapter.notifyDataSetChanged();
+
+                        }
+                    mRefreshLayout.setRefreshing(false);
+                }
+            });
+        }
+
+
         return view;
 
     }

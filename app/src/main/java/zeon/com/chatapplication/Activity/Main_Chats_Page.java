@@ -151,12 +151,13 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                                     final ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
                                     System.out.println("The inputList :"+inputlist);
                                     ObjConnection.handleReceivedRequest(inputlist);
+                                    data.setHelper_List(inputlist);
                                     ObjConnection.output.flush();
                                     data.setUserFriend_List_Every_init(inputlist);
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                            fragment2.InitStory(inputlist);
+                                        //    fragment2.InitStory(inputlist);
 
                                             Toast.makeText(getApplicationContext(),"Fragment2",Toast.LENGTH_SHORT).show();
                                           //  fragment2.notifyAll();

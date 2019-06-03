@@ -41,6 +41,17 @@ public class UserProfile implements Serializable {
     private onValueChangeListener newMessagesListener;
     private ArrayList<String> User_Friend_Info = new ArrayList<>();
     private ArrayList<String> User_List;
+    private ArrayList<String> User_Friend_Name = new ArrayList<>();
+
+    public ArrayList<String> getUser_Friend_Name() {
+        return User_Friend_Name;
+    }
+
+    public void setUser_Friend_Name(String user_Friend_Name) {
+        User_Friend_Name.add(user_Friend_Name);
+    }
+
+
 
 
     public ArrayList<String> getUser_List() {
@@ -415,7 +426,17 @@ public class UserProfile implements Serializable {
                         }
                         else {
                             app.user.User_Friend_Info.add((String)list.get(i));
+                            //app.user.setUser_Friend_Name((String)list.get(i));
                             j++;
+                        }
+                    }
+
+                    for(int i =0 ; i<list.size();i =i+2){
+                        if((list.get(i).equals("0"))) {
+                            break;
+                        }
+                        else {
+                            app.user.setUser_Friend_Name((String)list.get(i));
                         }
                     }
                     app.user.getUser_Friend_Info();

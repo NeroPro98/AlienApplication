@@ -25,6 +25,18 @@ public class MyApplication extends android.app.Application {
     String currTalkingFriend;
     private ArrayList<Object> getUser_List_Every_init = new ArrayList<Object>();
     private ArrayList<Object> UserFriend_List_Every_init = new ArrayList<Object>();
+    private ArrayList<Object> Helper_List = new ArrayList<>();
+
+
+    public ArrayList<Object> getHelper_List() {
+        return Helper_List;
+    }
+
+    public void setHelper_List(ArrayList<Object> helper_List) {
+        Helper_List = helper_List;
+    }
+
+
 
 
     public ArrayList<Object> getUserFriend_List_Every_init() {
