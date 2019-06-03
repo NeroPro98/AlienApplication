@@ -38,20 +38,25 @@ public class Fragment_Adapter extends FragmentStatePagerAdapter {
             default:
                 return null;
         }*/
+        Fragment fragment = null;
         if (position == 0) {
-            Fragment3 f3 = new Fragment3();
-            return f3;
+            //Fragment3 f3 = new Fragment3();
+            fragment = new Fragment3();
+            System.out.println("Fragment 3 called");
+            //return f3;
         } else if (position == 1) {
-            Fragment2 f2 = new Fragment2();
-            return f2;
+            fragment = new Fragment2();
+            System.out.println("Fragment 2 called");
+            //return f2;
         } else if (position == 2) {
-            Fragment1 f1 = new Fragment1();
-
-            return f1;
+            fragment = new Fragment1();
+            System.out.println("Fragment 1 called");
+            //return f1;
 
         } else {
             return null;
         }
+        return fragment;
     }
 
     @Override

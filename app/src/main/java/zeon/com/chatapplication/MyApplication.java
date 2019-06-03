@@ -22,8 +22,29 @@ public class MyApplication extends android.app.Application {
     String Specific_Email_Press;
     ArrayList <String> FriendEmails = new ArrayList<>();
     ArrayList<String> Emails = new ArrayList<String>();
-
     String currTalkingFriend;
+    private ArrayList<Object> getUser_List_Every_init = new ArrayList<Object>();
+    private ArrayList<Object> UserFriend_List_Every_init = new ArrayList<Object>();
+
+
+    public ArrayList<Object> getUserFriend_List_Every_init() {
+        return UserFriend_List_Every_init;
+    }
+
+    public void setUserFriend_List_Every_init(ArrayList<Object> userFriend_List_Every_init) {
+        UserFriend_List_Every_init = userFriend_List_Every_init;
+    }
+
+
+
+    public ArrayList<Object> getGetUser_List_Every_init() {
+        return getUser_List_Every_init;
+    }
+
+    public void setGetUser_List_Every_init(ArrayList<Object> getUser_List_Every_init) {
+        this.getUser_List_Every_init = getUser_List_Every_init;
+    }
+
 
 
     public String getCurrTalkingFriend() {

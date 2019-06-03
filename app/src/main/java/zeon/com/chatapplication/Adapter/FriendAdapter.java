@@ -42,6 +42,10 @@ public class FriendAdapter extends BaseAdapter {
 
     }
 
+    public  FriendAdapter(){
+
+    }
+
     @Override
     public int getCount() {
         return lists.size();
@@ -125,7 +129,7 @@ public class FriendAdapter extends BaseAdapter {
             }
         });
 
-
+        notifyDataSetChanged();
         return view;
     }
 

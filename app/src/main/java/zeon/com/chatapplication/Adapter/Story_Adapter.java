@@ -14,6 +14,7 @@ import com.squareup.picasso.Picasso;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import zeon.com.chatapplication.Fragment.Fragment1;
 import zeon.com.chatapplication.Fragment.Fragment2;
 import zeon.com.chatapplication.Model.UserProfile;
@@ -32,6 +33,9 @@ public class Story_Adapter extends BaseAdapter {
     this.mContext = context;
     this.mArrayList = list;
     this.mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+    }
+    public Story_Adapter(){
 
     }
 
@@ -54,7 +58,7 @@ public class Story_Adapter extends BaseAdapter {
     public View getView(final int position, View convertView, ViewGroup parent) {
 
         View view = mInflater.inflate(R.layout.for_peroson_story,null);
-        ImageView image = (ImageView)view.findViewById(R.id.storyimage);
+        CircleImageView image = (CircleImageView)view.findViewById(R.id.storyimage);
         TextView txt1 = (TextView)view.findViewById(R.id.addstory);
         TextView txt2 = (TextView)view.findViewById(R.id.timesotry);
         ImageView SendDelete = (ImageView)view.findViewById(R.id.delete_friend);
@@ -195,7 +199,7 @@ public class Story_Adapter extends BaseAdapter {
             }
         });
 
-
+        notifyDataSetChanged();
 
         return view;
     }

@@ -389,7 +389,7 @@ public class UserProfile implements Serializable {
             {
                 return (boolean) list.get(1);
             }
-            case 1: //Sign in
+            case 1: //Sign in and bring the user friend and all user in the server
             {
 
                 boolean res = (boolean) list.get(1);
@@ -434,22 +434,22 @@ public class UserProfile implements Serializable {
                     app.user.setSignedIn(false);
                 return res;
             }
-            case 2:// edit user info
+            case 2:// delete user
             {
                 return (boolean) list.get(1);
             }
-            case 3: {
+            case 3: { //update user
                 return (boolean) list.get(1);
             }
-            case 4://bring friends list
+            case 4://Send The list user
             {
                 return (boolean) list.get(1);
             }
-            case 5://bring friends list
+            case 5: //Edit Info of the User
             {
                 return (boolean) list.get(1);
             }
-            case 6://bring friends list
+            case 6://To Add Friend
             {
                 return (boolean) list.get(1);
             }
@@ -459,6 +459,18 @@ public class UserProfile implements Serializable {
                 return (boolean) list.get(1);
             }
             case 8: //Block Friend
+            {
+                return (boolean) list.get(1);
+            }
+            case 9: //To Send Story Of ListFriend
+            {
+                return (boolean) list.get(1);
+            }
+            case 10: //To UnBlock The User
+            {
+                return (boolean) list.get(1);
+            }
+            case 11: //To Send The Specific List Friend To user :)
             {
                 return (boolean) list.get(1);
             }

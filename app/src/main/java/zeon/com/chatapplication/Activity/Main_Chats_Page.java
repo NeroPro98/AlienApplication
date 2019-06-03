@@ -23,6 +23,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.SearchView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 //import zeon.com.chatapplication.Adapter.Fragment_Adapter;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import zeon.com.chatapplication.Adapter.Fragment_Adapter;
 import zeon.com.chatapplication.Fragment.Fragment1;
 import zeon.com.chatapplication.Fragment.Fragment2;
+import zeon.com.chatapplication.Fragment.Fragment3;
 import zeon.com.chatapplication.Games.Activity.Games_main;
 import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.MyApplication;
@@ -55,9 +57,13 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     private ViewPager mViewPager;
     private TabLayout mTablLayout;
     private BottomNavigationView mView;
-    private UserProfile ObjConnection = new UserProfile();
     private ActionBar mActionBar;
     private ImageView SendAdd;
+    private Fragment1 fragment1 = new Fragment1();
+    private Fragment2 fragment2 = new Fragment2();
+
+    MyApplication data = (MyApplication) MyApplication.getAppContext();
+    private UserProfile ObjConnection = data.getUser();
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -80,10 +86,11 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         getSupportActionBar().setTitle("Alien Chat");
         NavigationView navigationView = findViewById(R.id.nav_viewnew);
         navigationView.setNavigationItemSelectedListener(this);
-        MyApplication data = (MyApplication) getApplicationContext();
+        final MyApplication data = (MyApplication) getApplicationContext();
         int color = data.getColor();
         System.out.println(color);
         mActionBar.setBackgroundDrawable(new ColorDrawable(0));
+        //mActionBar.setBackgroundDrawable(getResources().getDrawable(R.drawable.background5));
         //image= data.getImage();
         //user_image.setImageBitmap();
        /* Bundle bundle = getIntent().getExtras();  //this for set value for image of navigation drawer
@@ -102,8 +109,9 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         mTablLayout = (TabLayout)findViewById(R.id.tabalLayout);
         mTablLayout.addTab(mTablLayout.newTab().setText("Message"));
-        mTablLayout.addTab(mTablLayout.newTab().setText("Status"));
+        mTablLayout.addTab(mTablLayout.newTab().setText("Friends"));
         mTablLayout.addTab(mTablLayout.newTab().setText("Connects"));
+        //mTablLayout.setBackgroundColor(getResources().getColor(R.color.black));
         mTablLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
      //   mTablLayout.set
@@ -113,9 +121,117 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
             }
         });*/
+     //  mTablLayout.OnTabSelectedListener(new ArrayList<>()
 
-        Fragment_Adapter fs
+
+        final Fragment_Adapter fs
                 = new Fragment_Adapter(getSupportFragmentManager(),mTablLayout.getTabCount());
+
+        mTablLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+
+                switch (tab.getPosition()) {
+                    case 0:
+                        System.out.println("Fragment 1 ababa");
+
+
+
+                        break;
+                    case 1:
+                        System.out.println("Fragment 2 ababa");
+
+                        Thread thread1 = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    ArrayList arrayList = serilaizeToStringsForFriendList();
+                                    System.out.println("The arraylist :"+arrayList);
+                                    ObjConnection.output.writeObject(arrayList);
+                                    final ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
+                                    System.out.println("The inputList :"+inputlist);
+                                    ObjConnection.handleReceivedRequest(inputlist);
+                                    ObjConnection.output.flush();
+                                    data.setUserFriend_List_Every_init(inputlist);
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            fragment2.InitStory(inputlist);
+
+                                            Toast.makeText(getApplicationContext(),"Fragment2",Toast.LENGTH_SHORT).show();
+                                          //  fragment2.notifyAll();
+                                        }
+                                    });
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                        thread1.start();
+
+
+
+
+
+                        break;
+                    case 2:
+                        System.out.println("Fragment 1 ababa");
+
+
+                        Thread thread = new Thread(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    ArrayList arrayList = serilaizeToStrings();
+                                    System.out.println("The arraylist :"+arrayList);
+                                    ObjConnection.output.writeObject(arrayList);
+                                    final ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
+                                    System.out.println("The inputList :"+inputlist);
+                                    ObjConnection.handleReceivedRequest(inputlist);
+                                    ObjConnection.output.flush();
+                                    data.setGetUser_List_Every_init(inputlist);
+                                   // fragment1.init(inputlist);
+                                    runOnUiThread(new Runnable() {  //Don't work
+                                        @Override
+                                        public void run() {
+                                            fragment1.init(inputlist);
+                                            Toast.makeText(getApplicationContext(),"Fragment1",Toast.LENGTH_SHORT).show();
+                                           // fragment1.notifyAll();
+                                        }
+                                    });
+                                    //fs.notifyDataSetChanged();
+
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        });
+                        thread.start();
+
+
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
 
         mViewPager.setAdapter(fs);
 
@@ -185,7 +301,21 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
     }
 
+    public ArrayList<Object> serilaizeToStrings() {
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(4);
+        list.add(data.getUser_Email());
+        // list.add(email);
+        return list;
+    }
 
+    public ArrayList<Object> serilaizeToStringsForFriendList() {
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(11);
+        list.add(data.getUser_Email());
+        // list.add(email);
+        return list;
+    }
 
     public void to_image_page(View v){
         Intent intent = new Intent(getApplicationContext(),User_Edit_Info.class);
@@ -212,10 +342,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
             case R.id.new_group:
                 break;
             case R.id.Refresh:
-                System.out.println("uuuuuuuuu");
-                Fragment2 fragment2=new Fragment2();
-                fragment2.Check_All_Friend();
-                System.out.println("ooooooooooooo");
+
                 break;
             case R.id.message:
                 break;

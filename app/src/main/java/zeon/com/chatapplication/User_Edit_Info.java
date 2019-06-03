@@ -36,8 +36,8 @@ public class User_Edit_Info extends AppCompatActivity {
     private Button edit_button;
     private Button camera_button;
     private Button SaveImagebutton;
-    private UserProfile ObjConnection = new UserProfile();
-
+    MyApplication data = (MyApplication) MyApplication.getAppContext();
+    private UserProfile ObjConnection = data.getUser();
 
     //for pick photo
     private static final int IMAGE_PICK_CODE = 1000;
@@ -47,36 +47,37 @@ public class User_Edit_Info extends AppCompatActivity {
     private static final int SELECT_FILE = 1;
 
     private BottomSheetBehavior selectphoto;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile_new);
 
-        image = (CircleImageView)findViewById(R.id.user_circle_Edit);
+        image = (CircleImageView) findViewById(R.id.user_circle_Edit);
         name = (EditText) findViewById(R.id.name_user);
         Story = (EditText) findViewById(R.id.user_id_edit);
-        edit_button = (Button)findViewById(R.id.Edit_Button);
-        camera_button = (Button)findViewById(R.id.Edit_Button_camera);
-        SaveImagebutton = (Button)findViewById(R.id.SaveImage);
+        edit_button = (Button) findViewById(R.id.Edit_Button);
+        camera_button = (Button) findViewById(R.id.Edit_Button_camera);
+        SaveImagebutton = (Button) findViewById(R.id.SaveImage);
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 //here we check the permission
-                if(Build.VERSION.SDK_INT>=Build.VERSION_CODES.M){
-                    if(checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)== PackageManager.PERMISSION_DENIED){
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    if (checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
                         //if the user dont give the app the permission and here we ask the requset
                         String[] permssion = {Manifest.permission.READ_EXTERNAL_STORAGE};
                         //here we ask the user to give the permission
-                        requestPermissions(permssion,PERMISSION_CODE);
-                    }else{
+                        requestPermissions(permssion, PERMISSION_CODE);
+                    } else {
                         //after user give the app the permission
                         pickImageFromGalleryOfUser();
 
                     }
 
-                }else {
+                } else {
                     //here if the os is less than marshmallow
                     pickImageFromGalleryOfUser();
 
@@ -99,11 +100,12 @@ public class User_Edit_Info extends AppCompatActivity {
 
 
     }
-    private void pickImageFromGalleryOfUser(){
+
+    private void pickImageFromGalleryOfUser() {
 
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
-        startActivityForResult(intent,IMAGE_PICK_CODE);
+        startActivityForResult(intent, IMAGE_PICK_CODE);
     }
 
     //to handle the result of runtime exception
@@ -111,20 +113,20 @@ public class User_Edit_Info extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
 
-        switch (requestCode){
-            case PERMISSION_CODE:{
-                if (grantResults.length>0 && grantResults[0]==
-                        PackageManager.PERMISSION_GRANTED){
+        switch (requestCode) {
+            case PERMISSION_CODE: {
+                if (grantResults.length > 0 && grantResults[0] ==
+                        PackageManager.PERMISSION_GRANTED) {
                     //Permission was granted
                     pickImageFromGalleryOfUser();
-                }else{
+                } else {
                     //Permission was denied
-                    Toast.makeText(this,"Permission was denied....",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(this, "Permission was denied....", Toast.LENGTH_SHORT).show();
 
                 }
             }
         }
-      //  super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        //  super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 
     @Override
@@ -132,7 +134,7 @@ public class User_Edit_Info extends AppCompatActivity {
 
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(resultCode== Activity.RESULT_OK ) {
+        if (resultCode == Activity.RESULT_OK) {
 
             if (requestCode == IMAGE_PICK_CODE) {
                 //set image to the image view
@@ -140,29 +142,29 @@ public class User_Edit_Info extends AppCompatActivity {
                 image.setImageURI(data.getData());
 
 
-               // dataapp.setImage();
+                // dataapp.setImage();
 
-            } else if (resultCode == REQUEST_CAMERA){
+            } else if (resultCode == REQUEST_CAMERA) {
                 Bundle bundle = data.getExtras();
                 final Bitmap cameraimage = (Bitmap) bundle.get("data");
                 image.setImageBitmap(cameraimage);
             }
 
         }
-          //  Bitmap cameraimage = (Bitmap) data.getExtras().get("data");
-         //   image.setImageBitmap(cameraimage);
+        //  Bitmap cameraimage = (Bitmap) data.getExtras().get("data");
+        //   image.setImageBitmap(cameraimage);
 
 
     }
 
-    public void Capture_Photo_Camera(){
+    public void Capture_Photo_Camera() {
 
         Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(intent2, REQUEST_CAMERA);
-      //  Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        //  Intent intent2 = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         //intent2.setType("image/*");
         //if(intent2.resolveActivity(getPackageManager())!=null){
-       //     startActivityForResult(intent2,REQUEST_IMAGE_CAPTURE);
+        //     startActivityForResult(intent2,REQUEST_IMAGE_CAPTURE);
         //}
 
     }
@@ -174,10 +176,9 @@ public class User_Edit_Info extends AppCompatActivity {
         startActivity(intent);
     }*/
 
-    public ArrayList<Object> serilaizeToStrings(){
+    public ArrayList<Object> serilaizeToStrings() {
 
-        ArrayList<Object>list = new ArrayList<>();
-        MyApplication data = (MyApplication)getApplicationContext();
+        ArrayList<Object> list = new ArrayList<>();
         String Email_Curr_User = data.getUser_Email();
         list.add(5);
         list.add(Email_Curr_User);
@@ -186,76 +187,31 @@ public class User_Edit_Info extends AppCompatActivity {
         return list;
     }
 
-  public boolean Edit_User_Info(ArrayList<Object> arrayList) throws IOException, ClassNotFoundException {
-      ObjConnection.connectToServer();
-      ObjConnection.SetupStreams();
-      System.out.println("The ArrayList is :"+arrayList);
-      ObjConnection.output.writeObject(arrayList);
-      ObjConnection.output.flush();
-      ObjConnection.input.readObject();
-      ArrayList<Object> list = (ArrayList<Object>)ObjConnection.input.readObject();
-      System.out.println("List Come To User Edit Info:"+list);
-      boolean res = ObjConnection.handleReceivedRequest(list);
 
-      Log.d("Edit_User_Info res:","resa:"+res);
-      if(!res){
-
-//            Toast.makeText(getApplicationContext(),"Email not Exist",Toast.LENGTH_SHORT).show();
-            ObjConnection.CloseCrap();
-          return false;
-
-      }else {
-//            Toast.makeText(getApplicationContext(),"Welcome...",Toast.LENGTH_SHORT).show();
-      //    MyApplication data = (MyApplication) getApplicationContext();
-        //  data.isSignedIn();
-          // data.setUser(() list.get(2));
-            ObjConnection.CloseCrap();
-          return true;
-      }
-  }
-
-
-    public boolean Check_Edit() throws InterruptedException, IOException, ClassNotFoundException {
-        boolean res = Edit_User_Info(serilaizeToStrings());
-        System.out.println("Check_Edit res :"+res);
-        return res;
-    }
 
     public void Save_Image(View view) {
+
+        final ArrayList<Object> arrayList = serilaizeToStrings();
+
         Thread thread = new Thread(new Runnable() {
             @Override
             public void run() {
-                boolean bool3 = false;
                 try {
-                    bool3 = Check_Edit();
-                    System.out.println("bool3:"+bool3);
+                    System.out.println("The arraylist :" + arrayList);
+                    ObjConnection.output.writeObject(arrayList);
+                    ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
+                    System.out.println("The inputList :" + inputlist);
+                    ObjConnection.handleReceivedRequest(inputlist);
+                    ObjConnection.output.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
                 }
-                if(bool3) {
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(getApplicationContext(),"Success Edit",Toast.LENGTH_SHORT).show();
-
-                        }
-                    });
-
-                    Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
-                    startActivity(intent);}
-            }});
+            }
+        });
         thread.start();
     }
-     /*   else{
-        runOnUiThread(new Runnable() {  //Don't work
-            @Override
-            public void run() {
-               Toast.makeText(getApplicationContext(),"Faild Edit",Toast.LENGTH_SHORT).show();
-            }
-        });*/
-    }
+
+}
 
