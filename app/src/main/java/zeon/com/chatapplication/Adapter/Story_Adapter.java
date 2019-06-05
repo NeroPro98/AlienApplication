@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -234,6 +236,9 @@ public class Story_Adapter extends BaseAdapter {
         });
 
         notifyDataSetChanged();
+
+        Animation animation = AnimationUtils.loadAnimation(mContext,R.anim.slide_left);
+        view.startAnimation(animation);
 
         return view;
     }

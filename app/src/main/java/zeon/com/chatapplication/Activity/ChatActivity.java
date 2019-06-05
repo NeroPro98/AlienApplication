@@ -43,7 +43,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
     EditText type;
     ArrayList<String> StringChat = new ArrayList<>();
 
-    MyApplication data = (MyApplication) getApplicationContext();
+    MyApplication data = (MyApplication)MyApplication.getAppContext().getApplicationContext();;
 
     //private UserProfile ObjConnection = new UserProfile();
 
