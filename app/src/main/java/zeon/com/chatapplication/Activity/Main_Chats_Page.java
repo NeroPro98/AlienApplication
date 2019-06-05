@@ -140,7 +140,9 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                         break;
                     case 1:
                         System.out.println("Fragment 2 ababa");
-
+                        System.out.println("The User Emails  is"+data.getEmails());
+                        ArrayList <String> FriendEmails = data.user.getUser_Friend_Emails();
+                        System.out.println("The  FriendEmails  is:"+FriendEmails);
                         Thread thread1 = new Thread(new Runnable() {
                             @Override
                             public void run() {

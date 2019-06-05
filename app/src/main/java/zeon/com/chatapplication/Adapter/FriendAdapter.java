@@ -78,8 +78,10 @@ public class FriendAdapter extends BaseAdapter {
             public void onClick(View v) {
                 int number = position;
                 MyApplication data = (MyApplication) MyApplication.getAppContext().getApplicationContext();
-                String Specific_email = data.getEmails(number);
+                System.out.println("The Emails is"+data.getEmails());
+                String Specific_email = data.getEmails(number); //here
                 data.setSpecific_Email_Press(Specific_email);
+                data.user.SetUserFriendsByPos(Specific_email);
                 String User_Curr_Email = data.getUser_Email();
                 SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick",Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -88,6 +90,7 @@ public class FriendAdapter extends BaseAdapter {
                 arrayList.add(6);
                 arrayList.add(User_Curr_Email);
                 arrayList.add(Specific_email);
+                data.user.setUser_Friend_Emails(lists.get(position).getS1());
            //     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             //    StrictMode.setThreadPolicy(policy);
 

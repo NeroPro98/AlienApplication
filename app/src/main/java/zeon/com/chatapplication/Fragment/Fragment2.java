@@ -117,13 +117,16 @@ public class Fragment2 extends Fragment {
                         helper_List.remove(0);
                     }
                     //for(int i =0;i<helper_List.size();i++) {
-                        if(helper_List.size() > helper_List2.size() && helper_List.size()>2) {
+                        if(helper_List.size() >= helper_List2.size() && helper_List.size()>=2) {
                             InitStory(helper_List);
-                            data.user.setUser_Friend_Info(helper_List.toString());
+                            for(int j =0;j<helper_List.size();j++) {
+                                data.user.setUser_Friend_Info((String)helper_List.get(j));
+                            }
                             //  }
                             adapter = new Story_Adapter(getContext(), listStory);
                             grid.setAdapter(adapter);
                             adapter.notifyDataSetChanged();
+                        }else{
 
                         }
                     mRefreshLayout.setRefreshing(false);

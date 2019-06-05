@@ -39,12 +39,23 @@ public class UserProfile implements Serializable {
     private boolean signedIn;
     private onValueChangeListener valueChangeListener;
     private onValueChangeListener newMessagesListener;
-    private ArrayList<String> User_Friend_Info = new ArrayList<>();
+    public ArrayList<String> User_Friend_Info = new ArrayList<>();
     private ArrayList<String> User_List;
     private ArrayList<String> User_Friend_Name = new ArrayList<>();
 
+
+    private ArrayList<String> User_Friend_Emails = new ArrayList<>();
+
     public ArrayList<String> getUser_Friend_Name() {
         return User_Friend_Name;
+    }
+
+    public ArrayList<String> getUser_Friend_Emails() {
+        return User_Friend_Emails;
+    }
+
+    public void setUser_Friend_Emails(String user_Friend_Emails) {
+        User_Friend_Emails.add(user_Friend_Emails);
     }
 
     public void setUser_Friend_Name(String user_Friend_Name) {
@@ -375,9 +386,16 @@ public class UserProfile implements Serializable {
     public ArrayList<String> getUserFriends() {
         return userFriends;
     }
+    public String getUserFriendsByPos(int postion) {
+        return userFriends.get(postion);
+    }
 
     public void setUserFriends(ArrayList<String> userFriends) {
         this.userFriends = userFriends;
+    }
+
+    public void SetUserFriendsByPos(String FriendEmail) {
+         userFriends.add(FriendEmail);
     }
 
     public ArrayList<String> getBlockList() {

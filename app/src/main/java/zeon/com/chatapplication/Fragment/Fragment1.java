@@ -66,8 +66,13 @@ public class Fragment1 extends Fragment {
             EmailList.add((String) list.get(i + 1));
         }
 
-        //data.setEmails(data.user.getUserFriends());
-        data.setEmails(EmailList);
+        //ArrayList<String> SaveEmails =data.getEmails();
+        //if(EmailList.size() >SaveEmails.size()) {
+            data.setEmails(EmailList);
+      //  }
+//        for(int i =0;i<EmailList.size();i++) {
+ //           EmailList.remove(i);
+  //      }
         System.out.println("The Email List is :" + data.getUser_Email());
         data.getUser_Email();
 
