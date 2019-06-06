@@ -139,6 +139,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
                         break;
                     case 1:
+                        System.out.println("The User Friend Email is of case1"+data.user.getUserFriends());
                         System.out.println("Fragment 2 ababa");
                         System.out.println("The User Emails  is"+data.getEmails());
                         ArrayList <String> FriendEmails = data.user.getUser_Friend_Emails();
