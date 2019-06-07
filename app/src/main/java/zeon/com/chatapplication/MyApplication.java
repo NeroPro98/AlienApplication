@@ -26,6 +26,16 @@ public class MyApplication extends android.app.Application {
     private ArrayList<Object> getUser_List_Every_init = new ArrayList<Object>();
     private ArrayList<Object> UserFriend_List_Every_init = new ArrayList<Object>();
     private ArrayList<Object> Helper_List = new ArrayList<>();
+    private ArrayList<Object> The_User_List_Befor_Check;
+
+    public ArrayList<Object> getThe_User_List_From_Server() {
+        return The_User_List_Befor_Check;
+    }
+
+    public void setThe_User_List_From_Server(ArrayList<Object> the_User_List_Befor_Check) {
+        The_User_List_Befor_Check = the_User_List_Befor_Check;
+    }
+
 
 
     public ArrayList<Object> getHelper_List() {

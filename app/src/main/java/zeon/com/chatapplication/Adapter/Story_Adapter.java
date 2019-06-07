@@ -104,7 +104,7 @@ public class Story_Adapter extends BaseAdapter {
                             ObjConnection.handleReceivedRequest(inputlist);
                             ObjConnection.output.flush();
                            // data.getEmails().remove(position);
-                            data.user.getUserFriends().remove(position);
+
                             System.out.println("The List Of Emails is:"+data.getEmails());
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -114,7 +114,7 @@ public class Story_Adapter extends BaseAdapter {
                     }
                 });
                 thread.start();
-
+                data.user.getUserFriends().remove(position);
                 ArrayList <String> beforupdate = data.user.getUser_Friend_Info();
                 ArrayList <String> FriendEmails = data.user.getUser_Friend_Emails();
                 ArrayList <String> FriendEmailsNserat = data.user.getUserFriends();

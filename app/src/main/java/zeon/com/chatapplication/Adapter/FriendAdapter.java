@@ -93,6 +93,7 @@ public class FriendAdapter extends BaseAdapter {
                 arrayList.add(User_Curr_Email);
                 arrayList.add(Specific_email);
                 data.user.setUser_Friend_Emails(lists.get(position).getS1());
+               // data.getEmails().remove(position);
            //     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             //    StrictMode.setThreadPolicy(policy);
 

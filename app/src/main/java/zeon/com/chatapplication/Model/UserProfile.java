@@ -83,6 +83,10 @@ public class UserProfile implements Serializable {
         User_Friend_Info.add(user_Friend_Info);
     }
 
+    public void setUser_Friend_Info_List(ArrayList user_Friend_Info) {
+        User_Friend_Info = user_Friend_Info;
+    }
+
 
 
  //   MyApplication data;
@@ -462,7 +466,7 @@ public class UserProfile implements Serializable {
                         list.remove(0);
                     }
                     list.size();
-                        app.user.setUser_List(list);
+                    app.user.setUser_List(list);
 
                     app.user.setSignedIn(true);
                     app.user.getUserFriends();

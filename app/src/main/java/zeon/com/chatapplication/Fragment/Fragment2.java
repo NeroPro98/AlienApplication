@@ -35,12 +35,13 @@ public class Fragment2 extends Fragment {
     TextView textadd;
     TextView textdate;
     ArrayList<story> listStory = new ArrayList<>();
-    private UserProfile ObjConnection = new UserProfile();
+
     ArrayList<Object> list = new ArrayList<Object>();
     Fragment1 fragment1 = new Fragment1();
     Story_Adapter adapter = new Story_Adapter();
     ArrayList<String> EmailListFriends = new ArrayList<String>();
-    MyApplication data = (MyApplication)MyApplication.getAppContext().getApplicationContext();
+    MyApplication data = (MyApplication) MyApplication.getAppContext().getApplicationContext();
+    private UserProfile ObjConnection = data.getUser();
     private int count = 0;
     //For SwipeRefreshLayout
     private SwipeRefreshLayout mRefreshLayout;
@@ -50,29 +51,31 @@ public class Fragment2 extends Fragment {
 
     public void InitStory(ArrayList<Object> list2) {
 
+        listStory.removeAll(listStory);
+        EmailListFriends.removeAll(EmailListFriends);
         list2 = helper_List;
-        if(count ==0) {
-            list =(ArrayList)data.user.getUser_Friend_Info();
+        if (count == 0) {
+            list = (ArrayList) data.user.getUser_Friend_Info();
             count++;
-        }else if(list2.size()>2){
+        } else if (list2.size() >= 2) {
             list = list2;
-            list.remove(0);
-            list.remove(0);
+           // list.remove(0);
+            //list.remove(0);
             count++;
         }
-        System.out.println("The Count Is:"+count);
+        System.out.println("The Count Is:" + count);
         //MyApplication data = (MyApplication)MyApplication.getAppContext().getApplicationContext();\
 
-        for (int i = 0; i < list.size(); i=i+2) {
+        for (int i = 0; i < list.size(); i = i + 2) {
 
-            listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", (String)list.get(i), (String)list.get(i+1)));
-            EmailListFriends.add((String)list.get(i));
+            listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", (String) list.get(i), (String) list.get(i + 1)));
+            EmailListFriends.add((String) list.get(i));
 
 
-           // listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", "Adnan Ktan", "June"));
+            // listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", "Adnan Ktan", "June"));
         }
         data.setFriendEmails(EmailListFriends);
-        System.out.println("The EmailListFriends is:"+EmailListFriends);
+        System.out.println("The EmailListFriends is:" + EmailListFriends);
 
         adapter.notifyDataSetChanged();
     }
@@ -94,53 +97,88 @@ public class Fragment2 extends Fragment {
         final MyApplication data = (MyApplication) getContext().getApplicationContext();
         textadd.setText(data.getUser_Name());
         textdate.setText("June");
-        ArrayList <Object>list3 =(ArrayList)data.getUserFriend_List_Every_init();
-         InitStory(list3);
+        ArrayList<Object> list3 = (ArrayList) data.getUserFriend_List_Every_init();
+        InitStory(list3);
         adapter = new Story_Adapter(getContext(), listStory);
 
         grid.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        mRefreshLayout = (SwipeRefreshLayout)view.findViewById(R.id.swipe_refresh_layout);
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
 
 
-        if(count >0) {
+        if (count > 0) {
             mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
                     boolean bool = false;
-                    System.out.println("The User Friend is"+data.user.getUserFriends());
+                    System.out.println("The User Friend is" + data.user.getUserFriends());
                     System.out.println("I am Refresh Swap");
-                    helper_List = data.getHelper_List();
-                    helper_List2 = data.user.getUser_Friend_Info();
-                    if(helper_List.size()!=0) {
+                    Thread thread = new Thread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (count > 0) {
+                                ArrayList arrayList = serilaizeToStringsForFriendList();
+                                System.out.println("The arraylist :" + arrayList);
+                                try {
+                                    ObjConnection.output.writeObject(arrayList);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                                final ArrayList<Object> inputlist;
+                                try {
+                                    inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
+                                    data.setHelper_List(inputlist);
+                                    ObjConnection.output.flush();
+                                    helper_List = data.getHelper_List();
+                                    helper_List2 = data.user.getUser_Friend_Info();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                } catch (ClassNotFoundException e) {
+                                    e.printStackTrace();
+                                }
+
+                            }
+                        }
+                    });
+                    thread.start();
+
+                    if (helper_List.size() != 0) {
                         helper_List.remove(0);
                         helper_List.remove(0);
                     }
                     //for(int i =0;i<helper_List.size();i++) {
-                        if(helper_List.size() >= helper_List2.size() && helper_List.size()>=2) {
-                            InitStory(helper_List);
-                            for(int j =0;j<helper_List.size();j++) {
-                                data.user.setUser_Friend_Info((String)helper_List.get(j));
-                            }
-                            //  }
-                            adapter = new Story_Adapter(getContext(), listStory);
-                            grid.setAdapter(adapter);
-                            adapter.notifyDataSetChanged();
-                        }else{
-
+                    if (helper_List.size() >= helper_List2.size() && helper_List.size() >= 2) {
+                        InitStory(helper_List);
+                        for (int j = 0; j < helper_List.size(); j++) {
+                            data.user.setUser_Friend_Info((String) helper_List.get(j));
                         }
+                        //  }
+                        adapter = new Story_Adapter(getContext(), listStory);
+                        grid.setAdapter(adapter);
+                        adapter.notifyDataSetChanged();
+                    } else {
+
+                    }
                     mRefreshLayout.setRefreshing(false);
+
+
                 }
             });
+
+
         }
-
-
         return view;
-
     }
 
 
 
+    public ArrayList<Object> serilaizeToStringsForFriendList() {
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(11);
+        list.add(data.getUser_Email());
+        // list.add(email);
+        return list;
+    }
 
 
 
@@ -150,5 +188,6 @@ public class Fragment2 extends Fragment {
         Toast.makeText(getContext(), "M", Toast.LENGTH_SHORT).show();
         Check_All_Friend();
     }*/
+
 
 }

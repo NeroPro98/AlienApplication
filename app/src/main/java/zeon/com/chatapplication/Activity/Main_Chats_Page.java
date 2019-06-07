@@ -154,7 +154,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                                     final ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
                                     System.out.println("The inputList :"+inputlist);
                                     ObjConnection.handleReceivedRequest(inputlist);
-                                    data.setHelper_List(inputlist);
+                                    //data.setHelper_List(inputlist);
                                     ObjConnection.output.flush();
                                     data.setUserFriend_List_Every_init(inputlist);
                                     runOnUiThread(new Runnable() {
@@ -194,6 +194,8 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                                     ObjConnection.output.writeObject(arrayList);
                                     final ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
                                     System.out.println("The inputList :"+inputlist);
+                                    data.user.getUser_List();
+                                    //data.setThe_User_List_From_Server(inputlist);
                                     ObjConnection.handleReceivedRequest(inputlist);
                                     ObjConnection.output.flush();
                                     data.setGetUser_List_Every_init(inputlist);
@@ -201,7 +203,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                                     runOnUiThread(new Runnable() {  //Don't work
                                         @Override
                                         public void run() {
-                                            fragment1.init(inputlist);
+                                            //fragment1.init(inputlist);
                                             Toast.makeText(getApplicationContext(),"Fragment1",Toast.LENGTH_SHORT).show();
                                            // fragment1.notifyAll();
                                         }
