@@ -77,7 +77,6 @@ public class Story_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 int number = position;
-                final MyApplication data = (MyApplication) mContext.getApplicationContext();
                 //String Specific_email = data.getEmails(number);
                 String Specific_email = data.user.getUserFriendsByPos(number);
                 System.out.println("The User Friend Email is"+data.user.getUserFriends());
@@ -114,7 +113,9 @@ public class Story_Adapter extends BaseAdapter {
                     }
                 });
                 thread.start();
+
                 data.user.getUserFriends().remove(position);
+
                 ArrayList <String> beforupdate = data.user.getUser_Friend_Info();
                 ArrayList <String> FriendEmails = data.user.getUser_Friend_Emails();
                 ArrayList <String> FriendEmailsNserat = data.user.getUserFriends();
@@ -148,8 +149,10 @@ public class Story_Adapter extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 int number = position;
-                MyApplication data = (MyApplication) mContext.getApplicationContext();
-                String Specific_email = data.getEmails(number);
+
+                //String Specific_email = data.getEmails(number);
+                String Specific_email = data.user.getUserFriendsByPos(number);
+                System.out.println("The User Friend Email is"+data.user.getUserFriends());
                 data.setSpecific_Email_Press(Specific_email);
                 String User_Curr_Email = data.getUser_Email();
                 SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick", Context.MODE_PRIVATE);
@@ -181,7 +184,10 @@ public class Story_Adapter extends BaseAdapter {
                     }
                 });
                 thread.start();
+                data.user.setBlockListString(data.user.getUserFriendsByPos(number));
+                data.user.getUserFriends().remove(position);
 
+                mArrayList.remove(position);
                 notifyDataSetChanged();
             }
 

@@ -410,6 +410,10 @@ public class UserProfile implements Serializable {
         this.blockList = blockList;
     }
 
+    public void setBlockListString(String blockList) {
+        this.blockList.add(blockList);
+    }
+
 
     public boolean handleReceivedRequest(ArrayList<Object> list) {
 
