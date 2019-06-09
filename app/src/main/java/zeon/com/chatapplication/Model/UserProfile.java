@@ -42,9 +42,21 @@ public class UserProfile implements Serializable {
     public ArrayList<String> User_Friend_Info = new ArrayList<>();
     private ArrayList<String> User_List;
     private ArrayList<String> User_Friend_Name = new ArrayList<>();
-
-
     private ArrayList<String> User_Friend_Emails = new ArrayList<>();
+    private ArrayList<Object> User_Block_List = new ArrayList<>();
+
+    public ArrayList<Object> getUser_Block_List() {
+        return User_Block_List;
+    }
+
+    public void setUser_Block_List(ArrayList<Object> user_Block_List) {
+        User_Block_List = user_Block_List;
+    }
+    public void setUser_Block_List_String(String user_Block_List) {
+        User_Block_List.add(user_Block_List);
+    }
+
+
 
     public ArrayList<String> getUser_Friend_Name() {
         return User_Friend_Name;

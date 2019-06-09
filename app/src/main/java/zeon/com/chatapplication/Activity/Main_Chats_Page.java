@@ -21,7 +21,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.SearchView;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 //import zeon.com.chatapplication.Adapter.Fragment_Adapter;
@@ -30,10 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import zeon.com.chatapplication.Adapter.BlockPage_Adapter;
 import zeon.com.chatapplication.Adapter.Fragment_Adapter;
 import zeon.com.chatapplication.Fragment.Fragment1;
 import zeon.com.chatapplication.Fragment.Fragment2;
-import zeon.com.chatapplication.Fragment.Fragment3;
 import zeon.com.chatapplication.Games.Activity.Games_main;
 import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.MyApplication;
@@ -413,6 +412,12 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         }else if(id==R.id.weather){
             Intent intent4 = new Intent(getApplicationContext(), WeatherController.class);
             startActivity(intent4);
+
+        }else if(id==R.id.Block_Page){
+            Intent intent5 = new Intent(getApplicationContext(), Block_Page.class);
+            System.out.println("HAHAHA");
+            startActivity(intent5);
+            System.out.println("AKAKAKA");
         }
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

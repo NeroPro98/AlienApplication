@@ -37,7 +37,6 @@ public class Fragment1 extends Fragment {
     ArrayList<FriendComp> Friend = new ArrayList<>();
     private ListView listview;
     ActionBar action;
-    private BottomNavigationView mView;
 
     ArrayList<Object> list = new ArrayList<Object>();
     ArrayList<String> EmailList = new ArrayList<String>();

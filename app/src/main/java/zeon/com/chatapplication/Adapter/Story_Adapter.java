@@ -30,6 +30,7 @@ public class Story_Adapter extends BaseAdapter {
     private LayoutInflater mInflater;
     MyApplication data = (MyApplication) MyApplication.getAppContext();
     private UserProfile ObjConnection = data.getUser();
+    ArrayList ListBlockFriend = new ArrayList();
 
     public Story_Adapter(Context context, ArrayList<story> list) {
 
@@ -79,7 +80,7 @@ public class Story_Adapter extends BaseAdapter {
                 int number = position;
                 //String Specific_email = data.getEmails(number);
                 String Specific_email = data.user.getUserFriendsByPos(number);
-                System.out.println("The User Friend Email is"+data.user.getUserFriends());
+                System.out.println("The User Friend Email is" + data.user.getUserFriends());
                 data.setSpecific_Email_Press(Specific_email);
                 String User_Curr_Email = data.getUser_Email();
                 SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick", Context.MODE_PRIVATE);
@@ -102,9 +103,9 @@ public class Story_Adapter extends BaseAdapter {
                             System.out.println("The inputList :" + inputlist);
                             ObjConnection.handleReceivedRequest(inputlist);
                             ObjConnection.output.flush();
-                           // data.getEmails().remove(position);
+                            // data.getEmails().remove(position);
 
-                            System.out.println("The List Of Emails is:"+data.getEmails());
+                            System.out.println("The List Of Emails is:" + data.getEmails());
                         } catch (IOException e) {
                             e.printStackTrace();
                         } catch (ClassNotFoundException e) {
@@ -116,29 +117,29 @@ public class Story_Adapter extends BaseAdapter {
 
                 data.user.getUserFriends().remove(position);
 
-                ArrayList <String> beforupdate = data.user.getUser_Friend_Info();
-                ArrayList <String> FriendEmails = data.user.getUser_Friend_Emails();
-                ArrayList <String> FriendEmailsNserat = data.user.getUserFriends();
-                System.out.println("The  FriendEmails  is:"+FriendEmails);
+                ArrayList<String> beforupdate = data.user.getUser_Friend_Info();
+                ArrayList<String> FriendEmails = data.user.getUser_Friend_Emails();
+                ArrayList<String> FriendEmailsNserat = data.user.getUserFriends();
+                System.out.println("The  FriendEmails  is:" + FriendEmails);
                 String Name = mArrayList.get(position).getAddtext();
-                if(beforupdate.size()!=0) {
+                if (beforupdate.size() != 0) {
                     for (int i = 0; i < beforupdate.size(); i++) {
 
-                        if(beforupdate.get(i).equals(Name)){
+                        if (beforupdate.get(i).equals(Name)) {
                             beforupdate.remove(i);
                             beforupdate.remove(i);
                             break;
                         }//else{
-                          //  data.user.setUser_Friend_Info(beforupdate.get(i));
-                       // }
+                        //  data.user.setUser_Friend_Info(beforupdate.get(i));
+                        // }
                     }
                 }
                 data.user.User_Friend_Info = beforupdate;
-                System.out.println("The  beforupdate after delete is:"+beforupdate);
+                System.out.println("The  beforupdate after delete is:" + beforupdate);
               /*  for(int j =0;j<beforupdate.size();j++){
                     data.user.setUser_Friend_Info(beforupdate.get(j));
                 }*/
-                System.out.println("The  User_Friend_Info after update is:"+data.user.getUser_Friend_Info());
+                System.out.println("The  User_Friend_Info after update is:" + data.user.getUser_Friend_Info());
                 mArrayList.remove(position);
                 notifyDataSetChanged();
 
@@ -152,7 +153,7 @@ public class Story_Adapter extends BaseAdapter {
 
                 //String Specific_email = data.getEmails(number);
                 String Specific_email = data.user.getUserFriendsByPos(number);
-                System.out.println("The User Friend Email is"+data.user.getUserFriends());
+                System.out.println("The User Friend Email is" + data.user.getUserFriends());
                 data.setSpecific_Email_Press(Specific_email);
                 String User_Curr_Email = data.getUser_Email();
                 SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick", Context.MODE_PRIVATE);
@@ -160,6 +161,7 @@ public class Story_Adapter extends BaseAdapter {
                 editor.putString("The_User_Email_Click", Specific_email);
                 //Fragment2 fragment2 = new Fragment2();
                 //fragment2.Check_Block_Friend(Specific_email,User_Curr_Email);
+                data.user.setUser_Block_List_String(Specific_email);
                 final ArrayList<Object> arrayList2 = new ArrayList<>();
                 arrayList2.add(8);
                 arrayList2.add(User_Curr_Email);
@@ -198,12 +200,9 @@ public class Story_Adapter extends BaseAdapter {
             public void onClick(View v) {
                 int number = position;
                 MyApplication data = (MyApplication) mContext.getApplicationContext();
-                String Specific_email = data.getEmails(number);
+                String Specific_email = (String) data.user.getUser_Block_List().get(position);
                 data.setSpecific_Email_Press(Specific_email);
                 String User_Curr_Email = data.getUser_Email();
-                SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("The_User_Email_Click", Specific_email);
 
                 final ArrayList<Object> arrayList3 = new ArrayList<>();
                 arrayList3.add(10);
@@ -226,7 +225,8 @@ public class Story_Adapter extends BaseAdapter {
                         } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
-                        notifyDataSetChanged();
+                        mArrayList.remove(position);
+                        notifyDataSetChanged(); // here delete it if there problame
                     }
                 });
                 thread.start();
@@ -243,7 +243,7 @@ public class Story_Adapter extends BaseAdapter {
 
         notifyDataSetChanged();
 
-        Animation animation = AnimationUtils.loadAnimation(mContext,R.anim.slide_left);
+        Animation animation = AnimationUtils.loadAnimation(mContext, R.anim.slide_left);
         view.startAnimation(animation);
 
         return view;

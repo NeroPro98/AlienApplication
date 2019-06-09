@@ -38,9 +38,9 @@
             android:title="@string/search_in_web" />
 
         <item
-            android:id="@+id/Chat"
-            android:icon="@drawable/chat_icon"
-            android:title="@string/chat" />
+            android:id="@+id/Block_Page"
+            android:icon="@drawable/block"
+            android:title="Block Menu" />
 
         <item
             android:id="@+id/style"
