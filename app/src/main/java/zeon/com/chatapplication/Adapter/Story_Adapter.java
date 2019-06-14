@@ -62,13 +62,14 @@ public class Story_Adapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
-        View view = mInflater.inflate(R.layout.for_peroson_story, null);
+        final View view = mInflater.inflate(R.layout.for_peroson_story, null);
         CircleImageView image = (CircleImageView) view.findViewById(R.id.storyimage);
-        TextView txt1 = (TextView) view.findViewById(R.id.addstory);
+        final TextView txt1 = (TextView) view.findViewById(R.id.addstory);
         TextView txt2 = (TextView) view.findViewById(R.id.timesotry);
         ImageView SendDelete = (ImageView) view.findViewById(R.id.delete_friend);
         ImageView SendBlock = (ImageView) view.findViewById(R.id.block_friend);
-        ImageView UnBlock = (ImageView) view.findViewById(R.id.unblock_friend);
+        ImageView ChatFriend = (ImageView) view.findViewById(R.id.Chat_Friend);
+
 
         txt1.setText(mArrayList.get(position).getAddtext());
         txt2.setText(mArrayList.get(position).getDatestory());
@@ -114,7 +115,7 @@ public class Story_Adapter extends BaseAdapter {
 
                 data.user.getUserFriends().remove(position);
 
-                ArrayList<String> beforupdate = data.user.getUser_Friend_Info();
+                ArrayList<Object> beforupdate = data.user.getUser_Friend_Info();
                 ArrayList<String> FriendEmails = data.user.getUser_Friend_Emails();
                 ArrayList<String> FriendEmailsNserat = data.user.getUserFriends();
                 System.out.println("The  FriendEmails  is:" + FriendEmails);
@@ -159,6 +160,7 @@ public class Story_Adapter extends BaseAdapter {
                 //Fragment2 fragment2 = new Fragment2();
                 //fragment2.Check_Block_Friend(Specific_email,User_Curr_Email);
                 data.user.setUser_Block_List_String(Specific_email);
+                data.user.setUser_Block_List_String(mArrayList.get(position).getAddtext());
                 final ArrayList<Object> arrayList2 = new ArrayList<>();
                 arrayList2.add(8);
                 arrayList2.add(User_Curr_Email);
@@ -192,43 +194,34 @@ public class Story_Adapter extends BaseAdapter {
 
         });
 
-        UnBlock.setOnClickListener(new View.OnClickListener() {
+        ChatFriend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                boolean bool = false;
                 int number = position;
-                MyApplication data = (MyApplication) mContext.getApplicationContext();
-                String Specific_email = (String) data.user.getUser_Block_List().get(position);
-                data.setSpecific_Email_Press(Specific_email);
-                String User_Curr_Email = data.getUser_Email();
-
-                final ArrayList<Object> arrayList3 = new ArrayList<>();
-                arrayList3.add(10);
-                arrayList3.add(User_Curr_Email);
-                arrayList3.add(Specific_email);
-
-
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        try {
-                            System.out.println("The arraylist :" + arrayList3);
-                            ObjConnection.output.writeObject(arrayList3);
-                            ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
-                            System.out.println("The inputList :" + inputlist);
-                            ObjConnection.handleReceivedRequest(inputlist);
-                            ObjConnection.output.flush();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (ClassNotFoundException e) {
-                            e.printStackTrace();
+                ArrayList<Object> UserChat = new ArrayList<>();
+                String Specific_email = data.user.getUserFriendsByPos(number);
+                String name_user = mArrayList.get(position).getAddtext();
+                if(data.user.getThe_User_Hwo_Chat_With_Him().size()!=0) {
+                    for (int i = 0; i < data.user.getThe_User_Hwo_Chat_With_Him().size(); i = i+2) {
+                        if(data.user.getThe_User_Hwo_Chat_With_Him().get(i).equals(Specific_email)) {
+                           bool = true;
                         }
-                        mArrayList.remove(position);
-                        notifyDataSetChanged(); // here delete it if there problame
                     }
-                });
-                thread.start();
+                    if(bool==false){
+                        UserChat.add(Specific_email);
+                        UserChat.add(name_user);
+                        data.user.setThe_User_Hwo_Chat_With_Him(UserChat);
+                    }
+                }else{
+                    UserChat.add(Specific_email);
+                    UserChat.add(name_user);
+                    data.user.setThe_User_Hwo_Chat_With_Him(UserChat);
+                }
+                //UserChat.removeAll(UserChat);
             }
         });
+
 
 
         view.setOnClickListener(new View.OnClickListener() {

@@ -7,7 +7,10 @@
 
 
 
-
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh_layout_frag3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ListView
         android:id="@+id/ListViewMessage3"
@@ -19,4 +22,5 @@
     </ListView>
 
 
+    </android.support.v4.widget.SwipeRefreshLayout>
 </RelativeLayout>

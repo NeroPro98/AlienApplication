@@ -32,12 +32,24 @@ public class UserProfile implements Serializable {
     private boolean signedIn;
     private onValueChangeListener valueChangeListener;
     private onValueChangeListener newMessagesListener;
-    public ArrayList<String> User_Friend_Info = new ArrayList<>();
+    public ArrayList<Object> User_Friend_Info = new ArrayList<>();
     private ArrayList<Object> User_List;
     private ArrayList<String> User_Friend_Name = new ArrayList<>();
     private ArrayList<String> User_Friend_Emails = new ArrayList<>();
     private ArrayList<Object> User_Block_List = new ArrayList<>();
     private ArrayList<Object> The_User_List_Info_File = new ArrayList<>();
+    private ArrayList<Object> The_User_Hwo_Chat_With_Him = new ArrayList<>();
+
+
+    public ArrayList<Object> getThe_User_Hwo_Chat_With_Him() {
+        return The_User_Hwo_Chat_With_Him;
+    }
+
+    public void setThe_User_Hwo_Chat_With_Him(ArrayList<Object> the_User_Hwo_Chat_With_Him) {
+        The_User_Hwo_Chat_With_Him = the_User_Hwo_Chat_With_Him;
+    }
+
+
     //private static Context mContext;
 
 
@@ -96,11 +108,11 @@ public class UserProfile implements Serializable {
 
 
 
-    public ArrayList<String> getUser_Friend_Info() {
+    public ArrayList<Object> getUser_Friend_Info() {
         return User_Friend_Info;
     }
 
-    public void setUser_Friend_Info(String user_Friend_Info) {
+    public void setUser_Friend_Info(Object user_Friend_Info) {
         User_Friend_Info.add(user_Friend_Info);
     }
 

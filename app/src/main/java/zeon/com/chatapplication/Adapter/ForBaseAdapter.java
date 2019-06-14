@@ -38,6 +38,9 @@ public class ForBaseAdapter extends BaseAdapter{
         this.mInflater = (LayoutInflater)context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
 
+    public ForBaseAdapter(){
+
+    }
 
     @Override
     public int getCount() {

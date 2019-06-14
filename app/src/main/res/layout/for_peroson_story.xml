@@ -37,14 +37,14 @@
         android:src="@drawable/remove" />
 
     <ImageView
-        android:id="@+id/unblock_friend"
+        android:id="@+id/Chat_Friend"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_alignLeft="@id/addstory"
         android:layout_marginLeft="253dp"
         android:layout_marginTop="30dp"
         android:onClick="Delete_Friend"
-        android:src="@drawable/unblock" />
+        android:src="@drawable/chat" />
 
     <ImageView
         android:id="@+id/block_friend"

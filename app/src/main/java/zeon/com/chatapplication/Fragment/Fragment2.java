@@ -46,7 +46,7 @@ public class Fragment2 extends Fragment {
     //For SwipeRefreshLayout
     private SwipeRefreshLayout mRefreshLayout;
     private ArrayList<Object> helper_List = new ArrayList<>();
-    private ArrayList<String> helper_List2 = new ArrayList<>();
+    private ArrayList<Object> helper_List2 = new ArrayList<>();
 
 
     public void InitStory(ArrayList<Object> list2) {
@@ -97,7 +97,8 @@ public class Fragment2 extends Fragment {
         final MyApplication data = (MyApplication) getContext().getApplicationContext();
         textadd.setText(data.getUser_Name());
         textdate.setText("June");
-        ArrayList<Object> list3 = (ArrayList) data.getUserFriend_List_Every_init();
+        //ArrayList<Object> list3 = (ArrayList) data.getUserFriend_List_Every_init();
+        ArrayList<Object> list3 = (ArrayList)  data.user.getUser_Friend_Info();
         InitStory(list3);
         adapter = new Story_Adapter(getContext(), listStory);
 
