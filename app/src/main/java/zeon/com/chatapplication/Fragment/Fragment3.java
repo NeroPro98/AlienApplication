@@ -91,6 +91,7 @@ public class Fragment3 extends Fragment {
                     init(helper_List);
                     data.user.setUser_List(helper_List);
 
+
                     adapter = new ForBaseAdapter(getContext(), message);
                     listview.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
