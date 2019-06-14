@@ -97,7 +97,6 @@ public class FriendAdapter extends BaseAdapter {
            //     StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             //    StrictMode.setThreadPolicy(policy);
 
-
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
@@ -115,6 +114,8 @@ public class FriendAdapter extends BaseAdapter {
                     }
                 });
                 thread.start();
+                lists.remove(position);
+                notifyDataSetChanged();
 
             }
         });
@@ -142,25 +143,5 @@ public class FriendAdapter extends BaseAdapter {
     }
 
 
-    /*public class ViewHloder extends AppCompatActivity {
-        ImageView add_btn;
-        protected void onCreate(Bundle savedInstanceState) {
-            super.onCreate(savedInstanceState);
-            setContentView(R.layout.for_freind);
-
-            add_btn = (ImageView)findViewById(R.id.add_friend);
-
-            add_btn.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Fragment1 fragment1 = new Fragment1();
-                    fragment1.Check_Answer_Freind();
-                }
-            });
-        }
-    }*/
-  //  public class ViewHloder{
-   //     ImageView sendadd;
-   // }
 }
 

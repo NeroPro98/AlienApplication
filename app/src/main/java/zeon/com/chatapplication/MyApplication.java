@@ -5,13 +5,14 @@ import android.graphics.Bitmap;
 
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
+import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
 
 import zeon.com.chatapplication.Model.UserProfile;
 
 
-public class MyApplication extends android.app.Application {
+public class MyApplication extends android.app.Application implements Serializable {
     public UserProfile user;
     Socket connection;
     int Color;
@@ -27,6 +28,17 @@ public class MyApplication extends android.app.Application {
     private ArrayList<Object> UserFriend_List_Every_init = new ArrayList<Object>();
     private ArrayList<Object> Helper_List = new ArrayList<>();
     private ArrayList<Object> The_User_List_Befor_Check;
+    private int Fragment1_Counter=0;
+
+    public int getFragment1_Counter() {
+        return Fragment1_Counter;
+    }
+
+    public void setFragment1_Counter() {
+        Fragment1_Counter ++;
+    }
+
+
 
     public ArrayList<Object> getThe_User_List_From_Server() {
         return The_User_List_Befor_Check;

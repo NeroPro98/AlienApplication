@@ -33,7 +33,7 @@ public class Register extends AppCompatActivity {
     private EditText Email_Text;
     private Button Sign_Button;
     private Button Register_Button;
-    public  ObjectInputStream input2;
+    public ObjectInputStream input2;
     private String Come_Email;
     private String User_Name;
     ImageView Dog;
@@ -53,8 +53,8 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        Password_Text = (EditText)findViewById(R.id.Password_Faild);
-        Email_Text = (EditText)findViewById(R.id.Email_Faild);
+        Password_Text = (EditText) findViewById(R.id.Password_Faild);
+        Email_Text = (EditText) findViewById(R.id.Email_Faild);
         Sign_Button = (Button) findViewById(R.id.btn_cart_signin);
         Register_Button = (Button) findViewById(R.id.btn_cart_signup);
 
@@ -70,12 +70,12 @@ public class Register extends AppCompatActivity {
         }*/
 
 
-       // arrayList.add(1);
-      //  arrayList.add(Password_Text.getText());
-       // arrayList.add(Email_Text.getText());
+        // arrayList.add(1);
+        //  arrayList.add(Password_Text.getText());
+        // arrayList.add(Email_Text.getText());
 
         //  Dog = (ImageView)findViewById(R.id.dog);
-       // Alien = (ImageView)findViewById(R.id.alien);
+        // Alien = (ImageView)findViewById(R.id.alien);
 
       /*  Alien.animate().alpha(1).setDuration(3000);
         Dog.animate().translationXBy(-1000).setDuration(0);
@@ -84,9 +84,9 @@ public class Register extends AppCompatActivity {
         Password_Text.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String test1 =Password_Text.getText().toString();
+                String test1 = Password_Text.getText().toString();
                 String test2 = "Enter Your Password......";
-                if(test1.equals(test2)) {
+                if (test1.equals(test2)) {
                     Password_Text.setText("");
                 }
             }
@@ -98,9 +98,9 @@ public class Register extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                String test1 =Email_Text.getText().toString();
+                String test1 = Email_Text.getText().toString();
                 String test2 = "Enter Your Email......";
-                if(test1.equals(test2)) {
+                if (test1.equals(test2)) {
                     Email_Text.setText("");
                 }
 
@@ -108,16 +108,16 @@ public class Register extends AppCompatActivity {
         });
 
 
-
     }
 
-    public void Dog_Animate(){
+    public void Dog_Animate() {
         //final Handler handler = new Handler();
-        new CountDownTimer(5000,1000){
+        new CountDownTimer(5000, 1000) {
 
             @Override
             public void onTick(long millisUntilFinished) {
             }
+
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onFinish() {
@@ -125,9 +125,9 @@ public class Register extends AppCompatActivity {
                 Dog.animate().translationXBy(2000)
                         .translationYBy(500)
                         .translationYBy(-500)
-                        . translationYBy(500)
+                        .translationYBy(500)
                         .translationYBy(-500)
-                        . translationYBy(500)
+                        .translationYBy(500)
                         .translationYBy(-500)
                         .setDuration(5000);
 
@@ -151,15 +151,14 @@ public class Register extends AppCompatActivity {
     }
 
 
-
     public void To_Chat_Page(View v) throws IOException, ClassNotFoundException {
 
-        Log.d("ChatApp","To_Register_Page was called");
+        Log.d("ChatApp", "To_Register_Page was called");
         final boolean bool1 = Cheack_Password();
         final boolean bool2 = Cheack_Email();
 
 
-        if(bool1 && bool2) {
+        if (bool1 && bool2) {
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
@@ -170,13 +169,23 @@ public class Register extends AppCompatActivity {
                             @Override
                             public void onChange() {
                                 if (ObjConnection.isSignedIn()) {
-                                    MyApplication data = (MyApplication) getApplicationContext();
-                                    Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
-                                    startActivity(intent);
-                                }
-                                else
-                                {
-                                    Toast.makeText(data, "Cannot Sign in", Toast.LENGTH_SHORT).show();
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Welcome...", Toast.LENGTH_SHORT).show();
+                                            Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
+                                            startActivity(intent);
+                                        }
+                                    });
+
+                                } else {
+                                    runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            Toast.makeText(getApplicationContext(), "Cannot Sign in....", Toast.LENGTH_SHORT).show();
+                                        }
+                                    });
+
                                 }
                             }
                         });
@@ -191,15 +200,9 @@ public class Register extends AppCompatActivity {
             });
             thread.start();
         }
-        else{
-            runOnUiThread(new Runnable() {  //Don't work
-                @Override
-                public void run() {
-                }
-            });
-        }
     }
-    public void To_Register_Page(View v){
+
+    public void To_Register_Page(View v) {
 
         Intent intent = new Intent(getApplicationContext(), Register_Page.class);
 
@@ -207,8 +210,7 @@ public class Register extends AppCompatActivity {
     }
 
 
-
-    public boolean Cheack_Password(){
+    public boolean Cheack_Password() {
 
         String pass = Password_Text.getText().toString();
         if (pass.length() < 6) {
@@ -216,29 +218,24 @@ public class Register extends AppCompatActivity {
             return false;
 
         } else {
-           return true;
+            return true;
 
         }
 
     }
 
-    public boolean Cheack_Email(){
+    public boolean Cheack_Email() {
 
         String email = Email_Text.getText().toString();
 
-        if(email.length() < 6 && email.contains("@") && email.contains(".com")){
+        if (email.length() < 6 && email.contains("@") && email.contains(".com")) {
             return false;
-        }else{
+        } else {
             return true;
         }
 
     }
 
-    public void To_Setting(View v){
-        Intent intent = new Intent(getApplicationContext(),SocketInfo.class);
-        startActivity(intent);
-
-    }
 
     public boolean Check_Email_Exist(ArrayList<Object> arrayList) throws IOException, ClassNotFoundException {
         ObjConnection.connect();
@@ -275,12 +272,12 @@ public class Register extends AppCompatActivity {
 
 
 */
-return true;
+        return true;
     }
 
-    public ArrayList<Object> serilaizeToStrings(){
+    public ArrayList<Object> serilaizeToStrings() {
 
-        ArrayList<Object>list = new ArrayList<>();
+        ArrayList<Object> list = new ArrayList<>();
 
         list.add(1);
         list.add(Email_Text.getText().toString());
@@ -292,8 +289,6 @@ return true;
         boolean res = Check_Email_Exist(serilaizeToStrings());
         return res;
     }
-
-
 
 
 }

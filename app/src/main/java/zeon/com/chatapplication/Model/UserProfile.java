@@ -1,18 +1,11 @@
 package zeon.com.chatapplication.Model;
 
-import android.app.FragmentManager;
-import android.app.Service;
 import android.content.Context;
-import android.content.Intent;
-import android.content.SharedPreferences;
-import android.os.IBinder;
-import android.support.annotation.Nullable;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import java.net.ConnectException;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
@@ -40,10 +33,26 @@ public class UserProfile implements Serializable {
     private onValueChangeListener valueChangeListener;
     private onValueChangeListener newMessagesListener;
     public ArrayList<String> User_Friend_Info = new ArrayList<>();
-    private ArrayList<String> User_List;
+    private ArrayList<Object> User_List;
     private ArrayList<String> User_Friend_Name = new ArrayList<>();
     private ArrayList<String> User_Friend_Emails = new ArrayList<>();
     private ArrayList<Object> User_Block_List = new ArrayList<>();
+    private ArrayList<Object> The_User_List_Info_File = new ArrayList<>();
+    //private static Context mContext;
+
+
+    public ArrayList<Object> getThe_User_List_Info_File() {
+        return The_User_List_Info_File;
+    }
+
+    public void setThe_User_List_Info_File(ArrayList<Object> the_User_List_Info_File) {
+        The_User_List_Info_File = the_User_List_Info_File;
+    }
+
+    public void setThe_User_List_Info_File_Element(ArrayList<Object>  Any){
+        The_User_List_Info_File.add(Any);
+    }
+
 
     public ArrayList<Object> getUser_Block_List() {
         return User_Block_List;
@@ -77,7 +86,7 @@ public class UserProfile implements Serializable {
 
 
 
-    public ArrayList<String> getUser_List() {
+    public ArrayList<Object> getUser_List() {
         return User_List;
     }
 
@@ -102,7 +111,6 @@ public class UserProfile implements Serializable {
 
 
  //   MyApplication data;
-    private static Context mContext;
 
     public interface onValueChangeListener {
         void onChange();
@@ -563,6 +571,10 @@ public class UserProfile implements Serializable {
 
         }
         return (boolean) list.get(1);
+    }
+
+    public UserProfile getUserObject(){
+        return this;
     }
 
 

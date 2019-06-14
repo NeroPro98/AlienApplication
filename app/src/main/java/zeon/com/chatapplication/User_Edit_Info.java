@@ -2,6 +2,7 @@ package zeon.com.chatapplication;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -21,7 +22,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -36,8 +43,13 @@ public class User_Edit_Info extends AppCompatActivity {
     private Button edit_button;
     private Button camera_button;
     private Button SaveImagebutton;
+    private Button ReadButton;
     MyApplication data = (MyApplication) MyApplication.getAppContext();
     private UserProfile ObjConnection = data.getUser();
+    private ObjectOutputStream WriteToFile;
+    private UserProfile userProfile = data.user;
+    private ArrayList<Object> User_Info = new ArrayList<>();
+    private String File_Name = "user_info";
 
     //for pick photo
     private static final int IMAGE_PICK_CODE = 1000;
@@ -59,6 +71,7 @@ public class User_Edit_Info extends AppCompatActivity {
         edit_button = (Button) findViewById(R.id.Edit_Button);
         camera_button = (Button) findViewById(R.id.Edit_Button_camera);
         SaveImagebutton = (Button) findViewById(R.id.SaveImage);
+        ReadButton = (Button)findViewById(R.id.Read_File_Button);
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -170,11 +183,6 @@ public class User_Edit_Info extends AppCompatActivity {
     }
 
 
-  /*  public void Save_Image(View view) {
-        Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
-        intent.putExtra("UserImage",R.id.user_circle_Edit);
-        startActivity(intent);
-    }*/
 
     public ArrayList<Object> serilaizeToStrings() {
 
@@ -191,7 +199,17 @@ public class User_Edit_Info extends AppCompatActivity {
 
     public void Save_Image(View view) {
 
+
         final ArrayList<Object> arrayList = serilaizeToStrings();
+        String Name = name.getText().toString();
+        String story = Story.getText().toString();
+        String Email_User = data.getUser_Email();
+        //User_Info.add(Email_User);
+        //User_Info.add(Name);
+        //User_Info.add(story);
+        data.user.setUserName(Name);
+        data.user.setStory(story);
+        //data.user.setThe_User_List_Info_File_Element(User_Info);
 
         Thread thread = new Thread(new Runnable() {
             @Override
@@ -208,9 +226,51 @@ public class User_Edit_Info extends AppCompatActivity {
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
+
             }
         });
         thread.start();
+        UserProfile user = new UserProfile();
+        user = data.user.getUserObject();
+        File file = new File(getFilesDir(), File_Name);
+        FileOutputStream outputStream;
+                try {
+
+                    outputStream = openFileOutput(File_Name, Context.MODE_PRIVATE);
+                    ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
+                    objectoutputStream.writeObject(user); // there is mistake here
+                    //WriteToFile = new ObjectOutputStream(openFileOutput(File_Name,MODE_PRIVATE));
+                    //WriteToFile.writeObject(userProfile);
+                    objectoutputStream.flush();
+                    objectoutputStream.close();
+                    outputStream.close();
+                    Toast.makeText(getApplicationContext(), "The Info Edit", Toast.LENGTH_SHORT).show();
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    System.out.println("The File Write Error :"+e.toString());
+                }
+
+
+    }
+
+    public void Read_File_UserInfo(View view){
+        FileInputStream fileInputStream;
+
+        try {
+            fileInputStream = openFileInput(File_Name);
+            ObjectInputStream objectInputStream =new ObjectInputStream(fileInputStream);
+            UserProfile user_read = (UserProfile)objectInputStream.readObject();
+            System.out.println("userRead:"+user_read);
+            user_read.getStory();
+            user_read.getName();
+            objectInputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -83,9 +83,6 @@ public class Story_Adapter extends BaseAdapter {
                 System.out.println("The User Friend Email is" + data.user.getUserFriends());
                 data.setSpecific_Email_Press(Specific_email);
                 String User_Curr_Email = data.getUser_Email();
-                SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("The_User_Email_Click", Specific_email);
                 final ArrayList<Object> arrayList = new ArrayList<>();
                 arrayList.add(7);
                 arrayList.add(User_Curr_Email);

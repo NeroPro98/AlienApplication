@@ -59,7 +59,7 @@ public class Fragment2 extends Fragment {
             count++;
         } else if (list2.size() >= 2) {
             list = list2;
-           // list.remove(0);
+            // list.remove(0);
             //list.remove(0);
             count++;
         }
@@ -103,14 +103,13 @@ public class Fragment2 extends Fragment {
 
         grid.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout);
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout_frag2);
 
 
         if (count > 0) {
             mRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
                 @Override
                 public void onRefresh() {
-                    boolean bool = false;
                     System.out.println("The User Friend is" + data.user.getUserFriends());
                     System.out.println("I am Refresh Swap");
                     Thread thread = new Thread(new Runnable() {
@@ -142,12 +141,9 @@ public class Fragment2 extends Fragment {
                     });
                     thread.start();
 
-                    if (helper_List.size() != 0) {
+                    if (helper_List.size() > 2) {
                         helper_List.remove(0);
                         helper_List.remove(0);
-                    }
-                    //for(int i =0;i<helper_List.size();i++) {
-                    if (helper_List.size() >= helper_List2.size() && helper_List.size() >= 2) {
                         InitStory(helper_List);
                         for (int j = 0; j < helper_List.size(); j++) {
                             data.user.setUser_Friend_Info((String) helper_List.get(j));
@@ -157,19 +153,23 @@ public class Fragment2 extends Fragment {
                         grid.setAdapter(adapter);
                         adapter.notifyDataSetChanged();
                     } else {
-
+                        adapter.notifyDataSetChanged();
                     }
+                    //for(int i =0;i<helper_List.size();i++) {
+
                     mRefreshLayout.setRefreshing(false);
 
-
                 }
+
+
             });
 
+
+            //  }
 
         }
         return view;
     }
-
 
 
     public ArrayList<Object> serilaizeToStringsForFriendList() {

@@ -46,16 +46,16 @@ public class Fragment1 extends Fragment {
     private SwipeRefreshLayout mRefreshLayout;
     private int count = 0;
     private ArrayList<Object> helper_List = new ArrayList<>();
-    private ArrayList<String> helper_List2 = new ArrayList<>();
+    private ArrayList<Object> helper_List2 = new ArrayList<>();
     private int FriendSuggectionCount = 0;
 
     public void init(ArrayList<Object> list2) {
 
         EmailList.removeAll(EmailList);
         //   int size = (int) list.get(2);
-        if (count == 0) {
+        if (data.getFragment1_Counter() == 0) {
             list = (ArrayList) data.user.getUser_List();
-            count++;
+            data.setFragment1_Counter();
         } else {
             list = list2;
             Friend.removeAll(Friend);
@@ -63,24 +63,29 @@ public class Fragment1 extends Fragment {
             // list.remove(0);
             // list.remove(0);
             //list.remove(0);
-            count++;
+            data.setFragment1_Counter();
         }
-        System.out.println("The Count of Fragment 1 Is:" + count);
+        System.out.println("The Count of Fragment 1 Is:" + data.getFragment1_Counter());
         System.out.println("The List of Fragment 1 Is:" + list);
 
         //   if (list.size() != FriendSuggectionCount) {
 
         // }
 
-
-        for (int i = 0; i < list.size(); i = i + 2) {
-            //Friend.add(new FriendComp(1, "Mohamad Nesart", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-            //Friend.add(new FriendComp(1,"Mohamad Al Moazen","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-            //     for (int j = 0; j < Friend.size(); j++) {
-            //       if (!data.getEmails().get(j).equals(list.get(i + 1))) {
-            Friend.add(new FriendComp(1, (String) list.get(i + 1), (String) list.get(i), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-            FriendSuggectionCount += 2;
-            EmailList.add((String) list.get(i + 1));
+        if (list.size() != 0) {
+            for (int i = 0; i < list.size(); i = i + 2) {
+                //Friend.add(new FriendComp(1, "Mohamad Nesart", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                //Friend.add(new FriendComp(1,"Mohamad Al Moazen","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                //     for (int j = 0; j < Friend.size(); j++) {
+                //       if (!data.getEmails().get(j).equals(list.get(i + 1))) {
+                Friend.add(new FriendComp(1, (String) list.get(i + 1), (String) list.get(i), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                FriendSuggectionCount += 2;
+                EmailList.add((String) list.get(i + 1));
+                adapter.notifyDataSetChanged();
+            }
+        }else{
+            Friend.removeAll(Friend);
+            adapter.notifyDataSetChanged();
         }
         //}
         System.out.println("FriendSuggectionCount is:" + FriendSuggectionCount);
@@ -96,7 +101,7 @@ public class Fragment1 extends Fragment {
         System.out.println("The Email List is :" + data.getUser_Email());
         data.getUser_Email();
 
-        adapter.notifyDataSetChanged();
+
 
 
     }
@@ -110,8 +115,12 @@ public class Fragment1 extends Fragment {
 
         View view = inflater.inflate(R.layout.layout_fragment1, container, false);
         listview = (ListView) view.findViewById(R.id.ListViewMessage1);
-        ArrayList<Object> list3 = (ArrayList) data.getGetUser_List_Every_init();
+        ArrayList<Object> list3;
+        // if(data.getFragment1_Counter()==0) {
+        list3 = data.user.getUser_List();
+        //       list3= (ArrayList) data.user.getUser_List(); ///////////////here
         init(list3);
+        // }
         adapter = new FriendAdapter(getContext(), Friend);
         Log.d("AlienChat", "Context" + getContext());
         Log.d("AlienChat", "message" + Friend);
@@ -128,7 +137,7 @@ public class Fragment1 extends Fragment {
                 Thread thread = new Thread(new Runnable() {
                     @Override
                     public void run() {
-                        if (count > 0) {
+                        if (data.getFragment1_Counter() > 0) {
                             ArrayList arrayList = serilaizeToStrings();
                             System.out.println("The arraylist :" + arrayList);
                             try {
@@ -163,24 +172,23 @@ public class Fragment1 extends Fragment {
                 thread.start();
 
 
-
                 if (helper_List.size() > 2) {
                     helper_List.remove(0);
                     helper_List.remove(0);
                     helper_List.remove(0);
-                }
-
-                if (helper_List.size() >= 2) {
                     init(helper_List);
-                    data.user.setUser_List(helper_List2);
+                    data.user.setUser_List(helper_List);
 
-                    //  }
                     adapter = new FriendAdapter(getContext(), Friend);
                     listview.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-                } else {
-
                 }
+
+               /* if (helper_List.size() >= 2) {
+
+                } else {
+                    adapter.notifyDataSetChanged();
+                }*/
                 mRefreshLayout.setRefreshing(false);
 
             }
