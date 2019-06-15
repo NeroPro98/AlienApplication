@@ -21,7 +21,7 @@ public class UserProfile implements Serializable {
     private ArrayList<String> userFriends;
     private ArrayList<String> blockList;
     private Date joinDate;
-    private ArrayList<Chats> chatsList;
+    private ArrayList<Chat_Model> chatsList;
     private String userId;
     private String story;
     public transient ObjectOutputStream output;
@@ -272,12 +272,19 @@ public class UserProfile implements Serializable {
         }
     }
 
-    public Chats getChat(String friendEmail) {
-        for (Chats c : chatsList) {
+    public Chat_Model getChat(String friendEmail) {
+        for (Chat_Model c : chatsList) {
             if (c.getFriendEmail().equals(friendEmail))
                 return c;
         }
         return null;
+    }
+    public void setChatModelList(Chat_Model msg){
+        chatsList.add(msg);
+    }
+
+    public ArrayList<Chat_Model> getChatModelList(){
+        return chatsList;
     }
 
     public boolean addFriend(UserProfile friend) {
