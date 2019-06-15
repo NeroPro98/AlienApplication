@@ -29,6 +29,7 @@ import java.util.Date;
 import java.util.List;
 
 
+import zeon.com.chatapplication.Chats;
 import zeon.com.chatapplication.Model.Chat_Model;
 import zeon.com.chatapplication.Model.Message;
 import zeon.com.chatapplication.Model.UserProfile;
@@ -116,12 +117,14 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     public void HandlerChatServer(){
-        ArrayList<Message> list =data.getUser().getChat(friendEmail).getList();
-        for(int i = 0 ; i < list.size();i++)
-        {
-            ChatListServer.add(new Chat_Model(1,1, (String) list.get(i).getObject(),true));
+        Chats ch = data.getUser().getChat(friendEmail);
+        if(ch !=null) {
+            ArrayList<Message> list = ch.getList();
+            for (int i = 0; i < list.size(); i++) {
+                ChatListServer.add(new Chat_Model(1, 1, (String) list.get(i).getObject(), true));
+            }
+            MessageFromServer(ChatListServer);
         }
-        MessageFromServer(ChatListServer);
     }
 
 
