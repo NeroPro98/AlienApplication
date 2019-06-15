@@ -27,11 +27,11 @@ public class UserProfile implements Serializable {
     public transient ObjectOutputStream output;
     public transient ObjectInputStream input;
     private transient Socket Connection;
-    private String IPString;
-    private String PortString;
+    private transient String IPString;
+    private transient String PortString;
     private boolean signedIn;
-    private onValueChangeListener valueChangeListener;
-    private onValueChangeListener newMessagesListener;
+    private transient onValueChangeListener valueChangeListener;
+    private transient onValueChangeListener newMessagesListener;
     public ArrayList<Object> User_Friend_Info = new ArrayList<>();
     private ArrayList<Object> User_List;
     private ArrayList<String> User_Friend_Name = new ArrayList<>();
@@ -147,7 +147,7 @@ public class UserProfile implements Serializable {
 
     }
 
-    public HandleThread handleThread;
+    public transient HandleThread handleThread;
 
     public Socket getConnection() {
         return Connection;

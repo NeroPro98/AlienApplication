@@ -71,7 +71,7 @@ public class User_Edit_Info extends AppCompatActivity {
         edit_button = (Button) findViewById(R.id.Edit_Button);
         camera_button = (Button) findViewById(R.id.Edit_Button_camera);
         SaveImagebutton = (Button) findViewById(R.id.SaveImage);
-        ReadButton = (Button)findViewById(R.id.Read_File_Button);
+     //   ReadButton = (Button)findViewById(R.id.Read_File_Button);
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -198,8 +198,6 @@ public class User_Edit_Info extends AppCompatActivity {
 
 
     public void Save_Image(View view) {
-
-
         final ArrayList<Object> arrayList = serilaizeToStrings();
         String Name = name.getText().toString();
         String story = Story.getText().toString();
@@ -217,10 +215,11 @@ public class User_Edit_Info extends AppCompatActivity {
                 try {
                     System.out.println("The arraylist :" + arrayList);
                     ObjConnection.output.writeObject(arrayList);
+                    ObjConnection.output.flush();
                     ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
                     System.out.println("The inputList :" + inputlist);
                     ObjConnection.handleReceivedRequest(inputlist);
-                    ObjConnection.output.flush();
+
                 } catch (IOException e) {
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
@@ -235,7 +234,6 @@ public class User_Edit_Info extends AppCompatActivity {
         File file = new File(getFilesDir(), File_Name);
         FileOutputStream outputStream;
                 try {
-
                     outputStream = openFileOutput(File_Name, Context.MODE_PRIVATE);
                     ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
                     objectoutputStream.writeObject(user); // there is mistake here
