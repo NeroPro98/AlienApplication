@@ -236,7 +236,7 @@ public class User_Edit_Info extends AppCompatActivity {
                 try {
                     outputStream = openFileOutput(File_Name, Context.MODE_PRIVATE);
                     ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
-                    objectoutputStream.writeObject(user); // there is mistake here
+                    objectoutputStream.writeObject(user);
                     //WriteToFile = new ObjectOutputStream(openFileOutput(File_Name,MODE_PRIVATE));
                     //WriteToFile.writeObject(userProfile);
                     objectoutputStream.flush();

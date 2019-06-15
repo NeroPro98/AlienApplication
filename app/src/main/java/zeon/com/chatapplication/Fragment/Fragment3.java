@@ -41,7 +41,7 @@ public class Fragment3 extends Fragment {
 
 
     public void init(ArrayList<Object> list_user) {
-
+        boolean bool = false;
        /* message.add(new MessagePerson("www.alaa@gmail.com",1,"Mohamad Nesart","Hello There","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
         message.add(new MessagePerson("www.alaa@gmail.com",1,"Mohamad Nesart","Hello There","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
         message.add(new MessagePerson("www.alaa@gmail.com",1,"Mohamad Nesart","Hello There","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
@@ -51,8 +51,29 @@ public class Fragment3 extends Fragment {
         message.add(new MessagePerson("www.alaa@gmail.com",1,"Mohamad Nesart","Hello There","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
         message.add(new MessagePerson("www.alaa@gmail.com",1,"Mohamad Nesart","Hello There","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
 */
-        if (list_user.size() != 0) {
-            for (int i = 0; i < list_user.size(); i=i+2) {
+        if (list_user.size() != 0 && message.size()!=0) {
+
+            for(int k=0;k<message.size();k++){
+                for(int i=0;i<list_user.size();i=i+2) {
+                    if (message.get(k).getEmail().equals(list_user.get(i))){
+                        bool = true;
+                        list_user.remove(0);
+                        list_user.remove(0);
+                        break;
+                    }else{
+                       // list_user.remove(0);
+                        //list_user.remove(0);
+                    }
+                }
+            }
+            if (bool==false) {
+                for (int i = 0; i < list_user.size(); i = i + 2) {
+                    message.add(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "Hello There", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }else if(message.size()==0){
+            for (int i = 0; i < list_user.size(); i = i + 2) {
                 message.add(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "Hello There", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
             }
             adapter.notifyDataSetChanged();
@@ -89,7 +110,7 @@ public class Fragment3 extends Fragment {
 
                 if (helper_List.size() >= 2) {
                     init(helper_List);
-                    data.user.setUser_List(helper_List);
+                    //data.user.setUser_List(helper_List);
 
 
                     adapter = new ForBaseAdapter(getContext(), message);
