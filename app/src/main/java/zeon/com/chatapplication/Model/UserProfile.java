@@ -22,6 +22,7 @@ public class UserProfile implements Serializable {
     private ArrayList<String> blockList;
     private Date joinDate;
     private ArrayList<Chat_Model> chatsList;
+    private ArrayList<Chat_Model> currMessages;
     private String userId;
     private String story;
     public transient ObjectOutputStream output;
@@ -40,6 +41,15 @@ public class UserProfile implements Serializable {
     private ArrayList<Object> The_User_List_Info_File = new ArrayList<>();
     private ArrayList<Object> The_User_Hwo_Chat_With_Him = new ArrayList<>();
 
+    public ArrayList<Chat_Model> getCurrMessages() {
+        ArrayList<Chat_Model> tmp = new ArrayList<>(currMessages);
+        currMessages.clear();
+        return tmp;
+    }
+
+    public void setCurrMessages(ArrayList<Chat_Model> currMessages) {
+        this.currMessages = currMessages;
+    }
 
     public ArrayList<Object> getThe_User_Hwo_Chat_With_Him() {
         return The_User_Hwo_Chat_With_Him;
@@ -132,10 +142,16 @@ public class UserProfile implements Serializable {
         this.valueChangeListener = valueChangeListener;
     }
 
-
+    public void setMessageListener(onValueChangeListener listener){
+        this.newMessagesListener = listener;
+    }
+    public onValueChangeListener getMessageListener(){
+        return this.newMessagesListener;
+    }
     public onValueChangeListener getValueChangeListener() {
         return valueChangeListener;
     }
+
 
     public boolean isSignedIn() {
         return signedIn;
@@ -382,13 +398,6 @@ public class UserProfile implements Serializable {
         this.joinDate = joinDate;
     }
 
-    public onValueChangeListener getNewMessagesListener() {
-        return newMessagesListener;
-    }
-
-    public void setNewMessagesListener(onValueChangeListener newMessagesListener) {
-        this.newMessagesListener = newMessagesListener;
-    }
 
     public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");

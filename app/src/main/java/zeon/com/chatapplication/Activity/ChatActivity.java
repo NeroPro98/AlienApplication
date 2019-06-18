@@ -86,7 +86,6 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
         LinearLayout linear = new LinearLayout(this);
         linear.setOrientation(LinearLayout.VERTICAL);
-
         linear.setBackgroundResource(R.color.Reciver_color);
         LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
         layoutParams.setMargins(30,30,30,30);
@@ -138,6 +137,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         mLayout = (LinearLayout)findViewById(R.id.linearlayoutforchat);
 
 
+
         //MessageFromServer("Hi How are you ?",true);
         //MessageFromServer("I am good",false);
 
@@ -150,7 +150,15 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         this.setTitle(Name);
 
         sendbtn = (ImageView)findViewById(R.id.sendbutton_new);
-        type = (EditText) findViewById(R.id.typetext);
+       type = (EditText) findViewById(R.id.typetext);
+
+       data.getUser().setMessageListener(new UserProfile.onValueChangeListener() {
+           @Override
+           public void onChange() {
+               ArrayList<Chat_Model> list = data.getUser().getCurrMessages();
+               //show the list on the screen handle it any way you like
+           }
+       });
 
         sendbtn.setOnClickListener(new View.OnClickListener() {
             @Override
