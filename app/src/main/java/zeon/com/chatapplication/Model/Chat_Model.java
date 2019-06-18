@@ -8,6 +8,7 @@ public class Chat_Model {
     private int id;
     private int unequid;
     private String message;
+
     private boolean any;
     private ArrayList<Message> list;
     private String myEmail;
