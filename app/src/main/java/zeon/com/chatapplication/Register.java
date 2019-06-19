@@ -171,6 +171,7 @@ public class Register extends AppCompatActivity {
                             public void onChange() {
                                 if (ObjConnection.isSignedIn()) {
                                     Read_File_UserInfo();
+
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
