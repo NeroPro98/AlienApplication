@@ -38,6 +38,7 @@ public class Register extends AppCompatActivity {
     private String User_Name;
     ImageView Dog;
     ImageView Alien;
+    private String File_Name = "user_info";
 
     MyApplication data = (MyApplication) MyApplication.getmContext();
 
@@ -169,6 +170,7 @@ public class Register extends AppCompatActivity {
                             @Override
                             public void onChange() {
                                 if (ObjConnection.isSignedIn()) {
+                                    Read_File_UserInfo();
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
@@ -290,5 +292,24 @@ public class Register extends AppCompatActivity {
         return res;
     }
 
+    public void Read_File_UserInfo() {
+        FileInputStream fileInputStream;
+        File file = new File(data.getFilesDir(), File_Name);
 
+        if (file.exists()) {
+            try {
+                fileInputStream = data.openFileInput(File_Name);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                UserProfile user_read = (UserProfile) objectInputStream.readObject();
+                data.user = user_read;
+                System.out.println("userRead:" + user_read);
+                //InputList = user_read.getThe_User_Hwo_Chat_With_Him();
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 }

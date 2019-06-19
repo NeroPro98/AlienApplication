@@ -71,8 +71,8 @@ public class User_Edit_Info extends AppCompatActivity {
         edit_button = (Button) findViewById(R.id.Edit_Button);
         camera_button = (Button) findViewById(R.id.Edit_Button_camera);
         SaveImagebutton = (Button) findViewById(R.id.SaveImage);
-     //   ReadButton = (Button)findViewById(R.id.Read_File_Button);
-
+        //   ReadButton = (Button)findViewById(R.id.Read_File_Button);
+        Read_File_UserInfo();
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -183,7 +183,6 @@ public class User_Edit_Info extends AppCompatActivity {
     }
 
 
-
     public ArrayList<Object> serilaizeToStrings() {
 
         ArrayList<Object> list = new ArrayList<>();
@@ -196,8 +195,7 @@ public class User_Edit_Info extends AppCompatActivity {
     }
 
 
-
-    public void Save_Image(View view) {
+    public void Save_Image(View view) throws IOException {
         final ArrayList<Object> arrayList = serilaizeToStrings();
         String Name = name.getText().toString();
         String story = Story.getText().toString();
@@ -232,42 +230,48 @@ public class User_Edit_Info extends AppCompatActivity {
         UserProfile user = new UserProfile();
         user = data.user.getUserObject();
         File file = new File(getFilesDir(), File_Name);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
         FileOutputStream outputStream;
-                try {
-                    outputStream = openFileOutput(File_Name, Context.MODE_PRIVATE);
-                    ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
-                    objectoutputStream.writeObject(user);
-                    //WriteToFile = new ObjectOutputStream(openFileOutput(File_Name,MODE_PRIVATE));
-                    //WriteToFile.writeObject(userProfile);
-                    objectoutputStream.flush();
-                    objectoutputStream.close();
-                    outputStream.close();
-                    Toast.makeText(getApplicationContext(), "The Info Edit", Toast.LENGTH_SHORT).show();
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    System.out.println("The File Write Error :"+e.toString());
-                }
+        try {
+            outputStream = openFileOutput(File_Name, Context.MODE_PRIVATE);
+            ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
+            objectoutputStream.writeObject(user);
+            //WriteToFile = new ObjectOutputStream(openFileOutput(File_Name,MODE_PRIVATE));
+            //WriteToFile.writeObject(userProfile);
+            objectoutputStream.flush();
+            objectoutputStream.close();
+            outputStream.close();
+            Toast.makeText(getApplicationContext(), "The Info Edit", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("The File Write Error :" + e.toString());
+        }
 
 
     }
 
-    public void Read_File_UserInfo(View view){
+    public void Read_File_UserInfo() {
         FileInputStream fileInputStream;
+        File file = new File(getFilesDir(), File_Name);
 
-        try {
-            fileInputStream = openFileInput(File_Name);
-            ObjectInputStream objectInputStream =new ObjectInputStream(fileInputStream);
-            UserProfile user_read = (UserProfile)objectInputStream.readObject();
-            System.out.println("userRead:"+user_read);
-            user_read.getStory();
-            user_read.getName();
-            objectInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        if (file.exists()) {
+            try {
+                fileInputStream = openFileInput(File_Name);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                UserProfile user_read = (UserProfile) objectInputStream.readObject();
+                System.out.println("userRead:" + user_read);
+                name.setText(user_read.getName());
+                Story.setText(user_read.getStory());
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
         }
     }
 

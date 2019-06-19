@@ -1,22 +1,25 @@
 package zeon.com.chatapplication.Model;
 
+import android.widget.ImageView;
+
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Chat_Model {
+public class Chat_Model implements Serializable {
 
     private int id;
     private int unequid;
     private String message;
-
     private boolean any;
     private ArrayList<Message> list;
     private String myEmail;
     private String friendEmail;
     private Date msgdate;
+    private ImageView imagesend;
 
 
-    public Chat_Model(String FromEmail, String ToEmail, String message, boolean any, Date date) {
+    public Chat_Model(String FromEmail, String ToEmail, String message, boolean any, Date date, ImageView image) {
         //this.id = id;
         //this.unequid = unequid;
         this.myEmail = FromEmail;
@@ -24,6 +27,7 @@ public class Chat_Model {
         this.message = message;
         this.any = any;
         this.msgdate = date;
+        this.imagesend = image;
     }
 
     public Chat_Model() {

@@ -1,5 +1,7 @@
 package zeon.com.chatapplication.Model;
 
-public enum messageType {
+import java.io.Serializable;
+
+public enum messageType implements Serializable {
     Text,Image,Video,SoundTrack
 }

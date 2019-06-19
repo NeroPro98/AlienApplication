@@ -1,5 +1,6 @@
 package zeon.com.chatapplication.Fragment;
 
+import android.content.Context;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,7 +19,11 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import zeon.com.chatapplication.Adapter.FriendAdapter;
@@ -47,6 +52,7 @@ public class Fragment2 extends Fragment {
     private SwipeRefreshLayout mRefreshLayout;
     private ArrayList<Object> helper_List = new ArrayList<>();
     private ArrayList<Object> helper_List2 = new ArrayList<>();
+    private String File_Name = "user_info";
 
 
     public void InitStory(ArrayList<Object> list2) {
@@ -180,7 +186,6 @@ public class Fragment2 extends Fragment {
         // list.add(email);
         return list;
     }
-
 
 
     /* @Override

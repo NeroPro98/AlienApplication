@@ -13,7 +13,13 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -31,6 +37,7 @@ public class Story_Adapter extends BaseAdapter {
     MyApplication data = (MyApplication) MyApplication.getAppContext();
     private UserProfile ObjConnection = data.getUser();
     ArrayList ListBlockFriend = new ArrayList();
+    private String File_Name = "user_info";
 
     public Story_Adapter(Context context, ArrayList<story> list) {
 
@@ -62,6 +69,7 @@ public class Story_Adapter extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
 
+        Read_File_UserInfo();
         final View view = mInflater.inflate(R.layout.for_peroson_story, null);
         CircleImageView image = (CircleImageView) view.findViewById(R.id.storyimage);
         final TextView txt1 = (TextView) view.findViewById(R.id.addstory);
@@ -202,26 +210,34 @@ public class Story_Adapter extends BaseAdapter {
                 ArrayList<Object> UserChat = new ArrayList<>();
                 String Specific_email = data.user.getUserFriendsByPos(number);
                 String name_user = mArrayList.get(position).getAddtext();
-                if(data.user.getThe_User_Hwo_Chat_With_Him().size()!=0) {
-                    for (int i = 0; i < data.user.getThe_User_Hwo_Chat_With_Him().size(); i = i+2) {
-                        if(data.user.getThe_User_Hwo_Chat_With_Him().get(i).equals(Specific_email)) {
-                           bool = true;
+                if (data.user.getThe_User_Hwo_Chat_With_Him().size() != 0) {
+                    for (int i = 0; i < data.user.getThe_User_Hwo_Chat_With_Him().size(); i = i + 2) {
+                        if (data.user.getThe_User_Hwo_Chat_With_Him().get(i).equals(Specific_email)) {
+                            bool = true;
                         }
                     }
-                    if(bool==false){
+                    if (bool == false) {
                         UserChat.add(Specific_email);
                         UserChat.add(name_user);
-                        data.user.setThe_User_Hwo_Chat_With_Him(UserChat);
+                        try {
+                            Save_Fragment2_Info(UserChat);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
-                }else{
+                } else {
                     UserChat.add(Specific_email);
                     UserChat.add(name_user);
-                    data.user.setThe_User_Hwo_Chat_With_Him(UserChat);
+                    //data.user.setThe_User_Hwo_Chat_With_Him(UserChat);
+                    try {
+                        Save_Fragment2_Info(UserChat);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 //UserChat.removeAll(UserChat);
             }
         });
-
 
 
         view.setOnClickListener(new View.OnClickListener() {
@@ -238,4 +254,60 @@ public class Story_Adapter extends BaseAdapter {
 
         return view;
     }
+
+    public void Save_Fragment2_Info(ArrayList<Object> UserChat) throws IOException {
+
+
+        UserProfile user = new UserProfile();
+        user = data.user.getUserObject();
+        data.user.setThe_User_Hwo_Chat_With_Him(UserChat);
+        File file = new File(data.getFilesDir(), File_Name);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileOutputStream outputStream;
+        try {
+            outputStream = data.openFileOutput(File_Name, Context.MODE_PRIVATE);
+            ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
+            objectoutputStream.writeObject(user);
+            //WriteToFile = new ObjectOutputStream(openFileOutput(File_Name,MODE_PRIVATE));
+            //WriteToFile.writeObject(userProfile);
+            objectoutputStream.flush();
+            objectoutputStream.close();
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("The File Write Error :" + e.toString());
+        }
+
+
+    }
+
+
+
+    public void Read_File_UserInfo() {
+        FileInputStream fileInputStream;
+        File file = new File(data.getFilesDir(), File_Name);
+
+        if (file.exists()) {
+            try {
+                fileInputStream = data.openFileInput(File_Name);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                UserProfile user_read = (UserProfile) objectInputStream.readObject();
+                System.out.println("userRead:" + user_read);
+                data.user = (UserProfile)user_read.getUserObject();
+                user_read.getThe_User_Hwo_Chat_With_Him();
+                data.user.getThe_User_Hwo_Chat_With_Him();
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
 }

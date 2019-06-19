@@ -62,7 +62,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     private Fragment2 fragment2 = new Fragment2();
 
     MyApplication data = (MyApplication) MyApplication.getAppContext();
-    private UserProfile ObjConnection = data.getUser();
+    private UserProfile ObjConnection = data.user;
 
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

@@ -17,7 +17,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ListView;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import zeon.com.chatapplication.Adapter.ForBaseAdapter;
@@ -38,8 +41,8 @@ public class Fragment3 extends Fragment {
     private SwipeRefreshLayout mRefreshLayout;
     private ArrayList<Object> helper_List = new ArrayList<>();
     private ForBaseAdapter adapter = new ForBaseAdapter();
-
-
+    private String File_Name = "user_info";
+    private ArrayList<Object> InputList = new ArrayList<>();
     public void init(ArrayList<Object> list_user) {
         boolean bool = false;
        /* message.add(new MessagePerson("www.alaa@gmail.com",1,"Mohamad Nesart","Hello There","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
@@ -86,10 +89,9 @@ public class Fragment3 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        Read_File_UserInfo();
         View view = inflater.inflate(R.layout.layout_fragment3, container, false);
-
         listview = (ListView) view.findViewById(R.id.ListViewMessage3);
-        ArrayList<Object> InputList = data.user.getThe_User_Hwo_Chat_With_Him();
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout_frag3);
 
         init(InputList);
@@ -127,6 +129,27 @@ public class Fragment3 extends Fragment {
         return view;
 
 
+    }
+
+
+    public void Read_File_UserInfo() {
+        FileInputStream fileInputStream;
+        File file = new File(data.getFilesDir(), File_Name);
+
+        if (file.exists()) {
+            try {
+                fileInputStream = data.openFileInput(File_Name);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                UserProfile user_read = (UserProfile) objectInputStream.readObject();
+                System.out.println("userRead:" + user_read);
+                InputList = user_read.getThe_User_Hwo_Chat_With_Him();
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

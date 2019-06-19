@@ -1,14 +1,16 @@
 package zeon.com.chatapplication.Model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class Message {
+public class Message implements Serializable {
     private String senderEmail;
     private String recieverEmail;
     private boolean groupMessage;
     private boolean recieved;
     private Object object;
+    //private Object object;
     private messageType type;
     private Date sendDate;
     private Date receiveDate;
