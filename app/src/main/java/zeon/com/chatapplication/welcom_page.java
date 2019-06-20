@@ -16,16 +16,24 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class welcom_page extends AppCompatActivity implements GestureDetector.OnGestureListener,GestureDetector.OnDoubleTapListener{
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+
+import zeon.com.chatapplication.Model.UserProfile;
+
+public class welcom_page extends AppCompatActivity implements GestureDetector.OnGestureListener, GestureDetector.OnDoubleTapListener {
 
     GestureDetectorCompat mGestureDetectorCompat;
     TextView text1;
     TextView text2;
     ImageView image1;
-    Animation togo,toin;
+    Animation togo, toin;
     TextView text3;
     TextView text4;
     MediaPlayer mediaPlayer;
+    MyApplication data = (MyApplication) MyApplication.getmContext();
 
 
     @Override
@@ -33,19 +41,19 @@ public class welcom_page extends AppCompatActivity implements GestureDetector.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcom_page);
 
-      //  startService(new Intent(this,service.class));
+        //  startService(new Intent(this,service.class));
 
-        mGestureDetectorCompat = new GestureDetectorCompat(this,this);
+        mGestureDetectorCompat = new GestureDetectorCompat(this, this);
         mGestureDetectorCompat.setOnDoubleTapListener(this);
 
         text1 = (TextView) findViewById(R.id.journey);
-        text2 = (TextView)findViewById(R.id.swap_up);
-        image1 = (ImageView)findViewById(R.id.Zeon_chat2);
-        togo = AnimationUtils.loadAnimation(this,R.anim.togo);
-        toin = AnimationUtils.loadAnimation(this,R.anim.toin);
-        text3 = (TextView)findViewById(R.id.textView1);
-        text4 = (TextView)findViewById(R.id.textView2);
-        mediaPlayer = (MediaPlayer) MediaPlayer.create(this,R.raw.opener);
+        text2 = (TextView) findViewById(R.id.swap_up);
+        image1 = (ImageView) findViewById(R.id.Zeon_chat2);
+        togo = AnimationUtils.loadAnimation(this, R.anim.togo);
+        toin = AnimationUtils.loadAnimation(this, R.anim.toin);
+        text3 = (TextView) findViewById(R.id.textView1);
+        text4 = (TextView) findViewById(R.id.textView2);
+        mediaPlayer = (MediaPlayer) MediaPlayer.create(this, R.raw.opener);
 
         text1.animate().alpha(1).setDuration(3000);
         text2.animate().alpha(1).setDuration(3000);
@@ -95,9 +103,9 @@ public class welcom_page extends AppCompatActivity implements GestureDetector.On
 
     @Override
     public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
-        Intent intent = new Intent(getApplicationContext(),Register.class);
+        Intent intent = new Intent(getApplicationContext(), Register.class);
         startActivity(intent);
-        overridePendingTransition(R.anim.toin,R.anim.togo);
+        overridePendingTransition(R.anim.toin, R.anim.togo);
 
         return false;
     }

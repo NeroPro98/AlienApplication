@@ -3,7 +3,9 @@ package zeon.com.chatapplication;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.net.Socket;
@@ -13,7 +15,7 @@ import zeon.com.chatapplication.Model.UserProfile;
 
 
 public class MyApplication extends android.app.Application implements Serializable {
-    public UserProfile user;
+    public UserProfile user = new UserProfile();
     Socket connection;
     int Color;
     boolean signedIn;
@@ -29,6 +31,7 @@ public class MyApplication extends android.app.Application implements Serializab
     private ArrayList<Object> Helper_List = new ArrayList<>();
     private ArrayList<Object> The_User_List_Befor_Check;
     private int Fragment1_Counter=0;
+    private String File_Name = "user_info";
 
     public int getFragment1_Counter() {
         return Fragment1_Counter;
@@ -198,6 +201,7 @@ public class MyApplication extends android.app.Application implements Serializab
     public void onCreate() {
         super.onCreate();
         MyApplication.mContext = getApplicationContext();
+        Read_File_UserInfo();
      //   user = new UserProfile();
    //     checkTheInternalFile();  //here the file we read this before the GUI work
     }
@@ -230,6 +234,33 @@ public class MyApplication extends android.app.Application implements Serializab
         }
     }
 
+    public void Read_File_UserInfo() {
+        FileInputStream fileInputStream;
+        File file = new File(getFilesDir(), File_Name);
+
+        if (file.exists()) {
+            try {
+                fileInputStream = openFileInput(File_Name);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                UserProfile user_read = (UserProfile) objectInputStream.readObject();
+                user = user_read;
+                Thread thread = new Thread(new Runnable() {
+                    @Override
+                    public void run() {
+                        user.connect();
+                    }
+                });
+                thread.start();
+                System.out.println("userRead:" + user_read);
+                //InputList = user_read.getThe_User_Hwo_Chat_With_Him();
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
 
 
