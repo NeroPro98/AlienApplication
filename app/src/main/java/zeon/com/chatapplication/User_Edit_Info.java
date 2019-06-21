@@ -266,6 +266,7 @@ public class User_Edit_Info extends AppCompatActivity {
                 System.out.println("userRead:" + user_read);
                 name.setText(user_read.getName());
                 Story.setText(user_read.getStory());
+                Save_UserActivity_Info();
                 objectInputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -273,6 +274,31 @@ public class User_Edit_Info extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
+    }
+    public void Save_UserActivity_Info() throws IOException {
+
+        UserProfile user = new UserProfile();
+        user = data.user.getUserObject();
+        File file = new File(data.getFilesDir(), File_Name);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileOutputStream outputStream;
+        try {
+            outputStream = data.openFileOutput(File_Name, Context.MODE_PRIVATE);
+            ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
+            objectoutputStream.writeObject(user);
+            objectoutputStream.flush();
+            objectoutputStream.close();
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("The File Write Error :" + e.toString());
+        }
+
+
     }
 
 }

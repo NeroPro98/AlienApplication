@@ -80,6 +80,9 @@ public class Fragment2 extends Fragment {
 
             // listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", "Adnan Ktan", "June"));
         }
+        for (int j = 0; j < helper_List.size(); j++) {
+            data.user.setUser_Friend_Info((String) list.get(j));
+        }
         data.setFriendEmails(EmailListFriends);
         System.out.println("The EmailListFriends is:" + EmailListFriends);
 
@@ -152,9 +155,7 @@ public class Fragment2 extends Fragment {
                         helper_List.remove(0);
                         helper_List.remove(0);
                         InitStory(helper_List);
-                        for (int j = 0; j < helper_List.size(); j++) {
-                            data.user.setUser_Friend_Info((String) helper_List.get(j));
-                        }
+
                         //  }
                         adapter = new Story_Adapter(getContext(), listStory);
                         grid.setAdapter(adapter);
@@ -163,7 +164,11 @@ public class Fragment2 extends Fragment {
                         adapter.notifyDataSetChanged();
                     }
                     //for(int i =0;i<helper_List.size();i++) {
-
+                    try {
+                        Save_Friend_Info(helper_List);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     mRefreshLayout.setRefreshing(false);
 
                 }
@@ -187,7 +192,32 @@ public class Fragment2 extends Fragment {
         return list;
     }
 
+    public void Save_Friend_Info(ArrayList<Object> Friend_Info) throws IOException {
 
+        UserProfile user = new UserProfile();
+        data.user.setUser_Friend_Info_List(Friend_Info);
+        user.getUser_Friend_Info();
+        File file = new File(data.getFilesDir(), File_Name);
+        if (!file.exists()) {
+            file.createNewFile();
+        }
+        FileOutputStream outputStream;
+        try {
+            outputStream = data.openFileOutput(File_Name, Context.MODE_PRIVATE);
+            ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
+            objectoutputStream.writeObject(user);
+            objectoutputStream.flush();
+            objectoutputStream.close();
+            outputStream.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("The File Write Error :" + e.toString());
+        }
+
+
+    }
     /* @Override
    public void onResume() {
         super.onResume();

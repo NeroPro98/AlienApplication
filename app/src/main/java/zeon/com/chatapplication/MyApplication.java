@@ -1,7 +1,10 @@
 package zeon.com.chatapplication;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
+import android.view.View;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -11,6 +14,7 @@ import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
 
+import zeon.com.chatapplication.Activity.Main_Chats_Page;
 import zeon.com.chatapplication.Model.UserProfile;
 
 
@@ -202,8 +206,39 @@ public class MyApplication extends android.app.Application implements Serializab
         super.onCreate();
         MyApplication.mContext = getApplicationContext();
         Read_File_UserInfo();
+        Sing_In();
      //   user = new UserProfile();
    //     checkTheInternalFile();  //here the file we read this before the GUI work
+    }
+
+    private void Sing_In() {
+        Thread thread = new Thread(new Runnable() {
+
+            @Override
+            public void run() {
+                user.connect();
+                boolean bool = false;
+                ArrayList<Object> signlist = new ArrayList<>();
+                signlist.add(1);
+                signlist.add(user.getEmail());
+                signlist.add(user.getPassword());
+                try {
+                    user.output.writeObject(signlist);
+                    ArrayList<Object> inputlist =(ArrayList<Object>)user.input.readObject();
+                    System.out.println("The inputList :"+inputlist);
+                    user.output.flush();
+                    bool = user.handleReceivedRequest(inputlist);
+                    if(bool) {
+                        Go_To_Chat_Page();
+                    }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
     }
 
     public static Context getAppContext(){
@@ -240,17 +275,14 @@ public class MyApplication extends android.app.Application implements Serializab
 
         if (file.exists()) {
             try {
+
                 fileInputStream = openFileInput(File_Name);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                UserProfile user_read = (UserProfile) objectInputStream.readObject();
+                final UserProfile user_read = (UserProfile) objectInputStream.readObject();
                 user = user_read;
-                Thread thread = new Thread(new Runnable() {
-                    @Override
-                    public void run() {
-                        user.connect();
-                    }
-                });
-                thread.start();
+                user_read.getEmail();
+                user_read.getStory();
+                user_read.getEmail();
                 System.out.println("userRead:" + user_read);
                 //InputList = user_read.getThe_User_Hwo_Chat_With_Him();
                 objectInputStream.close();
@@ -259,9 +291,16 @@ public class MyApplication extends android.app.Application implements Serializab
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
+
         }
+
     }
 
+public void Go_To_Chat_Page(){
 
+   // Toast.makeText(getAppContext(),"Welcome...",Toast.LENGTH_SHORT).show();
+    Intent intent = new Intent(getAppContext(), Main_Chats_Page.class);
+    startActivity(intent);
+}
 
 }

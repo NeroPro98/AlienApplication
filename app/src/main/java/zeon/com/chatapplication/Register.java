@@ -170,8 +170,8 @@ public class Register extends AppCompatActivity {
                             @Override
                             public void onChange() {
                                 if (ObjConnection.isSignedIn()) {
-
-
+                                    data.user.setEmail(Email_Text.toString());
+                                    data.user.setPassword(Password_Text.toString());
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {

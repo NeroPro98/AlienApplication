@@ -248,8 +248,8 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
             @Override
             public void run() {
                 try {
-                    data.getUser().output.writeObject(arrayList);
-                    data.getUser().output.flush();
+                    data.user.output.writeObject(arrayList);
+                    data.user.output.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
