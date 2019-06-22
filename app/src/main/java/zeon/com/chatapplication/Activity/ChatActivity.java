@@ -175,6 +175,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
     }
 
+
     public void sendToEmail(String fEmail,String message)
     {
         final MyApplication tmpdata = data;
