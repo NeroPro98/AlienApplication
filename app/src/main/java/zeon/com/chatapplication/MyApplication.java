@@ -240,6 +240,7 @@ public class MyApplication extends android.app.Application implements Serializab
         FileInputStream fileInputStream;
         File file = new File(getFilesDir(), File_Name);
 
+
         if (file.exists()) {
             try {
                 fileInputStream = openFileInput(File_Name);
