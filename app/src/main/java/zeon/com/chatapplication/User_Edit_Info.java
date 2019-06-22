@@ -219,6 +219,7 @@ public class User_Edit_Info extends AppCompatActivity {
                     ObjConnection.handleReceivedRequest(inputlist);
 
                 } catch (IOException e) {
+
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
