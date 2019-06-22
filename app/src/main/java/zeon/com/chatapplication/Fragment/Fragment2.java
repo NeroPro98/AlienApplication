@@ -1,5 +1,6 @@
 package zeon.com.chatapplication.Fragment;
 
+import android.content.Context;
 import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -18,7 +19,11 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import zeon.com.chatapplication.Adapter.FriendAdapter;
@@ -73,6 +78,9 @@ public class Fragment2 extends Fragment {
 
 
             // listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", "Adnan Ktan", "June"));
+        }
+        for (int j = 0; j < helper_List.size(); j++) {
+            data.user.setUser_Friend_Info((String) list.get(j));
         }
         data.setFriendEmails(EmailListFriends);
         System.out.println("The EmailListFriends is:" + EmailListFriends);
@@ -146,9 +154,7 @@ public class Fragment2 extends Fragment {
                         helper_List.remove(0);
                         helper_List.remove(0);
                         InitStory(helper_List);
-                        for (int j = 0; j < helper_List.size(); j++) {
-                            data.user.setUser_Friend_Info((String) helper_List.get(j));
-                        }
+
                         //  }
                         adapter = new Story_Adapter(getContext(), listStory);
                         grid.setAdapter(adapter);
@@ -156,8 +162,13 @@ public class Fragment2 extends Fragment {
                     } else {
                         adapter.notifyDataSetChanged();
                     }
-                    //for(int i =0;i<helper_List.size();i++) {
-
+                    try {
+                        data.user.setUser_Friend_Info_List(helper_List);
+                        data.Save_File();
+                        data.Read_File();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     mRefreshLayout.setRefreshing(false);
 
                 }

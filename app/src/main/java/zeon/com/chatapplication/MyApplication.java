@@ -207,6 +207,7 @@ public class MyApplication extends android.app.Application implements Serializab
     public void onCreate() {
         super.onCreate();
         MyApplication.mContext = getApplicationContext();
+        Read_File();
      //   user = new UserProfile();
    //     checkTheInternalFile();  //here the file we read this before the GUI work
     }
@@ -249,6 +250,8 @@ public class MyApplication extends android.app.Application implements Serializab
                 user_read.getStory();
                 user_read.getName();
                 user_read.getEmail();
+                user_read.getUser_Friend_Info();
+                user_read.getThe_User_Hwo_Chat_With_Him();
                 System.out.println("userRead:" + user_read);
                 objectInputStream.close();
             } catch (IOException e) {

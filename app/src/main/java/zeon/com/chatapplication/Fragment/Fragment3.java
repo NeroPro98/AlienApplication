@@ -17,7 +17,10 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ListView;
 
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import zeon.com.chatapplication.Adapter.ForBaseAdapter;
@@ -86,12 +89,13 @@ public class Fragment3 extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+
         View view = inflater.inflate(R.layout.layout_fragment3, container, false);
 
         listview = (ListView) view.findViewById(R.id.ListViewMessage3);
-        ArrayList<Object> InputList = data.user.getThe_User_Hwo_Chat_With_Him();
-        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout_frag3);
 
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout_frag3);
+        ArrayList<Object> InputList = data.user.getThe_User_Hwo_Chat_With_Him();
         init(InputList);
         adapter = new ForBaseAdapter(getContext(), message);
         Log.d("AlienChat", "Context" + getContext());
@@ -128,6 +132,7 @@ public class Fragment3 extends Fragment {
 
 
     }
+
 
 
 }
