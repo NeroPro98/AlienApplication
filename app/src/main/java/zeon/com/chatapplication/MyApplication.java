@@ -2,9 +2,16 @@ package zeon.com.chatapplication;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.media.Image;
+import android.widget.ImageView;
 
+import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -29,6 +36,7 @@ public class MyApplication extends android.app.Application implements Serializab
     private ArrayList<Object> Helper_List = new ArrayList<>();
     private ArrayList<Object> The_User_List_Befor_Check;
     private int Fragment1_Counter=0;
+    private String File_Name = "User_File";
 
     public int getFragment1_Counter() {
         return Fragment1_Counter;
@@ -194,6 +202,7 @@ public class MyApplication extends android.app.Application implements Serializab
         signedIn = false;
     }
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -201,6 +210,54 @@ public class MyApplication extends android.app.Application implements Serializab
      //   user = new UserProfile();
    //     checkTheInternalFile();  //here the file we read this before the GUI work
     }
+
+    public void Save_File() throws IOException {
+
+            //UserProfile user = new UserProfile();
+            //user = user.getUserObject();
+            File file = new File(getFilesDir(), File_Name);
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+            FileOutputStream outputStream;
+            try {
+                outputStream = openFileOutput(File_Name, Context.MODE_PRIVATE);
+                ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
+                objectoutputStream.writeObject(user);
+                objectoutputStream.flush();
+                objectoutputStream.close();
+                outputStream.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+                System.out.println("The File Write Error :" + e.toString());
+            }
+    }
+
+
+    public void Read_File() {
+        FileInputStream fileInputStream;
+        File file = new File(getFilesDir(), File_Name);
+
+        if (file.exists()) {
+            try {
+                fileInputStream = openFileInput(File_Name);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                UserProfile user_read = (UserProfile) objectInputStream.readObject();
+                user_read.getStory();
+                user_read.getName();
+                user_read.getEmail();
+                System.out.println("userRead:" + user_read);
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
 
     public static Context getAppContext(){
         return MyApplication.mContext;

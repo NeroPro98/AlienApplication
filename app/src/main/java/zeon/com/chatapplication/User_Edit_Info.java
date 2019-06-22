@@ -229,19 +229,9 @@ public class User_Edit_Info extends AppCompatActivity {
             }
         });
         thread.start();
-        UserProfile user = new UserProfile();
-        user = data.user.getUserObject();
-        File file = new File(getFilesDir(), File_Name);
-        FileOutputStream outputStream;
                 try {
-                    outputStream = openFileOutput(File_Name, Context.MODE_PRIVATE);
-                    ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
-                    objectoutputStream.writeObject(user);
-                    //WriteToFile = new ObjectOutputStream(openFileOutput(File_Name,MODE_PRIVATE));
-                    //WriteToFile.writeObject(userProfile);
-                    objectoutputStream.flush();
-                    objectoutputStream.close();
-                    outputStream.close();
+                    data.Save_File();
+                    data.Read_File();
                     Toast.makeText(getApplicationContext(), "The Info Edit", Toast.LENGTH_SHORT).show();
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
@@ -253,23 +243,7 @@ public class User_Edit_Info extends AppCompatActivity {
 
     }
 
-    public void Read_File_UserInfo(View view){
-        FileInputStream fileInputStream;
 
-        try {
-            fileInputStream = openFileInput(File_Name);
-            ObjectInputStream objectInputStream =new ObjectInputStream(fileInputStream);
-            UserProfile user_read = (UserProfile)objectInputStream.readObject();
-            System.out.println("userRead:"+user_read);
-            user_read.getStory();
-            user_read.getName();
-            objectInputStream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
 
 }
 
