@@ -117,9 +117,9 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         mTablLayout = (TabLayout)findViewById(R.id.tabalLayout);
-        mTablLayout.addTab(mTablLayout.newTab().setText(R.string.Message_Frag3));
-        mTablLayout.addTab(mTablLayout.newTab().setText(R.string.Friends_Frag2));
-        mTablLayout.addTab(mTablLayout.newTab().setText(R.string.Connects_Frag1));
+        mTablLayout.addTab(mTablLayout.newTab().setIcon(R.drawable.chat_icon));
+        mTablLayout.addTab(mTablLayout.newTab().setIcon(R.drawable.ic_group_black_24dp));
+        mTablLayout.addTab(mTablLayout.newTab().setIcon(R.drawable.person_add));
         //mTablLayout.setBackgroundColor(getResources().getColor(R.color.black));
         mTablLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -283,7 +283,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                         return true;
 
                     case R.id.Person_nav2:
-                        //   mView.setItemBackgroundResource(R.color.black);
+                         //  mView.setItemIconTintList(getReso);
                         Intent intent1 = new Intent(getApplicationContext(),User_Edit_Info.class);
                         startActivity(intent1);
                         return true;

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="colorPrimary">#065D54</color>
-    <color name="colorPrimaryDark">#9C27B0</color>
+    <color name="colorPrimaryDark">#222433</color>
     <color name="colorAccent">#FF4081</color>
     <color name="yellow">#f0ff00</color>
     <color name="white">#FFFFFF</color>
@@ -17,5 +17,7 @@
     <color name="cyan">#0b9593</color>
     <color name="Sender_color">#4EC553</color>
     <color name="Reciver_color">#d1f2bb</color>
+    <color name="red">#E21414</color>
+    <color name="selvier">#222433</color>
 
 </resources>

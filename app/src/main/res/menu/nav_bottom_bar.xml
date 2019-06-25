@@ -9,7 +9,7 @@
 
     <item
         android:id="@+id/Search_nav2"
-        android:icon="@drawable/search_nav"
+        android:icon="@drawable/search"
         android:title="@string/search_google" />
 
     <item
