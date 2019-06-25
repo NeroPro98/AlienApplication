@@ -66,7 +66,30 @@
     <string name="setting">設定</string>
 
 
+    <string name="menu_home">ホーム</string>
+    <string name="menu_gallery">ギャラリー</string>
+    <string name="menu_slideshow">スライドショー</string>
+    <string name="menu_tools">道具</string>
+    <string name="menu_share">シェア</string>
+    <string name="menu_send">送る</string>
+    <string name="language">言語</string>
 
 
+    <string name="Person">人</string>
+    <string name="search_google">グーグル</string>
+    <string name="game">ゲーム</string>
+
+    <string name="Message_Frag3">メッセージ</string>
+    <string name="Friends_Frag2">お友達</string>
+    <string name="Connects_Frag1">接続する</string>
+
+    <string name="type_message">メッセージタイプ...</string>
+
+
+
+    <string name="block_menu">ブロックメニュー</string>
+    <string name="setting_menu">設定メニュー</string>
+
+    <string name="setting_slider">設定スライダー</string>
 
 </resources>

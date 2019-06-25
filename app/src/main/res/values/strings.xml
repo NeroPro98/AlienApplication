@@ -71,7 +71,7 @@
     <string name="search2">Search</string>
     <string name="wallpaper">Wallpaper</string>
     <string name="other">Other</string>
-    <string name="setting">Setting</string>
+
 
 
     <string name="true_button">True</string>
@@ -103,6 +103,7 @@
     <string name="menu_tools">Tools</string>
     <string name="menu_share">Share</string>
     <string name="menu_send">Send</string>
+    <string name="language">Language</string>
 
     <string name="T1_Story">Your car has blown a tire on a winding road in the middle of nowhere with no cell phone reception. You decide to hitchhike. A rusty pickup truck rumbles to a stop next to you. A man with a wide brimmed hat with soulless eyes opens the passenger door for you and asks: \"Need a ride, boy?\". </string>
     <string name="T1_Ans1">I\'ll hop in. Thanks for the help! </string>
@@ -124,6 +125,24 @@
     <string name="T6_End">You bond with the murderer while crooning verses of "Can you feel the love tonight". He drops you off at the next town. Before you go he asks you if you know any good places to dump bodies. You reply: \"Try the pier.\"</string>
     <string name="Button_start">Let\'s Start</string>
     <string name="Begging">You Only Choice Your Destiny</string>
+
+
+    <string name="Person">Person</string>
+    <string name="search_google">Search google</string>
+    <string name="game">Game</string>
+
+
+    <string name="Message_Frag3">Message</string>
+    <string name="Friends_Frag2">Friends</string>
+    <string name="Connects_Frag1">Connects</string>
+
+
+    <string name="type_message">Type Message......</string>
+    <string name="block_menu">Block Menu</string>
+    <string name="setting_menu">Setting</string>
+
+
+    <string name="setting_slider">setting_slider</string>
 
 
 </resources>

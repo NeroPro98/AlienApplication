@@ -13,7 +13,13 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -212,11 +218,22 @@ public class Story_Adapter extends BaseAdapter {
                         UserChat.add(Specific_email);
                         UserChat.add(name_user);
                         data.user.setThe_User_Hwo_Chat_With_Him(UserChat);
+                        try {
+                            data.Save_File();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 }else{
                     UserChat.add(Specific_email);
                     UserChat.add(name_user);
                     data.user.setThe_User_Hwo_Chat_With_Him(UserChat);
+                    try {
+                        data.Save_File();
+                        data.Read_File();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
                 //UserChat.removeAll(UserChat);
             }
@@ -238,4 +255,7 @@ public class Story_Adapter extends BaseAdapter {
 
         return view;
     }
+
+
+
 }

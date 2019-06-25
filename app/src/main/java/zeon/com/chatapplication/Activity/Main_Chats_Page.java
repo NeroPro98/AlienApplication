@@ -1,6 +1,10 @@
 package zeon.com.chatapplication.Activity;
 
+import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.support.annotation.NonNull;
@@ -13,6 +17,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +32,7 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import zeon.com.chatapplication.Adapter.BlockPage_Adapter;
@@ -68,13 +74,17 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
+        LoadLocal();
         setContentView(R.layout.activity_main);
+
 
         toolbar =(Toolbar) findViewById(R.id.nav_action);
         mActionBar = getSupportActionBar();
+        //mActionBar
         drawer = findViewById(R.id.drawer_layout);
-        Toggle = new ActionBarDrawerToggle(this,drawer,R.string.open,R.string.close);
+        Toggle = new ActionBarDrawerToggle(this,drawer, R.string.open, R.string.close);
         user_image = (CircleImageView)findViewById(R.id.user_circle);
         mView = (BottomNavigationView)findViewById(R.id.bottomview1);
         SendAdd = (ImageView)findViewById(R.id.add_friend);
@@ -107,9 +117,9 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
         mViewPager = (ViewPager)findViewById(R.id.viewPager);
         mTablLayout = (TabLayout)findViewById(R.id.tabalLayout);
-        mTablLayout.addTab(mTablLayout.newTab().setText("Message"));
-        mTablLayout.addTab(mTablLayout.newTab().setText("Friends"));
-        mTablLayout.addTab(mTablLayout.newTab().setText("Connects"));
+        mTablLayout.addTab(mTablLayout.newTab().setText(R.string.Message_Frag3));
+        mTablLayout.addTab(mTablLayout.newTab().setText(R.string.Friends_Frag2));
+        mTablLayout.addTab(mTablLayout.newTab().setText(R.string.Connects_Frag1));
         //mTablLayout.setBackgroundColor(getResources().getColor(R.color.black));
         mTablLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
@@ -289,6 +299,11 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                         startActivity(intent4);
                         return true;
 
+                    case R.id.nav_manage:
+
+
+                        return true;
+
                     default:
                         return false;
                 }
@@ -304,6 +319,27 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
             }
         });*/
 
+    }
+
+    private void setLocale(String lang) {
+
+        Locale locale = new Locale(lang);
+        locale.setDefault(locale);
+        Configuration configuration = new Configuration();
+        configuration.locale = locale;
+        getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());
+        //Save data in shared Preference
+        SharedPreferences.Editor editor  = getSharedPreferences("Settings",MODE_PRIVATE).edit();
+        editor.putString("App_Lang",lang);
+        editor.apply();
+
+    }
+
+    //To Load Lang That Saved In Shared Preferences
+    public void LoadLocal(){
+        SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
+        String lang = sharedPreferences.getString("App_Lang","");
+        setLocale(lang);
     }
 
     public ArrayList<Object> serilaizeToStrings() {
@@ -390,12 +426,8 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
             startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
-            Intent intent =new Intent(getApplicationContext(),Setting.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+            SetLanguage();
+        }else if (id == R.id.nav_send) {
 
         }else if(id == R.id.Personalper){
             Log.d("abababa","Personal");
@@ -442,7 +474,37 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
 
 
+public void SetLanguage(){
 
+    final String[] LangList = {"English","Arabic","Japanese"};
+    AlertDialog.Builder builder = new AlertDialog.Builder(Main_Chats_Page.this);
+    builder.setTitle("Choose Language...");
+    builder.setSingleChoiceItems(LangList, -1, new DialogInterface.OnClickListener() {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            if(which==0){
+                setLocale("en");
+                recreate();
+            }
+            else if(which==1){
+                setLocale("ar");
+                recreate();
+            }
+            else if(which==2){
+                setLocale("ja");
+                recreate();
+            }
+
+            dialog.dismiss();
+        }
+
+
+    });
+
+    AlertDialog alertDialog = builder.create();
+    alertDialog.show();
+
+}
 
 
 

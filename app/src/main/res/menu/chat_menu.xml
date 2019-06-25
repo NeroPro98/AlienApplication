@@ -21,7 +21,7 @@
         >
         <menu>
 
-            <item android:title="@string/setting" android:id="@+id/Setting_chat"/>
+            <item android:title="@string/setting_slider" android:id="@+id/Setting_chat"/>
 
          </menu>
 

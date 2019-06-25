@@ -208,9 +208,8 @@ public class MyApplication extends android.app.Application implements Serializab
         super.onCreate();
         MyApplication.mContext = getApplicationContext();
         Read_File();
-     //   user = new UserProfile();
-   //     checkTheInternalFile();  //here the file we read this before the GUI work
-    }
+       // Read_User_From_File();
+      }
 
     public void Save_File() throws IOException {
 
@@ -253,6 +252,29 @@ public class MyApplication extends android.app.Application implements Serializab
                 user_read.getUser_Friend_Info();
                 user_read.getThe_User_Hwo_Chat_With_Him();
                 System.out.println("userRead:" + user_read);
+                objectInputStream.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public void Read_User_From_File() {
+        FileInputStream fileInputStream;
+        File file = new File(getFilesDir(), File_Name);
+        if (file.exists()) {
+            try {
+                fileInputStream = openFileInput(File_Name);
+                ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+                UserProfile user_read = (UserProfile) objectInputStream.readObject();
+                user = user_read;
+                user.getStory();
+                user.getName();
+                user.getEmail();
+                user.getUser_Friend_Info();
+                user.getThe_User_Hwo_Chat_With_Him();
                 objectInputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
