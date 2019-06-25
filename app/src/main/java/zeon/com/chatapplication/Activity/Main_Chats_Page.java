@@ -43,6 +43,7 @@ import zeon.com.chatapplication.Games.Activity.Games_main;
 import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.MyApplication;
 import zeon.com.chatapplication.R;
+import zeon.com.chatapplication.Register;
 import zeon.com.chatapplication.Register_Page;
 import zeon.com.chatapplication.Search_network;
 import zeon.com.chatapplication.Setting;
@@ -428,8 +429,11 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         } else if (id == R.id.nav_manage) {
             SetLanguage();
         }else if (id == R.id.nav_logout) {
-
+            Intent intent =new Intent(getApplicationContext(), Register.class);
+            startActivity(intent);
         }else if (id == R.id.adduser) {
+            Intent intent =new Intent(getApplicationContext(),Register_Page.class);
+            startActivity(intent);
 
         }else if(id == R.id.Personalper){
             Log.d("abababa","Personal");

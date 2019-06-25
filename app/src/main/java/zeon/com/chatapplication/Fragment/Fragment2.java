@@ -54,22 +54,26 @@ public class Fragment2 extends Fragment {
     private ArrayList<Object> helper_List2 = new ArrayList<>();
 
 
-    public void InitStory(ArrayList<Object> list2) {
+    public void InitStory(ArrayList<Object> list2) throws IOException {
 
         listStory.removeAll(listStory);
         EmailListFriends.removeAll(EmailListFriends);
+
         list2 = helper_List;
         if (count == 0) {
             list = (ArrayList) data.user.getUser_Friend_Info();
+          //   list.remove(0);
+          //  list.remove(0);
             count++;
         } else if (list2.size() >= 2) {
             list = list2;
-            // list.remove(0);
-            //list.remove(0);
+          //  data.user.User_Friend_Info.removeAll(data.user.User_Friend_Info);
+             list.remove(0);
+             list.remove(0);
             count++;
         }
         System.out.println("The Count Is:" + count);
-        //MyApplication data = (MyApplication)MyApplication.getAppContext().getApplicationContext();\
+
 
         for (int i = 0; i < list.size(); i = i + 2) {
 
@@ -79,9 +83,12 @@ public class Fragment2 extends Fragment {
 
             // listStory.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", "Adnan Ktan", "June"));
         }
-        for (int j = 0; j < helper_List.size(); j++) {
-            data.user.setUser_Friend_Info((String) list.get(j));
-        }
+       // for (int j = 0; j < helper_List.size(); j++) {
+       //     data.user.setUser_Friend_Info((String) list.get(j));
+       // }
+        data.user.setUser_Friend_Info_List(list);
+        data.Save_File();
+        data.Read_File();
         data.setFriendEmails(EmailListFriends);
         System.out.println("The EmailListFriends is:" + EmailListFriends);
 
@@ -107,7 +114,11 @@ public class Fragment2 extends Fragment {
         textdate.setText("June");
         //ArrayList<Object> list3 = (ArrayList) data.getUserFriend_List_Every_init();
         ArrayList<Object> list3 = (ArrayList)  data.user.getUser_Friend_Info();
-        InitStory(list3);
+        try {
+            InitStory(list3);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         adapter = new Story_Adapter(getContext(), listStory);
 
         grid.setAdapter(adapter);
@@ -153,7 +164,11 @@ public class Fragment2 extends Fragment {
                     if (helper_List.size() > 2) {
                         helper_List.remove(0);
                         helper_List.remove(0);
-                        InitStory(helper_List);
+                        try {
+                            InitStory(helper_List);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
 
                         //  }
                         adapter = new Story_Adapter(getContext(), listStory);
@@ -162,13 +177,8 @@ public class Fragment2 extends Fragment {
                     } else {
                         adapter.notifyDataSetChanged();
                     }
-                    try {
-                        data.user.setUser_Friend_Info_List(helper_List);
-                        data.Save_File();
-                      //  data.Read_File();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+
+
                     mRefreshLayout.setRefreshing(false);
 
                 }

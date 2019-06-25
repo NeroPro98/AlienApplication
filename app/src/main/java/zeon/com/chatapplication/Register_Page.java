@@ -161,7 +161,7 @@ public class Register_Page extends AppCompatActivity {
                                // startActivity(intent);
                             }
                         });
-                        toSignInPage(v);
+                       // toSignInPage(v);
                     } else
                         runOnUiThread(new Runnable() {
                             @Override

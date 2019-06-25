@@ -41,6 +41,37 @@ public class UserProfile implements Serializable {
     private ArrayList<Object> The_User_List_Info_File = new ArrayList<>();
     private ArrayList<Object> The_User_Hwo_Chat_With_Him = new ArrayList<>();
 
+
+    public int friendnum ;
+    public int friendbolck ;
+    public int friendfollower ;
+
+    public int getFriendnum() {
+        return friendnum;
+    }
+
+    public void setFriendnum(int friendnum) {
+        this.friendnum = friendnum;
+    }
+
+    public int getFriendbolck() {
+        return friendbolck;
+    }
+
+    public void setFriendbolck(int friendbolck) {
+        this.friendbolck = friendbolck;
+    }
+
+    public int getFriendfollower() {
+        return friendfollower;
+    }
+
+    public void setFriendfollower(int friendfollower) {
+        this.friendfollower = friendfollower;
+    }
+
+
+
     public ArrayList<Chat_Model> getCurrMessages() {
         ArrayList<Chat_Model> tmp = new ArrayList<>(currMessages);
         currMessages.clear();
