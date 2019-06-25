@@ -5,16 +5,16 @@
     <item
         android:id="@+id/Person_nav2"
         android:icon="@drawable/person_icon"
-        android:title="Person" />
+        android:title="@string/Person" />
 
     <item
         android:id="@+id/Search_nav2"
-        android:icon="@drawable/search_nav"
-        android:title="Search google" />
+        android:icon="@drawable/search"
+        android:title="@string/search_google" />
 
     <item
         android:id="@+id/Game_nav2"
         android:icon="@drawable/icon_game"
-        android:title="Game" />
+        android:title="@string/game" />
 
 </menu>

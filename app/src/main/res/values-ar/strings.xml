@@ -61,7 +61,41 @@
     <string name="search2">البحث</string>
     <string name="wallpaper">صور</string>
     <string name="other">أخرى</string>
-    <string name="setting">إعدادات</string>
 
+
+
+    <string name="menu_home">الشاشة الرئيسية</string>
+    <string name="menu_gallery">الاستديو</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">الاعدادات</string>
+    <string name="menu_share">مشاركة</string>
+    <string name="menu_send">إرسال</string>
+    <string name="language">اللغات</string>
+
+
+    <string name="Person">الإعدادات الشخصية</string>
+    <string name="search_google">المتصفح</string>
+    <string name="game">ألعاب</string>
+
+
+    <string name="Message_Frag3">الرسائل</string>
+    <string name="Friends_Frag2">الأصدقاء</string>
+    <string name="Connects_Frag1">المقترحين</string>
+
+    <string name="type_message">اكتب رسالة...</string>
+
+
+    <string name="block_menu">المحظورين</string>
+    <string name="setting_menu">الإعدادات</string>
+
+    <string name="setting_slider">الإعدادات</string>
+
+
+
+    <string name="open_gallery">الإستديو</string>
+    <string name="save">حفظ</string>
+    <string name="friends">الأصدفاء</string>
+    <string name="blocks">المحظورين</string>
+    <string name="followers">المتابعين</string>
 
 </resources>

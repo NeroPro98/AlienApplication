@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="tap_any_where">Appuyez sur lécran</string>
+    <string name="this_application_provided_by_zeon_team">Lapplication a ete developpee par lequipe Zeon</string>
+    <string name="copyright_by_zeon_team">Propulsé par Team Zeon</string>
+    <string name="swipe">Glisser</string>
+    <string name="please_tap">Sil vous plaît cliquez</string>
+
+    <string name="chat_and_security">Discussion et confidentialité</string>
+    <string name="make_a_security_text_with_your_friends">Ayez une conversation sécurisée avec vos amis</string>
+    <string name="continue1">Continuer</string>
+
+    <string name="make_new_groups"> Créer de nouveaux groupes</string>
+    <string name="make_new_groups_with_friends_and_enjoy_chatting">Créez de nouveaux groupes avec vos amis et profitez-en</string>
+    <string name="continue2">Continuer</string>
+
+    <string name="add_new_aliens">Ajouter de nouveaux objets spatiaux</string>
+    <string name="make_enjoy_with_your_friends">Profitez avec vos amis et amis</string>
+    <string name="continue3">Continuer</string>
+
+    <string name="discover_new_things">Explorer de nouvelles choses</string>
+    <string name="enjoy_discovering_with_your_friends">Explorez avec vos amis</string>
+    <string name="finish">La fin</string>
+
+    <string name="make_your_journey_with_friends">Voyage avec tes amis</string>
+    <string name="swap_up">Glisser vers le haut</string>
+
+    <string name="email">Mail</string>
+    <string name="password">Mot de passe</string>
+    <string name="sign_up">Connexion</string>
+    <string name="register">création dun compte</string>
+
+    <string name="enter_your_email">Mail.....</string>
+    <string name="enter_your_passowrd">Mot de passe.....</string>
+    <string name="confirm_your_passowrd">Confirmation du mot de passe .....</string>
+    <string name="first_name">prénom</string>
+    <string name="last_name">le dernier nom</string>
+    <string name="middle_name">Deuxième prénom</string>
+    <string name="register_in">Se connecter</string>
+
+
+    <string name="import_key">Inclure</string>
+    <string name="gallery">Le studio</string>
+    <string name="games">Jeux</string>
+    <string name="tools">Paramètres</string>
+    <string name="weather">La météo</string>
+    <string name="chat">Discussions</string>
+    <string name="appearance">Apparence</string>
+    <string name="communicate">Message</string>
+    <string name="share">Participation</string>
+    <string name="send">Envoi</string>
+    <string name="call">Appel</string>
+
+    <string name="personal">Renseignements personnels</string>
+    <string name="search_in_web">Rechercher sur Internet</string>
+    <string name="message">Message</string>
+    <string name="setting2">Paramètres</string>
+    <string name="new_group">Nouveaux groupes</string>
+    <string name="group_info">Informations sur le groupe</string>
+    <string name="search2">Recherche</string>
+    <string name="wallpaper">Des photos</string>
+    <string name="other">Autre</string>
+
+
+
+    <string name="menu_home">Écran daccueil</string>
+    <string name="menu_gallery">Studio</string>
+    <string name="menu_slideshow">Diaporama</string>
+    <string name="menu_tools">Paramètres</string>
+    <string name="menu_share">Partager</string>
+    <string name="menu_send">Envoyer</string>
+    <string name="language">Les langues</string>
+
+
+    <string name="Person">Paramètres personnels</string>
+    <string name="search_google">Navigateur</string>
+    <string name="game">Jeux</string>
+
+
+    <string name="Message_Frag3">Les messages</string>
+    <string name="Friends_Frag2">Les amis</string>
+    <string name="Connects_Frag1">Propositions</string>
+
+    <string name="type_message">Tapez un message ...</string>
+
+
+    <string name="block_menu">Interdit</string>
+    <string name="setting_menu">Paramètres</string>
+
+    <string name="setting_slider">Paramètres</string>
+
+
+    <string name="open_gallery">Le studio</string>
+    <string name="save">Enregistrer</string>
+    <string name="friends">Les amis</string>
+    <string name="blocks">Interdit</string>
+    <string name="followers">Suiveurs</string>
+
+
+</resources>

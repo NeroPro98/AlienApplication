@@ -18,10 +18,7 @@
             android:id="@+id/nav_Game"
             android:icon="@drawable/game"
             android:title="@string/games" />
-        <item
-            android:id="@+id/nav_manage"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="@string/tools" />
+
 
         <item
             android:id="@+id/weather"
@@ -40,7 +37,7 @@
         <item
             android:id="@+id/Block_Page"
             android:icon="@drawable/block"
-            android:title="Block Menu" />
+            android:title="@string/block_menu" />
 
         <item
             android:id="@+id/style"
@@ -49,12 +46,12 @@
 
     </group>
 
-    <item android:title="@string/communicate">
+    <item android:title="@string/setting_menu">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="@string/share" />
+                android:id="@+id/nav_manage"
+                android:icon="@drawable/language"
+                android:title="@string/language" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"
