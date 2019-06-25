@@ -153,4 +153,11 @@
     <string name="followers">Followers</string>
 
 
+
+
+    <string name="other2">Other</string>
+    <string name="logout">Logout</string>
+    <string name="make_account">Make Account</string>
+
+
 </resources>

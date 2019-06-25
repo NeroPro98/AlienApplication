@@ -98,4 +98,10 @@
     <string name="blocks">المحظورين</string>
     <string name="followers">المتابعين</string>
 
+
+
+    <string name="other2">أخرى</string>
+    <string name="logout">تسجيل الخروج</string>
+    <string name="make_account">إضافة حساب جديد</string>
+
 </resources>
