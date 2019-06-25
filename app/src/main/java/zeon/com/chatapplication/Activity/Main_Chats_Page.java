@@ -476,7 +476,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
 public void SetLanguage(){
 
-    final String[] LangList = {"English","Arabic","Japanese"};
+    final String[] LangList = {"English","Le français","日本語"};
     AlertDialog.Builder builder = new AlertDialog.Builder(Main_Chats_Page.this);
     builder.setTitle("Choose Language...");
     builder.setSingleChoiceItems(LangList, -1, new DialogInterface.OnClickListener() {
@@ -487,7 +487,7 @@ public void SetLanguage(){
                 recreate();
             }
             else if(which==1){
-                setLocale("ar");
+                setLocale("oc");
                 recreate();
             }
             else if(which==2){

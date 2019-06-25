@@ -91,7 +91,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Friends"
+                    android:text="@string/friends"
                     android:textColor="#fff"
                     android:textSize="12sp" />
 
@@ -122,7 +122,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Blocks"
+                    android:text="@string/blocks"
                     android:textColor="#fff"
                     android:textSize="12sp" />
 
@@ -153,7 +153,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Followers"
+                    android:text="@string/followers"
                     android:textColor="#fff"
                     android:textSize="12sp" />
 
@@ -176,7 +176,7 @@
             android:layout_marginBottom="8dp"
             android:background="@drawable/butoon_follow_background"
             android:foreground="?android:attr/selectableItemBackground"
-            android:text="Open Gallery"
+            android:text="@string/open_gallery"
             android:textColor="#03ae7d"
             android:textSize="18sp"
             android:textStyle="bold"
@@ -234,7 +234,7 @@
         android:layout_marginRight="138dp"
         android:background="@drawable/background2"
         android:onClick="Save_Image"
-        android:text="Save"
+        android:text="@string/save"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

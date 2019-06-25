@@ -61,7 +61,7 @@
     <string name="search2">البحث</string>
     <string name="wallpaper">صور</string>
     <string name="other">أخرى</string>
-    <string name="setting">إعدادات</string>
+
 
 
     <string name="menu_home">الشاشة الرئيسية</string>
@@ -89,4 +89,13 @@
     <string name="setting_menu">الإعدادات</string>
 
     <string name="setting_slider">الإعدادات</string>
+
+
+
+    <string name="open_gallery">الإستديو</string>
+    <string name="save">حفظ</string>
+    <string name="friends">الأصدفاء</string>
+    <string name="blocks">المحظورين</string>
+    <string name="followers">المتابعين</string>
+
 </resources>

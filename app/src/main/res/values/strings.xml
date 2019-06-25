@@ -145,4 +145,12 @@
     <string name="setting_slider">setting_slider</string>
 
 
+
+    <string name="open_gallery">Open Gallery</string>
+    <string name="save">Save</string>
+    <string name="friends">Friends</string>
+    <string name="blocks">Blocks</string>
+    <string name="followers">Followers</string>
+
+
 </resources>

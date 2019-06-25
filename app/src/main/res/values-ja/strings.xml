@@ -92,4 +92,13 @@
 
     <string name="setting_slider">設定スライダー</string>
 
+
+
+    <string name="open_gallery">ギャラリーを開く</string>
+    <string name="save">保存する</string>
+    <string name="friends">お友達</string>
+    <string name="blocks">ブロック</string>
+    <string name="followers">フォロワー</string>
+
+
 </resources>
