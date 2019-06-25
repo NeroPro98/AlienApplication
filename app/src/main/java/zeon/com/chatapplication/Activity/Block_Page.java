@@ -48,9 +48,10 @@ public class Block_Page extends AppCompatActivity {
         if (list2.size() != 0) {
             for (int i = 0; i < list2.size(); i = i + 2) {
                 BlockFriend.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", (String) list2.get(i + 1), (String) list2.get(i)));
-
+                adapter.notifyDataSetChanged();
             }
         }
+        data.user.setUser_Block_List(list2);
         //BlockFriend.add(new story(1, "https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjB4IbhheLhAhUvxYUKHZESChQQjRx6BAgBEAU&url=https%3A%2F%2Fwww.almasryalyoum.com%2Fnews%2Fdetails%2F998120&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341", "Adnan Ktan", "June"));
         adapter.notifyDataSetChanged();
     }
@@ -66,6 +67,7 @@ public class Block_Page extends AppCompatActivity {
         final ArrayList<Object> list3 = (ArrayList) data.user.getUser_Block_List();
         if (list3.size() != 0) {
             init(list3);
+            adapter.notifyDataSetChanged();
         }
         //BlockFriend.add(new FriendComp(1, (String) "Mohamad", "www.nero98@gmail.com", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
         //BlockFriend.add(new FriendComp(1, (String) "Mohamad", "www.nero98@gmail.com", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
@@ -111,21 +113,27 @@ public class Block_Page extends AppCompatActivity {
                     helper_List.remove(0);
                     helper_List.remove(0);
                     // helper_List.remove(0);
-                    data.user.setUser_Block_List(helper_List);
+                  //  data.user.setUser_Block_List(helper_List);
                     init(helper_List);
+                    try {
+                        data.Save_File();
+                        data.Read_File();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                 }
 
                 /*if (helper_List.size() >= 2) {
 
                 }*/
                 //Story_Adapter adapter= new Story_Adapter(getApplicationContext(), BlockFriend);
-                BlockPage_Adapter adapter = new BlockPage_Adapter(getApplicationContext(), BlockFriend);
-                BlockList.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-                mRefreshLayout.setRefreshing(false);
 
+                mRefreshLayout.setRefreshing(false);
             }
         });
+        BlockPage_Adapter adapter = new BlockPage_Adapter(getApplicationContext(), BlockFriend);
+        BlockList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
 
     }

@@ -163,8 +163,7 @@ public class Story_Adapter extends BaseAdapter {
                 SharedPreferences sharedPreferences = mContext.getSharedPreferences("EmailClick", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("The_User_Email_Click", Specific_email);
-                //Fragment2 fragment2 = new Fragment2();
-                //fragment2.Check_Block_Friend(Specific_email,User_Curr_Email);
+
                 data.user.setUser_Block_List_String(Specific_email);
                 data.user.setUser_Block_List_String(mArrayList.get(position).getAddtext());
                 final ArrayList<Object> arrayList2 = new ArrayList<>();

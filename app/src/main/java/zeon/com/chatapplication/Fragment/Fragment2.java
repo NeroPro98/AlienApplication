@@ -58,8 +58,8 @@ public class Fragment2 extends Fragment {
 
         listStory.removeAll(listStory);
         EmailListFriends.removeAll(EmailListFriends);
-
-        list2 = helper_List;
+  //      data.user.User_Friend_Info.removeAll(data.user.User_Friend_Info);
+     //   list2 = helper_List;
         if (count == 0) {
             list = (ArrayList) data.user.getUser_Friend_Info();
           //   list.remove(0);
@@ -68,8 +68,8 @@ public class Fragment2 extends Fragment {
         } else if (list2.size() >= 2) {
             list = list2;
           //  data.user.User_Friend_Info.removeAll(data.user.User_Friend_Info);
-             list.remove(0);
-             list.remove(0);
+             //list.remove(0);
+            // list.remove(0);
             count++;
         }
         System.out.println("The Count Is:" + count);
