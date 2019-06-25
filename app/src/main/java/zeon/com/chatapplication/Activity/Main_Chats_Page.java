@@ -427,7 +427,9 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
         } else if (id == R.id.nav_manage) {
             SetLanguage();
-        }else if (id == R.id.nav_send) {
+        }else if (id == R.id.nav_logout) {
+
+        }else if (id == R.id.adduser) {
 
         }else if(id == R.id.Personalper){
             Log.d("abababa","Personal");

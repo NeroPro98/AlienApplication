@@ -101,4 +101,9 @@
     <string name="followers">フォロワー</string>
 
 
+
+    <string name="other2">その他の</string>
+    <string name="logout">ログアウトする</string>
+    <string name="make_account">新しいアカウントを追加する</string>
+
 </resources>

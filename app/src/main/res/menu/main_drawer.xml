@@ -46,21 +46,21 @@
 
     </group>
 
-    <item android:title="@string/setting_menu">
+    <item android:title="@string/other2">
         <menu>
             <item
                 android:id="@+id/nav_manage"
                 android:icon="@drawable/language"
                 android:title="@string/language" />
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="@string/send" />
+                android:id="@+id/nav_logout"
+                android:icon="@drawable/logout"
+                android:title="@string/logout" />
 
             <item
-                android:id="@+id/call"
-                android:icon="@drawable/call"
-                android:title="@string/call" />
+                android:id="@+id/adduser"
+                android:icon="@drawable/newaccount"
+                android:title="@string/make_account" />
 
         </menu>
     </item>

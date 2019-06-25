@@ -98,4 +98,9 @@
     <string name="followers">Suiveurs</string>
 
 
+
+    <string name="other2">Autre</string>
+    <string name="logout">Connectez  Out</string>
+    <string name="make_account">Créer un compte</string>
+
 </resources>
