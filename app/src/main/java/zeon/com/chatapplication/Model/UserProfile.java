@@ -28,8 +28,8 @@ public class UserProfile implements Serializable {
     public transient ObjectOutputStream output;
     public transient ObjectInputStream input;
     private transient Socket Connection;
-    private transient String IPString;
-    private transient String PortString;
+    public transient String IPString;
+    public transient String PortString;
     private boolean signedIn;
     private transient onValueChangeListener valueChangeListener;
     private transient onValueChangeListener newMessagesListener;
@@ -217,11 +217,12 @@ public class UserProfile implements Serializable {
         handleThread = null;
     }
 
+
     public class HandleThread extends Thread {
         ArrayList<Object> List;
 
         public HandleThread(Socket clientSocket) {
-            start();
+         start();
         }
 
         @Override

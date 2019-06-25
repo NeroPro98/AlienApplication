@@ -165,7 +165,7 @@ public class Fragment2 extends Fragment {
                     try {
                         data.user.setUser_Friend_Info_List(helper_List);
                         data.Save_File();
-                        data.Read_File();
+                      //  data.Read_File();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
