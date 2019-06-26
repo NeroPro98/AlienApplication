@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ChatApplication</string>
+    <string name="app_name">Alien Chat</string>
     <string name="title_activity_user__service">User_Service</string>
     <string name="open">Open</string>
     <string name="close">Close</string>

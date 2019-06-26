@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Register_Page"
-    android:background="@drawable/background5">
+    android:background="@drawable/background">
 
 
      <AutoCompleteTextView
@@ -84,7 +84,8 @@
         android:layout_marginTop="10dp"
         android:hint="@string/last_name"
         android:textAlignment="center"
-        android:textColor="@color/green"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/white"
         app:layout_constraintBottom_toTopOf="@+id/set_Middlename"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

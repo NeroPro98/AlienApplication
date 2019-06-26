@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Search_network"
-    android:background="@drawable/background1"
+    android:background="@drawable/background"
     >
 
 
     <ImageView
         android:id="@+id/backsearch"
-        android:layout_width="432dp"
-        android:layout_height="305dp"
+        android:layout_width="337dp"
+        android:layout_height="194dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="85dp"
@@ -20,7 +20,7 @@
         android:layout_marginRight="8dp"
         android:layout_marginBottom="388dp"
         android:scaleY="1.7"
-        android:src="@drawable/backsearch2"
+        android:src="@drawable/alienbackground3"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.266"
@@ -29,18 +29,7 @@
         app:layout_constraintVertical_bias="0.404" />
 
 
-    <ImageView
-        android:layout_width="403dp"
-        android:layout_height="283dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:src="@drawable/world"
-        app:layout_constraintBottom_toBottomOf="@+id/astrodog"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+
 
 
     <ImageView

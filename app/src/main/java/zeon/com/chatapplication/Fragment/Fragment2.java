@@ -58,7 +58,7 @@ public class Fragment2 extends Fragment {
 
         listStory.removeAll(listStory);
         EmailListFriends.removeAll(EmailListFriends);
-        data.user.User_Friend_Info.removeAll(data.user.User_Friend_Info);
+    //    data.user.User_Friend_Info.removeAll(data.user.User_Friend_Info);
      //   list2 = helper_List;
         if (count == 0) {
             list = (ArrayList) data.user.getUser_Friend_Info();
@@ -86,7 +86,7 @@ public class Fragment2 extends Fragment {
        // for (int j = 0; j < helper_List.size(); j++) {
        //     data.user.setUser_Friend_Info((String) list.get(j));
        // }
-        data.user.setUser_Friend_Info_List(list);
+
         data.Save_File();
         data.Read_File();
         data.setFriendEmails(EmailListFriends);
@@ -113,7 +113,14 @@ public class Fragment2 extends Fragment {
         textadd.setText(data.getUser_Name());
         textdate.setText("June");
         //ArrayList<Object> list3 = (ArrayList) data.getUserFriend_List_Every_init();
+        data.Read_File();
         ArrayList<Object> list3 = (ArrayList)  data.user.getUser_Friend_Info();
+        data.user.setUser_Friend_Info_List(list3);
+
+       /* data.user.getUser_Friend_Info().remove(0);
+        data.user.getUser_Friend_Info().remove(0);
+        data.user.getUser_Friend_Info().remove(0);
+        data.user.getUser_Friend_Info().remove(0);*/
         try {
             InitStory(list3);
         } catch (IOException e) {
@@ -165,6 +172,7 @@ public class Fragment2 extends Fragment {
                         helper_List.remove(0);
                         helper_List.remove(0);
                         try {
+                            data.user.setUser_Friend_Info_List(helper_List);
                             InitStory(helper_List);
                         } catch (IOException e) {
                             e.printStackTrace();

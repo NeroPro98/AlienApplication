@@ -166,6 +166,10 @@ public class UserProfile implements Serializable {
 
 
     public ArrayList<Object> getUser_Friend_Info() {
+   //     User_Friend_Info.remove(0);
+    //    User_Friend_Info.remove(0);
+     //   User_Friend_Info.remove(0);
+      //  User_Friend_Info.remove(0);
         return User_Friend_Info;
     }
 
@@ -643,6 +647,10 @@ public class UserProfile implements Serializable {
                         chatsList.get(i).addMessage(message);
                 }
                 if (newMessagesListener != null) newMessagesListener.onChange();
+            }
+
+            case 19:{
+                return (boolean) list.get(1);
             }
 
         }

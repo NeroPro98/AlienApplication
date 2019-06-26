@@ -29,7 +29,7 @@
         />
 
     <EditText
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:id="@+id/Password_Faild"
         android:layout_width="330dp"
         android:layout_height="wrap_content"
@@ -48,7 +48,8 @@
         app:layout_constraintHorizontal_bias="0.46"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.991" />
+        app:layout_constraintVertical_bias="0.991"
+        />
 
     <Button
         android:id="@+id/facebook"

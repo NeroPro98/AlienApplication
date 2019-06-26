@@ -227,6 +227,7 @@ public class MyApplication extends android.app.Application implements Serializab
                 outputStream = openFileOutput(File_Name, Context.MODE_PRIVATE);
                 ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
                 objectoutputStream.writeObject(user);
+                user.getUser_Friend_Info();
                 objectoutputStream.flush();
                 objectoutputStream.close();
                 outputStream.close();
@@ -305,8 +306,9 @@ public class MyApplication extends android.app.Application implements Serializab
                     user.getStory();
                     user.getName();
                     user.getEmail();
-                    user.getUser_Friend_Info();
+                   // user.getUser_Friend_Info();
                     user.getThe_User_Hwo_Chat_With_Him();
+                    user.getUser_Friend_Info();
                     return true;
                 }
                 else

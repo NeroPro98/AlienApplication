@@ -51,8 +51,7 @@ import zeon.com.chatapplication.Style_Change;
 import zeon.com.chatapplication.User_Edit_Info;
 import zeon.com.chatapplication.Weather.WeatherController;
 
-public class Main_Chats_Page extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener,SearchView.OnQueryTextListener
-{
+public class Main_Chats_Page extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener {
 
     private DrawerLayout drawer;
     private ActionBarDrawerToggle Toggle;
@@ -81,14 +80,14 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         setContentView(R.layout.activity_main);
 
 
-        toolbar =(Toolbar) findViewById(R.id.nav_action);
+        toolbar = (Toolbar) findViewById(R.id.nav_action);
         mActionBar = getSupportActionBar();
         //mActionBar
         drawer = findViewById(R.id.drawer_layout);
-        Toggle = new ActionBarDrawerToggle(this,drawer, R.string.open, R.string.close);
-        user_image = (CircleImageView)findViewById(R.id.user_circle);
-        mView = (BottomNavigationView)findViewById(R.id.bottomview1);
-        SendAdd = (ImageView)findViewById(R.id.add_friend);
+        Toggle = new ActionBarDrawerToggle(this, drawer, R.string.open, R.string.close);
+        user_image = (CircleImageView) findViewById(R.id.user_circle);
+        mView = (BottomNavigationView) findViewById(R.id.bottomview1);
+        SendAdd = (ImageView) findViewById(R.id.add_friend);
 
         drawer.addDrawerListener(Toggle);
         Toggle.syncState();
@@ -116,26 +115,26 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         //for the toolbar2
         //  this.getSupportActionBar().setTitle("");
 
-        mViewPager = (ViewPager)findViewById(R.id.viewPager);
-        mTablLayout = (TabLayout)findViewById(R.id.tabalLayout);
+        mViewPager = (ViewPager) findViewById(R.id.viewPager);
+        mTablLayout = (TabLayout) findViewById(R.id.tabalLayout);
         mTablLayout.addTab(mTablLayout.newTab().setIcon(R.drawable.chat_icon));
         mTablLayout.addTab(mTablLayout.newTab().setIcon(R.drawable.ic_group_black_24dp));
         mTablLayout.addTab(mTablLayout.newTab().setIcon(R.drawable.person_add));
         //mTablLayout.setBackgroundColor(getResources().getColor(R.color.black));
         mTablLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
-     //   mTablLayout.set
+        //   mTablLayout.set
        /* mTablLayout.addOnLayoutChangeListener(new View.OnLayoutChangeListener() { ////////////////////////////Here Check the listener of the taps
             @Override
             public void onLayoutChange(View v, int left, int top, int right, int bottom, int oldLeft, int oldTop, int oldRight, int oldBottom) {
 
             }
         });*/
-     //  mTablLayout.OnTabSelectedListener(new ArrayList<>()
+        //  mTablLayout.OnTabSelectedListener(new ArrayList<>()
 
 
         final Fragment_Adapter fs
-                = new Fragment_Adapter(getSupportFragmentManager(),mTablLayout.getTabCount());
+                = new Fragment_Adapter(getSupportFragmentManager(), mTablLayout.getTabCount());
 
         mTablLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
@@ -146,34 +145,33 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                         System.out.println("Fragment 1 ababa");
 
 
-
                         break;
                     case 1:
-                        System.out.println("The User Friend Email is of case1"+data.user.getUserFriends());
+                        System.out.println("The User Friend Email is of case1" + data.user.getUserFriends());
                         System.out.println("Fragment 2 ababa");
-                        System.out.println("The User Emails  is"+data.getEmails());
-                        ArrayList <String> FriendEmails = data.user.getUser_Friend_Emails();
-                        System.out.println("The  FriendEmails  is:"+FriendEmails);
+                        System.out.println("The User Emails  is" + data.getEmails());
+                        ArrayList<String> FriendEmails = data.user.getUser_Friend_Emails();
+                        System.out.println("The  FriendEmails  is:" + FriendEmails);
                         Thread thread1 = new Thread(new Runnable() {
                             @Override
                             public void run() {
                                 try {
                                     ArrayList arrayList = serilaizeToStringsForFriendList();
-                                    System.out.println("The arraylist :"+arrayList);
+                                    System.out.println("The arraylist :" + arrayList);
                                     ObjConnection.output.writeObject(arrayList);
-                                    final ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
-                                    System.out.println("The inputList :"+inputlist);
+                                    final ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
+                                    System.out.println("The inputList :" + inputlist);
                                     ObjConnection.handleReceivedRequest(inputlist);
                                     //data.setHelper_List(inputlist);
                                     ObjConnection.output.flush();
-                                    data.setUserFriend_List_Every_init(inputlist);
+                                 //   data.setUserFriend_List_Every_init(inputlist);
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
-                                        //    fragment2.InitStory(inputlist);
+                                            //    fragment2.InitStory(inputlist);
 
-                                            Toast.makeText(getApplicationContext(),"Fragment2",Toast.LENGTH_SHORT).show();
-                                          //  fragment2.notifyAll();
+                                            Toast.makeText(getApplicationContext(), "Fragment2", Toast.LENGTH_SHORT).show();
+                                            //  fragment2.notifyAll();
                                         }
                                     });
 
@@ -187,9 +185,6 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                         thread1.start();
 
 
-
-
-
                         break;
                     case 2:
                         System.out.println("Fragment 1 ababa");
@@ -200,22 +195,22 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                             public void run() {
                                 try {
                                     ArrayList arrayList = serilaizeToStrings();
-                                    System.out.println("The arraylist :"+arrayList);
+                                    System.out.println("The arraylist :" + arrayList);
                                     ObjConnection.output.writeObject(arrayList);
-                                    final ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
-                                    System.out.println("The inputList :"+inputlist);
+                                    final ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
+                                    System.out.println("The inputList :" + inputlist);
                                     data.user.getUser_List();
                                     //data.setThe_User_List_From_Server(inputlist);
                                     ObjConnection.handleReceivedRequest(inputlist);
                                     ObjConnection.output.flush();
                                     data.setGetUser_List_Every_init(inputlist);
-                                   // fragment1.init(inputlist);
+                                    // fragment1.init(inputlist);
                                     runOnUiThread(new Runnable() {  //Don't work
                                         @Override
                                         public void run() {
                                             //fragment1.init(inputlist);
-                                            Toast.makeText(getApplicationContext(),"Fragment1",Toast.LENGTH_SHORT).show();
-                                           // fragment1.notifyAll();
+                                            Toast.makeText(getApplicationContext(), "Fragment1", Toast.LENGTH_SHORT).show();
+                                            // fragment1.notifyAll();
                                         }
                                     });
                                     //fs.notifyDataSetChanged();
@@ -248,7 +243,6 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         });
 
 
-
         mViewPager.setAdapter(fs);
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(mTablLayout));
@@ -257,6 +251,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             } ////////////////////////////////////////////////////
+
             @Override
             public void onPageSelected(int position) {
 
@@ -267,36 +262,36 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
             }
         });
-        mTablLayout.addOnTabSelectedListener(new  TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
+        mTablLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
         //mView.setItemIconTintList();
 
         mView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
 
-                switch (item.getItemId()){
+                switch (item.getItemId()) {
 
 
                     case R.id.Search_nav2:
                         //    mView.setItemBackgroundResource(R.color.brown_light);
-                        Intent intent2 = new Intent(getApplicationContext(),Search_network.class);
+                        Intent intent2 = new Intent(getApplicationContext(), Search_network.class);
                         startActivity(intent2);
                         return true;
 
                     case R.id.Person_nav2:
-                         //  mView.setItemIconTintList(getReso);
-                        Intent intent1 = new Intent(getApplicationContext(),User_Edit_Info.class);
+                        //  mView.setItemIconTintList(getReso);
+                        Intent intent1 = new Intent(getApplicationContext(), User_Edit_Info.class);
                         startActivity(intent1);
                         return true;
 
                     case R.id.Game_nav2:
                         //   mView.setItemBackgroundResource(R.color.yellow);
-                        Intent intent3 = new Intent(getApplicationContext(),Games_main.class);
+                        Intent intent3 = new Intent(getApplicationContext(), Games_main.class);
                         startActivity(intent3);
                         return true;
 
                     case R.id.weather:
-                        Intent intent4 = new Intent(getApplicationContext(),WeatherController.class);
+                        Intent intent4 = new Intent(getApplicationContext(), WeatherController.class);
                         startActivity(intent4);
                         return true;
 
@@ -328,18 +323,18 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         locale.setDefault(locale);
         Configuration configuration = new Configuration();
         configuration.locale = locale;
-        getBaseContext().getResources().updateConfiguration(configuration,getBaseContext().getResources().getDisplayMetrics());
+        getBaseContext().getResources().updateConfiguration(configuration, getBaseContext().getResources().getDisplayMetrics());
         //Save data in shared Preference
-        SharedPreferences.Editor editor  = getSharedPreferences("Settings",MODE_PRIVATE).edit();
-        editor.putString("App_Lang",lang);
+        SharedPreferences.Editor editor = getSharedPreferences("Settings", MODE_PRIVATE).edit();
+        editor.putString("App_Lang", lang);
         editor.apply();
 
     }
 
     //To Load Lang That Saved In Shared Preferences
-    public void LoadLocal(){
+    public void LoadLocal() {
         SharedPreferences sharedPreferences = getSharedPreferences("Settings", Activity.MODE_PRIVATE);
-        String lang = sharedPreferences.getString("App_Lang","");
+        String lang = sharedPreferences.getString("App_Lang", "");
         setLocale(lang);
     }
 
@@ -359,8 +354,16 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         return list;
     }
 
-    public void to_image_page(View v){
-        Intent intent = new Intent(getApplicationContext(),User_Edit_Info.class);
+    public ArrayList<Object> serilaizeToStringsForLogOut() {
+        ArrayList<Object> list = new ArrayList<>();
+        list.add(19);
+        list.add(data.getUser_Email());
+        // list.add(email);
+        return list;
+    }
+
+    public void to_image_page(View v) {
+        Intent intent = new Intent(getApplicationContext(), User_Edit_Info.class);
         startActivity(intent);
     }
 
@@ -375,9 +378,9 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item){
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
 
             case R.id.setting:
                 break;
@@ -392,10 +395,10 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                 break;
         }
 
-        if(Toggle.onOptionsItemSelected(item)){
+        if (Toggle.onOptionsItemSelected(item)) {
             return true;
         }
-        return  super.onOptionsItemSelected(item);
+        return super.onOptionsItemSelected(item);
     }
 
 
@@ -405,7 +408,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         getMenuInflater().inflate(R.menu.main, menu);
 
         MenuItem menuItem = menu.findItem(R.id.searchforthing);
-        SearchView searchView = (SearchView)menuItem.getActionView();
+        SearchView searchView = (SearchView) menuItem.getActionView();
         searchView.setOnQueryTextListener(this);
         return true;
     }
@@ -415,43 +418,77 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
-        Log.d("abababa","Personal"+id);
+        Log.d("abababa", "Personal" + id);
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            Intent intent =new Intent(getApplicationContext(),Register_Page.class);
+            Intent intent = new Intent(getApplicationContext(), Register_Page.class);
             startActivity(intent);
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_Game) {
-            Intent intent =new Intent(getApplicationContext(),Games_main.class);
+            Intent intent = new Intent(getApplicationContext(), Games_main.class);
             startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
             SetLanguage();
-        }else if (id == R.id.nav_logout) {
-            Intent intent =new Intent(getApplicationContext(), Register.class);
+        } else if (id == R.id.nav_logout) {
+
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                    ArrayList arrayList = serilaizeToStringsForLogOut();
+                    System.out.println("The arraylist :" + arrayList);
+                    try {
+                        ObjConnection.output.writeObject(arrayList);
+                        ObjConnection.output.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    ArrayList<Object> inputlist;
+                    try {
+                        inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
+                        data.user.handleReceivedRequest(inputlist);
+                        if (data.user.handleReceivedRequest(inputlist)) {
+                            data.Save_File();
+                            data.Read_File();
+                        }
+
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+            thread.start();
+
+
+            Intent intent = new Intent(getApplicationContext(), Register.class);
             startActivity(intent);
-        }else if (id == R.id.adduser) {
-            Intent intent =new Intent(getApplicationContext(),Register_Page.class);
+        } else if (id == R.id.adduser) {
+            Intent intent = new Intent(getApplicationContext(), Register_Page.class);
             startActivity(intent);
 
-        }else if(id == R.id.Personalper){
-            Log.d("abababa","Personal");
-            Intent intent =new Intent(getApplicationContext(),User_Edit_Info.class);
+        } else if (id == R.id.Personalper) {
+            Log.d("abababa", "Personal");
+            Intent intent = new Intent(getApplicationContext(), User_Edit_Info.class);
             startActivity(intent);
 
-        }else if (id == R.id.Search){
-            Intent intent =new Intent(getApplicationContext(),Search_network.class);
+        } else if (id == R.id.Search) {
+            Intent intent = new Intent(getApplicationContext(), Search_network.class);
             startActivity(intent);
 
-        }else if(id==R.id.style){
-            Intent intent =new Intent(getApplicationContext(),Style_Change.class);
+        } else if (id == R.id.style) {
+            Intent intent = new Intent(getApplicationContext(), Style_Change.class);
             startActivity(intent);
-        }else if(id==R.id.weather){
+        } else if (id == R.id.weather) {
             Intent intent4 = new Intent(getApplicationContext(), WeatherController.class);
             startActivity(intent4);
 
-        }else if(id==R.id.Block_Page){
+        } else if (id == R.id.Block_Page) {
             Intent intent5 = new Intent(getApplicationContext(), Block_Page.class);
             System.out.println("HAHAHA");
             startActivity(intent5);
@@ -479,43 +516,38 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     }
 
 
+    public void SetLanguage() {
 
-public void SetLanguage(){
+        final String[] LangList = {"English", "Le français", "日本語"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(Main_Chats_Page.this);
+        builder.setTitle("Choose Language...");
+        builder.setSingleChoiceItems(LangList, -1, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (which == 0) {
+                    setLocale("en");
+                    recreate();
+                } else if (which == 1) {
+                    setLocale("oc");
+                    recreate();
+                } else if (which == 2) {
+                    setLocale("ja");
+                    recreate();
+                }
 
-    final String[] LangList = {"English","Le français","日本語"};
-    AlertDialog.Builder builder = new AlertDialog.Builder(Main_Chats_Page.this);
-    builder.setTitle("Choose Language...");
-    builder.setSingleChoiceItems(LangList, -1, new DialogInterface.OnClickListener() {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            if(which==0){
-                setLocale("en");
-                recreate();
+                dialog.dismiss();
             }
-            else if(which==1){
-                setLocale("oc");
-                recreate();
-            }
-            else if(which==2){
-                setLocale("ja");
-                recreate();
-            }
-
-            dialog.dismiss();
-        }
 
 
-    });
+        });
 
-    AlertDialog alertDialog = builder.create();
-    alertDialog.show();
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
 
-}
-
+    }
 
 
     //   public void SendRequestForList(){
-
 
 
     // }
