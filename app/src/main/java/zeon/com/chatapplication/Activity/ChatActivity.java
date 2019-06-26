@@ -165,6 +165,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         mLayout = (LinearLayout) findViewById(R.id.linearlayoutforchat);
         //Read_File_UserInfo();
         ChatListServer = data.user.getChatModelList();
+        data.user.getThe_User_Chat_Containt();
         if(ChatListServer.size()!=0) {
             ShowMsgFromFile(ChatListServer);
         }

@@ -41,10 +41,25 @@ public class UserProfile implements Serializable {
     private ArrayList<Object> The_User_List_Info_File = new ArrayList<>();
     private ArrayList<Object> The_User_Hwo_Chat_With_Him = new ArrayList<>();
 
+    private ArrayList<MessagePerson> The_User_Chat_Containt = new ArrayList<>();
 
     public int friendnum ;
     public int friendbolck ;
     public int friendfollower ;
+
+
+    public ArrayList<MessagePerson> getThe_User_Chat_Containt() {
+        return The_User_Chat_Containt;
+
+    }
+
+    public void setThe_User_Chat_Containt(ArrayList<MessagePerson> the_User_Chat_Containt) {
+        The_User_Chat_Containt = the_User_Chat_Containt;
+    }
+
+    public void addThe_User_Chat_Containt(MessagePerson user) {
+        The_User_Chat_Containt.add(user);
+    }
 
     public int getFriendnum() {
         return friendnum;

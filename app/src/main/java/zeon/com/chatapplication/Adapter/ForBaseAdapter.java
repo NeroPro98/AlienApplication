@@ -18,6 +18,7 @@ import com.squareup.picasso.Picasso;
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import zeon.com.chatapplication.Activity.ChatActivity;
 import zeon.com.chatapplication.Model.MessagePerson;
@@ -64,12 +65,12 @@ public class ForBaseAdapter extends BaseAdapter{
         ImageView Image = (ImageView)view.findViewById(R.id.personimage);
         TextView Name = (TextView)view.findViewById(R.id.personename);
         TextView Message = (TextView)view.findViewById(R.id.personemessage);
-        TextView Date = (TextView)view.findViewById(R.id.date);
-
+        TextView date = (TextView)view.findViewById(R.id.date);
+        String getdate = lists.get(position).getS3().toString();
         Picasso.with(mContext).load(lists.get(position).getS4()).into(Image);
         Name.setText(lists.get(position).getS1());
         Message.setText(lists.get(position).getS2());
-        Date.setText(lists.get(position).getS3());
+        date.setText((String)getdate);
 
         view.setOnClickListener(
                 new View.OnClickListener() {

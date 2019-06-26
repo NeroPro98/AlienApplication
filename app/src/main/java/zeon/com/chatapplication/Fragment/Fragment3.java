@@ -22,6 +22,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 import zeon.com.chatapplication.Adapter.ForBaseAdapter;
 import zeon.com.chatapplication.Adapter.FriendAdapter;
@@ -43,11 +44,12 @@ public class Fragment3 extends Fragment {
     private ForBaseAdapter adapter = new ForBaseAdapter();
 
 
-    public void init(ArrayList<Object> list_user) {
+    public void init(ArrayList<Object> list_user) throws IOException {
         boolean bool = false;
        /* message.add(new MessagePerson("www.alaa@gmail.com",1,"Mohamad Nesart","Hello There","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
           message.add(new MessagePerson("www.alaa@gmail.com",1,"Mohamad Nesart","Hello There","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
 */
+       message = data.user.getThe_User_Chat_Containt();
         if (list_user.size() != 0 && message.size()!=0) {
 
             for(int k=0;k<message.size();k++){
@@ -65,13 +67,19 @@ public class Fragment3 extends Fragment {
             }
             if (bool==false) {
                 for (int i = 0; i < list_user.size(); i = i + 2) {
-                    message.add(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "Hello There", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                    message.add(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "Hello There", new Date(), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                    data.user.addThe_User_Chat_Containt(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "Hello There", new Date(), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                    data.Save_File();
+                    data.Read_File();
                 }
             }
             adapter.notifyDataSetChanged();
         }else if(message.size()==0){
             for (int i = 0; i < list_user.size(); i = i + 2) {
-                message.add(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "Hello There", "April", "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                message.add(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "Hello There", new Date(), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                data.user.addThe_User_Chat_Containt(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "Hello There", new Date(), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                data.Save_File();
+                data.Read_File();
             }
             adapter.notifyDataSetChanged();
         }
@@ -90,7 +98,11 @@ public class Fragment3 extends Fragment {
 
         mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout_frag3);
         ArrayList<Object> InputList = data.user.getThe_User_Hwo_Chat_With_Him();
-        init(InputList);
+        try {
+            init(InputList);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         adapter = new ForBaseAdapter(getContext(), message);
         Log.d("AlienChat", "Context" + getContext());
         Log.d("AlienChat", "message" + message);
@@ -107,7 +119,11 @@ public class Fragment3 extends Fragment {
                 helper_List = data.user.getThe_User_Hwo_Chat_With_Him();
 
                 if (helper_List.size() >= 2) {
-                    init(helper_List);
+                    try {
+                        init(helper_List);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
                     //data.user.setUser_List(helper_List);
 
 

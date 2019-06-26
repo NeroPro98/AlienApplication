@@ -3,18 +3,36 @@ package zeon.com.chatapplication.Model;
 import android.media.Image;
 import android.widget.ImageView;
 
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+
 import zeon.com.chatapplication.R;
 
-public class MessagePerson {
+public class MessagePerson implements Serializable {
 
     private int id;
     private String name;
     private String message;
-    private String date;
+    private Date date;
     private String image;
     private String email;
-
     private ImageView personImage;
+    private ArrayList<Object> ListChat = new ArrayList<>();
+
+    public ArrayList<Object> getListChat() {
+        return ListChat;
+    }
+
+    public void setListChat(ArrayList<Object> listChat) {
+        ListChat = listChat;
+    }
+
+    public void setListChatadd(Object msg) {
+        ListChat.add(msg);
+    }
+
+
 
     public String getEmail() {
         return email;
@@ -24,7 +42,7 @@ public class MessagePerson {
         this.email = email;
     }
 
-    public MessagePerson(String temail,int ID, String s1, String s2, String s3, String s4){
+    public MessagePerson(String temail, int ID, String s1, String s2, Date s3, String s4){
 
         email = temail;
         id = ID;
@@ -41,7 +59,7 @@ public class MessagePerson {
         id = 0;
         name = "Unnamed";
         message = "";
-        date = "";
+        date = null;
         image="";
 
     }
@@ -71,11 +89,11 @@ public class MessagePerson {
         this.message = s2;
     }
 
-    public String getS3() {
+    public Date getS3() {
         return date;
     }
 
-    public void setS3(String s3) {
+    public void setS3(Date s3) {
         this.date = s3;
     }
 

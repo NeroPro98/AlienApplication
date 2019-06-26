@@ -297,6 +297,7 @@ public class MyApplication extends android.app.Application implements Serializab
                 fileInputStream = openFileInput(File_Name);
                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
                 UserProfile user_read = (UserProfile) objectInputStream.readObject();
+                user_read.getThe_User_Chat_Containt();
                 objectInputStream.close();
                 if(user_read.getEmail().length() !=0) {
                     user = user_read;
