@@ -50,6 +50,8 @@ public class Fragment3 extends Fragment {
           message.add(new MessagePerson("www.alaa@gmail.com",1,"Mohamad Nesart","Hello There","April","https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
 */
        message = data.user.getThe_User_Chat_Containt();
+     //   data.user.getThe_User_Chat_Containt().remove(2);
+      //  data.Save_File();
         if (list_user.size() != 0 && message.size()!=0) {
 
             for(int k=0;k<message.size();k++){

@@ -18,17 +18,17 @@ public class MessagePerson implements Serializable {
     private String image;
     private String email;
     private ImageView personImage;
-    private ArrayList<Object> ListChat = new ArrayList<>();
+    private ArrayList<Chat_Model> ListChat = new ArrayList<>();
 
-    public ArrayList<Object> getListChat() {
+    public ArrayList<Chat_Model> getListChat() {
         return ListChat;
     }
 
-    public void setListChat(ArrayList<Object> listChat) {
+    public void setListChat(ArrayList<Chat_Model> listChat) {
         ListChat = listChat;
     }
 
-    public void setListChatadd(Object msg) {
+    public void setListChatadd(Chat_Model msg) {
         ListChat.add(msg);
     }
 

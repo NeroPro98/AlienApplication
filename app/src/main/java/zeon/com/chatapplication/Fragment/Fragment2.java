@@ -58,7 +58,7 @@ public class Fragment2 extends Fragment {
 
         listStory.removeAll(listStory);
         EmailListFriends.removeAll(EmailListFriends);
-  //      data.user.User_Friend_Info.removeAll(data.user.User_Friend_Info);
+        data.user.User_Friend_Info.removeAll(data.user.User_Friend_Info);
      //   list2 = helper_List;
         if (count == 0) {
             list = (ArrayList) data.user.getUser_Friend_Info();

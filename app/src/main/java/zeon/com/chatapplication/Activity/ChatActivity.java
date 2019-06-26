@@ -97,6 +97,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
             linearLayout.addView(text);
             mLayout.addView(linearLayout, layoutParams);
 
+
         }
     }
 
@@ -144,13 +145,15 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
     }
 
-    public void HandlerChatServer() {
+    public void HandlerChatServer() throws IOException {
         Chat_Model ch = data.getUser().getChat(friendEmail);
         if (ch != null) {
             ArrayList<Message> list = ch.getList();
             for (int i = 0; i < list.size(); i++) {
                 ChatListServer.add(new Chat_Model(data.user.getEmail(), friendEmail, (String) list.get(i).getObject(), false, new Date(),null)); //edit the Date
                 data.user.setChatModelList(new Chat_Model(data.user.getEmail(), friendEmail, (String) list.get(i).getObject(), false, new Date(),null)); //Edit The Date
+                data.Save_File();
+                data.Read_File();
             }
             MessageFromServer(ChatListServer);
         }
@@ -164,13 +167,13 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
         mLayout = (LinearLayout) findViewById(R.id.linearlayoutforchat);
         //Read_File_UserInfo();
-        ChatListServer = data.user.getChatModelList();
-        data.user.getThe_User_Chat_Containt();
-        if(ChatListServer.size()!=0) {
-            ShowMsgFromFile(ChatListServer);
-        }
 
-        HandlerChatServer();
+
+        try {
+            HandlerChatServer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         PickImage = (ImageView) findViewById(R.id.pick_image_gallary);
         String Name = getIntent().getStringExtra("name");
@@ -180,6 +183,15 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
         sendbtn = (ImageView) findViewById(R.id.sendbutton_new);
         type = (EditText) findViewById(R.id.typetext);
+
+       // ChatListServer = data.user.getChatModelList();
+        for(int i=0;i<data.user.getThe_User_Chat_Containt().size();i++) {
+            if(data.user.getThe_User_Chat_Containt().get(i).getEmail().equals(friendEmail))
+                ChatListServer = data.user.getThe_User_Chat_Containt().get(i).getListChat();
+        }
+        if(ChatListServer.size()!=0) {
+            ShowMsgFromFile(ChatListServer);
+        }
 
         data.getUser().setMessageListener(new UserProfile.onValueChangeListener() {
             @Override

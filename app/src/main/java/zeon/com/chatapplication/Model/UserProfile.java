@@ -49,6 +49,7 @@ public class UserProfile implements Serializable {
 
 
     public ArrayList<MessagePerson> getThe_User_Chat_Containt() {
+//        The_User_Chat_Containt.remove(2);
         return The_User_Chat_Containt;
 
     }
