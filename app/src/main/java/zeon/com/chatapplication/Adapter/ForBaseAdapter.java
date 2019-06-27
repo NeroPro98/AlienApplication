@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import zeon.com.chatapplication.Activity.ChatActivity;
+import zeon.com.chatapplication.Model.Message;
 import zeon.com.chatapplication.Model.MessagePerson;
 import zeon.com.chatapplication.Model.MessagePerson;
 import zeon.com.chatapplication.MyApplication;
@@ -31,7 +32,8 @@ public class ForBaseAdapter extends BaseAdapter{
     private ArrayList<MessagePerson> lists;
     private LayoutInflater mInflater;
     private Context mContext;
-
+    private MessagePerson person = new MessagePerson();
+    MyApplication data = (MyApplication) MyApplication.getAppContext().getApplicationContext();
 
     public ForBaseAdapter(Context context,ArrayList<MessagePerson> listmsg){
         this.mContext = context;
@@ -64,12 +66,17 @@ public class ForBaseAdapter extends BaseAdapter{
         final View view = mInflater.inflate(R.layout.person_menu,null);
         ImageView Image = (ImageView)view.findViewById(R.id.personimage);
         TextView Name = (TextView)view.findViewById(R.id.personename);
-        TextView Message = (TextView)view.findViewById(R.id.personemessage);
         TextView date = (TextView)view.findViewById(R.id.date);
         String getdate = lists.get(position).getS3().toString();
+        TextView Message = (TextView)view.findViewById(R.id.personemessage);
         Picasso.with(mContext).load(lists.get(position).getS4()).into(Image);
         Name.setText(lists.get(position).getS1());
-        Message.setText(lists.get(position).getS2());
+        if(data.user.getThe_User_Chat_Containt().get(data.user.getThe_User_Chat_Containt().size()-1).getListChat().size()!=0) {
+            String msg = data.user.getThe_User_Chat_Containt().get(data.user.getThe_User_Chat_Containt().size() - 1).getListChat().get(data.user.getThe_User_Chat_Containt().get(data.user.getThe_User_Chat_Containt().size() - 1).getListChat().size()-1).getMessage();
+            //  Message.setText(lists.get(position).getS2());
+            Message.setText(msg);
+        }else
+            Message.setText("");
         date.setText((String)getdate);
 
         view.setOnClickListener(

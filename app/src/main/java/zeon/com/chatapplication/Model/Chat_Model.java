@@ -11,16 +11,18 @@ public class Chat_Model implements Serializable {
     private int id;
     private int unequid;
     private String message;
-
     private boolean any;
     private ArrayList<Message> list;
     private String myEmail;
     private String friendEmail;
     private Date msgdate;
     private ImageView imagesend;
+    private messageType type;
 
 
-    public Chat_Model(String FromEmail, String ToEmail, String message, boolean any, Date date, ImageView image) {
+
+
+    public Chat_Model(String FromEmail, String ToEmail, String message, boolean any, Date date, ImageView image,messageType typemsg) {
         //this.id = id;
         //this.unequid = unequid;
         this.myEmail = FromEmail;
@@ -29,9 +31,18 @@ public class Chat_Model implements Serializable {
         this.any = any;
         this.msgdate = date;
         this.imagesend = image;
+        type =typemsg;
     }
 
     public Chat_Model() {
+    }
+
+    public messageType getType() {
+        return type;
+    }
+
+    public void setType(messageType type) {
+        this.type = type;
     }
 
     public int getId() {

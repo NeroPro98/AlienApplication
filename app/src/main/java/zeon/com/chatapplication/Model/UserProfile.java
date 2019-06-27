@@ -564,8 +564,10 @@ public class UserProfile implements Serializable {
                         else {
                             if(getUser_Friend_Name().size()!=0) {
                                 for (int k = 0; k < getUser_Friend_Name().size(); k++) {
-                                    if (!list.get(i).equals(getUser_Friend_Name().get(k)))
+                                    if (!list.get(i).equals(getUser_Friend_Name().get(k))) {
+                                        // but remove then bool
                                         app.user.setUser_Friend_Name((String) list.get(i));
+                                    }
                                 }
                             }else{
                                 app.user.setUser_Friend_Name((String) list.get(i));
