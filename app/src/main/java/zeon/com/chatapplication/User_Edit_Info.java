@@ -44,6 +44,9 @@ public class User_Edit_Info extends AppCompatActivity {
     private Button camera_button;
     private Button SaveImagebutton;
     private Button ReadButton;
+    private TextView friendnum;
+    private TextView Blocknum;
+    private TextView Followernum;
     MyApplication data = (MyApplication) MyApplication.getAppContext();
     private UserProfile ObjConnection = data.getUser();
     private ObjectOutputStream WriteToFile;
@@ -71,7 +74,14 @@ public class User_Edit_Info extends AppCompatActivity {
         edit_button = (Button) findViewById(R.id.Edit_Button);
         camera_button = (Button) findViewById(R.id.Edit_Button_camera);
         SaveImagebutton = (Button) findViewById(R.id.SaveImage);
+        friendnum = (TextView)findViewById(R.id.Friend_num);
+        Followernum = (TextView)findViewById(R.id.Follower_num);
+        Blocknum = (TextView)findViewById(R.id.Block_num);
      //   ReadButton = (Button)findViewById(R.id.Read_File_Button);
+
+        friendnum.setText(String.valueOf(data.user.getFriendnum()));
+        Followernum.setText(String.valueOf(data.user.getFriendfollower()));
+        Blocknum.setText(String.valueOf(data.user.getFriendbolck()));
 
         edit_button.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -80,9 +80,10 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/Friend_num"
                     android:text="0"
                     android:textColor="#fff"
                     android:textSize="22sp"
@@ -111,9 +112,10 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/Block_num"
                     android:text="0"
                     android:textColor="#fff"
                     android:textSize="22sp"
@@ -142,9 +144,10 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <EditText
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:id="@+id/Follower_num"
                     android:text="0"
                     android:textColor="#fff"
                     android:textSize="22sp"

@@ -310,6 +310,9 @@ public class MyApplication extends android.app.Application implements Serializab
                    // user.getUser_Friend_Info();
                     user.getThe_User_Hwo_Chat_With_Him();
                     user.getUser_Friend_Info();
+                    user.getFriendnum();
+                    user.getFriendbolck();
+                    user.getFriendfollower();
                     return true;
                 }
                 else

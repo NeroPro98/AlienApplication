@@ -68,6 +68,7 @@ public class BlockPage_Adapter extends BaseAdapter {
         //Picasso.with(mContext).load(lists.get(position).getS4()).into(Image);
         //Name.setText(lists.get(position).getS1());
         //Active.setText(lists.get(position).getS3());
+        data.user.setFriendbolck(lists.size());
 
         UnBlock.setOnClickListener(new View.OnClickListener() {
             @Override

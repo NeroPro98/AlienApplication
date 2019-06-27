@@ -81,6 +81,9 @@ public class Story_Adapter extends BaseAdapter {
         txt2.setText(mArrayList.get(position).getDatestory());
         Picasso.with(mContext).load(mArrayList.get(position).getImage()).into(image);
 
+        data.user.setFriendnum(mArrayList.size());
+        data.user.setFriendfollower(mArrayList.size());
+
         SendDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
