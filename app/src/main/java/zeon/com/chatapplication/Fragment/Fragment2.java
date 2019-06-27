@@ -52,16 +52,17 @@ public class Fragment2 extends Fragment {
     private SwipeRefreshLayout mRefreshLayout;
     private ArrayList<Object> helper_List = new ArrayList<>();
     private ArrayList<Object> helper_List2 = new ArrayList<>();
-
+    private  ArrayList<Object> list3 = new ArrayList<>();
 
     public void InitStory(ArrayList<Object> list2) throws IOException {
 
         listStory.removeAll(listStory);
         EmailListFriends.removeAll(EmailListFriends);
+
     //    data.user.User_Friend_Info.removeAll(data.user.User_Friend_Info);
      //   list2 = helper_List;
         if (count == 0) {
-            list = (ArrayList) data.user.getUser_Friend_Info();
+            list = list3;
           //   list.remove(0);
           //  list.remove(0);
             count++;
@@ -109,13 +110,14 @@ public class Fragment2 extends Fragment {
         // Picasso.with(getContext()).load("G:\\github\\ChatApplication\\app\\src\\main\\res\\drawable\\astro3.jpg")
         //   .into(imagestory); //don't work
         imagestory.setImageResource(R.drawable.man);
-        final MyApplication data = (MyApplication) getContext().getApplicationContext();
         textadd.setText(data.getUser_Name());
         textdate.setText("June");
         //ArrayList<Object> list3 = (ArrayList) data.getUserFriend_List_Every_init();
-        data.Read_File();
-        ArrayList<Object> list3 = (ArrayList)  data.user.getUser_Friend_Info();
-        data.user.setUser_Friend_Info_List(list3);
+        //data.Read_File();
+     //   data.user.getUser_Friend_Info().removeAll(data.user.User_Friend_Info);
+        data.user.getUser_Friend_Name();
+         list3 = (ArrayList)  data.user.getUser_Friend_Info();
+       // data.user.setUser_Friend_Info_List(list3); ////////////////////
 
        /* data.user.getUser_Friend_Info().remove(0);
         data.user.getUser_Friend_Info().remove(0);

@@ -39,6 +39,7 @@ public class MyApplication extends android.app.Application implements Serializab
     private ArrayList<Object> The_User_List_Befor_Check;
     private int Fragment1_Counter=0;
     private String File_Name = "User_File";
+    public ArrayList<Object> JustNoThing = new ArrayList<>();
 
     public int getFragment1_Counter() {
         return Fragment1_Counter;

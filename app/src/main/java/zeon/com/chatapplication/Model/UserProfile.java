@@ -551,18 +551,25 @@ public class UserProfile implements Serializable {
                             break;
                         }
                         else {
-                            app.user.User_Friend_Info.add((String)list.get(i));
+                            app.JustNoThing.add((String)list.get(i));
                             //app.user.setUser_Friend_Name((String)list.get(i));
                             j++;
                         }
                     }
-
+                    app.user.setUser_Friend_Info_List(app.JustNoThing);
                     for(int i =0 ; i<list.size();i =i+2){
                         if((list.get(i).equals("0"))) {
                             break;
                         }
                         else {
-                            app.user.setUser_Friend_Name((String)list.get(i));
+                            if(getUser_Friend_Name().size()!=0) {
+                                for (int k = 0; k < getUser_Friend_Name().size(); k++) {
+                                    if (!list.get(i).equals(getUser_Friend_Name().get(k)))
+                                        app.user.setUser_Friend_Name((String) list.get(i));
+                                }
+                            }else{
+                                app.user.setUser_Friend_Name((String) list.get(i));
+                            }
                         }
                     }
                     app.user.getUser_Friend_Info();
