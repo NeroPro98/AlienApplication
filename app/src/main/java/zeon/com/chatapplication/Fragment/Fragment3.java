@@ -69,8 +69,8 @@ public class Fragment3 extends Fragment {
             }
             if (bool==false) {
                 for (int i = 0; i < list_user.size(); i = i + 2) {
-                    message.add(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "Hello There", new Date(), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
-                    data.user.addThe_User_Chat_Containt(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "Hello There", new Date(), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                    message.add(new MessagePerson((String) list_user.get(i), 1, (String) list_user.get(i + 1), "", new Date(), "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwjR_qew--HhAhWMxoUKHRKwCA0QjRx6BAgBEAU&url=http%3A%2F%2Fsteezo.com%2F%3Fproduct%3Dman-in-stripped-suit&psig=AOvVaw0BK6qUf6tcpUZ1lNMSG0bo&ust=1555962818897341"));
+                    data.user.setThe_User_Chat_Containt(message);
                     data.Save_File();
                     data.Read_File();
                 }

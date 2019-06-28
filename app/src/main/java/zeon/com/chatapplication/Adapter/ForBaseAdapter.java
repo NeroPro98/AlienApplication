@@ -71,8 +71,10 @@ public class ForBaseAdapter extends BaseAdapter{
         TextView Message = (TextView)view.findViewById(R.id.personemessage);
         Picasso.with(mContext).load(lists.get(position).getS4()).into(Image);
         Name.setText(lists.get(position).getS1());
-        if(data.user.getThe_User_Chat_Containt().get(data.user.getThe_User_Chat_Containt().size()-1).getListChat().size()!=0) {
-            String msg = data.user.getThe_User_Chat_Containt().get(data.user.getThe_User_Chat_Containt().size() - 1).getListChat().get(data.user.getThe_User_Chat_Containt().get(data.user.getThe_User_Chat_Containt().size() - 1).getListChat().size()-1).getMessage();
+    //    if(data.user.getThe_User_Chat_Containt().get(data.user.getThe_User_Chat_Containt().size()-1).getListChat().size()!=0) {
+        if(data.user.getThe_User_Chat_Containt().get(position).getListChat().size()!=0) {
+           // String msg = data.user.getThe_User_Chat_Containt().get(position).getListChat().get(data.user.getThe_User_Chat_Containt().get(data.user.getThe_User_Chat_Containt().size() - 1).getListChat().size()-1).getMessage();
+            String msg = data.user.getThe_User_Chat_Containt().get(position).getListChat().get(data.user.getThe_User_Chat_Containt().get(position).getListChat().size()-1).getMessage();
             //  Message.setText(lists.get(position).getS2());
             Message.setText(msg);
         }else

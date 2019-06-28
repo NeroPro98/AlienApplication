@@ -74,6 +74,15 @@
                 android:onClick="Pick_Image_Gallary"
                 android:src="@drawable/pickphoto" />
 
+            <ImageView
+                android:id="@+id/FileIcon"
+                android:layout_width="18dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="-40dp"
+                android:layout_marginTop="8dp"
+                android:onClick="Pick_File_Storage"
+                android:src="@drawable/fileicon" />
+
 
         </LinearLayout>
 
