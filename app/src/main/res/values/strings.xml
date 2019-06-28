@@ -73,7 +73,6 @@
     <string name="other">Other</string>
 
 
-
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="initial_score">Score 0/13</string>
@@ -145,14 +144,11 @@
     <string name="setting_slider">setting_slider</string>
 
 
-
     <string name="open_gallery">Open Gallery</string>
     <string name="save">Save</string>
     <string name="friends">Friends</string>
     <string name="blocks">Blocks</string>
     <string name="followers">Followers</string>
-
-
 
 
     <string name="other2">Other</string>

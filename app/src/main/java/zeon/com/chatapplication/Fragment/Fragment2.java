@@ -25,6 +25,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Date;
 
 import zeon.com.chatapplication.Adapter.FriendAdapter;
 import zeon.com.chatapplication.Adapter.Story_Adapter;
@@ -109,9 +110,10 @@ public class Fragment2 extends Fragment {
         imagestory = (ImageView) view.findViewById(R.id.imagestory);
         // Picasso.with(getContext()).load("G:\\github\\ChatApplication\\app\\src\\main\\res\\drawable\\astro3.jpg")
         //   .into(imagestory); //don't work
+     //   imagestory.setImageResource(R.drawable.man);
         imagestory.setImageResource(R.drawable.man);
-        textadd.setText(data.getUser_Name());
-        textdate.setText("June");
+        textadd.setText(data.user.getUserName());
+        textdate.setText(data.user.getStory());
         //ArrayList<Object> list3 = (ArrayList) data.getUserFriend_List_Every_init();
         //data.Read_File();
      //   data.user.getUser_Friend_Info().removeAll(data.user.User_Friend_Info);

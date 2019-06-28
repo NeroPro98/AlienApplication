@@ -47,4 +47,9 @@ public class Games_main extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Main1_Destiny.class);
         startActivity(intent);
     }
+
+    public void To_XVSO_Game(View view) {
+        Intent intent = new Intent(getApplicationContext(), X_O_game.class);
+        startActivity(intent);
+    }
 }

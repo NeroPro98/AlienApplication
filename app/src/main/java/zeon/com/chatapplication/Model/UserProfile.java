@@ -1,6 +1,7 @@
 package zeon.com.chatapplication.Model;
 
 import android.content.Context;
+import android.widget.ImageView;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -41,12 +42,23 @@ public class UserProfile implements Serializable {
     private ArrayList<Object> The_User_List_Info_File = new ArrayList<>();
     private ArrayList<Object> The_User_Hwo_Chat_With_Him = new ArrayList<>();
 
+
+    private ImageView UserImage;
     private ArrayList<MessagePerson> The_User_Chat_Containt = new ArrayList<>();
 
     public int friendnum ;
     public int friendbolck ;
     public int friendfollower ;
 
+
+
+    public ImageView getUserImage() {
+        return UserImage;
+    }
+
+    public void setUserImage(ImageView userImage) {
+        UserImage = userImage;
+    }
 
     public ArrayList<MessagePerson> getThe_User_Chat_Containt() {
 //        The_User_Chat_Containt.remove(2);

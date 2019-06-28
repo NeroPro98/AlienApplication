@@ -161,10 +161,14 @@ public class User_Edit_Info extends AppCompatActivity {
 
             if (requestCode == IMAGE_PICK_CODE) {
                 //set image to the image view
-                MyApplication dataapp = (MyApplication) getApplicationContext();
+                MyApplication data3 = (MyApplication) MyApplication.getAppContext().getApplicationContext();
                 image.setImageURI(data.getData());
-
-
+                data3.user.setUserImage(image);
+                try {
+                    data3.Save_File();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 // dataapp.setImage();
 
             } else if (resultCode == REQUEST_CAMERA) {
