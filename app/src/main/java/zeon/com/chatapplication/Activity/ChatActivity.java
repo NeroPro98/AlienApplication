@@ -6,10 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.GradientDrawable;
 import android.media.Image;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
@@ -37,9 +39,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.lang.reflect.Array;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -80,6 +84,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
     private String FilePath;
     private BufferedReader br;
     private StringBuilder text ;
+    private Bitmap bitmap;
 
 
     private void MessageFromServer(ArrayList<Chat_Model> msg) throws IOException {
@@ -195,6 +200,21 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         sendbtn = (ImageView) findViewById(R.id.sendbutton_new);
         type = (EditText) findViewById(R.id.typetext);
 
+        ArrayList<Object> ListBlock = new ArrayList<>();
+        ListBlock = data.user.getUser_Block_List();
+        boolean IsBlock = false;
+        for(int i = 0 ;i<ListBlock.size() ; i = i+2){
+            if(ListBlock.get(i).equals(friendEmail)){
+                IsBlock = true;
+            }
+        }
+        if(IsBlock){
+            type.setEnabled(false);
+            Toast.makeText(getApplicationContext(),"Banned",Toast.LENGTH_LONG).show();
+
+        }
+
+
   /*      try {
             HandlerChatServer();
         } catch (IOException e) {
@@ -282,8 +302,47 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
             }
         });
 
+
+
+
+
     }
 
+
+    //Class for download IMAGE
+    public class GetImageFromURL extends AsyncTask<String,Void,Bitmap>{
+
+        ImageView imgV;
+
+        public GetImageFromURL(ImageView imageFromStudio) {
+            this.imgV = imageFromStudio;
+        }
+
+        @Override
+        protected Bitmap doInBackground(String... url) {
+
+            String urldisplay = url[0];
+            bitmap = null;
+            try{
+                InputStream stream = new java.net.URL(urldisplay).openStream();
+                bitmap = BitmapFactory.decodeStream(stream);
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return bitmap;
+        }
+
+
+        @Override
+        protected void onPostExecute(Bitmap mbitmap){
+            super.onPostExecute(mbitmap);
+            imgV.setImageBitmap(mbitmap);
+
+
+        }
+    }
 
 
 
@@ -549,6 +608,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
             if (requestCode == IMAGE_PICK_CODE) {
                 //set image to the image view
                 ImageFromStudio.setImageURI(data.getData());
+                new GetImageFromURL(ImageFromStudio).execute((Runnable) data.getData());   //here to convert image to bitmap I dont know if it work
 
 
             } else if (resultCode == REQUEST_CAMERA) {

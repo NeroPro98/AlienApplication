@@ -148,6 +148,11 @@ public class Story_Adapter extends BaseAdapter {
                 }*/
                 System.out.println("The  User_Friend_Info after update is:" + data.user.getUser_Friend_Info());
                 mArrayList.remove(position);
+                try {
+                    data.Save_File();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 notifyDataSetChanged();
 
             }
@@ -197,6 +202,11 @@ public class Story_Adapter extends BaseAdapter {
                 data.user.getUserFriends().remove(position);
 
                 mArrayList.remove(position);
+                try {
+                    data.Save_File();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 notifyDataSetChanged();
             }
 

@@ -91,6 +91,7 @@ public class Fragment2 extends Fragment {
 
         data.Save_File();
         data.Read_File();
+        list.removeAll(list);
         data.setFriendEmails(EmailListFriends);
         System.out.println("The EmailListFriends is:" + EmailListFriends);
 
@@ -172,7 +173,7 @@ public class Fragment2 extends Fragment {
                     });
                     thread.start();
 
-                    if (helper_List.size() > 2) {
+                    if (helper_List.size() >= 2) {
                         helper_List.remove(0);
                         helper_List.remove(0);
                         try {

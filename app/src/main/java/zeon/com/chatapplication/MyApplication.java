@@ -210,8 +210,8 @@ public class MyApplication extends android.app.Application implements Serializab
     public void onCreate() {
         super.onCreate();
         MyApplication.mContext = getApplicationContext();
-    //    if(Read_User_From_File())
-     //      signIn();
+        if(Read_User_From_File())
+           signIn();
 
       }
 

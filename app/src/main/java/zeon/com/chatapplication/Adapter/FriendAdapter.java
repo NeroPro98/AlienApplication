@@ -115,6 +115,11 @@ public class FriendAdapter extends BaseAdapter {
                 });
                 thread.start();
                 lists.remove(position);
+                try {
+                    data.Save_File();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 notifyDataSetChanged();
 
             }
