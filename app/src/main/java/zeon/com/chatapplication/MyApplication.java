@@ -314,6 +314,7 @@ public class MyApplication extends android.app.Application implements Serializab
                     user.getFriendbolck();
                     user.getFriendfollower();
                     user.getUser_List();
+                    user.getUserFriends();
                     return true;
                 }
                 else

@@ -229,7 +229,7 @@ public class Story_Adapter extends BaseAdapter {
                     if(bool==false){
                         UserChat.add(Specific_email);
                         UserChat.add(name_user);
-                        data.user.setThe_User_Hwo_Chat_With_Him(UserChat);
+                        data.user.setThe_User_Hwo_Chat_With_Him_Add_ToList(UserChat);
                         try {
                             data.Save_File();
                         } catch (IOException e) {
@@ -239,7 +239,7 @@ public class Story_Adapter extends BaseAdapter {
                 }else{
                     UserChat.add(Specific_email);
                     UserChat.add(name_user);
-                    data.user.setThe_User_Hwo_Chat_With_Him(UserChat);
+                    data.user.setThe_User_Hwo_Chat_With_Him_Add_ToList(UserChat);
                     try {
                         data.Save_File();
                         data.Read_File();

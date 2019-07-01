@@ -66,8 +66,8 @@ public class BlockPage_Adapter extends BaseAdapter {
         //ImageView SendAdd = (ImageView)view.findViewById(R.id.unblock_menu);
         ImageView UnBlock = (ImageView) view.findViewById(R.id.unblock_menu);
         //Picasso.with(mContext).load(lists.get(position).getS4()).into(Image);
-        //Name.setText(lists.get(position).getS1());
-        //Active.setText(lists.get(position).getS3());
+        Name.setText(lists.get(position).getAddtext());
+        Active.setText(lists.get(position).getDatestory());
         data.user.setFriendbolck(lists.size());
 
         UnBlock.setOnClickListener(new View.OnClickListener() {

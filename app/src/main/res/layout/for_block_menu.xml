@@ -8,7 +8,7 @@
         android:id="@+id/block_image"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:src="@drawable/man"
+        android:src="@drawable/person_icon"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginLeft="20dp"

@@ -16,6 +16,7 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:foreground="@drawable/circle_shape"
+        android:background="@drawable/person_icon"
         android:layout_alignParentLeft="true" />
 
     <TextView

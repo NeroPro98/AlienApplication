@@ -118,6 +118,12 @@ public class UserProfile implements Serializable {
         The_User_Hwo_Chat_With_Him = the_User_Hwo_Chat_With_Him;
     }
 
+    public void setThe_User_Hwo_Chat_With_Him_Add_ToList(ArrayList<Object> the_User_Hwo_Chat_With_Him) {
+        for(int i=0;i<the_User_Hwo_Chat_With_Him.size();i++) {
+            The_User_Hwo_Chat_With_Him.add(the_User_Hwo_Chat_With_Him.get(i));
+        }
+    }
+
 
     //private static Context mContext;
 

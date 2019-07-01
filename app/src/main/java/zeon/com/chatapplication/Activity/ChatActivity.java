@@ -210,6 +210,9 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         }
         if(IsBlock){
             type.setEnabled(false);
+            sendbtn.setEnabled(false);
+            FileFromStorage.setEnabled(false);
+  //          ImageFromStudio.setEnabled(false);
             Toast.makeText(getApplicationContext(),"Banned",Toast.LENGTH_LONG).show();
 
         }

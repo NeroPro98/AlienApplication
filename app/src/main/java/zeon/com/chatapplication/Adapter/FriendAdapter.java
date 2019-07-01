@@ -78,8 +78,8 @@ public class FriendAdapter extends BaseAdapter {
         SendAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                int number = position;
-                MyApplication data = (MyApplication) MyApplication.getAppContext().getApplicationContext();
+                final int number = position;
+                final MyApplication data = (MyApplication) MyApplication.getAppContext().getApplicationContext();
                 System.out.println("The Emails is"+data.getEmails());
                 String Specific_email = data.getEmails(number); //here
                 data.setSpecific_Email_Press(Specific_email);
@@ -104,7 +104,10 @@ public class FriendAdapter extends BaseAdapter {
                             ObjConnection.output.writeObject(arrayList);
                             ArrayList<Object> inputlist =(ArrayList<Object>)ObjConnection.input.readObject();
                             System.out.println("The inputList :"+inputlist);
-                            ObjConnection.handleReceivedRequest(inputlist);
+                            boolean bool =ObjConnection.handleReceivedRequest(inputlist);
+                            if(bool){
+                                data.getEmails().remove(position);
+                            }
                             ObjConnection.output.flush();
                         } catch (IOException e) {
                             e.printStackTrace();

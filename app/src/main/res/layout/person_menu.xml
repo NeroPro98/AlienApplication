@@ -16,6 +16,7 @@
         android:layout_alignParentTop="true"
         android:layout_margin="16dp"
         android:foreground="@drawable/circle_shape"
+        android:background="@drawable/person_icon"
          />
 
 
