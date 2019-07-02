@@ -26,11 +26,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.SearchView;
+import android.widget.Adapter;
 import android.widget.ImageView;
 import android.widget.Toast;
 //import zeon.com.chatapplication.Adapter.Fragment_Adapter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
@@ -40,7 +42,9 @@ import zeon.com.chatapplication.Adapter.Fragment_Adapter;
 import zeon.com.chatapplication.Fragment.Fragment1;
 import zeon.com.chatapplication.Fragment.Fragment2;
 import zeon.com.chatapplication.Games.Activity.Games_main;
+import zeon.com.chatapplication.Model.Chat_Model;
 import zeon.com.chatapplication.Model.Message;
+import zeon.com.chatapplication.Model.MessagePerson;
 import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.MyApplication;
 import zeon.com.chatapplication.R;
@@ -84,6 +88,30 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
             @Override
             public void onChange() {
                 ArrayList<Message> currMessage = ObjConnection.getCurrMessages();
+                ArrayList<MessagePerson> msgview = data.user.getThe_User_Chat_Containt();
+
+                if (msgview.size() != 0) {
+                    for (int i = 0; i < currMessage.size(); i++) {
+                        for (int j = 0; j < msgview.size(); j++) {
+                            if (currMessage.get(i).getSenderEmail().equals(msgview.get(j).getEmail())) {
+                                msgview.get(j).setListChatadd(new Chat_Model(currMessage.get(i).getRecieverEmail(), data.user.getEmail(), (String) currMessage.get(i).getObject(), false, new Date(), null, currMessage.get(i).getType()));
+                                try {
+                                    data.Save_File();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            } else {
+                                msgview.add(new MessagePerson(currMessage.get(i).getSenderEmail(), 1, currMessage.get(i).getSenderEmail(), (String) currMessage.get(i).getObject(), new Date(), null));
+                                msgview.get(j).setListChatadd(new Chat_Model(currMessage.get(i).getRecieverEmail(), data.user.getEmail(), (String) currMessage.get(i).getObject(), false, new Date(), null, currMessage.get(i).getType()));
+                                try {
+                                    data.Save_File();
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }
+                    }
+                }
                 //here we have the current received messages in the list currMessage
                 //we must show them on the screen
                 //add the messages to their correct view
@@ -176,7 +204,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                                     ObjConnection.handleReceivedRequest(inputlist);
                                     //data.setHelper_List(inputlist);
                                     ObjConnection.output.flush();
-                                 //   data.setUserFriend_List_Every_init(inputlist);
+                                    //   data.setUserFriend_List_Every_init(inputlist);
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {

@@ -246,7 +246,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         data.getUser().setMessageListener(new UserProfile.onValueChangeListener() {
             @Override
             public void onChange() {
-                ArrayList<Chat_Model> list = data.getUser().getCurrMessages();
+                ArrayList<Chat_Model> list = data.getUser().getChatModelList();
                 try {
                     MessageFromServer(list);
                 }catch (IOException e){
