@@ -40,6 +40,7 @@ import zeon.com.chatapplication.Adapter.Fragment_Adapter;
 import zeon.com.chatapplication.Fragment.Fragment1;
 import zeon.com.chatapplication.Fragment.Fragment2;
 import zeon.com.chatapplication.Games.Activity.Games_main;
+import zeon.com.chatapplication.Model.Message;
 import zeon.com.chatapplication.Model.UserProfile;
 import zeon.com.chatapplication.MyApplication;
 import zeon.com.chatapplication.R;
@@ -79,6 +80,17 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         LoadLocal();
         setContentView(R.layout.activity_main);
 
+        ObjConnection.setMessageListener(new UserProfile.onValueChangeListener() {
+            @Override
+            public void onChange() {
+                ArrayList<Message> currMessage = ObjConnection.getCurrMessages();
+                //here we have the current received messages in the list currMessage
+                //we must show them on the screen
+                //add the messages to their correct view
+                //make new View if there is a message from new chat
+                //add the currMessage to the chatList
+            }
+        });
 
         toolbar = (Toolbar) findViewById(R.id.nav_action);
         mActionBar = getSupportActionBar();
