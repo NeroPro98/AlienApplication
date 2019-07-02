@@ -212,7 +212,6 @@ public class MyApplication extends android.app.Application implements Serializab
         MyApplication.mContext = getApplicationContext();
         if(Read_User_From_File())
            signIn();
-
       }
 
     public void Save_File() throws IOException {

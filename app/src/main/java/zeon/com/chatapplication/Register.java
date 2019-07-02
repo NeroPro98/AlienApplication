@@ -110,45 +110,6 @@ public class Register extends AppCompatActivity {
 
     }
 
-    public void Dog_Animate() {
-        //final Handler handler = new Handler();
-        new CountDownTimer(5000, 1000) {
-
-            @Override
-            public void onTick(long millisUntilFinished) {
-            }
-
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void onFinish() {
-
-                Dog.animate().translationXBy(2000)
-                        .translationYBy(500)
-                        .translationYBy(-500)
-                        .translationYBy(500)
-                        .translationYBy(-500)
-                        .translationYBy(500)
-                        .translationYBy(-500)
-                        .setDuration(5000);
-
-            }
-        }.start();
-
-      /*  Runnable run = new Runnable() {
-            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-            @Override
-            public void run() {
-
-             //   Dog.animate().translationXBy(2000).setDuration(4000);
-                Dog.animate().translationZBy(3000).setDuration(1000);
-                handler.postDelayed(this,1000);
-               // Dog.animate().translationZBy(-500).setDuration(1000);
-            }
-
-        };
-        handler.post(run);*/
-
-    }
 
 
     public void To_Chat_Page(View v) throws IOException, ClassNotFoundException {
