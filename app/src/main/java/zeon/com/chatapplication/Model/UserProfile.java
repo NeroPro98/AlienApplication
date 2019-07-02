@@ -1,6 +1,8 @@
 package zeon.com.chatapplication.Model;
 
 import android.content.Context;
+import android.net.wifi.WifiManager;
+import android.text.format.Formatter;
 import android.widget.ImageView;
 
 import java.io.IOException;
@@ -14,6 +16,8 @@ import java.util.Date;
 import zeon.com.chatapplication.Chats;
 import zeon.com.chatapplication.MyApplication;
 
+import static android.content.Context.WIFI_SERVICE;
+
 public class UserProfile implements Serializable {
     private String userName;
     private String password;
@@ -23,7 +27,7 @@ public class UserProfile implements Serializable {
     private ArrayList<String> blockList;
     private Date joinDate;
     private ArrayList<Chat_Model> chatsList;
-    private ArrayList<Chat_Model> currMessages;
+    private ArrayList<Message> currMessages;
     private String userId;
     private String story;
     public transient ObjectOutputStream output;
@@ -100,13 +104,13 @@ public class UserProfile implements Serializable {
 
 
 
-    public ArrayList<Chat_Model> getCurrMessages() {
-        ArrayList<Chat_Model> tmp = new ArrayList<>(currMessages);
+    public ArrayList<Message> getCurrMessages() {
+        ArrayList<Message> tmp = new ArrayList<>(currMessages);
         currMessages.clear();
         return tmp;
     }
 
-    public void setCurrMessages(ArrayList<Chat_Model> currMessages) {
+    public void setCurrMessages(ArrayList<Message> currMessages) {
         this.currMessages = currMessages;
     }
 
@@ -471,6 +475,7 @@ public class UserProfile implements Serializable {
 
     public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");
+       // IPString = "127.0.0.1";
         System.out.println("The Ip is " + IPString);
         Connection = new Socket(IPString, 6790);  // here we setup the connection to specific server of IP address to specific port on this server Port:
         System.out.println("Connected");
@@ -669,10 +674,26 @@ public class UserProfile implements Serializable {
             }
             case 13: {
                 Message message = new Message(list);
+                System.out.println(message);
+                currMessages.add(message);
+                /*boolean found = false;
                 for (int i = 0; i < chatsList.size(); i++) {
                     if (chatsList.get(i).getFriendEmail().equals(message.getSenderEmail()))
+                    {
+                        found = true;
                         chatsList.get(i).addMessage(message);
+                    }
                 }
+                if(!found)
+                {
+                    Chat_Model newChat = new Chat_Model();
+                    ArrayList<Message> arrayList = new ArrayList<>();
+                    arrayList.add(message);
+                    newChat.setMyEmail(message.getRecieverEmail());
+                    newChat.setFriendEmail(message.getSenderEmail());
+                    newChat.setList(arrayList);
+                    chatsList.add(newChat);
+                }*/
                 if (newMessagesListener != null) newMessagesListener.onChange();
             }
 
