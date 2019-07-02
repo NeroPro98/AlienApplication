@@ -119,10 +119,12 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                 }
                 Notification notification = new Notification.Builder(getApplicationContext())
                         .setContentTitle(currMessage.get(0).getSenderEmail())
-                        .setContentText((String)currMessage.get(0).getObject())
+                        .setStyle(new Notification.BigTextStyle()
+                                  .bigText((String)currMessage.get(0).getObject()))
                         .setContentIntent(pendingIntent)
                         .addAction(android.R.drawable.sym_action_chat,"Chat",pendingIntent)
                         .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                        .setAutoCancel(true)
                         .build();
                 NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
                 notificationManager.notify(1, notification);
