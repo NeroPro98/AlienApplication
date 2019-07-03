@@ -6,14 +6,14 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/storyimage"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
+        android:layout_width="55dp"
+        android:layout_height="60dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:layout_marginStart="11dp"
-        android:layout_marginLeft="11dp"
-        android:layout_marginTop="4dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="10dp"
         android:layout_marginRight="20dp"
         android:src="@drawable/man" />
 
@@ -22,38 +22,59 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="112dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
         android:layout_marginTop="10dp"
+        android:layout_toEndOf="@+id/storyimage"
+        android:layout_toRightOf="@+id/storyimage"
         android:text="TextView"
-        android:textSize="20dp"/>
+        android:textSize="20dp" />
 
     <ImageView
         android:id="@+id/delete_friend"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignLeft="@id/addstory"
-        android:layout_marginLeft="253dp"
+        android:layout_width="27dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="225dp"
+        android:layout_marginLeft="225dp"
         android:layout_marginTop="10dp"
+        android:layout_marginEnd="68dp"
+        android:layout_marginRight="68dp"
+        android:layout_toEndOf="@+id/storyimage"
+        android:layout_toRightOf="@+id/storyimage"
         android:onClick="Delete_Friend"
         android:src="@drawable/remove" />
 
     <ImageView
         android:id="@+id/Chat_Friend"
-        android:layout_width="25dp"
-        android:layout_height="25dp"
-        android:layout_alignLeft="@id/addstory"
-        android:layout_marginLeft="253dp"
+        android:layout_width="34dp"
+        android:layout_height="32dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="224dp"
+        android:layout_marginLeft="224dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginRight="61dp"
+        android:layout_toEndOf="@+id/storyimage"
+        android:layout_toRightOf="@+id/storyimage"
         android:onClick="Delete_Friend"
         android:src="@drawable/chat" />
 
     <ImageView
         android:id="@+id/block_friend"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
-        android:layout_alignLeft="@id/addstory"
-        android:layout_marginLeft="255dp"
+        android:layout_width="29dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="227dp"
+        android:layout_marginLeft="227dp"
         android:layout_marginTop="60dp"
+        android:layout_marginEnd="64dp"
+        android:layout_marginRight="64dp"
+        android:layout_toEndOf="@+id/storyimage"
+        android:layout_toRightOf="@+id/storyimage"
         android:onClick="Block_Friend"
         android:src="@drawable/block" />
 
@@ -61,9 +82,11 @@
         android:id="@+id/timesotry"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/addstory"
         android:layout_below="@+id/addstory"
+        android:layout_marginStart="19dp"
+        android:layout_marginLeft="19dp"
+        android:layout_toEndOf="@+id/storyimage"
+        android:layout_toRightOf="@+id/storyimage"
         android:text="TextView"
-        android:textSize="18sp"
-        android:layout_alignLeft="@+id/addstory" />
+        android:textSize="18sp" />
 </RelativeLayout>

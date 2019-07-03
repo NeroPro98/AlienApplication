@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.net.InetAddress;
 import java.net.Socket;
 import java.util.ArrayList;
 import java.util.Date;
@@ -303,7 +304,8 @@ public class UserProfile implements Serializable {
             super.run();
             try {
                 List = (ArrayList<Object>) input.readObject();
-                System.out.println(handleReceivedRequest(List));
+                System.out.println(List);
+                //System.out.println(handleReceivedRequest(List));
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (ClassNotFoundException e) {
@@ -475,7 +477,9 @@ public class UserProfile implements Serializable {
 
     public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");
-       // IPString = "127.0.0.1";
+        IPString = "10.64.112.59";
+        System.out.println(InetAddress.getLocalHost());
+
         System.out.println("The Ip is " + IPString);
         Connection = new Socket(IPString, 6790);  // here we setup the connection to specific server of IP address to specific port on this server Port:
         System.out.println("Connected");
@@ -674,7 +678,7 @@ public class UserProfile implements Serializable {
             }
             case 13: {
                 Message message = new Message(list);
-                System.out.println(message);
+                System.out.println("TAG"+message.getObject().toString());
                 currMessages.add(message);
                 /*boolean found = false;
                 for (int i = 0; i < chatsList.size(); i++) {

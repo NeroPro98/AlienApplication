@@ -59,6 +59,8 @@ import zeon.com.chatapplication.Style_Change;
 import zeon.com.chatapplication.User_Edit_Info;
 import zeon.com.chatapplication.Weather.WeatherController;
 
+import static com.loopj.android.http.AsyncHttpClient.log;
+
 public class Main_Chats_Page extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, SearchView.OnQueryTextListener {
 
     private DrawerLayout drawer;
@@ -87,27 +89,32 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         LoadLocal();
         setContentView(R.layout.activity_main);
 
-        Intent intent = new Intent(getApplicationContext(),Main_Chats_Page.class);
-        final PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),1,intent,0);
+        Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
+        final PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 1, intent, 0);
         ObjConnection.setMessageListener(new UserProfile.onValueChangeListener() {
             @Override
             public void onChange() {
+                log.i("message 1", ObjConnection.getCurrMessages().get(0).getObject().toString());
+                /*
                 ArrayList<Message> currMessage = ObjConnection.getCurrMessages();
                 ArrayList<MessagePerson> msgview = data.user.getThe_User_Chat_Containt();
-
-                if (msgview.size() != 0) {
                     for (int i = 0; i < currMessage.size(); i++) {
-                        for (int j = 0; j < msgview.size(); j++) {
-                            if (currMessage.get(i).getSenderEmail().equals(msgview.get(j).getEmail())) {
-                                msgview.get(j).setListChatadd(new Chat_Model(currMessage.get(i).getRecieverEmail(), data.user.getEmail(), (String) currMessage.get(i).getObject(), false, new Date(), null, currMessage.get(i).getType()));
-                                try {
-                                    data.Save_File();
-                                } catch (IOException e) {
-                                    e.printStackTrace();
+                        {
+                            boolean found = false;
+                            for (int j = 0; j < msgview.size(); j++) {
+                                if (currMessage.get(i).getSenderEmail().equals(msgview.get(j).getEmail())) {
+                                    found = true;
+                                    msgview.get(j).setListChatadd(new Chat_Model(currMessage.get(i).getRecieverEmail(), data.user.getEmail(), (String) currMessage.get(i).getObject(), false, new Date(), null, currMessage.get(i).getType()));
+                                    try {
+                                        data.Save_File();
+                                    } catch (IOException e) {
+                                        e.printStackTrace();
+                                    }
                                 }
-                            } else {
+                            }
+                            if(!found) {
                                 msgview.add(new MessagePerson(currMessage.get(i).getSenderEmail(), 1, currMessage.get(i).getSenderEmail(), (String) currMessage.get(i).getObject(), new Date(), null));
-                                msgview.get(j).setListChatadd(new Chat_Model(currMessage.get(i).getRecieverEmail(), data.user.getEmail(), (String) currMessage.get(i).getObject(), false, new Date(), null, currMessage.get(i).getType()));
+                                msgview.get(msgview.size() - 1).setListChatadd(new Chat_Model(currMessage.get(i).getRecieverEmail(), data.user.getEmail(), (String) currMessage.get(i).getObject(), false, new Date(), null, currMessage.get(i).getType()));
                                 try {
                                     data.Save_File();
                                 } catch (IOException e) {
@@ -116,13 +123,12 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                             }
                         }
                     }
-                }
                 Notification notification = new Notification.Builder(getApplicationContext())
                         .setContentTitle(currMessage.get(0).getSenderEmail())
                         .setStyle(new Notification.BigTextStyle()
-                                  .bigText((String)currMessage.get(0).getObject()))
+                                .bigText((String) currMessage.get(0).getObject()))
                         .setContentIntent(pendingIntent)
-                        .addAction(android.R.drawable.sym_action_chat,"Chat",pendingIntent)
+                        .addAction(android.R.drawable.sym_action_chat, "Chat", pendingIntent)
                         .setSmallIcon(android.R.drawable.sym_def_app_icon)
                         .setAutoCancel(true)
                         .build();
@@ -133,7 +139,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                 //add the messages to their correct view
                 //make new View if there is a message from new chat
                 //add the currMessage to the chatList
-            }
+            */}
         });
 
         toolbar = (Toolbar) findViewById(R.id.nav_action);
