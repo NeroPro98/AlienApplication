@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.net.wifi.WifiManager;
+import android.text.format.Formatter;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -222,8 +224,8 @@ public class MyApplication extends android.app.Application implements Serializab
     public void onCreate() {
         super.onCreate();
         MyApplication.mContext = getApplicationContext();
-        if(Read_User_From_File())
-           signIn();
+    //    if(Read_User_From_File())
+      //     signIn();
       }
 
     public void Save_File() throws IOException {

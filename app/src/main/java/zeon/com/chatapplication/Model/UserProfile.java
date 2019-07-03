@@ -31,15 +31,15 @@ public class UserProfile implements Serializable {
     private ArrayList<Message> currMessages;
     private String userId;
     private String story;
-    public transient ObjectOutputStream output;
-    public transient ObjectInputStream input;
+    public  transient ObjectOutputStream output;
+    public  transient ObjectInputStream input;
     private transient Socket Connection;
-    public transient String IPString;
-    public transient String PortString;
+    public  String IPString;
+    public  transient String PortString;
     private boolean signedIn;
     private transient onValueChangeListener valueChangeListener;
     private transient onValueChangeListener newMessagesListener;
-    public ArrayList<Object> User_Friend_Info = new ArrayList<>();
+    public  ArrayList<Object> User_Friend_Info = new ArrayList<>();
     private ArrayList<Object> User_List;
     private ArrayList<String> User_Friend_Name = new ArrayList<>();
     private ArrayList<String> User_Friend_Emails = new ArrayList<>();
@@ -302,14 +302,16 @@ public class UserProfile implements Serializable {
         @Override
         public void run() {
             super.run();
-            try {
-                List = (ArrayList<Object>) input.readObject();
-                System.out.println(List);
-                //System.out.println(handleReceivedRequest(List));
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
+            while(true) {
+                try {
+                    List = (ArrayList<Object>) input.readObject();
+                    System.out.println("IP " + IPString);
+                    System.out.println(handleReceivedRequest(List));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
             }
         }
 
@@ -477,9 +479,8 @@ public class UserProfile implements Serializable {
 
     public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");
-        IPString = "10.64.112.59";
+        IPString = "192.168.1.108";
         System.out.println(InetAddress.getLocalHost());
-
         System.out.println("The Ip is " + IPString);
         Connection = new Socket(IPString, 6790);  // here we setup the connection to specific server of IP address to specific port on this server Port:
         System.out.println("Connected");
@@ -680,25 +681,8 @@ public class UserProfile implements Serializable {
                 Message message = new Message(list);
                 System.out.println("TAG"+message.getObject().toString());
                 currMessages.add(message);
-                /*boolean found = false;
-                for (int i = 0; i < chatsList.size(); i++) {
-                    if (chatsList.get(i).getFriendEmail().equals(message.getSenderEmail()))
-                    {
-                        found = true;
-                        chatsList.get(i).addMessage(message);
-                    }
-                }
-                if(!found)
-                {
-                    Chat_Model newChat = new Chat_Model();
-                    ArrayList<Message> arrayList = new ArrayList<>();
-                    arrayList.add(message);
-                    newChat.setMyEmail(message.getRecieverEmail());
-                    newChat.setFriendEmail(message.getSenderEmail());
-                    newChat.setList(arrayList);
-                    chatsList.add(newChat);
-                }*/
                 if (newMessagesListener != null) newMessagesListener.onChange();
+                break;
             }
             case 14:{  //Check if user blocked
 
@@ -708,6 +692,13 @@ public class UserProfile implements Serializable {
 
             case 19:{
                 return (boolean) list.get(1);
+            }
+            case 100:
+            {
+                System.out.println(list.get(1));
+                list = new ArrayList<>();
+                list.add(true);
+                list.add(true);
             }
 
         }
