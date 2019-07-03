@@ -78,12 +78,12 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
     ArrayList<Chat_Model> ChatListServer = new ArrayList<>();
     private MessagePerson Person = new MessagePerson();
     //permission for read storage
-    private static  final  int PERMISSION_REQUEST_STORAGE = 1000;
-    private static  final  int READ_REQUEST_CODE = 42;
+    private static final int PERMISSION_REQUEST_STORAGE = 1000;
+    private static final int READ_REQUEST_CODE = 42;
     ImageView FileFromStorage;
     private String FilePath;
     private BufferedReader br;
-    private StringBuilder text ;
+    private StringBuilder text;
     private Bitmap bitmap;
 
 
@@ -119,8 +119,6 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
             ChatListServer.add(new Chat_Model(data.user.getEmail(), friendEmail, (String) msg.get(i).getMessage(), false, new Date(), null, null)); //edit the Date
             data.user.setChatModelList(new Chat_Model(data.user.getEmail(), friendEmail, (String) msg.get(i).getMessage(), false, new Date(), null, null)); //Edit The Date
-
-
 
 
         }
@@ -171,14 +169,14 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         mLayout.addView(linear);
 
 
-}
+    }
 
     public void HandlerChatServer() throws IOException {
         Chat_Model ch = data.getUser().getChat(friendEmail);
         if (ch != null) {
             ArrayList<Message> list = ch.getList();
             for (int i = 0; i < list.size(); i++) {
-                }
+            }
             MessageFromServer(ChatListServer);
         }
     }
@@ -193,29 +191,44 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         PickImage = (ImageView) findViewById(R.id.pick_image_gallary);
         String Name = getIntent().getStringExtra("name");
         friendEmail = getIntent().getStringExtra("userEmail");
-        FileFromStorage = (ImageView)findViewById(R.id.FileIcon);
+        FileFromStorage = (ImageView) findViewById(R.id.FileIcon);
         int userid = getIntent().getIntExtra("userid", 0);
         this.setTitle(Name);
 
         sendbtn = (ImageView) findViewById(R.id.sendbutton_new);
         type = (EditText) findViewById(R.id.typetext);
 
-        ArrayList<Object> ListBlock = new ArrayList<>();
-        ListBlock = data.user.getUser_Block_List();
-        boolean IsBlock = false;
-        for(int i = 0 ;i<ListBlock.size() ; i = i+2){
-            if(ListBlock.get(i).equals(friendEmail)){
-                IsBlock = true;
-            }
-        }
-        if(IsBlock){
-            type.setEnabled(false);
-            sendbtn.setEnabled(false);
-            FileFromStorage.setEnabled(false);
-  //          ImageFromStudio.setEnabled(false);
-            Toast.makeText(getApplicationContext(),"Banned",Toast.LENGTH_LONG).show();
+        final ArrayList<Object> ListBlock = new ArrayList<>();
+        ListBlock.add(14);
+        ListBlock.add(data.user.getEmail());
+        ListBlock.add(friendEmail);
+         //boolean IsBlock = false;
+        final Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    data.user.output.writeObject(ListBlock);
+                    ArrayList<Object> InputListBlock = (ArrayList<Object>) data.user.input.readObject();
+                     data.setBlock((Boolean)InputListBlock.get(1));
+                     ResultIfBolck();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(data.getBlock())
+                            Toast.makeText(getApplicationContext(), "Banned", Toast.LENGTH_LONG).show();
+                        }
+                    });
 
-        }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+
+
 
 
   /*      try {
@@ -224,12 +237,11 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
             e.printStackTrace();
         }*/
 
-    //Request Permission
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
-        != PackageManager.PERMISSION_GRANTED){
-            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},PERMISSION_REQUEST_STORAGE);
+        //Request Permission
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION_REQUEST_STORAGE);
         }
-
 
 
         // ChatListServer = data.user.getChatModelList();
@@ -249,7 +261,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
                 ArrayList<Chat_Model> list = data.getUser().getChatModelList();
                 try {
                     MessageFromServer(list);
-                }catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
 
@@ -306,14 +318,22 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         });
 
 
+    }
+
+    private void ResultIfBolck() {
+        if (data.getBlock()) {
+            type.setEnabled(false);
+            sendbtn.setEnabled(false);
+            FileFromStorage.setEnabled(false);
+            //          ImageFromStudio.setEnabled(false);
 
 
-
+        }
     }
 
 
     //Class for download IMAGE
-    public class GetImageFromURL extends AsyncTask<String,Void,Bitmap>{
+    public class GetImageFromURL extends AsyncTask<String, Void, Bitmap> {
 
         ImageView imgV;
 
@@ -326,7 +346,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
             String urldisplay = url[0];
             bitmap = null;
-            try{
+            try {
                 InputStream stream = new java.net.URL(urldisplay).openStream();
                 bitmap = BitmapFactory.decodeStream(stream);
             } catch (MalformedURLException e) {
@@ -339,14 +359,13 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
 
         @Override
-        protected void onPostExecute(Bitmap mbitmap){
+        protected void onPostExecute(Bitmap mbitmap) {
             super.onPostExecute(mbitmap);
             imgV.setImageBitmap(mbitmap);
 
 
         }
     }
-
 
 
     private void pickImageFromGalleryOfUser() {
@@ -549,30 +568,31 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
   */
 
     //To Read The Content of file
-    private String ReadText(String input){
+    private String ReadText(String input) {
         File file = new File(input);
         text = new StringBuilder();
-        try{
-             br = new BufferedReader(new FileReader(file));
-            String line ;
-            while ((line = br.readLine()) !=null){
+        try {
+            br = new BufferedReader(new FileReader(file));
+            String line;
+            while ((line = br.readLine()) != null) {
                 text.append(line);
                 text.append("\n");
             }
             br.close();
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
         return text.toString();
     }
 
     //Select file from Storage
-    private void performFileSearch(){
+    private void performFileSearch() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
         intent.setType("text/*");
-        startActivityForResult(intent,READ_REQUEST_CODE);
+        startActivityForResult(intent, READ_REQUEST_CODE);
     }
+
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
@@ -589,12 +609,12 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
                 }
             }
-            case PERMISSION_REQUEST_STORAGE:{
-                if(grantResults[0] == PackageManager.PERMISSION_GRANTED){
-                    Toast.makeText(this,"Permission for read file granted",Toast.LENGTH_SHORT).show();
+            case PERMISSION_REQUEST_STORAGE: {
+                if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "Permission for read file granted", Toast.LENGTH_SHORT).show();
 
-                }else{
-                    Toast.makeText(this,"Permission for read file failed",Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "Permission for read file failed", Toast.LENGTH_SHORT).show();
                 }
             }
         }
@@ -621,17 +641,17 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
                 ImageFromStudio.setImageBitmap(cameraimage);
             }
 
-        }else if(requestCode == READ_REQUEST_CODE && resultCode ==Activity.RESULT_OK){
-            if(data !=null){
+        } else if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
+            if (data != null) {
                 Uri uri = data.getData();
                 String path = uri.getPath();
-                path = path.substring(path.indexOf(":")+1);
+                path = path.substring(path.indexOf(":") + 1);
                 FilePath = path;
-                Toast.makeText(this,""+path,Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "" + path, Toast.LENGTH_SHORT).show();
                 String ContaintFile = ReadText(path);
                 type.setText(ContaintFile);
                 //here you can show the path of the file
-               // tv_output.set
+                // tv_output.set
 
             }
         }

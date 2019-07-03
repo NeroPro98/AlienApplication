@@ -40,6 +40,18 @@ public class MyApplication extends android.app.Application implements Serializab
     private int Fragment1_Counter=0;
     private String File_Name = "User_File";
     public ArrayList<Object> JustNoThing = new ArrayList<>();
+    private Boolean IsBlock;
+
+
+    public Boolean getBlock() {
+        return IsBlock;
+    }
+
+    public void setBlock(Boolean block) {
+        IsBlock = block;
+    }
+
+
 
     public int getFragment1_Counter() {
         return Fragment1_Counter;
