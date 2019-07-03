@@ -145,17 +145,21 @@ public class Fragment1 extends Fragment {
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
-                            final ArrayList<Object> inputlist;
+                            ArrayList<Object>[] tmpList = new ArrayList[1];
+                            final ArrayList<Object>[] inputlist = tmpList;
                             try {
-                                inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
+                                ObjConnection.setHelp4Listener(new UserProfile.onValueChangeListener() {
+                                    @Override
+                                    public void onChange() {
+                                        inputlist[0] = ObjConnection.Help4;
+                                    }
+                                });
                                 data.user.getUser_List();
                                 ObjConnection.output.flush();
-                                data.setThe_User_List_From_Server(inputlist);
+                                data.setThe_User_List_From_Server(inputlist[0]);
                                 helper_List = data.getThe_User_List_From_Server();
                                 helper_List2 = data.user.getUser_List();
                             } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             }
 

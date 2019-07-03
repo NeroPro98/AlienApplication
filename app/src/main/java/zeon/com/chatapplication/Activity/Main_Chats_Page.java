@@ -94,7 +94,6 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         ObjConnection.setMessageListener(new UserProfile.onValueChangeListener() {
             @Override
             public void onChange() {
-                log.i("message 1", ObjConnection.getCurrMessages().get(0).getObject().toString());
                 ArrayList<Message> currMessage = ObjConnection.getCurrMessages();
                 ArrayList<MessagePerson> msgview = data.user.getThe_User_Chat_Containt();
                     for (int i = 0; i < currMessage.size(); i++) {
@@ -220,11 +219,11 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                                     ArrayList arrayList = serilaizeToStringsForFriendList();
                                     System.out.println("The arraylist :" + arrayList);
                                     ObjConnection.output.writeObject(arrayList);
-                                    final ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
-                                    System.out.println("The inputList :" + inputlist);
-                                    ObjConnection.handleReceivedRequest(inputlist);
+                                   // final ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
+                                   // System.out.println("The inputList :" + inputlist);
+                                   // ObjConnection.handleReceivedRequest(inputlist);
                                     //data.setHelper_List(inputlist);
-                                    ObjConnection.output.flush();
+                                    //ObjConnection.output.flush();
                                     //   data.setUserFriend_List_Every_init(inputlist);
                                     runOnUiThread(new Runnable() {
                                         @Override
@@ -237,8 +236,6 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                                     });
 
                                 } catch (IOException e) {
-                                    e.printStackTrace();
-                                } catch (ClassNotFoundException e) {
                                     e.printStackTrace();
                                 }
                             }
@@ -258,13 +255,13 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                                     ArrayList arrayList = serilaizeToStrings();
                                     System.out.println("The arraylist :" + arrayList);
                                     ObjConnection.output.writeObject(arrayList);
-                                    final ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
-                                    System.out.println("The inputList :" + inputlist);
+                                //    final ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
+                                  //  System.out.println("The inputList :" + inputlist);
                                     data.user.getUser_List();
                                     //data.setThe_User_List_From_Server(inputlist);
-                                    ObjConnection.handleReceivedRequest(inputlist);
+                                    //ObjConnection.handleReceivedRequest(inputlist);
                                     ObjConnection.output.flush();
-                                    data.setGetUser_List_Every_init(inputlist);
+                                    //data.setGetUser_List_Every_init(inputlist);
                                     // fragment1.init(inputlist);
                                     runOnUiThread(new Runnable() {  //Don't work
                                         @Override
@@ -277,8 +274,6 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                                     //fs.notifyDataSetChanged();
 
                                 } catch (IOException e) {
-                                    e.printStackTrace();
-                                } catch (ClassNotFoundException e) {
                                     e.printStackTrace();
                                 }
                             }

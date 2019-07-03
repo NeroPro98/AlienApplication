@@ -39,6 +39,8 @@ public class UserProfile implements Serializable {
     private boolean signedIn;
     private transient onValueChangeListener valueChangeListener;
     private transient onValueChangeListener newMessagesListener;
+    private transient onValueChangeListener Help11Listener;
+    private transient onValueChangeListener Help4Listener;
     public  ArrayList<Object> User_Friend_Info = new ArrayList<>();
     private ArrayList<Object> User_List;
     private ArrayList<String> User_Friend_Name = new ArrayList<>();
@@ -46,6 +48,9 @@ public class UserProfile implements Serializable {
     private ArrayList<Object> User_Block_List = new ArrayList<>();
     private ArrayList<Object> The_User_List_Info_File = new ArrayList<>();
     private ArrayList<Object> The_User_Hwo_Chat_With_Him = new ArrayList<>();
+    public ArrayList<Object> Help11 = new ArrayList<>();
+    public ArrayList<Object> Help4 = new ArrayList<>();
+
 
 
     private ImageView UserImage;
@@ -68,7 +73,22 @@ public class UserProfile implements Serializable {
     public ArrayList<MessagePerson> getThe_User_Chat_Containt() {
 //        The_User_Chat_Containt.remove(2);
         return The_User_Chat_Containt;
+    }
 
+    public onValueChangeListener getHelp4Listener() {
+        return Help4Listener;
+    }
+
+    public void setHelp4Listener(onValueChangeListener help4Listener) {
+        Help4Listener = help4Listener;
+    }
+
+    public onValueChangeListener getHelp11Listener() {
+        return Help11Listener;
+    }
+
+    public void setHelp11Listener(onValueChangeListener help11Listener) {
+        Help11Listener = help11Listener;
     }
 
     public void setThe_User_Chat_Containt(ArrayList<MessagePerson> the_User_Chat_Containt) {
@@ -625,6 +645,8 @@ public class UserProfile implements Serializable {
             }
             case 4://Send The list user
             {
+                Help4 = list;
+                if(Help4Listener != null)Help4Listener.onChange();
                 return (boolean) list.get(1);
             }
             case 5: //Edit Info of the User
@@ -654,6 +676,8 @@ public class UserProfile implements Serializable {
             }
             case 11: //To Send The Specific List Friend To user :)
             {
+                Help11 = list;
+                if(Help11Listener != null)Help11Listener.onChange();
                 return (boolean) list.get(1);
             }
             case 12: {

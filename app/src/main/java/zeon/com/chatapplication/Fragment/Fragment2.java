@@ -101,7 +101,7 @@ public class Fragment2 extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.layout_fragment2, container, false);
 
@@ -155,19 +155,24 @@ public class Fragment2 extends Fragment {
                                 } catch (IOException e) {
                                     e.printStackTrace();
                                 }
-                                final ArrayList<Object> inputlist;
+                                ArrayList<Object>[] tmpList = new ArrayList[1];
+                                final ArrayList<Object>[] inputlist = tmpList;
                                 try {
-                                    inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
-                                    data.setHelper_List(inputlist);
+                                    ObjConnection.setHelp11Listener(new UserProfile.onValueChangeListener() {
+                                        @Override
+                                        public void onChange() {
+                                            System.out.println(inputlist[0]);
+                                            inputlist[0] = ObjConnection.Help11;
+                                        }
+                                    });
+                                   // inputlist[0] = (ArrayList<Object>) ObjConnection.input.readObject();
+                                    data.setHelper_List(inputlist[0]);
                                     ObjConnection.output.flush();
                                     helper_List = data.getHelper_List();
                                     helper_List2 = data.user.getUser_Friend_Info();
                                 } catch (IOException e) {
                                     e.printStackTrace();
-                                } catch (ClassNotFoundException e) {
-                                    e.printStackTrace();
                                 }
-
                             }
                         }
                     });
