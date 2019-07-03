@@ -95,7 +95,6 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
             @Override
             public void onChange() {
                 log.i("message 1", ObjConnection.getCurrMessages().get(0).getObject().toString());
-                /*
                 ArrayList<Message> currMessage = ObjConnection.getCurrMessages();
                 ArrayList<MessagePerson> msgview = data.user.getThe_User_Chat_Containt();
                     for (int i = 0; i < currMessage.size(); i++) {
@@ -139,7 +138,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                 //add the messages to their correct view
                 //make new View if there is a message from new chat
                 //add the currMessage to the chatList
-            */}
+            }
         });
 
         toolbar = (Toolbar) findViewById(R.id.nav_action);

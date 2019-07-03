@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.Image;
+import android.net.wifi.WifiManager;
+import android.text.format.Formatter;
 import android.widget.ImageView;
 
 import java.io.File;
@@ -258,6 +260,11 @@ public class MyApplication extends android.app.Application implements Serializab
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+                WifiManager manager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+                String ip = Formatter.formatIpAddress(manager.getConnectionInfo().getIpAddress());
+                user.IPString  = ip;
+                //  System.out.println("The IP "+ip);
+
                 Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
                 startActivity(intent);
             }

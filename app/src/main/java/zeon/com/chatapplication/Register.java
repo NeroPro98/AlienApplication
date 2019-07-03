@@ -1,12 +1,14 @@
 package zeon.com.chatapplication;
 
 import android.content.Intent;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -53,6 +55,11 @@ public class Register extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        WifiManager manager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+        String ip = Formatter.formatIpAddress(manager.getConnectionInfo().getIpAddress());
+        System.out.println("The IP "+ip);
+
+        ObjConnection.IPString = ip;
         Password_Text = (EditText) findViewById(R.id.Password_Faild);
         Email_Text = (EditText) findViewById(R.id.Email_Faild);
         Sign_Button = (Button) findViewById(R.id.btn_cart_signin);
@@ -133,6 +140,10 @@ public class Register extends AppCompatActivity {
                                     runOnUiThread(new Runnable() {
                                         @Override
                                         public void run() {
+                                           // WifiManager manager = (WifiManager) getApplicationContext().getSystemService(WIFI_SERVICE);
+                                           // String ip = Formatter.formatIpAddress(manager.getConnectionInfo().getIpAddress());
+                                           // System.out.println("The IP "+ip);
+                                         //   ObjConnection.IPString = ip;
                                             Toast.makeText(getApplicationContext(), "Welcome...", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
                                             startActivity(intent);
