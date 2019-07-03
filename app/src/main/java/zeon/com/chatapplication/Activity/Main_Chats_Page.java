@@ -1,6 +1,9 @@
 package zeon.com.chatapplication.Activity;
 
 import android.app.Activity;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -84,6 +87,8 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
         LoadLocal();
         setContentView(R.layout.activity_main);
 
+        Intent intent = new Intent(getApplicationContext(),Main_Chats_Page.class);
+        final PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(),1,intent,0);
         ObjConnection.setMessageListener(new UserProfile.onValueChangeListener() {
             @Override
             public void onChange() {
@@ -112,6 +117,17 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                         }
                     }
                 }
+                Notification notification = new Notification.Builder(getApplicationContext())
+                        .setContentTitle(currMessage.get(0).getSenderEmail())
+                        .setStyle(new Notification.BigTextStyle()
+                                  .bigText((String)currMessage.get(0).getObject()))
+                        .setContentIntent(pendingIntent)
+                        .addAction(android.R.drawable.sym_action_chat,"Chat",pendingIntent)
+                        .setSmallIcon(android.R.drawable.sym_def_app_icon)
+                        .setAutoCancel(true)
+                        .build();
+                NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+                notificationManager.notify(1, notification);
                 //here we have the current received messages in the list currMessage
                 //we must show them on the screen
                 //add the messages to their correct view

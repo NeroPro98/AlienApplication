@@ -50,7 +50,8 @@ public class welcom_page extends AppCompatActivity implements GestureDetector.On
         text1.animate().alpha(1).setDuration(3000);
         text2.animate().alpha(1).setDuration(3000);
         image1.animate().alpha(1).setDuration(3000);
-
+      //  text3.animate().alpha(1).setDuration(3000);
+//        text4.animate().alpha(1).setDuration(3000);
 
 
     }
