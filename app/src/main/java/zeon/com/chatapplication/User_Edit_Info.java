@@ -230,13 +230,11 @@ public class User_Edit_Info extends AppCompatActivity {
                     System.out.println("The arraylist :" + arrayList);
                     ObjConnection.output.writeObject(arrayList);
                     ObjConnection.output.flush();
-                    ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
-                    System.out.println("The inputList :" + inputlist);
-                    ObjConnection.handleReceivedRequest(inputlist);
+                    //ArrayList<Object> inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
+                    //System.out.println("The inputList :" + inputlist);
+                    //ObjConnection.handleReceivedRequest(inputlist);
 
                 } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
 
