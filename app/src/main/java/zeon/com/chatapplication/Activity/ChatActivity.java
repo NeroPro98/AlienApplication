@@ -173,7 +173,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         mLayout.addView(linear);
 
 
-}
+    }
 
     public void HandlerChatServer() throws IOException {
         Chat_Model ch = data.getUser().getChat(friendEmail);
@@ -202,22 +202,37 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         sendbtn = (ImageView) findViewById(R.id.sendbutton_new);
         type = (EditText) findViewById(R.id.typetext);
 
-        ArrayList<Object> ListBlock = new ArrayList<>();
-        ListBlock = data.user.getUser_Block_List();
-        boolean IsBlock = false;
-        for(int i = 0 ;i<ListBlock.size() ; i = i+2){
-            if(ListBlock.get(i).equals(friendEmail)){
-                IsBlock = true;
-            }
-        }
-        if(IsBlock){
-            type.setEnabled(false);
-            sendbtn.setEnabled(false);
-            FileFromStorage.setEnabled(false);
-  //          ImageFromStudio.setEnabled(false);
-            Toast.makeText(getApplicationContext(),"Banned",Toast.LENGTH_LONG).show();
+        final ArrayList<Object> ListBlock = new ArrayList<>();
+        ListBlock.add(14);
+        ListBlock.add(data.user.getEmail());
+        ListBlock.add(friendEmail);
+         //boolean IsBlock = false;
+        final Thread thread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    data.user.output.writeObject(ListBlock);
+                    ArrayList<Object> InputListBlock = (ArrayList<Object>) data.user.input.readObject();
+                     data.setBlock((Boolean)InputListBlock.get(1));
+                     ResultIfBolck();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            if(data.getBlock())
+                            Toast.makeText(getApplicationContext(), "Banned", Toast.LENGTH_LONG).show();
+                        }
+                    });
 
-        }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        thread.start();
+
+
 
 
   /*      try {
@@ -231,7 +246,6 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},PERMISSION_REQUEST_STORAGE);
         }
-
 
 
         // ChatListServer = data.user.getChatModelList();
@@ -324,9 +338,17 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         });
 
 
+    }
+
+    private void ResultIfBolck() {
+        if (data.getBlock()) {
+            type.setEnabled(false);
+            sendbtn.setEnabled(false);
+            FileFromStorage.setEnabled(false);
+            //          ImageFromStudio.setEnabled(false);
 
 
-
+        }
     }
 
 

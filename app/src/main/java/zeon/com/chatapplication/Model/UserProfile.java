@@ -707,6 +707,11 @@ public class UserProfile implements Serializable {
                 if (newMessagesListener != null) newMessagesListener.onChange();
                 break;
             }
+            case 14:{  //Check if user blocked
+
+                return (boolean) list.get(1);
+
+            }
 
             case 19:{
                 return (boolean) list.get(1);
