@@ -144,6 +144,7 @@ public class Register extends AppCompatActivity {
                                            // String ip = Formatter.formatIpAddress(manager.getConnectionInfo().getIpAddress());
                                            // System.out.println("The IP "+ip);
                                          //   ObjConnection.IPString = ip;
+                                            data.user = ObjConnection;
                                             Toast.makeText(getApplicationContext(), "Welcome...", Toast.LENGTH_SHORT).show();
                                             Intent intent = new Intent(getApplicationContext(), Main_Chats_Page.class);
                                             startActivity(intent);

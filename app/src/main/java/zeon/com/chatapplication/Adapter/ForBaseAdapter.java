@@ -79,7 +79,7 @@ public class ForBaseAdapter extends BaseAdapter{
             Message.setText(msg);
         }else
             Message.setText("");
-        date.setText((String)getdate);
+        date.setText((String)getdate.substring(0,8));
 
         view.setOnClickListener(
                 new View.OnClickListener() {

@@ -152,14 +152,15 @@ public class Fragment1 extends Fragment {
                                     @Override
                                     public void onChange() {
                                         inputlist[0] = ObjConnection.Help4;
+                                        data.setThe_User_List_From_Server(inputlist[0]);
+                                        helper_List = data.getThe_User_List_From_Server();
+                                        helper_List2 = data.user.getUser_List();
+
                                     }
                                 });
                                 data.user.getUser_List();
                                 ObjConnection.output.flush();
-                                data.setThe_User_List_From_Server(inputlist[0]);
-                                helper_List = data.getThe_User_List_From_Server();
-                                helper_List2 = data.user.getUser_List();
-                            } catch (IOException e) {
+                               } catch (IOException e) {
                                 e.printStackTrace();
                             }
 

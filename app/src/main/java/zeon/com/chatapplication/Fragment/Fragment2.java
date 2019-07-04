@@ -135,7 +135,7 @@ public class Fragment2 extends Fragment {
 
         grid.setAdapter(adapter);
         adapter.notifyDataSetChanged();
-        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout_frag2);
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout_frag6);
 
 
         if (count > 0) {
@@ -163,14 +163,16 @@ public class Fragment2 extends Fragment {
                                         public void onChange() {
                                             System.out.println(inputlist[0]);
                                             inputlist[0] = ObjConnection.Help11;
+                                            data.setHelper_List(inputlist[0]);
+                                            helper_List = data.getHelper_List();
+                                            helper_List2 = data.user.getUser_Friend_Info();
+
+
                                         }
                                     });
                                    // inputlist[0] = (ArrayList<Object>) ObjConnection.input.readObject();
-                                    data.setHelper_List(inputlist[0]);
                                     ObjConnection.output.flush();
-                                    helper_List = data.getHelper_List();
-                                    helper_List2 = data.user.getUser_Friend_Info();
-                                } catch (IOException e) {
+                                    } catch (IOException e) {
                                     e.printStackTrace();
                                 }
                             }
@@ -178,12 +180,14 @@ public class Fragment2 extends Fragment {
                     });
                     thread.start();
 
-                    if (helper_List.size() >= 2) {
+                    if (helper_List.size() > 0) {
                         helper_List.remove(0);
                         helper_List.remove(0);
                         try {
-                            data.user.setUser_Friend_Info_List(helper_List);
-                            InitStory(helper_List);
+                            if(helper_List.size() > 2) {
+                                data.user.setUser_Friend_Info_List(helper_List);
+                                InitStory(helper_List);
+                            }
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

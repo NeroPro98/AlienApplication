@@ -54,6 +54,14 @@ public class MessagePerson implements Serializable {
 
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
     public MessagePerson(){
 
         id = 0;

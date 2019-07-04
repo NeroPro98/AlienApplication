@@ -498,7 +498,7 @@ public class UserProfile implements Serializable {
 
     public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");
-        IPString = "192.168.1.108";
+        IPString = "192.168.137.1";
         System.out.println(InetAddress.getLocalHost());
         System.out.println("The Ip is " + IPString);
         Connection = new Socket(IPString, 6790);  // here we setup the connection to specific server of IP address to specific port on this server Port:

@@ -98,7 +98,7 @@ public class Fragment3 extends Fragment {
 
         listview = (ListView) view.findViewById(R.id.ListViewMessage3);
 
-        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout_frag3);
+        mRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipe_refresh_layout_frag31);
         ArrayList<Object> InputList = data.user.getThe_User_Hwo_Chat_With_Him();
         try {
             init(InputList);

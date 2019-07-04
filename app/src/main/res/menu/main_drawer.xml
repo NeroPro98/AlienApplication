@@ -58,7 +58,7 @@
                 android:title="@string/logout" />
 
             <item
-                android:id="@+id/adduser"
+                android:id="@+id/adduser1"
                 android:icon="@drawable/newaccount"
                 android:title="@string/make_account" />
 

@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.GradientDrawable;
 import android.media.Image;
 import android.net.Uri;
@@ -33,6 +34,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -292,7 +294,23 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
                 } else {
                     //here if the os is less than marshmallow
                     pickImageFromGalleryOfUser();
-
+                }
+                data.user.setChatModelList(new Chat_Model(data.user.getEmail(), friendEmail, null, true, new Date(), ImageFromStudio, MsgType.Image));
+                Bitmap bitmap = ((BitmapDrawable)ImageFromStudio.getDrawable()).getBitmap();
+                ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                bitmap.compress(Bitmap.CompressFormat.JPEG , 100 , baos);
+                byte[] ImageInByte = baos.toByteArray();
+                System.out.println("TAG!"+ImageInByte);
+                ArrayList<Object> arrayList = new ArrayList<>();
+                arrayList.add(16);
+                arrayList.add(data.getUser().getEmail());
+                arrayList.add(friendEmail);
+                arrayList.add(ImageInByte);
+                try {
+                    data.getUser().output.writeObject(arrayList);
+                    data.getUser().output.flush();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
 
@@ -342,15 +360,12 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         protected void onPostExecute(Bitmap mbitmap){
             super.onPostExecute(mbitmap);
             imgV.setImageBitmap(mbitmap);
-
-
         }
     }
 
 
 
     private void pickImageFromGalleryOfUser() {
-
         Intent intent = new Intent(Intent.ACTION_PICK);
         intent.setType("image/*");
         startActivityForResult(intent, IMAGE_PICK_CODE);
@@ -621,7 +636,8 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
                 ImageFromStudio.setImageBitmap(cameraimage);
             }
 
-        }else if(requestCode == READ_REQUEST_CODE && resultCode ==Activity.RESULT_OK){
+        }
+        else if(requestCode == READ_REQUEST_CODE && resultCode ==Activity.RESULT_OK){
             if(data !=null){
                 Uri uri = data.getData();
                 String path = uri.getPath();

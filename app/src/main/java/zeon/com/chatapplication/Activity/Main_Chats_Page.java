@@ -31,6 +31,7 @@ import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.SearchView;
 import android.widget.Adapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 //import zeon.com.chatapplication.Adapter.Fragment_Adapter;
 import java.io.IOException;
@@ -140,6 +141,8 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
             }
         });
 
+        //TextView email = findViewById(R.id.user_id);
+        //email.setText(data.getUser_Email());
         toolbar = (Toolbar) findViewById(R.id.nav_action);
         mActionBar = getSupportActionBar();
         //mActionBar
@@ -503,17 +506,9 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                     }
                     ArrayList<Object> inputlist;
                     try {
-                        inputlist = (ArrayList<Object>) ObjConnection.input.readObject();
-                        data.user.handleReceivedRequest(inputlist);
-                        if (data.user.handleReceivedRequest(inputlist)) {
                             data.Save_File();
                             data.Read_File();
-                        }
-
-
                     } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                     }
 
@@ -524,7 +519,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
 
             Intent intent = new Intent(getApplicationContext(), Register.class);
             startActivity(intent);
-        } else if (id == R.id.adduser) {
+        } else if (id == R.id.adduser1) {
             Intent intent = new Intent(getApplicationContext(), Register_Page.class);
             startActivity(intent);
 

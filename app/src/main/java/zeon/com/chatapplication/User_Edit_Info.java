@@ -79,6 +79,8 @@ public class User_Edit_Info extends AppCompatActivity {
         Blocknum = (TextView)findViewById(R.id.Block_num);
      //   ReadButton = (Button)findViewById(R.id.Read_File_Button);
 
+        name.setText(data.user.getUserName());
+        Story.setText(data.user.getStory());
         friendnum.setText(String.valueOf(data.user.getFriendnum()));
         Followernum.setText(String.valueOf(data.user.getFriendfollower()));
         Blocknum.setText(String.valueOf(data.user.getFriendbolck()));
