@@ -80,6 +80,7 @@
                 android:layout_height="16dp"
                 android:layout_marginLeft="-40dp"
                 android:layout_marginTop="8dp"
+                android:onClick="Pick_File_Storage"
                 android:src="@drawable/fileicon" />
 
 

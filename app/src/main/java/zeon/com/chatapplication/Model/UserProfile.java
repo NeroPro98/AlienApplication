@@ -28,7 +28,7 @@ public class UserProfile implements Serializable {
     private ArrayList<String> blockList;
     private Date joinDate;
     private ArrayList<Chat_Model> chatsList;
-    private ArrayList<Message> currMessages;
+    private ArrayList<Message> currMessages = new ArrayList<>();
     private String userId;
     private String story;
     public  transient ObjectOutputStream output;
@@ -127,7 +127,7 @@ public class UserProfile implements Serializable {
 
     public ArrayList<Message> getCurrMessages() {
         ArrayList<Message> tmp = new ArrayList<>(currMessages);
-        currMessages.clear();
+        currMessages = new ArrayList<>();
         return tmp;
     }
 
@@ -703,6 +703,7 @@ public class UserProfile implements Serializable {
             case 13: {
                 Message message = new Message(list);
                 System.out.println("TAG"+message.getObject().toString());
+                currMessages = new ArrayList<>();
                 currMessages.add(message);
                 if (newMessagesListener != null) newMessagesListener.onChange();
                 break;
@@ -725,7 +726,7 @@ public class UserProfile implements Serializable {
             }
 
         }
-        return (boolean) list.get(1);
+        return true;
     }
 
     public UserProfile getUserObject(){
