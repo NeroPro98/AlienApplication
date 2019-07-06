@@ -25,7 +25,6 @@
     </ScrollView>
 
 
-
     <RelativeLayout
         android:id="@+id/relative2"
         android:layout_width="match_parent"
@@ -34,7 +33,6 @@
         android:layout_alignParentStart="true"
         android:background="@android:color/transparent"
         android:layout_alignParentLeft="true">
-
 
 
         <LinearLayout
@@ -69,7 +67,7 @@
                 android:id="@+id/pick_image_gallary"
                 android:layout_width="18dp"
                 android:layout_height="16dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="-20dp"
                 android:layout_marginTop="8dp"
                 android:onClick="Pick_Image_Gallary"
                 android:src="@drawable/pickphoto" />
@@ -78,7 +76,7 @@
                 android:id="@+id/FileIcon"
                 android:layout_width="18dp"
                 android:layout_height="16dp"
-                android:layout_marginLeft="-40dp"
+                android:layout_marginLeft="-65dp"
                 android:layout_marginTop="8dp"
                 android:onClick="Pick_File_Storage"
                 android:src="@drawable/fileicon" />
@@ -88,15 +86,13 @@
 
         <ImageView
             android:id="@+id/sendbutton_new"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentEnd="true"
+            android:layout_width="40dp"
+            android:layout_height="48dp"
             android:layout_alignParentRight="true"
             android:layout_marginStart="362dp"
             android:layout_marginLeft="362dp"
-            android:src="@drawable/ic_menu_send"
-            android:contentDescription="TODO" />
+            android:contentDescription="TODO"
+            android:src="@drawable/ic_menu_send" />
 
 
     </RelativeLayout>

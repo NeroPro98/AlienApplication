@@ -14,6 +14,7 @@ import android.media.Image;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v7.app.AppCompatActivity;
@@ -68,6 +69,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
     ImageView sendbtn;
     ImageView PickImage;
     EditText type;
+    Bitmap map;
     private static final int PERMISSION_CODE = 1001;
     private static final int IMAGE_PICK_CODE = 1000;
     private static final int REQUEST_CAMERA = 1;
@@ -154,22 +156,9 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
             linear.addView(image);
             ChatListServer.add(new Chat_Model(data.user.getEmail(), FriendEmail, message, true, new Date(), image, MsgType.Image));  //To Store Client Message
             data.user.setChatModelList(new Chat_Model(data.user.getEmail(), FriendEmail, message, true, new Date(), image, MsgType.Image));
-
         }
         data.Save_File();
         data.Read_File();
-          /*  ImageView SendImage = new ImageView(this);
-            Picasso.with(getApplicationContext()).load(image)
-                    .into(SendImage);*/
-        /*    ImageView SendImage = new ImageView(this);
-            SendImage = image;
-            ChatListServer.add(new Chat_Model(data.user.getEmail(), FriendEmail, message, true, new Date(),image));  //To Store Client Message
-            data.user.setChatModelList(new Chat_Model(data.user.getEmail(), FriendEmail, message, true, new Date(),image));
-            data.Save_File();
-            data.Read_File();
-            linear.addView(SendImage);*/
-
-        //SendImage.setLayoutParams(layoutParams);
         mLayout.addView(linear);
 
 
@@ -191,6 +180,10 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat__user__new);
 
+
+
+        ArrayList<MessagePerson> personArrayList = data.user.getThe_User_Chat_Containt();
+        MessagePerson person = personArrayList.get(data.user.helpInt);
         mLayout = (LinearLayout) findViewById(R.id.linearlayoutforchat);
         PickImage = (ImageView) findViewById(R.id.pick_image_gallary);
         String Name = getIntent().getStringExtra("name");
@@ -212,20 +205,27 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
             public void run() {
                 try {
                     data.user.output.writeObject(ListBlock);
-                    ArrayList<Object> InputListBlock = (ArrayList<Object>) data.user.input.readObject();
-                     data.setBlock((Boolean)InputListBlock.get(1));
-                     ResultIfBolck();
-                    runOnUiThread(new Runnable() {
+                    ArrayList<Object>[] tmp = new ArrayList[1];
+                    final ArrayList<Object>[] help = new ArrayList[]{new ArrayList<>()};
+                    data.user.setHelp14Listener(new UserProfile.onValueChangeListener() {
                         @Override
-                        public void run() {
-                            if(data.getBlock())
-                            Toast.makeText(getApplicationContext(), "Banned", Toast.LENGTH_LONG).show();
+                        public void onChange() {
+                            help[0] = data.user.Help14;
+                            ArrayList<Object> InputListBlock = help[0];
+                            data.setBlock((Boolean)InputListBlock.get(1));
+                            ResultIfBolck();
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    if(data.getBlock())
+                                        Toast.makeText(getApplicationContext(), "Banned", Toast.LENGTH_LONG).show();
+                                }
+                            });
+
                         }
                     });
 
                 } catch (IOException e) {
-                    e.printStackTrace();
-                } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
             }
@@ -235,11 +235,6 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
 
 
-  /*      try {
-            HandlerChatServer();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }*/
 
     //Request Permission
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && checkSelfPermission(Manifest.permission.READ_EXTERNAL_STORAGE)
@@ -309,8 +304,8 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
                     //here if the os is less than marshmallow
                     pickImageFromGalleryOfUser();
                 }
-                data.user.setChatModelList(new Chat_Model(data.user.getEmail(), friendEmail, null, true, new Date(), ImageFromStudio, MsgType.Image));
-                Bitmap bitmap = ((BitmapDrawable)ImageFromStudio.getDrawable()).getBitmap();
+              //  data.user.setChatModelList(new Chat_Model(data.user.getEmail(), friendEmail, null, true, new Date(), ImageFromStudio, MsgType.Image));
+              /*  Bitmap bitmap = ((BitmapDrawable)ImageFromStudio.getDrawable()).getBitmap();
                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG , 100 , baos);
                 byte[] ImageInByte = baos.toByteArray();
@@ -325,7 +320,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
                     data.getUser().output.flush();
                 } catch (IOException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
 
         });
@@ -472,31 +467,6 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
 
         return true;
     }
-
-    /* public void Read_File_UserInfo() {
-         FileInputStream fileInputStream;
-         File file = new File(data.getFilesDir(), File_Name);
-
-         if (file.exists()) {
-             try {
-                 fileInputStream = data.openFileInput(File_Name);
-                 ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-                 UserProfile user_read = (UserProfile) objectInputStream.readObject();
-                 if (user_read.getChatModelList().size() != 0) {
-                     ChatListServer = user_read.getChatModelList();
-                     ShowMsgFromFile(ChatListServer);
-                 }
-                 System.out.println("userRead:" + user_read);
-                 //InputList = user_read.getThe_User_Hwo_Chat_With_Him();
-                 objectInputStream.close();
-             } catch (IOException e) {
-                 e.printStackTrace();
-             } catch (ClassNotFoundException e) {
-                 e.printStackTrace();
-             }
-         }
-     }
- */
     private void ShowMsgFromFile(ArrayList<Chat_Model> chatListServer) {
         for (int i = 0; i < chatListServer.size(); i++) {
             if (chatListServer.get(i).getAny()) {
@@ -504,7 +474,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
                 linear.setOrientation(LinearLayout.VERTICAL);
                 linear.setBackgroundResource(R.color.Reciver_color);
                 LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                layoutParams.setMargins(30, 30, 30, 30);
+                layoutParams.setMargins(50, 40, 30, 40);
                 linear.setLayoutParams(layoutParams);
                 linear.setGravity(Gravity.LEFT);
 
@@ -513,7 +483,7 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
                     text.setText(chatListServer.get(i).getMessage());
                     text.setTextColor(Color.parseColor("#000000"));
                     text.setTextSize(24f);
-                    text.setPadding(20, 20, 20, 20);
+                    text.setPadding(30, 30, 20, 20);
                     linear.addView(text);
                     mLayout.addView(linear);
                 } else if (chatListServer.get(i).getType() == MsgType.Image) {
@@ -555,35 +525,6 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
         }
 
     }
-
-    /*  public void Save_ChatActivity_Info(String FriendEmail, String message, ImageView Image) throws
-              IOException {
-
-          UserProfile user = new UserProfile();
-          user = data.user.getUserObject();
-          data.user.getChatModelList();
-          File file = new File(data.getFilesDir(), File_Name);
-          if (!file.exists()) {
-              file.createNewFile();
-          }
-          FileOutputStream outputStream;
-          try {
-              outputStream = data.openFileOutput(File_Name, Context.MODE_PRIVATE);
-              ObjectOutputStream objectoutputStream = new ObjectOutputStream(outputStream);
-              objectoutputStream.writeObject(user);
-              objectoutputStream.flush();
-              objectoutputStream.close();
-              outputStream.close();
-          } catch (FileNotFoundException e) {
-              e.printStackTrace();
-          } catch (IOException e) {
-              e.printStackTrace();
-              System.out.println("The File Write Error :" + e.toString());
-          }
-
-
-      }
-  */
 
     //To Read The Content of file
     private String ReadText(String input){
@@ -639,43 +580,37 @@ public class ChatActivity extends AppCompatActivity implements SearchView.OnQuer
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data1) {
 
-        super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data1);
 
         if (resultCode == Activity.RESULT_OK) {
 
             if (requestCode == IMAGE_PICK_CODE) {
                 //set image to the image view
-                ImageFromStudio.setImageURI(data.getData());
-                new GetImageFromURL(ImageFromStudio).execute((Runnable) data.getData());   //here to convert image to bitmap I dont know if it work
+                //ImageFromStudio.setImageURI(data.getData());
+                Uri ImageUri = data1.getData();
+                try {
+                    map = MediaStore.Images.Media.getBitmap(getContentResolver(), ImageUri);
+                    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+                    byte[] ImageInByte = baos.toByteArray();
+                    System.out.println("TAG!" + ImageInByte);
 
 
-            } else if (resultCode == REQUEST_CAMERA) {
-                //set the image form Camera
-                Bundle bundle = data.getExtras();
-                final Bitmap cameraimage = (Bitmap) bundle.get("data");
-                ImageFromStudio.setImageBitmap(cameraimage);
-            }
+                    ArrayList<Object> arrayList = new ArrayList<>();
+                    arrayList.add(16);
+                    arrayList.add(data.getUser().getEmail());
+                    arrayList.add(friendEmail);
+                    arrayList.add(ImageInByte);
 
-        }
-        else if(requestCode == READ_REQUEST_CODE && resultCode ==Activity.RESULT_OK){
-            if(data !=null){
-                Uri uri = data.getData();
-                String path = uri.getPath();
-                path = path.substring(path.indexOf(":")+1);
-                FilePath = path;
-                Toast.makeText(this,""+path,Toast.LENGTH_SHORT).show();
-                String ContaintFile = ReadText(path);
-                type.setText(ContaintFile);
-                //here you can show the path of the file
-               // tv_output.set
 
-            }
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                }
         }
 
-        //  Bitmap cameraimage = (Bitmap) data.getExtras().get("data");
-        //   image.setImageBitmap(cameraimage);
 
 
     }

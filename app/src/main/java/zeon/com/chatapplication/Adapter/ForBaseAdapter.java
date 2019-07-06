@@ -87,6 +87,7 @@ public class ForBaseAdapter extends BaseAdapter{
             public void onClick(View v) {
 
                 Intent intent = new Intent(view.getContext(), ChatActivity.class);
+                data.user.helpInt = position;
                 intent.putExtra("name",lists.get(position).getS1());
                 intent.putExtra("userEmail",lists.get(position).getEmail());
 

@@ -189,7 +189,7 @@ public class Register_Page extends AppCompatActivity {
         String Password = regPass.getText().toString();
 
         newUser.setUserName(firstName.getText().toString() + " " + middleName.getText().toString() + " " + finalName.getText().toString());
-        newUser.setEmail(regEmail.getText().toString());
+        newUser.setEmail(email);
         newUser.setPassword(regPass.getText().toString());
 
         System.out.println(newUser.getEmail()+""+newUser.getPassword()+newUser.getUserName()+""+ "Save_In_List: ");

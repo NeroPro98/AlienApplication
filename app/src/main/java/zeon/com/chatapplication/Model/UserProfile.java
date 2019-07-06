@@ -39,6 +39,7 @@ public class UserProfile implements Serializable {
     private boolean signedIn;
     private transient onValueChangeListener valueChangeListener;
     private transient onValueChangeListener newMessagesListener;
+    private transient onValueChangeListener Help14Listener;
     private transient onValueChangeListener Help11Listener;
     private transient onValueChangeListener Help4Listener;
     public  ArrayList<Object> User_Friend_Info = new ArrayList<>();
@@ -50,11 +51,19 @@ public class UserProfile implements Serializable {
     private ArrayList<Object> The_User_Hwo_Chat_With_Him = new ArrayList<>();
     public ArrayList<Object> Help11 = new ArrayList<>();
     public ArrayList<Object> Help4 = new ArrayList<>();
+    public ArrayList<Object> Help14 = new ArrayList<>();
 
+public int helpInt;
+    public onValueChangeListener getHelp14Listener() {
+        return Help14Listener;
+    }
 
+    public void setHelp14Listener(onValueChangeListener help14Listener) {
+        Help14Listener = help14Listener;
+    }
 
     private ImageView UserImage;
-    private ArrayList<MessagePerson> The_User_Chat_Containt = new ArrayList<>();
+    public ArrayList<MessagePerson> The_User_Chat_Containt = new ArrayList<>();
 
     public int friendnum ;
     public int friendbolck ;
@@ -498,7 +507,7 @@ public class UserProfile implements Serializable {
 
     public void connectToServer() throws IOException {
         System.out.println("Connecting to Server");
-        IPString = "192.168.137.1";
+        IPString = "192.168.43.143";
         System.out.println(InetAddress.getLocalHost());
         System.out.println("The Ip is " + IPString);
         Connection = new Socket(IPString, 6790);  // here we setup the connection to specific server of IP address to specific port on this server Port:
@@ -710,8 +719,9 @@ public class UserProfile implements Serializable {
             }
             case 14:{  //Check if user blocked
 
-                return (boolean) list.get(1);
-
+                Help14 = list;
+                if(Help14Listener!=null)Help14Listener.onChange();
+                return true;
             }
 
             case 19:{

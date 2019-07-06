@@ -13,9 +13,10 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="340dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:layout_marginBottom="4dp"
         android:background="@drawable/username"
         android:ems="10"
         android:hint="@string/email"
@@ -23,10 +24,11 @@
         android:paddingLeft="55dp"
         android:textAlignment="center"
         android:textColorHint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/Password_Faild"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.569"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/txtlogo2" />
 
     <EditText
         android:id="@+id/Password_Faild"
@@ -34,8 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="248dp"
+        android:layout_marginBottom="268dp"
         android:background="@drawable/password"
         android:ems="10"
         android:hint="@string/password"
@@ -45,9 +46,8 @@
         android:textColorHint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.46"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Email_Faild" />
+        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <Button
@@ -71,7 +71,7 @@
         android:id="@+id/btn_cart_signup"
         android:layout_width="340dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
+        android:layout_marginTop="24dp"
         android:background="@drawable/button_back4"
         android:color="@color/white"
         android:onClick="To_Register_Page"
@@ -83,7 +83,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/Password_Faild" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_cart_signin" />
 
 
     <ImageView

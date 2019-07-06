@@ -50,6 +50,7 @@ import zeon.com.chatapplication.Model.Chat_Model;
 import zeon.com.chatapplication.Model.Message;
 import zeon.com.chatapplication.Model.MessagePerson;
 import zeon.com.chatapplication.Model.UserProfile;
+import zeon.com.chatapplication.Model.messageType;
 import zeon.com.chatapplication.MyApplication;
 import zeon.com.chatapplication.R;
 import zeon.com.chatapplication.Register;
@@ -82,6 +83,7 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
     private UserProfile ObjConnection = data.getUser();
 
 
+    private messageType MsgType;
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,11 +101,14 @@ public class Main_Chats_Page extends AppCompatActivity implements NavigationView
                 ArrayList<MessagePerson> msgview = data.user.getThe_User_Chat_Containt();
                     for (int i = 0; i < currMessage.size(); i++) {
                         {
+                            currMessage.get(i).setType(MsgType.Text);
                             boolean found = false;
                             for (int j = 0; j < msgview.size(); j++) {
                                 if (currMessage.get(i).getSenderEmail().equals(msgview.get(j).getEmail())) {
+                                    currMessage.get(i).setType(MsgType.Image);
                                     found = true;
-                                    msgview.get(j).setListChatadd(new Chat_Model(currMessage.get(i).getRecieverEmail(), data.user.getEmail(), (String) currMessage.get(i).getObject(), false, new Date(), null, currMessage.get(i).getType()));
+                                    msgview.get(j).setListChatadd(new Chat_Model(currMessage.get(i).getRecieverEmail(), data.user.getEmail(), (String) currMessage.get(i).getObject(), false, new Date(), null,MsgType.Image));
+                                    data.user.The_User_Chat_Containt.set(j,msgview.get(j));
                                     try {
                                         data.Save_File();
                                     } catch (IOException e) {
